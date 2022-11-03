@@ -37,7 +37,7 @@ final class ClientRepository extends BaseRepository implements ClientRepositoryI
             ->setStyleGuide($resource->getStyleGuide())
             ->setNote($resource->getNote());
 
-        if ($resource->getPrinterId() !== null) {
+        if ($resource->getPrinterId() > 0) {
             $client->setPrinterId($resource->getPrinterId());
         }
 
