@@ -91,7 +91,7 @@ final class UpdateClientController extends AbstractAPIController
                 'designatedDesignerId' => $request->getDesignatedDesignerId() ?? $client->getDesignatedDesignerId(),
                 'styleGuide' => $request->getStyleGuide() ?? $client->getStyleGuide(),
                 'note' => $request->getNote() ?? $client->getNote(),
-                'printerId' => $request->getPrinterId() ?? $client->getPrinterId(),
+                'printerId' => $request->getPrinterId() ?? $client->getPrinterId() ?? null,
             ]));
 
             $client->refresh();
