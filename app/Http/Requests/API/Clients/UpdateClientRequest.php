@@ -158,7 +158,7 @@ final class UpdateClientRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'printer_id' => 'int|nullable|exists:App\Models\Printer,id',
+            'printer_id' => 'int|nullable',
             'name' => \sprintf('%s,%s','string|unique:App\Models\Client,name',$this->getId()),
             'client_code' => \sprintf('%s,%s','string|unique:App\Models\Client,client_code',$this->getId()),
             'address' => 'string',
