@@ -1,0 +1,64 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Enum;
+
+use MyCLabs\Enum\Enum;
+
+final class ServiceExtraEnum extends Enum
+{
+    /**
+     * @var mixed[]
+     */
+    public const EXTRAS = [
+        ServicesEnum::GRAPHIC_DESIGN => [
+            "DL",
+            "A4",
+            "A3",
+            "A2",
+            "A1",
+            "POS",
+            "Pull-up Banner",
+            "Whats on Guide",
+            "Hi apps",
+            "Facebook",
+            "Instagram",
+            "TV Screen"
+        ],
+
+        ServicesEnum::SOCIAL_MEDIA => [
+            "Facebook Event",
+            "Facebook Post",
+            "Instagram",
+            "Twitter"
+        ],
+
+        ServicesEnum::ADVERTISING => [
+            "Facebook",
+            "Instagram",
+            "Youtube",
+            "Twitter",
+            "TV Network",
+            "Custom",
+        ],
+
+        ServicesEnum::WEBSITE => [
+            "Homepage Header",
+            "What's On",
+            "Bistro"
+        ],
+
+        ServicesEnum::ANIMATION => [
+            "Bank Ends",
+            "Landscape",
+            "Portrait",
+            "MP4",
+            "Bank Ends",
+            "POS",
+            "EGM",
+            "Custom",
+            "Social Media",
+        ],
+    ];
+}

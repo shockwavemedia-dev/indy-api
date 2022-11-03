@@ -1,0 +1,100 @@
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.0",
+        "ext-gd": "*",
+        "doctrine/dbal": "^3.3",
+        "eonx-com/easy-utils": "^3.4",
+        "fruitcake/laravel-cors": "^3.0",
+        "guzzlehttp/guzzle": "^7.4",
+        "jenssegers/optimus": "^1.1",
+        "joelharkes/laravel-mailbox": "^3.0",
+        "laravel/framework": "^9.0",
+        "laravel/passport": "^10.4",
+        "laravel/sanctum": "^2.11",
+        "laravel/slack-notification-channel": "^2.4",
+        "laravel/tinker": "^2.5",
+        "league/flysystem-aws-s3-v3": "^3.2",
+        "mailchimp/marketing": "^3.0",
+        "owen-it/laravel-auditing": "^13.0",
+        "predis/predis": "^2.0",
+        "pusher/pusher-php-server": "^7.0",
+        "rolandstarke/laravel-thumbnail": "^1.0",
+        "sendgrid/sendgrid": "^8.0",
+        "sentry/sentry-laravel": "^2.11",
+        "slevomat/coding-standard": "^7.0",
+        "spatie/data-transfer-object": "^3.7",
+        "spatie/laravel-google-cloud-storage": "^2.0",
+        "timeweb/phpstan-enum": "^3.0",
+        "vluzrmos/slack-api": "^0.5.3"
+    },
+    "require-dev": {
+        "brianium/paratest": "^6.4",
+        "spatie/laravel-ignition": "^1.0",
+        "fakerphp/faker": "^1.9.1",
+        "laravel/sail": "^1.12",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^6.1",
+        "phpunit/phpunit": "^9.5.10",
+        "symplify/easy-coding-standard": "^10.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/",
+            "Tests\\Helpers\\": "tests/helpers"
+        }
+    },
+    "scripts": {
+        "ecs-app": [
+            "Composer\\Config::disableProcessTimeout",
+            "php -d memory_limit=-1 vendor/bin/ecs check app --config ecs.php --ansi"
+        ],
+        "ecs-tests-unit": [
+            "Composer\\Config::disableProcessTimeout",
+            "php -d memory_limit=-1 vendor/bin/ecs check tests/unit --config ecs.php --ansi"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
+        "post-install-cmd": [
+            "php artisan clear-compiled",
+            "chmod -R 777 public/"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

@@ -1,0 +1,62 @@
+version: 2.1
+orbs:
+  browser-tools: circleci/browser-tools@1.2.3
+  heroku: circleci/heroku@1.2.6 # Use the Heroku orb in your config
+
+workflows:
+  build_and_deploy:
+    jobs:
+#      - build
+      - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git'
+          force: true
+#          requires:
+#            - build
+
+jobs:
+  build:
+    docker:
+      - image: cimg/php:8.1.2
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_USER: sail
+          MYSQL_ROOT_PASSWORD: 'password'
+          MYSQL_DATABASE: crm_api
+    parallelism: 16
+    steps:
+      - checkout
+      - run: sudo composer self-update
+      - run: php -version
+      - run:
+          name: "Prepare Environment"
+          command: |
+            sudo apt update
+            sudo pecl install xdebug
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            # "composer.lock" can be used if it is committed to the repo
+            - v1-dependencies-{{ checksum "composer.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run:
+          name: "Install Dependencies"
+          command: composer install
+
+      - save_cache:
+          key: v1-dependencies-{{ checksum "composer.json" }}
+          paths:
+            - ./vendor
+      - run:
+          name: "Create Environment file and generate app key"
+          command: |
+            mv .env.pipelines .env
+            php artisan key:generate
+
+      # run tests with phpunit
+#      - run:
+#          name: "Unit Tests"
+#          command: XDEBUG_MODE=coverage php artisan test --parallel --coverage-html build/coverage-report
+#      - store_artifacts:
+#          path:  build/coverage-report
