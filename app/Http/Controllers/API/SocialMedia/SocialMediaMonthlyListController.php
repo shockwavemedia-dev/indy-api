@@ -29,6 +29,12 @@ final class SocialMediaMonthlyListController extends AbstractAPIController
     {
         $client = $this->clientRepository->find($id);
 
+        if ($client === null) {
+            return $this->respondNotFound([
+                'message' => 'Client not found.',
+            ]);
+        }
+
         if (
             $this->getUser()->getUserType()->getType()->getValue() !== UserTypeEnum::ADMIN &&
             $client->getId() !== $this->getUser()->getUserType()->getClient()->getId()
