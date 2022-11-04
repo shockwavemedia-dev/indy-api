@@ -35,6 +35,7 @@ final class UserRepository extends BaseRepository implements UserRepositoryInter
     public function findAllAdminUsers(?int $size = null, ?int $pageNumber = null): LengthAwarePaginator
     {
         return $this->model->where('morphable_type', '=', 'App\Models\Users\AdminUser')
+            ->whereNotIn('id', [1])
             ->paginate($size, ['*'], null, $pageNumber);
     }
 
