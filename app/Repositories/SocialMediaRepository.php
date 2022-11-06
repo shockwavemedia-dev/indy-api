@@ -26,6 +26,7 @@ final class SocialMediaRepository extends BaseRepository implements SocialMediaR
                 'comments',
                 'activities',
             ])
+            ->orderBy('id', 'desc')
             ->paginate($size, ['*'], null, $pageNumber);
     }
 
