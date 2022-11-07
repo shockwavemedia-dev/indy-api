@@ -41,7 +41,10 @@ final class ServiceRepository extends BaseRepository implements ServiceRepositor
     public function updateServiceExtras(Service $service, array $extras): Service
     {
         $service = $service->setAttribute('extras', $extras);
+
         $service->save();
+
+        $service->refresh();
 
         return $service;
     }
