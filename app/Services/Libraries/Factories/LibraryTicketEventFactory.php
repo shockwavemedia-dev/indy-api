@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services\Libraries\Factories;
 
+use App\Enum\TicketPrioritiesEnum;
 use App\Enum\TicketTypeEnum;
 use App\Models\Tickets\Ticket;
 use App\Repositories\Interfaces\DepartmentRepositoryInterface;
@@ -59,6 +60,7 @@ final class LibraryTicketEventFactory implements LibraryTicketEventFactoryInterf
         $ticketCreator = $this->ticketTypeResolverFactory->make(new TicketTypeEnum(TicketTypeEnum::EVENT));
 
         $ticket = $ticketCreator->create(new CreateTicketResource([
+            'priority' => TicketPrioritiesEnum::STANDARD,
             'client' => $resource->getClientUser()->getClient(),
             'createdBy' => $resource->getClientUser()->getUser(),
             'department' => $department,
