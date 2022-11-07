@@ -45,10 +45,14 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      *
      * @return void
+     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     public function boot()
     {
         $sentryHandler =  new ErrorLog();
+        Mailbox::catchAll(function(InboundEmail $email) use ($sentryHandler) {
+            $sentryHandler->log($email->subject());
+        });
 
         Mailbox::from('design@indy.com.au', function(InboundEmail $email) use ($sentryHandler) {
             $sentryHandler->log($email->subject());
