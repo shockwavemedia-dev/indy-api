@@ -60,7 +60,7 @@ final class LibraryTicketEventFactory implements LibraryTicketEventFactoryInterf
         $ticketCreator = $this->ticketTypeResolverFactory->make(new TicketTypeEnum(TicketTypeEnum::EVENT));
 
         $ticket = $ticketCreator->create(new CreateTicketResource([
-            'priority' => TicketPrioritiesEnum::STANDARD,
+            'priority' => new TicketPrioritiesEnum(TicketPrioritiesEnum::STANDARD),
             'client' => $resource->getClientUser()->getClient(),
             'createdBy' => $resource->getClientUser()->getUser(),
             'department' => $department,
