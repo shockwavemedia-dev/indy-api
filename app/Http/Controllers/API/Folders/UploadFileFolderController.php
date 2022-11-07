@@ -7,6 +7,7 @@ namespace App\Http\Controllers\API\Folders;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Folders\UploadFileFolderRequest;
 use App\Models\Folder;
+use App\Models\Users\ClientUser;
 use App\Repositories\Interfaces\FolderRepositoryInterface;
 use App\Services\Folders\Interfaces\UploadFileFolderResolverInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -36,7 +37,9 @@ final class UploadFileFolderController extends AbstractAPIController
             ]);
         }
 
-        if ($this->getUser()->getUserType()->getClient()->getId() !== $folder->getClient()->getId()) {
+        if ($this->getUser()->getUserType() instanceof ClientUser &&
+            $this->getUser()->getUserType()->getClient()->getId() !== $folder->getClient()->getId()
+        ) {
             return $this->respondForbidden();
         }
 

@@ -60,5 +60,19 @@ final class ServiceExtraEnum extends Enum
             "Custom",
             "Social Media",
         ],
+
+        ServicesEnum::PRINT => [
+            "A0",
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "Pull Up Banner",
+            "Blades Sign",
+            "DL Postcard",
+            "Doublesided DL",
+            "Doublesided A4",
+            "Custom",
+        ]
     ];
 }
