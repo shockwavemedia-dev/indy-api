@@ -35,7 +35,7 @@ final class GraphicRequestFactory implements GraphicRequestFactoryInterface
      */
     public function make(CreateGraphicRequestResource $resource): Ticket
     {
-        $ticketCreator = $this->ticketTypeResolverFactory->make(new TicketTypeEnum(TicketTypeEnum::EVENT));
+        $ticketCreator = $this->ticketTypeResolverFactory->make(new TicketTypeEnum(TicketTypeEnum::PROJECT));
 
         $department = $this->departmentRepository->findByName('Graphics Department');
 

@@ -113,7 +113,7 @@ final class TicketEventFactoryTest extends TestCase
             'description' => 'test',
             'dueDate' => $dueDate,
             'subject' => 'test',
-            'type' => new TicketTypeEnum(TicketTypeEnum::EVENT),
+            'type' => new TicketTypeEnum(TicketTypeEnum::PROJECT),
             'services' => $services
         ]);
 
@@ -189,7 +189,7 @@ final class TicketEventFactoryTest extends TestCase
                             'status' => 'new',
                             'description' => 'test',
                             'subject' => 'test',
-                            'type' => new TicketTypeEnum(TicketTypeEnum::EVENT),
+                            'type' => new TicketTypeEnum(TicketTypeEnum::PROJECT),
                             'duedate' => $dueDate,
                         ],
                     ],
@@ -276,7 +276,7 @@ final class TicketEventFactoryTest extends TestCase
 
         yield 'Supports false' => [
             'expected' => true,
-            'userType' => new TicketTypeEnum(TicketTypeEnum::EVENT)
+            'userType' => new TicketTypeEnum(TicketTypeEnum::PROJECT)
         ];
     }
 }

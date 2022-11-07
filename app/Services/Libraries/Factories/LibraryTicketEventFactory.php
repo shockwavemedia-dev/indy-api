@@ -57,7 +57,7 @@ final class LibraryTicketEventFactory implements LibraryTicketEventFactoryInterf
 
         $dueDate = (new Carbon())->addDays(7);
 
-        $ticketCreator = $this->ticketTypeResolverFactory->make(new TicketTypeEnum(TicketTypeEnum::EVENT));
+        $ticketCreator = $this->ticketTypeResolverFactory->make(new TicketTypeEnum(TicketTypeEnum::PROJECT));
 
         $ticket = $ticketCreator->create(new CreateTicketResource([
             'priority' => new TicketPrioritiesEnum(TicketPrioritiesEnum::STANDARD),
