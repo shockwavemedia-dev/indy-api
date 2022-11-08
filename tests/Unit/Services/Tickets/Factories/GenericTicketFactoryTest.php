@@ -63,7 +63,7 @@ final class GenericTicketFactoryTest extends TestCase
             'description' => 'test',
             'dueDate' => $dueDate,
             'subject' => 'test',
-            'type' => new TicketTypeEnum(TicketTypeEnum::EVENT),
+            'type' => new TicketTypeEnum(TicketTypeEnum::PROJECT),
         ]);
 
         $repository = new TicketRepositoryStub([
@@ -102,7 +102,7 @@ final class GenericTicketFactoryTest extends TestCase
                         'status' => 'new',
                         'description' => 'test',
                         'subject' => 'test',
-                        'type' => new TicketTypeEnum(TicketTypeEnum::EVENT),
+                        'type' => new TicketTypeEnum(TicketTypeEnum::PROJECT),
                         'duedate' => $dueDate,
                     ],
                 ],
@@ -138,7 +138,7 @@ final class GenericTicketFactoryTest extends TestCase
     {
         yield 'Supports true' => [
             'expected' => false,
-            'userType' => new TicketTypeEnum(TicketTypeEnum::EVENT)
+            'userType' => new TicketTypeEnum(TicketTypeEnum::PROJECT)
         ];
 
         yield 'Supports false' => [

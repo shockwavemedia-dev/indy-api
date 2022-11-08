@@ -21,6 +21,11 @@ final class TicketTypeEnum extends Enum
     /**
      * @var string
      */
+    public const PROJECT = 'project';
+
+    /**
+     * @var string
+     */
     public const LIBRARY = 'library';
 
     /**

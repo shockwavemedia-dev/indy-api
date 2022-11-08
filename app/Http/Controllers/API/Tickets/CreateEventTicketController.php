@@ -60,7 +60,7 @@ final class CreateEventTicketController extends AbstractAPIController
 
             $this->ticketEventServicesValidator->validate($client, $request->getServices());
 
-            $ticketCreator = $this->factory->make(new TicketTypeEnum(TicketTypeEnum::EVENT));
+            $ticketCreator = $this->factory->make(new TicketTypeEnum(TicketTypeEnum::PROJECT));
 
             $ticket = $ticketCreator->create(new CreateTicketResource([
                 'priority' => $request->getPriority(),
@@ -71,7 +71,7 @@ final class CreateEventTicketController extends AbstractAPIController
                 'services' => $request->getServices(),
                 'subject' => $request->getSubject(),
                 'attachments' => $request->getAttachments(),
-                'type' => new TicketTypeEnum(TicketTypeEnum::EVENT),
+                'type' => new TicketTypeEnum(TicketTypeEnum::PROJECT),
                 'marketingPlannerEndDate' => $request->getMarketingPlannerEndDate(),
                 'marketingPlannerStartDate' => $request->getMarketingPlannerStartDate(),
             ]));

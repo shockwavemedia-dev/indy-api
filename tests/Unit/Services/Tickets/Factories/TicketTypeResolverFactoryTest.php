@@ -24,7 +24,7 @@ final class TicketTypeResolverFactoryTest extends TestCase
             'supports' => true,
         ]);
 
-        $ticketType = new TicketTypeEnum(TicketTypeEnum::EVENT);
+        $ticketType = new TicketTypeEnum(TicketTypeEnum::PROJECT);
 
         $factory = new TicketTypeResolverFactory([$resolver]);
 
@@ -51,7 +51,7 @@ final class TicketTypeResolverFactoryTest extends TestCase
             'supports' => false,
         ]);
 
-        $ticketType = new TicketTypeEnum(TicketTypeEnum::EVENT);
+        $ticketType = new TicketTypeEnum(TicketTypeEnum::PROJECT);
 
         $factory = new TicketTypeResolverFactory([$resolver]);
 

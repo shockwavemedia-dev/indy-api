@@ -15,7 +15,7 @@ final class TicketFileUploadNotificationResolver extends AbstractClientNotificat
     /**
      * @var string
      */
-    private const TITLE_KEY = '%s has uploaded a file in ticket # %s';
+    private const TITLE_KEY = '%s is requesting approval for a design in ticket # %s';
 
     /**
      * @param ClientTicketFile $morph

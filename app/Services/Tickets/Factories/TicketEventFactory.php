@@ -97,6 +97,6 @@ final class TicketEventFactory extends AbstractTicketFactory implements TicketTy
 
     public function supports(TicketTypeEnum $type): bool
     {
-        return $type->getValue() === TicketTypeEnum::EVENT;
+        return $type->getValue() === TicketTypeEnum::PROJECT;
     }
 }

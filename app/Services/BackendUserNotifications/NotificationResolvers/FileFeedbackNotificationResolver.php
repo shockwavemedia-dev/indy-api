@@ -17,7 +17,7 @@ final class FileFeedbackNotificationResolver extends AbstractBackendUserNotifica
     /**
      * @var string
      */
-    private const TITLE_KEY = '%s has posted a feedback in file in ticket # %s';
+    private const TITLE_KEY = '%s has messaged you regarding ticket # %s';
 
     /**
      * @param FileFeedback $morph
