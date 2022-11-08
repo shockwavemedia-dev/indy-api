@@ -108,6 +108,7 @@ $app->register(TicketEmailServiceProvider::class);
 $app->register(UserServiceProvider::class);
 $app->register(PrinterJobServiceProvider::class);
 $app->register(ScreenServiceProvider::class);
+$app->register(Sichikawa\LaravelSendgridDriver\MailServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
