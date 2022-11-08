@@ -24,11 +24,11 @@ final class InboundEmailReceiverController extends AbstractAPIController
         $to = $request->input("to");
         $body = $request->input("text");
 
-
         $result = [
             'from' => $request->input("from"),
             'to' => $request->input("to"),
             'body' => $request->input("body"),
+            'test' => $request->all(),
         ];
 
         $this->errorLog->log(json_encode($result));
