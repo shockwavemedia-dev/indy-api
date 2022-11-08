@@ -8,7 +8,6 @@ use App\Enum\UserStatusEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Authentication\LoginRequest;
 use App\Http\Resources\API\Authentication\UserAccessTokenResource;
-use App\Http\Resources\API\Users\UserResource;
 use App\Models\Users\LeadClient;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use Exception;
@@ -89,10 +88,16 @@ final class LoginController extends AbstractAPIController
             return new UserAccessTokenResource($response);
             // @codeCoverageIgnoreStart
         } catch (Exception $exception) {
-            return $this->respondInternalError([
+            return new JsonResource([
                 'error' => $exception->getMessage(),
                 'code' => $exception->getCode(),
-            ]);
+                ],
+                Response::HTTP_BAD_REQUEST
+            );
+//            return $this->respondInternalError([
+//                'error' => $exception->getMessage(),
+//                'code' => $exception->getCode(),
+//            ]);
             // @codeCoverageIgnoreEnd
         }
     }
