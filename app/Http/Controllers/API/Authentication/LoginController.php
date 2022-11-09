@@ -8,7 +8,6 @@ use App\Enum\UserStatusEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Authentication\LoginRequest;
 use App\Http\Resources\API\Authentication\UserAccessTokenResource;
-use App\Http\Resources\API\Users\UserResource;
 use App\Models\Users\LeadClient;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use Exception;
