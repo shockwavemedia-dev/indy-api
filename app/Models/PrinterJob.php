@@ -40,6 +40,10 @@ class PrinterJob extends AbstractModel implements EmailInterface
         'blind_shipping',
         'reseller_samples',
         'created_by',
+        'stocks',
+        'coding',
+        'address',
+        'purchase_order_number'
     ];
 
     protected $table = 'printer_jobs';
