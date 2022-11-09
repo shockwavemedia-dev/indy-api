@@ -21,11 +21,11 @@ final class ErrorLog implements ErrorLogInterface
         if ($level !== Severity::info()) {
 //            \Sentry\captureMessage($message, $level);
 
-            ErrorLogJob::dispatch(
-                $message,
-                $message,
-                $level,
-            );
+//            ErrorLogJob::dispatch(
+//                $message,
+//                $message,
+//                $level,
+//            );
         }
     }
 
@@ -34,10 +34,10 @@ final class ErrorLog implements ErrorLogInterface
      */
     public function reportError(Throwable $throwable)
     {
-        ErrorLogJob::dispatch(
-            $throwable->getTraceAsString(),
-            $throwable->getMessage(),
-            Severity::ERROR,
-        );
+//        ErrorLogJob::dispatch(
+//            $throwable->getTraceAsString(),
+//            $throwable->getMessage(),
+//            Severity::ERROR,
+//        );
     }
 }
