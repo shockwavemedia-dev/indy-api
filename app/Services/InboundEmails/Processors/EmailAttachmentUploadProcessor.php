@@ -68,7 +68,7 @@ final class EmailAttachmentUploadProcessor implements EmailAttachmentUploadProce
                 'ticketEvent' => $ticket->getTicketEvent(),
             ]));
 
-            $rawFile = Storage::disk('local')->get($originalFileName);
+            $rawFile = Storage::disk('local')->get($generatedFilename);
 
             if ($rawFile === null) {
                 $this->errorLog->log('Empty raw file, line 71');
