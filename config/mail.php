@@ -13,6 +13,8 @@ return [
     |
     */
 
+    'service_email' => env('SERVICE_EMAIL', 'design@indy.com.au'),
+
     'default' => env('MAIL_MAILER', 'smtp'),
 
     /*
@@ -34,6 +36,10 @@ return [
     */
 
     'mailers' => [
+        'sendgrid' => [
+            'transport' => 'sendgrid',
+            'api_key' => env('SENDGRID_API_KEY'),
+        ],
         'smtp' => [
             'transport' => 'smtp',
             'host' => env('MAIL_HOST', 'smtp.mailgun.org'),

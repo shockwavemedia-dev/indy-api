@@ -41,6 +41,10 @@ final class TicketSupportResource extends Resource
         /** @var Ticket $ticket */
         $ticket = $this->resource;
 
+        $emailHtml = json_decode($ticket->getAttribute('email_html')) ;
+
+        $emailHtml = $emailHtml?->data;
+
         $result =  [
             'id' => $ticket->getId(),
             'is_overdue' => $ticket->isOverdue(),
@@ -48,12 +52,13 @@ final class TicketSupportResource extends Resource
             'client_id' => $ticket->getClientId(),
             'client_name' => $ticket->getClient()?->getName(),
             'subject' => $ticket->getSubject(),
-            'description' => $ticket->getDescription(),
+            'description' => $ticket->getDescription() ?? "{\"blocks\":[{\"key\":\"a7itc\",\"text\":\"\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
             'department_name' => $ticket->getDepartment()?->getName(),
             'priority' => $ticket->getPriority(),
             'duedate' => $ticket->getDueDate()?->toDateString(),
             'type' => $ticket->getType()->getValue(),
             'status' => $ticket->getStatus()->getValue(),
+            'email_html' => $emailHtml,
             'created_at' => $ticket->getCreatedAtAsString(),
         ];
 

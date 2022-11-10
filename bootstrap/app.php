@@ -22,6 +22,7 @@ use App\Providers\FileManagerServiceProvider;
 use App\Providers\FileServiceProvider;
 use App\Providers\FolderServiceProvider;
 use App\Providers\GraphicServiceProvider;
+use App\Providers\InboundEmailServiceProvider;
 use App\Providers\LibraryCategoryServiceProvider;
 use App\Providers\LibraryServiceProvider;
 use App\Providers\MailChimpServiceProvider;
@@ -88,6 +89,7 @@ $app->register(FileManagerServiceProvider::class);
 $app->register(FileServiceProvider::class);
 $app->register(FolderServiceProvider::class);
 $app->register(GraphicServiceProvider::class);
+$app->register(InboundEmailServiceProvider::class);
 $app->register(LibraryServiceProvider::class);
 $app->register(LibraryCategoryServiceProvider::class);
 $app->register(MailChimpServiceProvider::class);
@@ -108,6 +110,7 @@ $app->register(TicketEmailServiceProvider::class);
 $app->register(UserServiceProvider::class);
 $app->register(PrinterJobServiceProvider::class);
 $app->register(ScreenServiceProvider::class);
+$app->register(Sichikawa\LaravelSendgridDriver\MailServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

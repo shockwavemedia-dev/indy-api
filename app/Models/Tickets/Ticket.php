@@ -34,6 +34,7 @@ final class Ticket extends AbstractModel implements EmailInterface
      * @var string[]
      */
     public $fillable = [
+        'email_html',
         'priority',
         'client_id',
         'created_by',

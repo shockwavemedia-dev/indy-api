@@ -20,6 +20,8 @@ use Spatie\DataTransferObject\DataTransferObject;
  */
 final class CreateTicketResource extends DataTransferObject
 {
+    public ?array $emailHtml = null;
+
     public TicketPrioritiesEnum $priority;
 
     public Client $client;
@@ -57,6 +59,11 @@ final class CreateTicketResource extends DataTransferObject
     public function getMarketingPlannerStartDate(): ?DateTimeInterface
     {
         return $this->marketingPlannerStartDate;
+    }
+
+    public function getEmailHtml(): ?array
+    {
+        return $this->emailHtml;
     }
 
     public function getMarketingPlannerEndDate(): ?DateTimeInterface

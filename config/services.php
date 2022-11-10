@@ -37,6 +37,9 @@ return [
     'mailchimp' => [
         'key' => env('MAILCHIMP_KEY'),
         'server' => env('MAILCHIMP_SERVER')
-    ]
+    ],
 
+    'sendgrid' => [
+        'api_key' => env('SENDGRID_API_KEY'),
+    ],
 ];

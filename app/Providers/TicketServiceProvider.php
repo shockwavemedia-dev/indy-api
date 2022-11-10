@@ -10,6 +10,7 @@ use App\Services\TicketActivities\TicketActivityFactory;
 use App\Services\TicketNotes\Interfaces\TicketNoteFactoryInterface;
 use App\Services\TicketNotes\TicketNoteFactory;
 use App\Services\Tickets\AssignTicketService;
+use App\Services\Tickets\Factories\EmailTicketFactory;
 use App\Services\Tickets\Factories\TicketEventAttachmentFactory;
 use App\Services\Tickets\Factories\TicketNotificationResolverFactory;
 use App\Services\Tickets\Factories\TicketServicesFactory;
@@ -65,6 +66,7 @@ final class TicketServiceProvider extends ServiceProvider
             [
                 GenericTicketFactory::class,
                 TicketEventFactory::class,
+                EmailTicketFactory::class,
             ],
             TicketTypeResolverInterface::class
         );
