@@ -20,6 +20,7 @@
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "^3.2",
         "mailchimp/marketing": "^3.0",
+        "mews/purifier": "^3.3",
         "owen-it/laravel-auditing": "^13.0",
         "predis/predis": "^2.0",
         "pusher/pusher-php-server": "^7.0",

@@ -13,6 +13,8 @@ return [
     |
     */
 
+    'service_email' => env('SERVICE_EMAIL', 'design@indy.com.au'),
+
     'default' => env('MAIL_MAILER', 'smtp'),
 
     /*

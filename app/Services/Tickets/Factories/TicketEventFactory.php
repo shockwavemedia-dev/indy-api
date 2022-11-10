@@ -69,7 +69,6 @@ final class TicketEventFactory extends AbstractTicketFactory implements TicketTy
 
         $ticketEvent = $this->ticketEventRepository->create([
             'ticket_id' => $ticket->getId(),
-            'duedate' => $resource->getDueDate(),
         ]);
 
         foreach($resource->getAttachments() ?? [] as $attachment) {
