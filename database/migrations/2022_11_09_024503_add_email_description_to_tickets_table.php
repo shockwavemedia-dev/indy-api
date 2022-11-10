@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('tickets', function (Blueprint $table) {
-            $table->string('email_html')->nullable()->after('description');
+            $table->json('email_html')->nullable()->after('description');
         });
     }
 
