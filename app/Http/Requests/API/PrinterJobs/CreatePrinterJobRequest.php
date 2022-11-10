@@ -13,6 +13,7 @@ final class CreatePrinterJobRequest extends BaseRequest
         return true;
     }
 
+
     public function rules(): array
     {
         return [

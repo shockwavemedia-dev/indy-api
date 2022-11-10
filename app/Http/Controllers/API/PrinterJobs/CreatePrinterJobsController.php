@@ -15,8 +15,15 @@ use App\Models\Client;
 use App\Repositories\Interfaces\ClientRepositoryInterface;
 use App\Services\EmailLogs\Interfaces\EmailLogFactoryInterface;
 use App\Services\EmailLogs\resources\CreateEmailLogResource;
+use App\Services\FileManager\Interfaces\BucketFactoryInterface;
+use App\Services\FileManager\Interfaces\FileUploaderInterface;
+use App\Services\FileManager\Resources\UploadFileResource;
+use App\Services\Files\Interfaces\FileFactoryInterface;
+use App\Services\Files\Resources\CreateFileResource;
+use App\Services\PrinterJobs\Interfaces\PrinterJobAttachmentFactoryInterface;
 use App\Services\PrinterJobs\Interfaces\PrinterJobFactoryInterface;
 use App\Services\PrinterJobs\Resources\CreatePrinterJobResource;
+use App\Services\PrinterJobs\Resources\CreateAttachmentResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Str;
 
@@ -28,14 +35,31 @@ final class CreatePrinterJobsController extends AbstractAPIController
 
     private PrinterJobFactoryInterface $printerJobFactory;
 
+    private PrinterJobAttachmentFactoryInterface $printerJobAttachmentFactory;
+
+    private BucketFactoryInterface $bucketFactory;
+
+    private FileFactoryInterface $fileFactory;
+
+    private FileUploaderInterface $fileUploader;
+
     public function __construct(
         ClientRepositoryInterface $clientRepository,
         EmailLogFactoryInterface $emailLogFactory,
-        PrinterJobFactoryInterface $printerJobFactory
+        PrinterJobFactoryInterface $printerJobFactory,
+        PrinterJobAttachmentFactoryInterface $printerJobAttachmentFactory,
+        BucketFactoryInterface $bucketFactory,
+        FileFactoryInterface $fileFactory,
+        FileUploaderInterface $fileUploader,
+
     ) {
         $this->clientRepository = $clientRepository;
         $this->emailLogFactory = $emailLogFactory;
         $this->printerJobFactory = $printerJobFactory;
+        $this->printerJobAttachmentFactory = $printerJobAttachmentFactory;
+        $this->bucketFactory = $bucketFactory;
+        $this->fileFactory = $fileFactory;
+        $this->fileUploader = $fileUploader;
     }
 
     /**
@@ -121,6 +145,31 @@ final class CreatePrinterJobsController extends AbstractAPIController
         GenericPrintManagerSlackNotificationJob::dispatch($printerJob->getId(), $message);
 
         $client->getPrinter()->getUser()->sendEmailToPrinter($printerJob, $emailLog, $this->getUser());
+
+        if (array_key_exists('attachments',$payload) && count($payload['attachments']) > 0) {
+            $bucket = $this->bucketFactory->make($client->getClientCode());
+
+            foreach ($data['attachments'] as $attachment) {
+                $fileModel = $this->fileFactory->make(new CreateFileResource([
+                    'uploadedFile' => $attachment,
+                    'disk' => $bucket->disk(),
+                    'filePath' => sprintf('printer-job/%s', $printerJob->getId()),
+                    'folder' => null,
+                    'uploadedBy' => $this->getUser(),
+                    'bucket' => $bucket->name(),
+                ]));
+
+                $this->printerJobAttachmentFactory->make(new CreateAttachmentResource([
+                    'printerJob' => $printerJob,
+                    'file' => $fileModel,
+                ]));
+
+                $this->fileUploader->upload(new UploadFileResource([
+                    'fileModel' => $fileModel,
+                    'fileObject' => $attachment,
+                ]));
+            }
+        }
 
         return new PrinterJobResource($printerJob);
     }
