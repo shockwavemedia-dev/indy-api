@@ -41,9 +41,13 @@ final class TicketSupportResource extends Resource
         /** @var Ticket $ticket */
         $ticket = $this->resource;
 
-        $emailHtml = json_decode($ticket->getAttribute('email_html')) ;
+        $emailHtml = null;
 
-        $emailHtml = $emailHtml?->data;
+        if ($ticket->getAttribute('email_html') !== null ) {
+            $emailHtml = json_decode($ticket->getAttribute('email_html')) ;
+
+            $emailHtml = $emailHtml?->data;
+        }
 
         $result =  [
             'id' => $ticket->getId(),
