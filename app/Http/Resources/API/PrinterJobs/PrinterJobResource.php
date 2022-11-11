@@ -6,6 +6,7 @@ namespace App\Http\Resources\API\PrinterJobs;
 
 use App\Http\Resources\Resource;
 use App\Models\PrinterJob;
+use App\Models\PrinterJobAttachment;
 
 final class PrinterJobResource extends Resource
 {
@@ -16,7 +17,7 @@ final class PrinterJobResource extends Resource
         /** @var PrinterJob $printerJob */
         $printerJob = $this->resource;
 
-        return [
+        $result = [
             'id' => $printerJob->getId(),
             'is_approved' => $printerJob->getAttribute('is_approved'),
             'status' => $printerJob->getAttribute('status'),
@@ -43,5 +44,22 @@ final class PrinterJobResource extends Resource
             'printer' => $printerJob->printer,
             'created_by' => $printerJob->getCreatedBy()->getFullName(),
         ];
+
+        $attachments = [];
+
+        /** @var PrinterJobAttachment $attachment */
+        foreach ($printerJob->getAttachments() as $attachment) {
+            $attachments[] = [
+                'name' =>  $attachment->getFile()?->getOriginalFilename(),
+                'file_type' =>  $attachment->getFile()?->getFileType(),
+                'printer_job_attachment_id' => $attachment->getId(),
+                'url' => $attachment->getFile()?->getUrl(),
+                'thumbnail_url' => $attachment->getFile()?->getThumbnailUrl(),
+            ];
+        }
+
+        $result['attachments'] = $attachments;
+
+        return $result;
     }
 }

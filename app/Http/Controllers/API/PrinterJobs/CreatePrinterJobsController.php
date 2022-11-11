@@ -13,6 +13,7 @@ use App\Http\Resources\API\PrinterJobs\PrinterJobResource;
 use App\Jobs\PrinterJobs\GenericPrintManagerSlackNotificationJob;
 use App\Models\Client;
 use App\Repositories\Interfaces\ClientRepositoryInterface;
+use App\Repositories\Interfaces\FileRepositoryInterface;
 use App\Services\EmailLogs\Interfaces\EmailLogFactoryInterface;
 use App\Services\EmailLogs\resources\CreateEmailLogResource;
 use App\Services\FileManager\Interfaces\BucketFactoryInterface;
@@ -43,6 +44,8 @@ final class CreatePrinterJobsController extends AbstractAPIController
 
     private FileUploaderInterface $fileUploader;
 
+    private FileRepositoryInterface $fileRepository;
+
     public function __construct(
         ClientRepositoryInterface $clientRepository,
         EmailLogFactoryInterface $emailLogFactory,
@@ -51,6 +54,7 @@ final class CreatePrinterJobsController extends AbstractAPIController
         BucketFactoryInterface $bucketFactory,
         FileFactoryInterface $fileFactory,
         FileUploaderInterface $fileUploader,
+        FileRepositoryInterface $fileRepository,
 
     ) {
         $this->clientRepository = $clientRepository;
@@ -60,6 +64,7 @@ final class CreatePrinterJobsController extends AbstractAPIController
         $this->bucketFactory = $bucketFactory;
         $this->fileFactory = $fileFactory;
         $this->fileUploader = $fileUploader;
+        $this->fileRepository = $fileRepository;
     }
 
     /**
@@ -107,7 +112,8 @@ final class CreatePrinterJobsController extends AbstractAPIController
             'coding',
             'address',
             'purchase_order_number',
-            'attachments'
+            'attachments',
+            'file_ids'
         ]);
 
         $data = [];
@@ -149,7 +155,7 @@ final class CreatePrinterJobsController extends AbstractAPIController
         if (array_key_exists('attachments',$payload) && count($payload['attachments']) > 0) {
             $bucket = $this->bucketFactory->make($client->getClientCode());
 
-            foreach ($data['attachments'] as $attachment) {
+            foreach ($payload['attachments'] as $attachment) {
                 $fileModel = $this->fileFactory->make(new CreateFileResource([
                     'uploadedFile' => $attachment,
                     'disk' => $bucket->disk(),
@@ -167,6 +173,17 @@ final class CreatePrinterJobsController extends AbstractAPIController
                 $this->fileUploader->upload(new UploadFileResource([
                     'fileModel' => $fileModel,
                     'fileObject' => $attachment,
+                ]));
+            }
+        }
+
+        if (count($payload['file_ids'] ?? []) > 0) {
+            $files = $this->fileRepository->findByIds($payload['file_ids']);
+
+            foreach ($files as $file) {
+                $this->printerJobAttachmentFactory->make(new CreateAttachmentResource([
+                    'printerJob' => $printerJob,
+                    'file' => $file,
                 ]));
             }
         }

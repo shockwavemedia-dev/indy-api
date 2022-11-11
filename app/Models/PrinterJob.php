@@ -6,8 +6,10 @@ namespace App\Models;
 
 use App\Models\Emails\Interfaces\EmailInterface;
 use App\Models\Traits\HasRelationshipWithUser;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PrinterJob extends AbstractModel implements EmailInterface
@@ -66,5 +68,15 @@ class PrinterJob extends AbstractModel implements EmailInterface
     public function printer(): BelongsTo
     {
         return $this->belongsTo(Printer::class);
+    }
+
+    public function getAttachments(): ?Collection
+    {
+        return $this->attachments;
+    }
+
+    public function attachments(): HasMany
+    {
+        return $this->hasMany(PrinterJobAttachment::class, 'printer_job_id');
     }
 }
