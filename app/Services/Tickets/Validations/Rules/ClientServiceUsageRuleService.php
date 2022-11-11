@@ -19,7 +19,7 @@ final class ClientServiceUsageRuleService implements TicketEventServiceValidatio
         // Service is not infinite, if total used already reached the quota throw exception
         if (
             $clientService->getMarketingQuota() > 0 &&
-            $clientService->getMarketingQuota() <= $clientService->getTotalUsed()
+            ($clientService->getMarketingQuota() + $clientService->getExtraQuota()) <= $clientService->getTotalUsed()
         ) {
             throw new ServiceUsageQuotaLimitException(
                 \sprintf(
