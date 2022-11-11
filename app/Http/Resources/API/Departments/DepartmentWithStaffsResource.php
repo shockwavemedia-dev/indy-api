@@ -57,6 +57,7 @@ final class DepartmentWithStaffsResource extends Resource
                     $adminUser->getUser()->getMiddleName(),
                     $adminUser->getUser()->getLastName(),
                 ),
+                'open_tickets' => $adminUser->getOpenTickets(),
             ];
         }
 
