@@ -107,7 +107,7 @@ abstract class AbstractTicketFactory
             'eventName' => $resource->getSubject(),
             'description' => $resource->getDescription(),
             'startDate' => $resource->getMarketingPlannerStartDate(),
-            'endDate' => $resource->getMarketingPlannerStartDate(),
+            'endDate' => $resource->getMarketingPlannerEndDate(),
             'isRecurring' => false,
             'createdBy' => $resource->getCreatedBy(),
         ]));
