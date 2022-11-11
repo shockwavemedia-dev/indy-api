@@ -77,6 +77,7 @@ use App\Http\Controllers\API\PrinterJobs\CreatePrinterJobsController;
 use App\Http\Controllers\API\PrinterJobs\DeclinedOfferPrinterJobController;
 use App\Http\Controllers\API\PrinterJobs\DeletePrinterJobController;
 use App\Http\Controllers\API\PrinterJobs\ListPrinterJobController;
+use App\Http\Controllers\API\PrinterJobs\RemoveAttachmentsPrinterJobController;
 use App\Http\Controllers\API\PrinterJobs\ShowPrinterJobController;
 use App\Http\Controllers\API\PrinterJobs\UpdatePrinterJobController;
 use App\Http\Controllers\API\Printers\CreatePrinterController;
@@ -976,6 +977,10 @@ Route::group([
             'as' => 'update-price',
             'uses' => AssignPricePrinterJobController::class,
         ])->middleware('checkPermission:printer-jobs,assign-price');;
+        Route::put('/printer-jobs/{id}/attachments', [
+            'as' => 'delete-attachments',
+            'uses' => RemoveAttachmentsPrinterJobController::class,
+        ]);
     });
 
     Route::group([
