@@ -8,7 +8,6 @@ use App\Models\File;
 use App\Models\Tickets\Ticket;
 use App\Repositories\Interfaces\FileRepositoryInterface;
 use App\Services\FileManager\Bucket;
-use App\Services\FileManager\Interfaces\S3SignedUrlServiceInterface;
 use App\Services\InboundEmails\Interfaces\EmailAttachmentUploadProcessorInterface;
 use App\Services\Tickets\Interfaces\Factories\TicketEventAttachmentFactoryInterface;
 use App\Services\Tickets\Resources\CreateTicketEventAttachmentResource;
