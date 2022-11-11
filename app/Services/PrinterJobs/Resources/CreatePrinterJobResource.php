@@ -47,6 +47,14 @@ final class CreatePrinterJobResource extends DataTransferObject
 
     public $resellerSamples = null;
 
+    public ?string $stocks = null;
+
+    public ?string $coding = null;
+
+    public ?string $address = null;
+
+    public ?string $purchaseOrderNumber = null;
+
     public User $createdBy;
 
     /**
@@ -196,6 +204,38 @@ final class CreatePrinterJobResource extends DataTransferObject
     public function getCreatedBy(): User
     {
         return $this->createdBy;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getStocks(): ?string
+    {
+        return $this->stocks;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCoding(): ?string
+    {
+        return $this->coding;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPurchaseOrderNumber(): ?string
+    {
+        return $this->purchaseOrderNumber;
     }
 
 

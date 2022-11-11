@@ -13,6 +13,7 @@ final class CreatePrinterJobRequest extends BaseRequest
         return true;
     }
 
+
     public function rules(): array
     {
         return [
@@ -29,8 +30,11 @@ final class CreatePrinterJobRequest extends BaseRequest
             'additional_options' => 'array|nullable',
             'delivery' => 'string|nullable',
             'price' => 'string|nullable',
-            'blind_shipping' => 'boolean|nullable',
-            'reseller_samples' => 'boolean|nullable',
+            'stocks' => 'string|nullable',
+            'coding' => 'string|nullable',
+            'address' => 'string|nullable',
+            'purchase_order_number' => 'string|nullable',
+            'attachments' => '',
 //            'printer_id' => [
 //                'int',
 //                'nullable',

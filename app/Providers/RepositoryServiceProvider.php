@@ -39,6 +39,7 @@ use App\Repositories\Interfaces\MarketingPlannerTaskAssigneeRepositoryInterface;
 use App\Repositories\Interfaces\MarketingPlannerTaskRepositoryInterface;
 use App\Repositories\Interfaces\NotificationRepositoryInterface;
 use App\Repositories\Interfaces\NotificationUserRepositoryInterface;
+use App\Repositories\Interfaces\PrinterJobAttachmentRepositoryInterface;
 use App\Repositories\Interfaces\PrinterJobRepositoryInterface;
 use App\Repositories\Interfaces\PrinterRepositoryInterface;
 use App\Repositories\Interfaces\ScreenRepositoryInterface;
@@ -66,6 +67,7 @@ use App\Repositories\MarketingPlannerTaskAssigneeRepository;
 use App\Repositories\MarketingPlannerTaskRepository;
 use App\Repositories\NotificationRepository;
 use App\Repositories\NotificationUserRepository;
+use App\Repositories\PrinterJobAttachmentRepository;
 use App\Repositories\PrinterJobRepository;
 use App\Repositories\PrinterRepository;
 use App\Repositories\ScreenRepository;
@@ -146,6 +148,7 @@ final class RepositoryServiceProvider extends ServiceProvider
             TicketEventRepositoryInterface::class => TicketEventRepository::class,
             TicketServiceRepositoryInterface::class => TicketServiceRepository::class,
             UserRepositoryInterface::class => UserRepository::class,
+            PrinterJobAttachmentRepositoryInterface::class => PrinterJobAttachmentRepository::class,
         ];
 
         foreach ($repositories as $abstract => $concrete) {
