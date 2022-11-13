@@ -55,6 +55,8 @@ final class CreatePrinterJobResource extends DataTransferObject
 
     public ?string $purchaseOrderNumber = null;
 
+    public ?string $description = null;
+
     public User $createdBy;
 
     /**
@@ -236,6 +238,14 @@ final class CreatePrinterJobResource extends DataTransferObject
     public function getPurchaseOrderNumber(): ?string
     {
         return $this->purchaseOrderNumber;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
     }
 
 

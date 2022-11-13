@@ -93,15 +93,10 @@ final class UpdatePrinterJobController extends AbstractAPIController
             'coding',
             'address',
             'purchase_order_number',
+            'description',
             'attachments',
             'file_ids'
         ]);
-
-
-
-        $changes['reseller_samples'] = filter_var($changes['reseller_samples'] ?? null, FILTER_VALIDATE_BOOLEAN);
-
-        $changes['blind_shipping'] = filter_var($changes['blind_shipping'] ?? null, FILTER_VALIDATE_BOOLEAN);
 
         $changes = [
             ...$changes,

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('coding')->nullable();
             $table->string('address')->nullable();
             $table->string('purchase_order_number')->nullable();
+            $table->string('description')->nullable();
         });
     }
 
@@ -33,6 +34,7 @@ return new class extends Migration
             $table->dropColumn('coding');
             $table->dropColumn('address');
             $table->dropColumn('purchase_order_number');
+            $table->dropColumn('description');
         });
     }
 };
