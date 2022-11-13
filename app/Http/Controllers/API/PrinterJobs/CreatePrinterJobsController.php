@@ -118,12 +118,12 @@ final class CreatePrinterJobsController extends AbstractAPIController
 
         $data = [];
 
-        foreach ($payload as $index => $request) {
-            $data[Str::camel($index)] = $request;
-        }
+//        foreach ($payload as $index => $request) {
+//            $data[Str::camel($index)] = $request;
+//        }
 
         $data = [
-            ...$data,
+            ...$payload,
             ...[
                 'printerId' => $client->getPrinter()->getId(),
                 'createdBy' => $this->getUser(),

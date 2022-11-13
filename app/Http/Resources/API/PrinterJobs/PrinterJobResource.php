@@ -40,6 +40,7 @@ final class PrinterJobResource extends Resource
             'coding' => $printerJob->getAttribute('coding'),
             'address' => $printerJob->getAttribute('address'),
             'purchase_order_number' => $printerJob->getAttribute('purchase_order_number'),
+            'description' => $printerJob->getAttribute('description'),
             'client' => $printerJob->client,
             'printer' => $printerJob->printer,
             'created_by' => $printerJob->getCreatedBy()->getFullName(),

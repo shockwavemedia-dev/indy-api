@@ -44,6 +44,7 @@ final class PrinterJobFactory implements PrinterJobFactoryInterface
             'coding' => $resource->getCoding(),
             'address' => $resource->getAddress(),
             'purchase_order_number' => $resource->getPurchaseOrderNumber(),
+            'description' => $resource->getDescription(),
         ]);
 
         return $printerJob;
