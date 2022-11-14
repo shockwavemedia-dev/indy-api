@@ -51,35 +51,27 @@ final class BucketFactory implements BucketFactoryInterface
 
         $config = $this->fileManagerConfigResolver->resolve();
 
-        if (Arr::get($config, 'driver') === 'local') {
-            $bucket = new Bucket(new Rest([]), $bucketName);
+        return new BucketLocal(
+            Arr::get($config, 'bucket'),
+            Arr::get($config, 'driver')
+        );
 
-            return new BucketLocal($bucket->name(), 'gcs');
-        }
-
-        if (Arr::get($config, 'driver') === 's3') {
-            return new BucketLocal(
-                Arr::get($config, 'bucket'),
-                Arr::get($config, 'driver')
-            );
-        }
-
-        try {
-            $bucket = $this->bucketResolver->resolve($bucketName);
-        } catch (BucketNotFoundException $e) {
-            //ignore exception proceed on creation
-        }
-
-        try {
-            $storageClient = $this->storageClientFactory->make();
-
-            $bucket = $storageClient->createBucket($bucketName);
-
-            return new BucketLocal($bucket->name(), 'gcs');
-        } catch (ConflictException|GoogleException $exception) {
-            $this->sentryHandler->reportError($exception);
-
-            throw $exception;
-        }
+//        try {
+//            $bucket = $this->bucketResolver->resolve($bucketName);
+//        } catch (BucketNotFoundException $e) {
+//            //ignore exception proceed on creation
+//        }
+//
+//        try {
+//            $storageClient = $this->storageClientFactory->make();
+//
+//            $bucket = $storageClient->createBucket($bucketName);
+//
+//            return new BucketLocal($bucket->name(), 'gcs');
+//        } catch (ConflictException|GoogleException $exception) {
+//            $this->sentryHandler->reportError($exception);
+//
+//            throw $exception;
+//        }
     }
 }
