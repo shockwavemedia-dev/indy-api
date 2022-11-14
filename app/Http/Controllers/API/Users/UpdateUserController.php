@@ -107,7 +107,7 @@ final class UpdateUserController extends AbstractAPIController
                 'email' => $request->getEmail() ?? $user->getEmail(),
                 'firstName' => $request->getFirstName() ?? $user->getFirstName(),
                 'middleName' => $request->getMiddleName() ?? $user->getMiddleName(),
-                'lastName' => $request->getLastName() ?? $user->getLastName(),
+                'lastName' => $request->getLastName() ?? $user->getLastName() ?? '',
                 'contactNumber' => $request->getContactNumber() ?? $user->getContactNumber(),
                 'gender' => $request->getGender() ?? $user->getGender(),
                 'birthDate' => ($request->getBirthDate() !== null) ?
