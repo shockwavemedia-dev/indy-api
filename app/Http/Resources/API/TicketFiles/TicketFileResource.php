@@ -35,6 +35,7 @@ final class TicketFileResource extends Resource
             'ticket_id' => $clientTicketFile->getTicketId(),
             'name' => $file->getOriginalFilename(),
             'folder_id' => $file->getFolder()?->getId(),
+            'file_id' => $file->getId(),
             'generated_name' => $file->getFileName(),
             'signed_url' => $file->getUrl(),
             'thumbnail_url' => $file->getThumbnailUrl(),

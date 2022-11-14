@@ -113,7 +113,8 @@ final class CreatePrinterJobsController extends AbstractAPIController
             'address',
             'purchase_order_number',
             'attachments',
-            'file_ids'
+            'file_ids',
+            'description'
         ]);
 
         $data = [];
