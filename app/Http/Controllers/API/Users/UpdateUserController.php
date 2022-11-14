@@ -101,6 +101,7 @@ final class UpdateUserController extends AbstractAPIController
             //@TODO validation if there is update needed if not return early.
             $user = $this->userRepository->update($user, new UpdateUserResource([
                 'profileFile' => $file,
+                'password' => $request->getPassword(),
                 'display_in_dashboard' => $request->isDisplayInDashboard(),
                 'status' => $request->getStatus() ?? $user->getStatus(),
                 'email' => $request->getEmail() ?? $user->getEmail(),
