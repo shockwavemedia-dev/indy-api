@@ -30,7 +30,7 @@ final class BucketResolver implements BucketResolverInterface
         StorageClientFactoryInterface $storageClientFactory
     ) {
         $this->config = $config;
-        $this->storageClient = $storageClientFactory->make();
+//        $this->storageClient = $storageClientFactory->make();
     }
 
     /**
