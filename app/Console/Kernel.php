@@ -2,30 +2,23 @@
 
 namespace App\Console;
 
+use App\Console\Commands\ResetExtraQuoteToZero;
 use App\Console\Commands\UpdateExpiredFileUrl;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
-    /**
-     * Define the application's command schedule.
-     *
-     * @return void
-     */
-    protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule): void
     {
         $schedule->command('passport:purge')->hourly();
 
         $schedule->command(UpdateExpiredFileUrl::class)->weekends();
+
+        $schedule->command(ResetExtraQuoteToZero::class)->lastDayOfMonth('15:00');
     }
 
-    /**
-     * Register the commands for the application.
-     *
-     * @return void
-     */
-    protected function commands()
+    protected function commands(): void
     {
         $this->load(__DIR__.'/Commands');
 

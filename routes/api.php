@@ -77,6 +77,7 @@ use App\Http\Controllers\API\PrinterJobs\CreatePrinterJobsController;
 use App\Http\Controllers\API\PrinterJobs\DeclinedOfferPrinterJobController;
 use App\Http\Controllers\API\PrinterJobs\DeletePrinterJobController;
 use App\Http\Controllers\API\PrinterJobs\ListPrinterJobController;
+use App\Http\Controllers\API\PrinterJobs\RemoveAttachmentsPrinterJobController;
 use App\Http\Controllers\API\PrinterJobs\ShowPrinterJobController;
 use App\Http\Controllers\API\PrinterJobs\UpdatePrinterJobController;
 use App\Http\Controllers\API\Printers\CreatePrinterController;
@@ -164,11 +165,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//header("Cache-Control: no-cache, must-revalidate");
-//header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-//header('Access-Control-Allow-Origin:  *');
-//header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
-//header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization, *');
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+header('Access-Control-Allow-Origin:  *');
+header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
+header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization, *');
 
 Route::get('/', function () {
     return [
@@ -976,6 +977,10 @@ Route::group([
             'as' => 'update-price',
             'uses' => AssignPricePrinterJobController::class,
         ])->middleware('checkPermission:printer-jobs,assign-price');;
+        Route::put('/printer-jobs/{id}/attachments', [
+            'as' => 'delete-attachments',
+            'uses' => RemoveAttachmentsPrinterJobController::class,
+        ]);
     });
 
     Route::group([

@@ -46,8 +46,7 @@ final class CreateAdminUserRequest extends AbstractCreateUserRequest
         return [
             'display_in_dashboard' => 'nullable',
             'profile_photo' => 'nullable',
-            'birth_date' => 'date',
-            'contact_number' => 'required|string',
+            'contact_number' => 'nullable|string',
             'email' => 'required|string|unique:App\Models\User,email',
             'first_name' => 'required|string',
             'gender' => 'string|nullable',

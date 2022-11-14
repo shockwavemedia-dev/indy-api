@@ -40,6 +40,11 @@ final class PrinterJobFactory implements PrinterJobFactoryInterface
             'blind_shipping' => $resource->getBlindShipping(),
             'reseller_samples' => $resource->getResellerSamples(),
             'created_by' => $resource->getCreatedBy()->getId(),
+            'stocks' => $resource->getStocks(),
+            'coding' => $resource->getCoding(),
+            'address' => $resource->getAddress(),
+            'purchase_order_number' => $resource->getPurchaseOrderNumber(),
+            'description' => $resource->getDescription(),
         ]);
 
         return $printerJob;

@@ -396,10 +396,10 @@ return [
             ],
             'ticket-files' =>  [
                 'read' => true,
-                'create' => false,
-                'edit' => false,
+                'create' => true,
+                'edit' => true,
                 'approval' => true,
-                'delete' => false,
+                'delete' => true,
             ],
             'file-feedbacks' =>  [
                 'read' => true,
@@ -464,10 +464,10 @@ return [
             ],
             'ticket-files' =>  [
                 'read' => true,
-                'create' => false,
-                'edit' => false,
+                'create' => true,
+                'edit' => true,
                 'approval' => true,
-                'delete' => false,
+                'delete' => true,
             ],
             'file-feedbacks' =>  [
                 'read' => true,
@@ -532,10 +532,10 @@ return [
             ],
             'ticket-files' =>  [
                 'read' => true,
-                'create' => false,
-                'edit' => false,
+                'create' => true,
+                'edit' => true,
                 'approval' => true,
-                'delete' => false,
+                'delete' => true,
             ],
             'file-feedbacks' =>  [
                 'read' => true,

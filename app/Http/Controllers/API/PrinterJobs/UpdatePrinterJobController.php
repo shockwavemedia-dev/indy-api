@@ -10,8 +10,16 @@ use App\Http\Requests\API\PrinterJobs\CreatePrinterJobRequest;
 use App\Http\Resources\API\PrinterJobs\PrinterJobResource;
 use App\Jobs\PrinterJobs\GenericPrintManagerSlackNotificationJob;
 use App\Models\PrinterJob;
+use App\Repositories\Interfaces\FileRepositoryInterface;
 use App\Repositories\Interfaces\PrinterJobRepositoryInterface;
+use App\Services\FileManager\Interfaces\BucketFactoryInterface;
+use App\Services\FileManager\Interfaces\FileUploaderInterface;
+use App\Services\FileManager\Resources\UploadFileResource;
+use App\Services\Files\Interfaces\FileFactoryInterface;
+use App\Services\Files\Resources\CreateFileResource;
+use App\Services\PrinterJobs\Interfaces\PrinterJobAttachmentFactoryInterface;
 use App\Services\PrinterJobs\Interfaces\UpdatePrinterJobResolverInterface;
+use App\Services\PrinterJobs\Resources\CreateAttachmentResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 final class UpdatePrinterJobController extends AbstractAPIController
@@ -20,12 +28,32 @@ final class UpdatePrinterJobController extends AbstractAPIController
 
     private UpdatePrinterJobResolverInterface $updatePrinterJobResolver;
 
+    private PrinterJobAttachmentFactoryInterface $printerJobAttachmentFactory;
+
+    private BucketFactoryInterface $bucketFactory;
+
+    private FileFactoryInterface $fileFactory;
+
+    private FileUploaderInterface $fileUploader;
+
+    private FileRepositoryInterface $fileRepository;
+
     public function __construct(
         PrinterJobRepositoryInterface $printerJobRepository,
-        UpdatePrinterJobResolverInterface $updatePrinterJobResolver
+        UpdatePrinterJobResolverInterface $updatePrinterJobResolver,
+        PrinterJobAttachmentFactoryInterface $printerJobAttachmentFactory,
+        BucketFactoryInterface $bucketFactory,
+        FileFactoryInterface $fileFactory,
+        FileUploaderInterface $fileUploader,
+        FileRepositoryInterface $fileRepository,
     ) {
         $this->printerJobRepository = $printerJobRepository;
         $this->updatePrinterJobResolver = $updatePrinterJobResolver;
+        $this->printerJobAttachmentFactory = $printerJobAttachmentFactory;
+        $this->bucketFactory = $bucketFactory;
+        $this->fileFactory = $fileFactory;
+        $this->fileUploader = $fileUploader;
+        $this->fileRepository = $fileRepository;
     }
 
     public function __invoke(int $id, CreatePrinterJobRequest $request): JsonResource
@@ -61,13 +89,14 @@ final class UpdatePrinterJobController extends AbstractAPIController
             'price',
             'blind_shipping',
             'reseller_samples',
+            'stocks',
+            'coding',
+            'address',
+            'purchase_order_number',
+            'description',
+            'attachments',
+            'file_ids'
         ]);
-
-
-
-        $changes['reseller_samples'] = filter_var($changes['reseller_samples'] ?? null, FILTER_VALIDATE_BOOLEAN);
-
-        $changes['blind_shipping'] = filter_var($changes['blind_shipping'] ?? null, FILTER_VALIDATE_BOOLEAN);
 
         $changes = [
             ...$changes,
@@ -84,6 +113,42 @@ final class UpdatePrinterJobController extends AbstractAPIController
         );
 
         GenericPrintManagerSlackNotificationJob::dispatch($printerJob->getId(), $message);
+
+        if (array_key_exists('attachments',$changes) && count($changes['attachments']) > 0) {
+            $bucket = $this->bucketFactory->make($printerJob->getClient()->getClientCode());
+
+            foreach ($changes['attachments'] as $attachment) {
+                $fileModel = $this->fileFactory->make(new CreateFileResource([
+                    'uploadedFile' => $attachment,
+                    'disk' => $bucket->disk(),
+                    'filePath' => sprintf('printer-job/%s', $printerJob->getId()),
+                    'folder' => null,
+                    'uploadedBy' => $this->getUser(),
+                    'bucket' => $bucket->name(),
+                ]));
+
+                $this->printerJobAttachmentFactory->make(new CreateAttachmentResource([
+                    'printerJob' => $printerJob,
+                    'file' => $fileModel,
+                ]));
+
+                $this->fileUploader->upload(new UploadFileResource([
+                    'fileModel' => $fileModel,
+                    'fileObject' => $attachment,
+                ]));
+            }
+        }
+
+        if (count($changes['file_ids'] ?? []) > 0) {
+            $files = $this->fileRepository->findByIds($changes['file_ids']);
+
+            foreach ($files as $file) {
+                $this->printerJobAttachmentFactory->make(new CreateAttachmentResource([
+                    'printerJob' => $printerJob,
+                    'file' => $file,
+                ]));
+            }
+        }
 
         return new PrinterJobResource($printerJob);
     }

@@ -43,7 +43,6 @@ final class DeleteTicketFileController extends AbstractAPIController
                 $user = $this->getUser();
                 $this->fileRepository->deleteFile($clientTicketFile->file, $user);
             }
-
             return $this->respondNoContent();
         } catch (Throwable $exception) {
             return $this->respondError($exception->getMessage());
