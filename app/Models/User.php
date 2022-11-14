@@ -233,7 +233,7 @@ final class User extends Authenticatable implements EmailInterface
         return $this;
     }
 
-    public function setContactNumber(string $contactNumber): self
+    public function setContactNumber(?string $contactNumber = null): self
     {
         $this->setAttribute('contact_number', $contactNumber);
 

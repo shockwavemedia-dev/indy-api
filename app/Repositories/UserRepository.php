@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Hash;
 
 final class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
@@ -64,6 +65,11 @@ final class UserRepository extends BaseRepository implements UserRepositoryInter
             ->setMiddleName($resource->getMiddleName())
             ->setContactNumber($resource->getContactNumber())
             ->setStatus($resource->getStatus());
+
+
+        if ($resource->getPassword() !== null) {
+            $user->setPassword(Hash::make($resource->getPassword()));
+        }
 
         if ($resource->getGender() !== null) {
             $user->setGender($resource->getGender());

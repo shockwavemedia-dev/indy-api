@@ -130,6 +130,11 @@ final class UpdateUserRequest extends BaseRequest
         return $this->getString('position');
     }
 
+    public function getPassword(): ?string
+    {
+        return $this->getString('password');
+    }
+
     public function getProfile(): ?UploadedFile
     {
         return $this->file('profile_photo') ?? null;
@@ -153,6 +158,7 @@ final class UpdateUserRequest extends BaseRequest
         return [
             'position' => 'string|nullable',
             'birth_date' => 'date',
+            'password' => 'nullable|min:6|string',
             'contact_number' => 'string',
             'email' => \sprintf('%s,%s','string|unique:App\Models\User,email',$this->getId()),
             'first_name' => 'string',

@@ -22,11 +22,13 @@ final class UpdateUserResource extends DataTransferObject
 
     public ?string $birthDate = null;
 
-    public string $contactNumber;
+    public ?string $contactNumber = null;
 
     public ?Client $client = null;
 
     public string $email;
+
+    public ?string $password = null;
 
     public ?int $departmentId = null;
 
@@ -41,6 +43,18 @@ final class UpdateUserResource extends DataTransferObject
     public string $role;
 
     public UserStatusEnum $status;
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(?string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
 
     public function isDisplayInDashboard(): bool
     {
@@ -62,7 +76,7 @@ final class UpdateUserResource extends DataTransferObject
         return $this->position;
     }
 
-    public function getContactNumber(): string
+    public function getContactNumber(): ?string
     {
         return $this->contactNumber;
     }
@@ -119,7 +133,7 @@ final class UpdateUserResource extends DataTransferObject
         return $this;
     }
 
-    public function setContactNumber(string $contactNumber): self
+    public function setContactNumber(?string $contactNumber): self
     {
         $this->contactNumber = $contactNumber;
 
