@@ -181,6 +181,7 @@ return [
         \Vluzrmos\SlackApi\SlackApiServiceProvider::class,
         OwenIt\Auditing\AuditingServiceProvider::class,
         \BeyondCode\Mailbox\MailboxServiceProvider::class,
+        Orangehill\Iseed\IseedServiceProvider::class,
 
 
 
