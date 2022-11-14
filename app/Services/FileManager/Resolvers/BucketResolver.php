@@ -30,7 +30,7 @@ final class BucketResolver implements BucketResolverInterface
         StorageClientFactoryInterface $storageClientFactory
     ) {
         $this->config = $config;
-        $this->storageClient = $storageClientFactory->make();
+//        $this->storageClient = $storageClientFactory->make();
     }
 
     /**
@@ -41,36 +41,36 @@ final class BucketResolver implements BucketResolverInterface
     {
         $config = $this->config->get(self::CONFIG_KEY);
 
-        if (Arr::get($config, 'driver') === 's3') {
+//        if (Arr::get($config, 'driver') === 's3') {
             return new BucketLocal(
                 Arr::get($config, 'bucket'),
                 Arr::get($config, 'driver')
             );
-        }
+//        }
 
-        try {
-            $bucket = $this->storageClient->bucket($bucketName);
-
-            if ($bucket->exists() === false) {
-                throw new BucketNotFoundException('Bucket not found.');
-            }
-
-            $url = Config::get('mail.client_url', null);
-
-            $bucket->update([
-                'cors' => [
-                    [
-                        'method' => ['GET', 'HEAD'],
-                        'origin' => [$url],
-                        'responseHeader' => ['Content-Type'],
-                        'maxAgeSeconds' => '3600',
-                    ]
-                ]
-            ]);
-
-            return $bucket;
-        } catch (Throwable $throwable) {
-            return $this->storageClient->bucket('crm-api');
-        }
+//        try {
+//            $bucket = $this->storageClient->bucket($bucketName);
+//
+//            if ($bucket->exists() === false) {
+//                throw new BucketNotFoundException('Bucket not found.');
+//            }
+//
+//            $url = Config::get('mail.client_url', null);
+//
+//            $bucket->update([
+//                'cors' => [
+//                    [
+//                        'method' => ['GET', 'HEAD'],
+//                        'origin' => [$url],
+//                        'responseHeader' => ['Content-Type'],
+//                        'maxAgeSeconds' => '3600',
+//                    ]
+//                ]
+//            ]);
+//
+//            return $bucket;
+//        } catch (Throwable $throwable) {
+//            return $this->storageClient->bucket('crm-api');
+//        }
     }
 }

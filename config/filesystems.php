@@ -18,12 +18,12 @@ $s3Config = [
 ];
 
 $localOrS3 = function (array $merge = []) use ($localConfig, $s3Config): array {
-    if (
-        env('APP_ENV') === 'local' &&
-        filter_var(env('S3_ENABLED_IN_LOCAL'), FILTER_VALIDATE_BOOLEAN) === false
-    ) {
-        return $localConfig;
-    }
+//    if (
+//        env('APP_ENV') === 'local' &&
+//        filter_var(env('S3_ENABLED_IN_LOCAL'), FILTER_VALIDATE_BOOLEAN) === false
+//    ) {
+//        return $localConfig;
+//    }
 
     return array_merge($s3Config, $merge);
 };

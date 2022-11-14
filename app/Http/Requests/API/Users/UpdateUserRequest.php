@@ -161,9 +161,9 @@ final class UpdateUserRequest extends BaseRequest
             'password' => 'nullable|min:6|string',
             'contact_number' => 'string',
             'email' => \sprintf('%s,%s','string|unique:App\Models\User,email',$this->getId()),
-            'first_name' => 'string',
-            'gender' => 'string',
-            'last_name' => 'string',
+            'first_name' => 'string|required',
+            'gender' => 'string|nullable',
+            'last_name' => 'string|nullable',
             'middle_name' => 'string|nullable',
             'status' => [
                 'string',
