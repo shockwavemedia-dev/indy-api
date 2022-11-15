@@ -31,6 +31,8 @@ final class SortByYearAndMonthResolver implements SortByYearAndMonthResolverInte
 
             $record->client_ticket_file = $record->getClientTicketFile();
 
+            $record->folder_name = $record->getFolder()->getName();
+
             $result[$year][$month][] = $record;
         }
 
