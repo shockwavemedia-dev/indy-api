@@ -372,6 +372,7 @@ return [
             'users' =>  [
                 'read' => true,
                 'edit' => true,
+                'create' => true,
             ],
             'clients' =>  [
                 'read' => true,
@@ -438,6 +439,7 @@ return [
                 'request-create' => true,
             ],
             'users' =>  [
+                'create' => true,
                 'read' => true,
                 'edit' => true,
             ],
@@ -506,6 +508,7 @@ return [
                 'request-create' => true,
             ],
             'users' =>  [
+                'create' => true,
                 'read' => true,
                 'edit' => true,
             ],
