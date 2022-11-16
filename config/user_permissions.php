@@ -373,6 +373,7 @@ return [
                 'read' => true,
                 'edit' => true,
                 'create' => true,
+                'delete' => true,
             ],
             'clients' =>  [
                 'read' => true,
@@ -442,6 +443,7 @@ return [
                 'create' => true,
                 'read' => true,
                 'edit' => true,
+                'delete' => true,
             ],
             'clients' =>  [
                 'read' => true,
@@ -511,6 +513,7 @@ return [
                 'create' => true,
                 'read' => true,
                 'edit' => true,
+                'delete' => true,
             ],
             'clients' =>  [
                 'read' => true,
