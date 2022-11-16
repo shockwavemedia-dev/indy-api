@@ -372,6 +372,8 @@ return [
             'users' =>  [
                 'read' => true,
                 'edit' => true,
+                'create' => true,
+                'delete' => true,
             ],
             'clients' =>  [
                 'read' => true,
@@ -438,8 +440,10 @@ return [
                 'request-create' => true,
             ],
             'users' =>  [
+                'create' => true,
                 'read' => true,
                 'edit' => true,
+                'delete' => true,
             ],
             'clients' =>  [
                 'read' => true,
@@ -506,8 +510,10 @@ return [
                 'request-create' => true,
             ],
             'users' =>  [
+                'create' => true,
                 'read' => true,
                 'edit' => true,
+                'delete' => true,
             ],
             'clients' =>  [
                 'read' => true,
