@@ -39,16 +39,6 @@ final class ShowTicketController extends AbstractAPIController
             $this->ticketRepository->updateStatusToOpen($ticket);
         }
 
-        $userClientId = null;
-
-        if ($user->getUserType()->getType()->getValue() === UserTypeEnum::CLIENT) {
-            $userClientId = $user->getUserType()->getClientId();
-        }
-
-        if ($userClientId === null || $userClientId === $ticket->getClientId()) {
-            return new TicketSupportResource($ticket);
-        }
-
-        return $this->respondForbidden(['message' => 'You do not have access to this.']);
+        return new TicketSupportResource($ticket);
     }
 }
