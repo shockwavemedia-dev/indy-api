@@ -124,6 +124,7 @@ use App\Http\Controllers\API\TicketEmails\ListTicketEmailController;
 use App\Http\Controllers\API\TicketAssignees\TicketAssignStaffsController;
 use App\Http\Controllers\API\TicketEmails\TicketEmailMarkAsReadController;
 use App\Http\Controllers\API\Tickets\ListTicketActivitiesController;
+use App\Http\Controllers\API\Tickets\ReadTicketNotesController;
 use App\Http\Controllers\API\Tickets\ShowTicketsByAdminUserController;
 use App\Http\Controllers\API\Tickets\TicketAnalyticsController;
 use App\Http\Controllers\API\Tickets\TicketAssigneeListController;
@@ -519,6 +520,11 @@ Route::group([
             'as' => 'assign-staffs',
             'uses' => TicketAssignStaffsController::class,
         ])->middleware('checkPermission:tickets,assign');
+
+        Route::post('/tickets/{id}/read-ticket-notes', [
+            'as' => 'ticket-notes-mark-as-read',
+            'uses' => ReadTicketNotesController::class,
+        ])->middleware('checkPermission:tickets,read');
 
         Route::delete('/ticket-assignees/{id}', [
             'as' => 'remove-assignee',

@@ -212,6 +212,56 @@ final class TicketRepositoryStub extends AbstractStub implements TicketRepositor
 
         return $this->fetchResponse(__FUNCTION__);
     }
+
+    /**
+     * @throws \Throwable
+     */
+    public function addUserNotes(Ticket $ticket, User $user): Ticket
+    {
+        $this->recordCall(__FUNCTION__, \func_get_args());
+
+        return $this->fetchResponse(__FUNCTION__);
+    }
+
+    /**
+     * @throws \Throwable
+     */
+    public function removeUserNotes(Ticket $ticket, User $user): Ticket
+    {
+        $this->recordCall(__FUNCTION__, \func_get_args());
+
+        return $this->fetchResponse(__FUNCTION__);
+    }
+
+    /**
+     * @throws \Throwable
+     */
+    public function increaseUserNotes(Ticket $ticket, User $user): Ticket
+    {
+        $this->recordCall(__FUNCTION__, \func_get_args());
+
+        return $this->fetchResponse(__FUNCTION__);
+    }
+
+    /**
+     * @throws \Throwable
+     */
+    public function resetUserNotes(Ticket $ticket, User $user): Ticket
+    {
+        $this->recordCall(__FUNCTION__, \func_get_args());
+
+        return $this->fetchResponse(__FUNCTION__);
+    }
+
+    /**
+     * @throws \Throwable
+     */
+    public function increaseUserNotesExceptSender(Ticket $ticket, User $user): Ticket
+    {
+        $this->recordCall(__FUNCTION__, \func_get_args());
+
+        return $this->fetchResponse(__FUNCTION__);
+    }
 }
 
 

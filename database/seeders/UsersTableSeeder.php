@@ -28,7 +28,6 @@ class UsersTableSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ]);
 
-
         DB::table('users')->insert([
             'morphable_id'=> 1,
             'morphable_type' => 'App\Models\Users\AdminUser',
