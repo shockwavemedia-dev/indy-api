@@ -11,7 +11,7 @@ final class ServicesEnum extends Enum
     /**
      * @var string
      */
-    public const ADVERTISING = 'Advertising';
+    public const SOCIAL_MEDIA_SPEND = 'Social Media Spend';
 
     /**
      * @var string
