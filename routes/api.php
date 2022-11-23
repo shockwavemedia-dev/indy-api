@@ -667,7 +667,7 @@ Route::group([
             'uses' => DepartmentStaffsListController::class,
         ])->middleware('checkPermission:departments,read-members');
 
-        Route::get('/departments/graphic-department', [
+        Route::get('/departments/graphic-department/staffs', [
             'as' => 'graphic-staffs',
             'uses' => GraphicStaffController::class,
         ])->middleware('checkPermission:departments,read-members');
