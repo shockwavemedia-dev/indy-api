@@ -50,7 +50,7 @@ final class CreateDepartmentRequest extends BaseRequest
     {
         return [
             'name' => 'required|string|unique:App\Models\Department,name',
-            'description',
+            'description' => 'string|nullable',
             'min_delivery_days',
             'password' => [
                 'string',
