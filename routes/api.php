@@ -154,6 +154,7 @@ use App\Http\Controllers\API\Tickets\ListTicketSupportController;
 use App\Http\Controllers\API\Tickets\ListClientTicketController;
 use App\Http\Controllers\API\TicketEmails\CreateTicketEmailController;
 use App\Http\Controllers\API\Websites\ListClientWebsiteTicketsController;
+use App\Http\Requests\API\Graphics\GraphicStaffController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -664,6 +665,11 @@ Route::group([
         Route::get('/departments/{id}/staffs', [
             'as' => 'get-staffs',
             'uses' => DepartmentStaffsListController::class,
+        ])->middleware('checkPermission:departments,read-members');
+
+        Route::get('/departments/graphic-department', [
+            'as' => 'graphic-staffs',
+            'uses' => GraphicStaffController::class,
         ])->middleware('checkPermission:departments,read-members');
 
         Route::get('/photographers', [
