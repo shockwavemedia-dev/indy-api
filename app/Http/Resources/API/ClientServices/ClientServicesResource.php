@@ -10,6 +10,11 @@ use App\Models\ClientService;
 
 final class ClientServicesResource extends Resource
 {
+    public function __construct($resource, public bool $isAdmin = false)
+    {
+        parent::__construct($resource);
+    }
+
     protected function getResponse(): array
     {
         $clientServices = [];
@@ -25,6 +30,10 @@ final class ClientServicesResource extends Resource
             ServicesEnum::EDM,
             ServicesEnum::PRINT,
         ];
+
+        if ($this->isAdmin === true) {
+            $orderBy[] = ServicesEnum::SOCIAL_MEDIA;
+        }
 
         foreach ($orderBy as $serviceOrder) {
             /** @var ClientService $clientService */

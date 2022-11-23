@@ -9,6 +9,7 @@ use App\Http\Requests\API\PaginationRequest;
 use App\Http\Resources\API\ClientServices\ClientServicesResource;
 use App\Models\Client;
 use App\Models\ClientService;
+use App\Models\Users\AdminUser;
 use App\Repositories\Interfaces\ClientRepositoryInterface;
 use App\Repositories\Interfaces\ClientServiceRepositoryInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -40,13 +41,19 @@ final class ListClientServiceController extends AbstractAPIController
                 ]);
             }
 
+            $isAdmin = false;
+
+            if ($this->getUser()->getUserType() instanceof AdminUser === true) {
+                $isAdmin = true;
+            }
+
             $clientServices = $this->clientServiceRepository->getClientServices(
                 $client,
                 $request->getSize(),
                 $request->getPageNumber()
             );
 
-            return new ClientServicesResource($clientServices);
+            return new ClientServicesResource($clientServices, $isAdmin);
         } catch (Throwable $throwable) {
             return $this->respondError($throwable->getMessage());
         }
