@@ -93,6 +93,7 @@ final class TicketSupportResource extends Resource
             $serviceTemp['service_id'] = $ticketService->getService()->getId();
             $serviceTemp['extras'] = $ticketService->getExtras();
             $serviceTemp['custom_fields'] = $ticketService->getCustomFields();
+            $serviceTemp['updatedExtras'] = $ticketService->getExtras();
             $result['services'][] = $serviceTemp;
         }
 
