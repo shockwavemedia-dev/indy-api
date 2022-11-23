@@ -56,6 +56,7 @@ final class TicketAssignStaffsController extends AbstractAPIController
             ]);
         }
 
+        /** @var AdminUser $adminUser */
         $adminUser = $this->adminUserRepository->find($request->getAdminUserId());
 
         $checkTicketAssignee = $this->ticketAssigneeRepository->findByAdminUserAndTicket($ticket,$adminUser);
@@ -70,6 +71,10 @@ final class TicketAssignStaffsController extends AbstractAPIController
 
             /** @var AdminUser $createdBy */
             $createdBy = $user->getUserType();
+
+            $ticket->save();
+
+            $this->ticketRepository->addUserNotes($ticket, $adminUser->getUser());
 
             $ticketAssignee = $this->assignTicketService->assign(
                 $ticket,

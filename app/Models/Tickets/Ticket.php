@@ -30,6 +30,10 @@ final class Ticket extends AbstractModel implements EmailInterface
         'duedate'
     ];
 
+    protected $casts = [
+        'user_notes' => 'array',
+    ];
+
     /**
      * @var string[]
      */
@@ -49,6 +53,7 @@ final class Ticket extends AbstractModel implements EmailInterface
         'description' ,
         'type',
         'status',
+        'user_notes',
     ];
 
     public $table = 'tickets';
@@ -56,6 +61,21 @@ final class Ticket extends AbstractModel implements EmailInterface
     public function activities(): HasMany
     {
         return $this->hasMany(TicketActivity::class);
+    }
+
+    public function getUserNotes(): array
+    {
+        $userNotes = $this->getAttribute('user_notes');
+
+        if (is_array($userNotes) === true) {
+            return $userNotes;
+        }
+
+        if (is_string($userNotes) === true) {
+            return (array) json_decode($userNotes);
+        }
+
+        return [];
     }
 
     public function getId(): int

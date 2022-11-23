@@ -78,6 +78,9 @@ abstract class AbstractTicketFactory
             'type' => $resource->getType(),
             'status' => TicketStatusEnum::NEW,
             'duedate' => $resource->getDueDate(),
+            'user_notes' => json_encode([
+                $resource->getCreatedBy()->getId() => 0,
+            ]),
         ]);
 
         // Notification Process

@@ -49,6 +49,12 @@ final class TicketSupportResource extends Resource
             $emailHtml = $emailHtml?->data;
         }
 
+        $userNotes = [];
+
+        foreach ($ticket->getUserNotes() as $userId => $value) {
+            $userNotes[$userId] = $value;
+        }
+
         $result =  [
             'id' => $ticket->getId(),
             'is_overdue' => $ticket->isOverdue(),
@@ -64,6 +70,7 @@ final class TicketSupportResource extends Resource
             'status' => $ticket->getStatus()->getValue(),
             'email_html' => $emailHtml,
             'created_at' => $ticket->getCreatedAtAsString(),
+            'user_notes' => json_encode($userNotes),
         ];
 
         $assignees = [];

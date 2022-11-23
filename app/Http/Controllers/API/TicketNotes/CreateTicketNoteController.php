@@ -53,7 +53,6 @@ final class CreateTicketNoteController extends AbstractAPIController
         }
 
         try {
-
             $ticketNote = $this->ticketNoteFactory->make(new CreateTicketNoteResource([
                 'createdBy' => $this->getUser(),
                 'ticket' => $ticket,
@@ -72,6 +71,8 @@ final class CreateTicketNoteController extends AbstractAPIController
 
 
             $clientNotificationResolver->resolve($ticketNote);
+
+            $this->ticketRepository->increaseUserNotesExceptSender($ticket, $this->getUser());
 
             return new TicketNoteResource($ticketNote);
             // @codeCoverageIgnoreStart

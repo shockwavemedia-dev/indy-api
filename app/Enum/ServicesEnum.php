@@ -52,4 +52,9 @@ final class ServicesEnum extends Enum
      * @var string
      */
     public const PRINT = 'Print';
+
+    /**
+     * @var string
+     */
+    public const SCREEN_MANAGER = 'Screen Manager';
 }

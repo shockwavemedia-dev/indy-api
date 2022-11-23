@@ -124,6 +124,7 @@ use App\Http\Controllers\API\TicketEmails\ListTicketEmailController;
 use App\Http\Controllers\API\TicketAssignees\TicketAssignStaffsController;
 use App\Http\Controllers\API\TicketEmails\TicketEmailMarkAsReadController;
 use App\Http\Controllers\API\Tickets\ListTicketActivitiesController;
+use App\Http\Controllers\API\Tickets\ReadTicketNotesController;
 use App\Http\Controllers\API\Tickets\ShowTicketsByAdminUserController;
 use App\Http\Controllers\API\Tickets\TicketAnalyticsController;
 use App\Http\Controllers\API\Tickets\TicketAssigneeListController;
@@ -165,11 +166,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//header("Cache-Control: no-cache, must-revalidate");
-//header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-//header('Access-Control-Allow-Origin:  *');
-//header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
-//header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization, *');
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+header('Access-Control-Allow-Origin:  *');
+header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
+header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization, *');
 
 Route::get('/', function () {
     return [
@@ -519,6 +520,11 @@ Route::group([
             'as' => 'assign-staffs',
             'uses' => TicketAssignStaffsController::class,
         ])->middleware('checkPermission:tickets,assign');
+
+        Route::post('/tickets/{id}/read-ticket-notes', [
+            'as' => 'ticket-notes-mark-as-read',
+            'uses' => ReadTicketNotesController::class,
+        ])->middleware('checkPermission:tickets,read');
 
         Route::delete('/ticket-assignees/{id}', [
             'as' => 'remove-assignee',

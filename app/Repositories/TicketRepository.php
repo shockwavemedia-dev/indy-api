@@ -277,4 +277,83 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
 
         return $ticket;
     }
+
+    public function addUserNotes(Ticket $ticket, User $user): Ticket
+    {
+        $userNotes = $ticket->getUserNotes();
+
+        $userNotes[$user->getId()] = 0;
+
+        $ticket->setAttribute('user_notes', json_encode($userNotes));
+
+        $ticket->save();
+
+        return $ticket;
+    }
+
+    public function removeUserNotes(Ticket $ticket, User $user): Ticket
+    {
+        $userNotes = $ticket->getUserNotes();
+
+        unset($userNotes[$user->getId()]);
+
+        $ticket->setAttribute('user_notes', json_encode($userNotes));
+
+        $ticket->save();
+
+        return $ticket;
+    }
+
+    public function increaseUserNotes(Ticket $ticket, User $user): Ticket
+    {
+        $userNotes = $ticket->getUserNotes();
+
+        if (isset($userNotes[$user->getId()]) === false) {
+            return $ticket;
+        }
+
+        $userNotes[$user->getId()] =  $userNotes[$user->getId()] + 1;
+
+        $ticket->setAttribute('user_notes', json_encode($userNotes));
+
+        $ticket->save();
+
+        return $ticket;
+    }
+
+    public function resetUserNotes(Ticket $ticket, User $user): Ticket
+    {
+        $userNotes = $ticket->getUserNotes();
+
+        if (isset($userNotes[$user->getId()]) === false) {
+            return $ticket;
+        }
+
+        $userNotes[$user->getId()] =  0;
+
+        $ticket->setAttribute('user_notes', json_encode($userNotes));
+
+        $ticket->save();
+
+        return $ticket;
+    }
+
+    public function increaseUserNotesExceptSender(Ticket $ticket, User $user): Ticket
+    {
+        $userNotes = $ticket->getUserNotes();
+
+        foreach ($userNotes as $userNote => $count) {
+            if ((int) $userNote === $user->getId()) {
+                continue;
+            }
+
+            $userNotes[$userNote] = $count+1;
+        }
+
+        $ticket->setAttribute('user_notes', json_encode($userNotes));
+
+        $ticket->save();
+
+        return $ticket;
+    }
 }
