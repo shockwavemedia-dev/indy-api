@@ -29,11 +29,8 @@ final class ClientServicesResource extends Resource
             ServicesEnum::VISUALS,
             ServicesEnum::EDM,
             ServicesEnum::PRINT,
+            ServicesEnum::SCREEN_MANAGER,
         ];
-
-        if ($this->isAdmin === true) {
-            $orderBy[] = ServicesEnum::SCREEN_MANAGER;
-        }
 
         foreach ($orderBy as $serviceOrder) {
             /** @var ClientService $clientService */
