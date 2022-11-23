@@ -97,7 +97,7 @@ final class CreateClientRequest extends BaseRequest
     {
         return [
             'name' => 'required|string|unique:App\Models\Client,name',
-            'client_code' => 'required|string|unique:App\Models\Client,client_code',
+            'client_code' => 'nullable|string|unique:App\Models\Client,client_code',
             'address' => 'required|string',
             'phone' => 'required|string',
             'timezone' => 'required|string',

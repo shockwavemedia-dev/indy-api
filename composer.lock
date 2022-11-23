@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e65b3aff7fca49a29985cf041ca151cd",
+    "content-hash": "57cc846b9c0ede5bbd0fdea283b17460",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -2393,6 +2393,56 @@
                 "source": "https://github.com/eurides-eu/laravel-mailbox/tree/3.0.0"
             },
             "time": "2022-08-11T13:34:47+00:00"
+        },
+        {
+            "name": "kbs1/laravel-abbreviations",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kbs1/laravel-abbreviations.git",
+                "reference": "5046d286bb3a46a2e863d651bddfa8b782d2f4aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kbs1/laravel-abbreviations/zipball/5046d286bb3a46a2e863d651bddfa8b782d2f4aa",
+                "reference": "5046d286bb3a46a2e863d651bddfa8b782d2f4aa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Kbs1\\Abbreviations\\AbbreviationsServiceProvider"
+                    ],
+                    "aliases": {
+                        "Abbreviation": "Kbs1\\Abbreviations\\Abbreviation"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Kbs1\\Abbreviations\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "kbs1",
+                    "email": "viliam.kubis@gmail.com"
+                }
+            ],
+            "description": "Abbreviations / acronyms support for your app.",
+            "support": {
+                "issues": "https://github.com/kbs1/laravel-abbreviations/issues",
+                "source": "https://github.com/kbs1/laravel-abbreviations/tree/master"
+            },
+            "time": "2017-07-16T16:15:15+00:00"
         },
         {
             "name": "laravel/framework",
