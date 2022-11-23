@@ -34,19 +34,19 @@ final class ServiceExtraEnum extends Enum
             "Twitter"
         ],
 
-        ServicesEnum::ADVERTISING => [
+        ServicesEnum::SOCIAL_MEDIA_SPEND => [
             "Facebook",
             "Instagram",
             "Youtube",
             "Twitter",
-            "TV Network",
-            "Custom",
+            "Tiktok",
         ],
 
         ServicesEnum::WEBSITE => [
             "Homepage Header",
             "What's On",
-            "Bistro"
+            "Bistro",
+            "Custom",
         ],
 
         ServicesEnum::ANIMATION => [
