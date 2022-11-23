@@ -32,7 +32,7 @@ final class ClientServicesResource extends Resource
         ];
 
         if ($this->isAdmin === true) {
-            $orderBy[] = ServicesEnum::SOCIAL_MEDIA;
+            $orderBy[] = ServicesEnum::SCREEN_MANAGER;
         }
 
         foreach ($orderBy as $serviceOrder) {
