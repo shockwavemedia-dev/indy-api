@@ -108,7 +108,7 @@ final class UpdateUserController extends AbstractAPIController
                 'firstName' => $request->getFirstName() ?? $user->getFirstName(),
                 'middleName' => $request->getMiddleName() ?? $user->getMiddleName(),
                 'lastName' => $request->getLastName() ?? $user->getLastName() ?? '',
-                'contactNumber' => $request->getContactNumber() ?? $user->getContactNumber(),
+                'contactNumber' => $request->getContactNumber() ?? $user->getContactNumber() ?? '',
                 'gender' => $request->getGender() ?? $user->getGender(),
                 'birthDate' => ($request->getBirthDate() !== null) ?
                     (new Carbon($request->getBirthDate()))->toDateString()
