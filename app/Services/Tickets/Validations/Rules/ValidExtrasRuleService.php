@@ -26,14 +26,14 @@ final class ValidExtrasRuleService implements TicketEventServiceValidationRuleIn
         $serviceExtras = $service->getExtras();
 
         foreach ($extras as $extra) {
-            if(\in_array($extra, $serviceExtras) === true) {
+            if(\in_array($extra['name'], $serviceExtras) === true) {
                 continue;
             }
 
             throw new InvalidExtraException(
                 \sprintf(
                     '%s not found.',
-                    $extra
+                    $extra['name']
                 )
             );
         }
