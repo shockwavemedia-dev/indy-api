@@ -662,11 +662,6 @@ Route::group([
             'uses' => DeleteDepartmentMemberController::class,
         ])->middleware('checkPermission:departments,remove-members');
 
-        Route::get('/departments/{id}/staffs', [
-            'as' => 'get-staffs',
-            'uses' => DepartmentStaffsListController::class,
-        ])->middleware('checkPermission:departments,read-members');
-
         Route::get('/departments/graphic-department/staffs', [
             'as' => 'graphic-staffs',
             'uses' => GraphicStaffController::class,
@@ -676,6 +671,13 @@ Route::group([
             'as' => 'photographers',
             'uses' => PhotographerStaffsController::class,
         ])->middleware('checkPermission:departments,read');
+
+        Route::get('/departments/{id}/staffs', [
+            'as' => 'get-staffs',
+            'uses' => DepartmentStaffsListController::class,
+        ])->middleware('checkPermission:departments,read-members');
+
+
     });
 
     Route::group([
