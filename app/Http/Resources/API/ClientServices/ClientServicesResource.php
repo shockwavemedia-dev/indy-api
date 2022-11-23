@@ -28,7 +28,6 @@ final class ClientServicesResource extends Resource
             ServicesEnum::IN_HOUSE_SCREENS,
             ServicesEnum::EDM,
             ServicesEnum::PRINT,
-            ServicesEnum::SCREEN_MANAGER,
         ];
 
         foreach ($orderBy as $serviceOrder) {
