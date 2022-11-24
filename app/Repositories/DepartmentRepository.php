@@ -51,7 +51,7 @@ final class DepartmentRepository extends BaseRepository implements DepartmentRep
         $query = $this->model
             ->where('status', '=', DepartmentStatusEnum::ACTIVE)
             ->with('adminUsers', function ($query) {
-                $query->where('admin_role', '=', AdminRoleEnum::STAFF);
+//                $query->where('admin_role', '=', AdminRoleEnum::STAFF);
             });
 
         return $query->paginate(
