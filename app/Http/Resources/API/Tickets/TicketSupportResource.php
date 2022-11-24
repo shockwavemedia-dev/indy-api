@@ -71,6 +71,7 @@ final class TicketSupportResource extends Resource
             'email_html' => $emailHtml,
             'created_at' => $ticket->getCreatedAtAsString(),
             'user_notes' => json_encode($userNotes),
+            'client_logo' => $ticket->getClient()->getLogo(),
         ];
 
         $assignees = [];
