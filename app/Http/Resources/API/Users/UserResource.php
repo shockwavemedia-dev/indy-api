@@ -59,7 +59,6 @@ final class UserResource extends Resource
             $result['closed_tickets_90'] = $userType->getClosedTicketsBy90Days();
         }
 
-
         return $result;
     }
 }
