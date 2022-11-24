@@ -13,6 +13,7 @@
         "guzzlehttp/guzzle": "^7.4",
         "jenssegers/optimus": "^1.1",
         "joelharkes/laravel-mailbox": "^3.0",
+        "kbs1/laravel-abbreviations": "^1.0",
         "laravel/framework": "^9.0",
         "laravel/passport": "^10.4",
         "laravel/sanctum": "^2.11",

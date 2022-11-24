@@ -10,11 +10,6 @@ use App\Models\ClientService;
 
 final class ClientServicesResource extends Resource
 {
-    public function __construct($resource, public bool $isAdmin = false)
-    {
-        parent::__construct($resource);
-    }
-
     protected function getResponse(): array
     {
         $clientServices = [];

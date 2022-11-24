@@ -71,7 +71,7 @@ final class CreateClientController extends AbstractAPIController
 
             $client = $this->clientCreationService->create(new CreateClientResource([
                 'name' => $request->getName(),
-                'clientCode' => $request->getClientCode(),
+                'clientCode' => abbreviate($request->getName()),
                 'address' => $request->getAddress(),
                 'phone' => $request->getPhone(),
                 'timezone' => $request->getTimezone(),
