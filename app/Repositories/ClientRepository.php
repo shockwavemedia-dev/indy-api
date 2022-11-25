@@ -60,7 +60,7 @@ final class ClientRepository extends BaseRepository implements ClientRepositoryI
         if ($sortBy === null) {
             return $this->model
                 ->with(['clientScreens.screen', 'printer', 'logo', 'designatedDesigner'])
-                ->orderBy('created_at', 'desc')
+                ->orderBy('name', 'asc')
                 ->paginate($size, ['*'], null, $pageNumber);
         }
 
