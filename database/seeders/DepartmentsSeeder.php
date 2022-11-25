@@ -17,6 +17,7 @@ final class DepartmentsSeeder extends Seeder
      * @var string[]
      */
     private const DEPARTMENTS = [
+        'Animation Department',
         'Graphics Department',
         'Printer Department',
         'Payroll Department',

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\Analytics\AnalyticFolderController;
+use App\Http\Controllers\API\Animations\AnimationMemberController;
 use App\Http\Controllers\API\Authentication\LogoutController;
 use App\Http\Controllers\API\BackendUsers\BackendUsersTicketAndNotificationCountsController;
 use App\Http\Controllers\API\Clients\ClientEDMController;
@@ -40,6 +41,7 @@ use App\Http\Controllers\API\Folders\DeleteFolderController;
 use App\Http\Controllers\API\Folders\UpdateFolderController;
 use App\Http\Controllers\API\Folders\UploadFileFolderController;
 use App\Http\Controllers\API\Graphics\CreateGraphicRequestController;
+use App\Http\Controllers\API\Graphics\GraphicMembersController;
 use App\Http\Controllers\API\Graphics\ListClientGraphicTicketsController;
 use App\Http\Controllers\API\InboundEmail\InboundEmailReceiverController;
 use App\Http\Controllers\API\Libraries\ClientCreateLibraryTicketController;
@@ -84,6 +86,7 @@ use App\Http\Controllers\API\Printers\CreatePrinterController;
 use App\Http\Controllers\API\Printers\DeletePrinterController;
 use App\Http\Controllers\API\Printers\ListPrinterController;
 use App\Http\Controllers\API\Printers\ListPrinterJobsByPrinterController;
+use App\Http\Controllers\API\Printers\PrinterMemberController;
 use App\Http\Controllers\API\Printers\ShowPrinterController;
 use App\Http\Controllers\API\Printers\UpdatePrinterController;
 use App\Http\Controllers\API\Screens\CreateScreenController;
@@ -96,6 +99,7 @@ use App\Http\Controllers\API\Services\UpdateServiceExtrasController;
 use App\Http\Controllers\API\SocialMedia\AllowedMentionUsersListController;
 use App\Http\Controllers\API\SocialMedia\CreateSocialMediaCommentController;
 use App\Http\Controllers\API\SocialMedia\DeleteSocialMediaCommentController;
+use App\Http\Controllers\API\SocialMedia\SocialMediaMemberController;
 use App\Http\Controllers\API\SocialMedia\UpdateSocialMediaCommentController;
 use App\Http\Controllers\API\SocialMedia\CreateSocialMediaController;
 use App\Http\Controllers\API\SocialMedia\ListSocialMediaController;
@@ -154,7 +158,8 @@ use App\Http\Controllers\API\Tickets\ListTicketSupportController;
 use App\Http\Controllers\API\Tickets\ListClientTicketController;
 use App\Http\Controllers\API\TicketEmails\CreateTicketEmailController;
 use App\Http\Controllers\API\Websites\ListClientWebsiteTicketsController;
-use App\Http\Requests\API\Graphics\GraphicStaffController;
+use App\Http\Controllers\API\Graphics\GraphicStaffController;
+use App\Http\Controllers\API\Websites\WebsiteMemberController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -665,6 +670,31 @@ Route::group([
         Route::get('/departments/graphic-department/staffs', [
             'as' => 'graphic-staffs',
             'uses' => GraphicStaffController::class,
+        ])->middleware('checkPermission:departments,read-members');
+
+        Route::get('/departments/graphic-department/users', [
+            'as' => 'graphic-users',
+            'uses' => GraphicMembersController::class,
+        ])->middleware('checkPermission:departments,read-members');
+
+        Route::get('/departments/social-media/users', [
+            'as' => 'social-media-users',
+            'uses' => SocialMediaMemberController::class,
+        ])->middleware('checkPermission:departments,read-members');
+
+        Route::get('/departments/printer/users', [
+            'as' => 'printer-users',
+            'uses' => PrinterMemberController::class,
+        ])->middleware('checkPermission:departments,read-members');
+
+        Route::get('/departments/website/users', [
+            'as' => 'website-users',
+            'uses' => WebsiteMemberController::class,
+        ])->middleware('checkPermission:departments,read-members');
+
+        Route::get('/departments/animation/users', [
+            'as' => 'animation-users',
+            'uses' => AnimationMemberController::class,
         ])->middleware('checkPermission:departments,read-members');
 
         Route::get('/photographers', [
