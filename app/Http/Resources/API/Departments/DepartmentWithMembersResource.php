@@ -8,6 +8,7 @@ use App\Exceptions\InvalidResourceTypeException;
 use App\Http\Resources\API\Services\ServiceResource;
 use App\Http\Resources\Resource;
 use App\Models\Department;
+use App\Models\Users\AdminUser;
 
 final class DepartmentWithMembersResource extends Resource
 {
@@ -46,6 +47,7 @@ final class DepartmentWithMembersResource extends Resource
 
         $users = [];
 
+        /** @var AdminUser $adminUser */
         foreach ($adminUsers as $adminUser) {
             $users[] = [
                 'admin_user_id' => $adminUser->getId(),
@@ -53,12 +55,7 @@ final class DepartmentWithMembersResource extends Resource
                 'first_name' => $adminUser->getUser()->getFirstName(),
                 'middle_name' => $adminUser->getUser()->getMiddleName(),
                 'last_name' => $adminUser->getUser()->getLastName(),
-                'full_name' => \sprintf(
-                    '%s %s %s',
-                    $adminUser->getUser()->getFirstName(),
-                    $adminUser->getUser()->getMiddleName(),
-                    $adminUser->getUser()->getLastName(),
-                ),
+                'full_name' => $adminUser->getUser()->getFullName(),
             ];
         }
 
