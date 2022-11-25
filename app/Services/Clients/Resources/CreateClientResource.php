@@ -41,6 +41,59 @@ final class CreateClientResource extends DataTransferObject
 
     public ?string $styleGuide = null;
 
+    public ?int $designatedAnimatorId = null;
+
+    public ?int $designatedWebEditorId = null;
+
+    public ?int $designatedSocialMediaManagerId = null;
+
+    public ?int $designatedPrinterManagerId = null;
+
+    public function getDesignatedAnimatorId(): ?int
+    {
+        return $this->designatedAnimatorId;
+    }
+
+    public function setDesignatedAnimatorId(?int $designatedAnimatorId): self
+    {
+        $this->designatedAnimatorId = $designatedAnimatorId;
+        return $this;
+    }
+
+    public function getDesignatedWebEditorId(): ?int
+    {
+        return $this->designatedWebEditorId;
+    }
+
+    public function setDesignatedWebEditorId(?int $designatedWebEditorId): self
+    {
+        $this->designatedWebEditorId = $designatedWebEditorId;
+        return $this;
+    }
+
+    public function getDesignatedSocialMediaManagerId(): ?int
+    {
+        return $this->designatedSocialMediaManagerId;
+    }
+
+    public function setDesignatedSocialMediaManagerId(?int $designatedSocialMediaManagerId): self
+    {
+        $this->designatedSocialMediaManagerId = $designatedSocialMediaManagerId;
+        return $this;
+    }
+
+    public function getDesignatedPrinterManagerId(): ?int
+    {
+        return $this->designatedPrinterManagerId;
+    }
+
+    public function setDesignatedPrinterManagerId(?int $designatedPrinterManagerId): self
+    {
+        $this->designatedPrinterManagerId = $designatedPrinterManagerId;
+
+        return $this;
+    }
+
     public function getNote(): ?string
     {
         return $this->note;

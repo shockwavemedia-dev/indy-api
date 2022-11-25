@@ -35,6 +35,10 @@ final class ClientCreationService implements ClientCreationServiceInterface
             'rating' => $resource->getRating(),
             'status' => $resource->getStatus(),
             'designated_designer_id' => $resource->getDesignatedDesignerId() ?? null,
+            'designated_animator_id' => $resource->getDesignatedAnimatorId() ?? null,
+            'designated_web_editor_id' => $resource->getDesignatedWebEditorId() ?? null,
+            'designated_social_media_manager_id' => $resource->getDesignatedSocialMediaManagerId() ?? null,
+            'designated_printer_manager_id' => $resource->getDesignatedPrinterManagerId() ?? null,
             'style_guide' => $resource->getStyleGuide(),
             'note' => $resource->getNote(),
         ]);

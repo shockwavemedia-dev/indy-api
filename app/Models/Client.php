@@ -39,6 +39,10 @@ final class Client extends AbstractModel
         'status',
         'logo_file_id',
         'designated_designer_id',
+        'designated_animator_id',
+        'designated_web_editor_id',
+        'designated_social_media_manager_id',
+        'designated_printer_manager_id',
         'owner_id',
         'style_guide',
         'note',
@@ -196,6 +200,26 @@ final class Client extends AbstractModel
         return $this->designatedDesigner;
     }
 
+    public function getDesignatedAnimator(): ?AdminUser
+    {
+        return $this->designatedAnimator;
+    }
+
+    public function getDesignatedWebEditor(): ?AdminUser
+    {
+        return $this->designatedWebEditor;
+    }
+
+    public function getDesignatedPrinterManager(): ?AdminUser
+    {
+        return $this->designatedPrinterManager;
+    }
+
+    public function getDesignatedSocialMediaManager(): ?AdminUser
+    {
+        return $this->designatedSocialMediaManager;
+    }
+
     public function getLogoFileId(): ?int
     {
         return $this->getAttribute('logo_file_id');
@@ -204,6 +228,26 @@ final class Client extends AbstractModel
     public function getDesignatedDesignerId(): ?int
     {
         return $this->getAttribute('designated_designer_id');
+    }
+
+    public function getDesignatedAnimatorId(): ?int
+    {
+        return $this->getAttribute('designated_animator_id');
+    }
+
+    public function getDesignatedWebEditorId(): ?int
+    {
+        return $this->getAttribute('designated_web_editor_id');
+    }
+
+    public function getDesignatedPrinterManagerId(): ?int
+    {
+        return $this->getAttribute('designated_printer_manager_id');
+    }
+
+    public function getDesignatedSocialMediaManagerId(): ?int
+    {
+        return $this->getAttribute('designated_social_media_manager_id');
     }
 
     public function setName(string $name): self
@@ -290,6 +334,34 @@ final class Client extends AbstractModel
         return $this;
     }
 
+    public function setDesignatedAnimatorId(?int $designatedAnimatorId = null): self
+    {
+        $this->setAttribute('designated_animator_id', $designatedAnimatorId);
+
+        return $this;
+    }
+
+    public function setDesignatedWebEditorId(?int $designatedWebEditorId = null): self
+    {
+        $this->setAttribute('designated_web_editor_id', $designatedWebEditorId);
+
+        return $this;
+    }
+
+    public function setDesignatedSocialMediaManagerId(?int $designatedSocialMediaManagerId = null): self
+    {
+        $this->setAttribute('designated_social_media_manager_id', $designatedSocialMediaManagerId);
+
+        return $this;
+    }
+
+    public function setDesignatedPrinterManagerId(?int $designatedPrinterManagerId = null): self
+    {
+        $this->setAttribute('designated_printer_manager_id', $designatedPrinterManagerId);
+
+        return $this;
+    }
+
     public function setOwnerId(int $ownerId): self
     {
         $this->setAttribute('owner_id', $ownerId);
@@ -351,6 +423,26 @@ final class Client extends AbstractModel
     public function designatedDesigner(): BelongsTo
     {
         return $this->belongsTo(AdminUser::class, 'designated_designer_id');
+    }
+
+    public function designatedAnimator(): BelongsTo
+    {
+        return $this->belongsTo(AdminUser::class, 'designated_animator_id');
+    }
+
+    public function designatedWebEditor(): BelongsTo
+    {
+        return $this->belongsTo(AdminUser::class, 'designated_web_editor_id');
+    }
+
+    public function designatedSocialMediaManager(): BelongsTo
+    {
+        return $this->belongsTo(AdminUser::class, 'designated_social_media_manager_id');
+    }
+
+    public function designatedPrinterManager(): BelongsTo
+    {
+        return $this->belongsTo(AdminUser::class, 'designated_printer_manager_id');
     }
 
     public function printer(): BelongsTo

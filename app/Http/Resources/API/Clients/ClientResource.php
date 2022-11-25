@@ -42,6 +42,14 @@ final class ClientResource extends Resource
             'note' => $client->getNote(),
             'style_guide' => $client->getStyleGuide(),
             'printer' => $client->getPrinter(),
+            'designated_animator_id' => $client->getDesignatedAnimatorId(),
+            'designated_animator' => $client->getDesignatedAnimator()?->getUser()->getFullName(),
+            'designated_web_editor_id' => $client->getDesignatedWebEditorId(),
+            'designated_web_editor' => $client->getDesignatedWebEditor()?->getUser()->getFullName(),
+            'designated_social_media_manager_id' => $client->getDesignatedSocialMediaManagerId(),
+            'designated_social_media_manager' => $client->getDesignatedSocialMediaManager()?->getUser()->getFullName(),
+            'designated_printer_manager_id' => $client->getDesignatedPrinterManagerId(),
+            'designated_printer_manager' => $client->getDesignatedPrinterManager()?->getUser()->getFullName(),
         ];
 
         /** @var ClientScreen $clientScreen */
@@ -57,6 +65,8 @@ final class ClientResource extends Resource
             $result['designated_designer_id'] = $client->getDesignatedDesignerId();
             $result['designated_designer'] = $client->getDesignatedDesigner()->getUser()->getFullName();
         }
+
+
         if($client->getLogoFileId() !== null){
             $result['logo_url'] = $client->getLogo()->getUrl();
             $result['logo_thumbnail_url'] = $client->getLogo()->getThumbnailUrl();

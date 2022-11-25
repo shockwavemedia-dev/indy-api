@@ -41,6 +41,75 @@ final class UpdateClientResource extends DataTransferObject
 
     public ?int $printerId = null;
 
+    public ?int $designatedDesignerId = null;
+
+    public ?int $designatedAnimatorId = null;
+
+    public ?int $designatedWebEditorId = null;
+
+    public ?int $designatedSocialMediaManagerId = null;
+
+    public ?int $designatedPrinterManagerId = null;
+
+    /**
+     * @return int|null
+     */
+    public function getDesignatedAnimatorId(): ?int
+    {
+        return $this->designatedAnimatorId;
+    }
+
+    /**
+     * @param int|null $designatedAnimatorId
+     * @return UpdateClientResource
+     */
+    public function setDesignatedAnimatorId(?int $designatedAnimatorId): self
+    {
+        $this->designatedAnimatorId = $designatedAnimatorId;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getDesignatedWebEditorId(): ?int
+    {
+        return $this->designatedWebEditorId;
+    }
+
+    /**
+     * @param int|null $designatedWebEditorId
+     * @return UpdateClientResource
+     */
+    public function setDesignatedWebEditorId(?int $designatedWebEditorId): self
+    {
+        $this->designatedWebEditorId = $designatedWebEditorId;
+        return $this;
+    }
+
+    public function getDesignatedSocialMediaManagerId(): ?int
+    {
+        return $this->designatedSocialMediaManagerId;
+    }
+
+    public function setDesignatedSocialMediaManagerId(?int $designatedSocialMediaManagerId): self
+    {
+        $this->designatedSocialMediaManagerId = $designatedSocialMediaManagerId;
+        return $this;
+    }
+
+    public function getDesignatedPrinterManagerId(): ?int
+    {
+        return $this->designatedPrinterManagerId;
+    }
+
+    public function setDesignatedPrinterManagerId(?int $designatedPrinterManagerId): self
+    {
+        $this->designatedPrinterManagerId = $designatedPrinterManagerId;
+
+        return $this;
+    }
+
     public function getPrinterId(): ?int
     {
         return $this->printerId;
@@ -61,8 +130,6 @@ final class UpdateClientResource extends DataTransferObject
     {
         return $this->styleGuide;
     }
-
-    public ?int $designatedDesignerId = null;
 
     public function getName(): string
     {
