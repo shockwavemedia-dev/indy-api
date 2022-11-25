@@ -154,6 +154,7 @@ use App\Http\Controllers\API\Tickets\ListTicketSupportController;
 use App\Http\Controllers\API\Tickets\ListClientTicketController;
 use App\Http\Controllers\API\TicketEmails\CreateTicketEmailController;
 use App\Http\Controllers\API\Websites\ListClientWebsiteTicketsController;
+use App\Http\Requests\API\Graphics\GraphicStaffController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -166,11 +167,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-header("Cache-Control: no-cache, must-revalidate");
-header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-header('Access-Control-Allow-Origin:  *');
-header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
-header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization, *');
+//header("Cache-Control: no-cache, must-revalidate");
+//header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+//header('Access-Control-Allow-Origin:  *');
+//header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
+//header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization, *');
 
 Route::get('/', function () {
     return [
@@ -661,15 +662,22 @@ Route::group([
             'uses' => DeleteDepartmentMemberController::class,
         ])->middleware('checkPermission:departments,remove-members');
 
-        Route::get('/departments/{id}/staffs', [
-            'as' => 'get-staffs',
-            'uses' => DepartmentStaffsListController::class,
+        Route::get('/departments/graphic-department/staffs', [
+            'as' => 'graphic-staffs',
+            'uses' => GraphicStaffController::class,
         ])->middleware('checkPermission:departments,read-members');
 
         Route::get('/photographers', [
             'as' => 'photographers',
             'uses' => PhotographerStaffsController::class,
         ])->middleware('checkPermission:departments,read');
+
+        Route::get('/departments/{id}/staffs', [
+            'as' => 'get-staffs',
+            'uses' => DepartmentStaffsListController::class,
+        ])->middleware('checkPermission:departments,read-members');
+
+
     });
 
     Route::group([

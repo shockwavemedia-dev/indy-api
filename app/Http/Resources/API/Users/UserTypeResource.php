@@ -33,6 +33,7 @@ final class UserTypeResource extends Resource
 
         if ($userType->getType()->getValue() === UserTypeEnum::CLIENT) {
             $result['client'] = $userType->getClient();
+            $result['client']['logo_url'] = $userType->getClient()->getLogo()?->getUrl();
         }
 
         if ($userType->getType()->getValue() === UserTypeEnum::ADMIN) {

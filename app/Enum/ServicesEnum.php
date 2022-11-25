@@ -26,11 +26,6 @@ final class ServicesEnum extends Enum
     /**
      * @var string
      */
-    public const IN_HOUSE_SCREENS = 'In House Screens';
-
-    /**
-     * @var string
-     */
     public const SOCIAL_MEDIA = 'Social Media';
 
     /**

@@ -72,8 +72,6 @@ final class TicketAssignStaffsController extends AbstractAPIController
             /** @var AdminUser $createdBy */
             $createdBy = $user->getUserType();
 
-            $ticket->save();
-
             $this->ticketRepository->addUserNotes($ticket, $adminUser->getUser());
 
             $ticketAssignee = $this->assignTicketService->assign(

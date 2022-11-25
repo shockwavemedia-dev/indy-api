@@ -28,7 +28,7 @@ final class CreateDepartmentController extends AbstractAPIController
         try {
             $department = $this->createDepartmentService->create(new CreateDepartmentResources([
                 'name' => $request->getName(),
-                'description' => $request->getDescription(),
+                'description' => $request->getDescription() ?? ' ',
                 'status' => new DepartmentStatusEnum(DepartmentStatusEnum::ACTIVE),
                 'minDeliveryDays' => $request->getMinDeliveryDays(),
                 'serviceIds' => $request->getServiceIds(),

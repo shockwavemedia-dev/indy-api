@@ -99,6 +99,42 @@ final class UpdateClientRequest extends BaseRequest
         return $this->getString('overview');
     }
 
+    public function getDesignatedAnimatorId(): ?int
+    {
+        if ($this->getInt('designated_animator_id') === 0) {
+            return null;
+        }
+
+        return $this->getInt('designated_animator_id');
+    }
+
+    public function getDesignatedWebEditorId(): ?int
+    {
+        if ($this->getInt('designated_web_editor_id') === 0) {
+            return null;
+        }
+
+        return $this->getInt('designated_web_editor_id');
+    }
+
+    public function getDesignatedSocialMediaManagerId(): ?int
+    {
+        if ($this->getInt('designated_social_media_manager_id') === 0) {
+            return null;
+        }
+
+        return $this->getInt('designated_social_media_manager_id');
+    }
+
+    public function getDesignatedPrinterManagerId(): ?int
+    {
+        if ($this->getInt('designated_printer_manager_id') === 0) {
+            return null;
+        }
+
+        return $this->getInt('designated_printer_manager_id');
+    }
+
     public function getRating(): ?int
     {
         if ($this->getInt('rating') === null) {
@@ -176,6 +212,10 @@ final class UpdateClientRequest extends BaseRequest
             'style_guide' => 'string|nullable',
             'note' => 'string|nullable',
             'designated_designer_id' => 'nullable|int|exists:App\Models\Users\AdminUser,id',
+            'designated_social_media_manager_id' => 'nullable|int|exists:App\Models\Users\AdminUser,id',
+            'designated_web_editor_id' => 'nullable|int|exists:App\Models\Users\AdminUser,id',
+            'designated_printer_manager_id' => 'nullable|int|exists:App\Models\Users\AdminUser,id',
+            'designated_animator_id' => 'nullable|int|exists:App\Models\Users\AdminUser,id',
         ];
     }
 }

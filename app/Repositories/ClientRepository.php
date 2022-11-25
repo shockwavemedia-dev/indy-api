@@ -34,6 +34,10 @@ final class ClientRepository extends BaseRepository implements ClientRepositoryI
             ->setRating($resource->getRating())
             ->setStatus($resource->getStatus())
             ->setDesignatedDesignerId($resource->getDesignatedDesignerId())
+            ->setDesignatedAnimatorId($resource->getDesignatedAnimatorId())
+            ->setDesignatedPrinterManagerId($resource->getDesignatedPrinterManagerId())
+            ->setDesignatedWebEditorId($resource->getDesignatedWebEditorId())
+            ->setDesignatedSocialMediaManagerId($resource->getDesignatedSocialMediaManagerId())
             ->setStyleGuide($resource->getStyleGuide())
             ->setNote($resource->getNote());
 
