@@ -16,7 +16,12 @@ interface ClientRepositoryInterface
 
     public function update(Client $client, UpdateClientResource $resource): Client;
 
-    public function findAllClient(?int $size = null, ?int $pageNumber = null): LengthAwarePaginator;
+    public function findAllClient(
+        ?int $size = null,
+        ?int $pageNumber = null,
+        ?string $sortBy = null,
+        ?string $sortOrder = null
+    ): LengthAwarePaginator;
 
     public function deleteClient(Client $client): void;
 
