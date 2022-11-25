@@ -50,12 +50,25 @@ final class ClientRepository extends BaseRepository implements ClientRepositoryI
         return $client;
     }
 
-    public function findAllClient(?int $size = null, ?int $pageNumber = null): LengthAwarePaginator
-    {
+    public function findAllClient(
+        ?int $size = null,
+        ?int $pageNumber = null,
+        ?string $sortBy = null,
+        ?string $sortOrder = null
+    ): LengthAwarePaginator {
+
+        if ($sortBy === null) {
+            return $this->model
+                ->with(['clientScreens.screen', 'printer', 'logo', 'designatedDesigner'])
+                ->orderBy('created_at', 'desc')
+                ->paginate($size, ['*'], null, $pageNumber);
+        }
+
         return $this->model
             ->with(['clientScreens.screen', 'printer', 'logo', 'designatedDesigner'])
-            ->orderBy('created_at', 'desc')
+            ->orderBy($sortBy, $sortOrder)
             ->paginate($size, ['*'], null, $pageNumber);
+
     }
 
     public function deleteClient(Client $client): void

@@ -23,7 +23,15 @@ final class ListClientController extends AbstractAPIController
     public function __invoke(PaginationRequest $request): JsonResource
     {
         try {
-            $client = $this->clientRepository->findAllClient($request->getSize(), $request->getPageNumber());
+            $sortBy = $request->get('sortBy') ?? null;
+            $sortOrder = $request->get('sortOrder') ?? null;
+
+            $client = $this->clientRepository->findAllClient(
+                $request->getSize(),
+                $request->getPageNumber(),
+                $sortBy,
+                $sortOrder,
+            );
 
             return new ClientsResource($client);
         } catch (Throwable $throwable) {
