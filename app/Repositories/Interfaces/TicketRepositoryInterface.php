@@ -64,7 +64,8 @@ interface TicketRepositoryInterface
     public function findByOptions(
         array $params = [],
         ?int $size = null,
-        ?int $pageNumber = null
+        ?int $pageNumber = null,
+        ?Client $client = null,
     ): LengthAwarePaginator;
 
     public function findSupportTickets(?int $size = null, ?int $pageNumber = null): LengthAwarePaginator;

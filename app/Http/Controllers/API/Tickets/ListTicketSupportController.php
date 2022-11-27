@@ -10,6 +10,7 @@ use App\Helpers\Interfaces\ArrayHelperInterface;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Tickets\TicketQueryRequest;
 use App\Http\Resources\API\Tickets\TicketSupportsResource;
+use App\Models\Users\ClientUser;
 use App\Repositories\Interfaces\TicketRepositoryInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Throwable;
@@ -52,11 +53,20 @@ final class ListTicketSupportController extends AbstractAPIController
             'types' => $types
         ];
 
+        $client = null;
+
+        $user = $this->getUser();
+
+        if ($user->getUserType() instanceof ClientUser === true) {
+            $client = $user->getUserType()->getClient();
+        }
+
         try {
             $tickets = $this->ticketRepository->findByOptions(
                 $options,
                 $request->getSize(),
                 $request->getPageNumber(),
+                $client,
             );
 
             return new TicketSupportsResource($tickets);
