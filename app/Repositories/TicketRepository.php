@@ -19,6 +19,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use function Clue\StreamFilter\fun;
 
 final class TicketRepository extends BaseRepository implements TicketRepositoryInterface
 {
@@ -208,8 +209,12 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
         return $this->model->orderBy('created_at', 'desc')->paginate($size, ['*'], null, $pageNumber);
     }
 
-    public function findByOptions(array $params = [], ?int $size = null, ?int $pageNumber = null): LengthAwarePaginator
-    {
+    public function findByOptions(
+        array $params = [],
+        ?int $size = null,
+        ?int $pageNumber = null,
+        ?Client $client = null
+    ): LengthAwarePaginator {
         $departmentIds = Arr::get($params, 'department_ids');
 
         $types = Arr::get($params, 'types');
@@ -217,6 +222,13 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
         $status = Arr::get($params, 'status');
 
         return $this->model
+            ->when($client, function ($query, $client) {
+                if ($client === null) {
+                    return;
+                }
+
+                $query->where('client_id', $client->getId());
+            })
             ->when($types, function ($query, $types) {
                 return $query->whereIn('type', $types);
             })
