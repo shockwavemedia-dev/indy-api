@@ -24,6 +24,15 @@ final class WebEditorDesignatorResolver implements DesignatorResolverInterface
             return;
         }
 
+        $checkTicketAssignee = $this->ticketRepository->findByAdminUserAndTicket(
+            $ticket,
+            $ticket->getClient()->getDesignatedWebEditor()
+        );
+
+        if($checkTicketAssignee !== null){
+            return;
+        }
+
         /** @var User $superAdminUser */
         $superAdminUser = User::find(1);
 

@@ -24,6 +24,15 @@ final class AnimatorDesignatorResolver implements DesignatorResolverInterface
             return;
         }
 
+        $checkTicketAssignee = $this->ticketRepository->findByAdminUserAndTicket(
+            $ticket,
+            $ticket->getClient()->getDesignatedAnimator()
+        );
+
+        if($checkTicketAssignee !== null){
+            return;
+        }
+
         /** @var User $superAdminUser */
         $superAdminUser = User::find(1);
 

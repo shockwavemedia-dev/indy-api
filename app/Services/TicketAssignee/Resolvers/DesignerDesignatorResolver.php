@@ -24,6 +24,15 @@
                 return;
             }
 
+            $checkTicketAssignee = $this->ticketRepository->findByAdminUserAndTicket(
+                $ticket,
+                $ticket->getClient()->getDesignatedDesigner()
+            );
+
+            if($checkTicketAssignee !== null){
+                return;
+            }
+
             /** @var User $superAdminUser */
             $superAdminUser = User::find(1);
 
