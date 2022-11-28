@@ -40,6 +40,7 @@ use App\Providers\SocialMediaServiceProvider;
 use App\Providers\SortingServiceProvider;
 use App\Providers\SupportRequestServiceProvider;
 use App\Providers\TicketAssigneeLinkServiceProvider;
+use App\Providers\TicketAssigneeServiceProvider;
 use App\Providers\TicketServiceProvider;
 use App\Providers\UserServiceProvider;
 use App\Providers\TicketEmailServiceProvider;
@@ -111,6 +112,7 @@ $app->register(UserServiceProvider::class);
 $app->register(PrinterJobServiceProvider::class);
 $app->register(ScreenServiceProvider::class);
 $app->register(Sichikawa\LaravelSendgridDriver\MailServiceProvider::class);
+$app->register(TicketAssigneeServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

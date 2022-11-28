@@ -27,9 +27,7 @@ final class ValidExtrasRuleService implements TicketEventServiceValidationRuleIn
         $serviceExtras = $service->getExtras();
 
         foreach ($extras as $extra) {
-
             $extraName = $extra['name'] ?? $extra;
-
                 if(\in_array($extraName, $serviceExtras) === true) {
                     continue;
                 }

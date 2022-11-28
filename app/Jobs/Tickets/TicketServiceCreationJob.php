@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Jobs\Tickets;
 
+use App\Enum\ServicesEnum;
 use App\Enum\TicketNotificationTypeEnum;
 use App\Exceptions\Interfaces\ErrorLogInterface;
 use App\Models\ClientService;
 use App\Models\Tickets\Ticket;
 use App\Repositories\Interfaces\ClientServiceRepositoryInterface;
 use App\Repositories\Interfaces\TicketServiceRepositoryInterface;
+use App\Services\TicketAssignee\Interfaces\DesignatorResolverFactoryInterface;
 use App\Services\Tickets\Interfaces\Resolvers\TicketNotifyDepartmentsResolverInterface;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -40,6 +42,7 @@ final class TicketServiceCreationJob implements ShouldQueue
     // TODO convert this to a service and call the service here
     public function handle(
         ClientServiceRepositoryInterface $clientServiceRepository,
+        DesignatorResolverFactoryInterface $designatorResolverFactory,
         ErrorLogInterface $sentryHandler,
         TicketNotifyDepartmentsResolverInterface $notifyDepartmentsResolver,
         TicketServiceRepositoryInterface $ticketServiceRepository
@@ -48,6 +51,12 @@ final class TicketServiceCreationJob implements ShouldQueue
             $ticketServiceRepository->create($this->service);
 
             $clientServiceRepository->increaseTotalUsageByClientService($this->clientService);
+
+            $service = $this->clientService->getService();
+
+            $designatorResolver = $designatorResolverFactory->make(ServicesEnum::from($service->getName()));
+
+            $designatorResolver->resolve($this->ticket);
 
             $notifyDepartmentsResolver->resolve(
                 $this->ticket->refresh(),
