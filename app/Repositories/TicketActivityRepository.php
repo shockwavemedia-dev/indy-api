@@ -18,7 +18,7 @@ final class TicketActivityRepository extends BaseRepository implements TicketAct
     {
         return $this->model
             ->with('user')
-            ->where('ticket_id', '=' , $ticket->getId())
+            ->where('ticket_id', '=', $ticket->getId())
             ->orderBy('created_at', 'desc')
             ->paginate($size, ['*'], null, $pageNumber);
     }

@@ -18,7 +18,8 @@ final class TicketAssigneeStatusNotificationResolver extends AbstractClientNotif
     private const TITLE_KEY = '%s has changed the staff status in ticket # %s';
 
     /**
-     * @param TicketAssignee $morph
+     * @param  TicketAssignee  $morph
+     *
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     public function resolve(mixed $morph): void

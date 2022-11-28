@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services\Sorting;
 
-use App\Models\Department;
 use App\Models\File;
-use App\Models\Users\AdminUser;
 use App\Services\Sorting\Interfaces\SortByYearAndMonthResolverInterface;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -23,7 +21,7 @@ final class SortByYearAndMonthResolver implements SortByYearAndMonthResolverInte
             }
 
             $year = \sprintf(
-                "%s",
+                '%s',
                 $record->getCreatedAt()->format('Y')
             );
 

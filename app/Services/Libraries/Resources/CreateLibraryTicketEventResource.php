@@ -40,32 +40,35 @@ final class CreateLibraryTicketEventResource extends DataTransferObject
     }
 
     /**
-     * @param ClientUser $clientUser
+     * @param  ClientUser  $clientUser
      * @return CreateLibraryTicketEventResource
      */
     public function setClientUser(ClientUser $clientUser): self
     {
         $this->clientUser = $clientUser;
+
         return $this;
     }
 
     /**
-     * @param string|null $description
+     * @param  string|null  $description
      * @return CreateLibraryTicketEventResource
      */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
         return $this;
     }
 
     /**
-     * @param int $libraryId
+     * @param  int  $libraryId
      * @return CreateLibraryTicketEventResource
      */
     public function setLibraryId(int $libraryId): self
     {
         $this->libraryId = $libraryId;
+
         return $this;
     }
 }

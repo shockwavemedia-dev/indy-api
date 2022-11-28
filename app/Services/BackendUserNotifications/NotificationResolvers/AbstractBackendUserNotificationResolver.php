@@ -35,7 +35,7 @@ abstract class AbstractBackendUserNotificationResolver
 
         $this->notificationUserFactory->make(new CreateNotificationUserResource([
             'notification' => $notification,
-            'user' => $user
+            'user' => $user,
         ]));
     }
 }

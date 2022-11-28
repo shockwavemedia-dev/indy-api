@@ -18,7 +18,8 @@ final class TicketEmailNotificationResolver extends AbstractClientNotificationRe
     private const TITLE_KEY = '%s has posted an email in ticket # %s';
 
     /**
-     * @param TicketEmail $morph
+     * @param  TicketEmail  $morph
+     *
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     public function resolve(mixed $morph): void

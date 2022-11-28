@@ -53,14 +53,13 @@ final class RemoveAttachmentsSocialMediaController extends AbstractAPIController
 
         /** @var SocialMediaAttachment $attachment */
         foreach ($attachments as $attachment) {
-
             $socialMedia->auditEvent = 'deleted';
             $socialMedia->isCustomEvent = true;
             $socialMedia->auditCustomOld = [
                 'attachment' => $attachment->getFile()->getOriginalFilename(),
             ];
             $socialMedia->auditCustomNew = [
-                'attachment' => ''
+                'attachment' => '',
             ];
 
             Event::dispatch(AuditCustom::class, [$socialMedia]);

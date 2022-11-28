@@ -25,7 +25,7 @@ final class VerifyUserController extends AbstractAPIController
         $this->userRepository = $userRepository;
     }
 
-    public function __invoke(VerifyUserRequest $request):  JsonResource
+    public function __invoke(VerifyUserRequest $request): JsonResource
     {
         $user = $this->userRepository->findByEmail($request->getEmail());
 
@@ -49,7 +49,7 @@ final class VerifyUserController extends AbstractAPIController
 //            $this->tokenRepository->delete($user);
 
             return $this->respondOk([
-                'message' => 'Valid token'
+                'message' => 'Valid token',
             ]);
         } catch (Throwable $throwable) {
             return $this->respondError($throwable->getMessage());

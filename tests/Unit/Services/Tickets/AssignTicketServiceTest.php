@@ -5,17 +5,16 @@ declare(strict_types=1);
 namespace Tests\Unit\Services\Tickets;
 
 use App\Enum\AdminRoleEnum;
-use App\Jobs\Tickets\AssignedTicketSlackNotificationJob;
-use App\Repositories\Interfaces\TicketAssigneeRepositoryInterface;
 use App\Services\Tickets\AssignTicketService;
 use Exception;
+use function get_class;
 use Tests\Stubs\Repositories\TicketAssigneeRepositoryStub;
 use Tests\Stubs\Services\TicketAssigneeLinks\TicketAssigneeLinkResolverStub;
 use Tests\TestCase;
-use function get_class;
 
 /**
  * @covers \App\Services\Tickets\AssignTicketService
+ *
  * @todo Needs to rewrite to use model with no database connection
  * @todo Needs to refactor use only PHPUnit/Testcase
  */
@@ -29,7 +28,7 @@ final class AssignTicketServiceTest extends TestCase
         $ticket = $this->env->ticket()->ticket;
 
         $staff = $this->env->adminUser([
-            'admin_role' => AdminRoleEnum::STAFF
+            'admin_role' => AdminRoleEnum::STAFF,
         ])->adminUser;
 
         $this->env->user([
@@ -42,7 +41,7 @@ final class AssignTicketServiceTest extends TestCase
         $staff->departments()->sync($department);
 
         $assignee = $this->env->ticketAssignee([
-            'admin_user_id' => $staff->getId()
+            'admin_user_id' => $staff->getId(),
         ])->ticketAssignee;
 
         $user = $this->env->user([
@@ -73,7 +72,7 @@ final class AssignTicketServiceTest extends TestCase
         $ticket = $this->env->ticket()->ticket;
 
         $staff = $this->env->adminUser([
-            'admin_role' => AdminRoleEnum::STAFF
+            'admin_role' => AdminRoleEnum::STAFF,
         ])->adminUser;
 
         $user = $this->env->user([

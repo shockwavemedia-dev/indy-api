@@ -1,6 +1,6 @@
 <?php
 
-    namespace App\Services\TicketAssignee\Resolvers;
+namespace App\Services\TicketAssignee\Resolvers;
 
     use App\Enum\BackendUserNotificationTypeEnum;
     use App\Enum\ServicesEnum;
@@ -16,7 +16,8 @@
         public function __construct(
             private BackendUserNotificationResolverFactoryInterface $backendUserNotificationResolverFactory,
             private TicketAssigneeRepositoryInterface $ticketRepository
-        ) {}
+        ) {
+        }
 
         public function resolve(Ticket $ticket): void
         {
@@ -29,7 +30,7 @@
                 $ticket->getClient()->getDesignatedDesigner()
             );
 
-            if($checkTicketAssignee !== null){
+            if ($checkTicketAssignee !== null) {
                 return;
             }
 

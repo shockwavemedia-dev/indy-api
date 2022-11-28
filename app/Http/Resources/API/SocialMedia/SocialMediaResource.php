@@ -13,7 +13,7 @@ final class SocialMediaResource extends Resource
 {
     protected function getResponse(): array
     {
-        /** @var  SocialMedia $socialMedia */
+        /** @var SocialMedia $socialMedia */
         $socialMedia = $this->resource;
 
         $result = [
@@ -39,8 +39,8 @@ final class SocialMediaResource extends Resource
         /** @var SocialMediaAttachment $attachment */
         foreach ($socialMedia->getAttachments() as $attachment) {
             $attachments[] = [
-                'name' =>  $attachment->getFile()?->getOriginalFilename(),
-                'file_type' =>  $attachment->getFile()?->getFileType(),
+                'name' => $attachment->getFile()?->getOriginalFilename(),
+                'file_type' => $attachment->getFile()?->getFileType(),
                 'social_media_attachment_id' => $attachment->getId(),
                 'url' => $attachment->getFile()?->getUrl(),
                 'thumbnail_url' => $attachment->getFile()?->getThumbnailUrl(),
@@ -52,7 +52,7 @@ final class SocialMediaResource extends Resource
         $audits = Audit::where('auditable_type', 'App\Models\SocialMedia')
             ->where('auditable_id', $socialMedia->getId())
             ->orWhere(function ($query) use ($attachmentIds) {
-                if (count($attachmentIds)>0) {
+                if (count($attachmentIds) > 0) {
                     $query->where('auditable_type', 'App\Models\SocialMediaAttachment')
                         ->whereIn('auditable_id', $attachmentIds);
                 }

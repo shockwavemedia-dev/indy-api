@@ -10,7 +10,7 @@ final class CreateClientUsersTable extends Migration
 {
     public const TABLE = 'client_users';
 
-    public function up() : void
+    public function up(): void
     {
         if (Schema::hasTable(self::TABLE) === true) {
             return;

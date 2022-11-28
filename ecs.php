@@ -47,12 +47,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     ]);
 
     $parameters->set(Option::PATHS, [
-        __DIR__ . '/app',
-        __DIR__ . '/tests',
+        __DIR__.'/app',
+        __DIR__.'/tests',
     ]);
 
     $parameters->set(Option::SKIP, [
-        __DIR__ . '/routes/api.php',
+        __DIR__.'/routes/api.php',
         PhpUnitStrictFixer::class => null,
         // enable later
         StrictComparisonFixer::class => null,
@@ -65,17 +65,17 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         StrictComparisonFixer::class => null,
         StrictParamFixer::class => null,
         ReferenceThrowableOnlySniff::class => [
-            __DIR__ . '/app/Exceptions/Handler.php',
+            __DIR__.'/app/Exceptions/Handler.php',
         ],
         // many false positives and too much magic in the code
         InlineDocCommentDeclarationSniff::class => null,
         // way to many cases
-        DisallowCommentAfterCodeSniff::class . '.DisallowedCommentAfterCode' => null,
+        DisallowCommentAfterCodeSniff::class.'.DisallowedCommentAfterCode' => null,
 
         ReferenceUsedNamesOnlySniff::class => [
-            __DIR__ . '/app',
-            __DIR__ . '/tests/Unit',
-            __DIR__ . '/tests/helpers',
+            __DIR__.'/app',
+            __DIR__.'/tests/Unit',
+            __DIR__.'/tests/helpers',
         ],
     ]);
 

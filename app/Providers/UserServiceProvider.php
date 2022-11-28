@@ -7,20 +7,20 @@ namespace App\Providers;
 use App\Services\Users\CheckUserPermission;
 use App\Services\Users\Factories\LeadClientFactory;
 use App\Services\Users\Interfaces\CheckUserPermissionInterface;
+use App\Services\Users\Interfaces\UserCreationServiceInterface;
 use App\Services\Users\Interfaces\UserEmailVerificationResolverInterface;
 use App\Services\Users\Interfaces\UserPermissionConfigResolverInterface;
 use App\Services\Users\Interfaces\UserResetPasswordResolverInterface;
+use App\Services\Users\Interfaces\UserTypeFactoryInterface;
+use App\Services\Users\Interfaces\UserTypeFactoryResolverInterface;
 use App\Services\Users\Resolvers\UserEmailVerificationResolver;
 use App\Services\Users\Resolvers\UserResetPasswordResolver;
+use App\Services\Users\UserAdminCreationService;
 use App\Services\Users\UserClientCreationService;
 use App\Services\Users\UserCreationService;
 use App\Services\Users\UserPermissionConfigResolver;
-use Illuminate\Foundation\Application;
-use App\Services\Users\Interfaces\UserCreationServiceInterface;
-use App\Services\Users\Interfaces\UserTypeFactoryInterface;
-use App\Services\Users\Interfaces\UserTypeFactoryResolverInterface;
-use App\Services\Users\UserAdminCreationService;
 use App\Services\Users\UserTypeFactoryResolver;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
 final class UserServiceProvider extends ServiceProvider

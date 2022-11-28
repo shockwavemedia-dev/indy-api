@@ -16,7 +16,8 @@ final class AnimatorDesignatorResolver implements DesignatorResolverInterface
     public function __construct(
         private BackendUserNotificationResolverFactoryInterface $backendUserNotificationResolverFactory,
         private TicketAssigneeRepositoryInterface $ticketRepository
-    ) {}
+    ) {
+    }
 
     public function resolve(Ticket $ticket): void
     {
@@ -29,7 +30,7 @@ final class AnimatorDesignatorResolver implements DesignatorResolverInterface
             $ticket->getClient()->getDesignatedAnimator()
         );
 
-        if($checkTicketAssignee !== null){
+        if ($checkTicketAssignee !== null) {
             return;
         }
 

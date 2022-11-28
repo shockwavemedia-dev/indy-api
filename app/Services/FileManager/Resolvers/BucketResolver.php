@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Services\FileManager\Resolvers;
 
+use App\Services\FileManager\Bucket as BucketLocal;
 use App\Services\FileManager\Exceptions\BucketNotFoundException;
 use App\Services\FileManager\Interfaces\BucketResolverInterface;
 use App\Services\FileManager\Interfaces\StorageClientFactoryInterface;
-use App\Services\FileManager\Bucket as BucketLocal;
 use Google\Cloud\Storage\StorageClient;
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use Throwable;
-use Illuminate\Contracts\Config\Repository;
 
 final class BucketResolver implements BucketResolverInterface
 {
@@ -34,7 +34,7 @@ final class BucketResolver implements BucketResolverInterface
     }
 
     /**
-     * @param string $bucketName
+     * @param  string  $bucketName
      * @return mixed
      */
     public function resolve(string $bucketName): mixed
@@ -42,10 +42,10 @@ final class BucketResolver implements BucketResolverInterface
         $config = $this->config->get(self::CONFIG_KEY);
 
 //        if (Arr::get($config, 'driver') === 's3') {
-            return new BucketLocal(
-                Arr::get($config, 'bucket'),
-                Arr::get($config, 'driver')
-            );
+        return new BucketLocal(
+            Arr::get($config, 'bucket'),
+            Arr::get($config, 'driver')
+        );
 //        }
 
 //        try {

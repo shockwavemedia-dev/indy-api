@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API\Events;
 
 use App\Http\Controllers\API\AbstractAPIController;
-use App\Http\Resources\API\Events\EventResource;
 use App\Models\Event;
 use App\Repositories\Interfaces\EventRepositoryInterface;
 

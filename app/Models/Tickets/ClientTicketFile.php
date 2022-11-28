@@ -24,8 +24,8 @@ final class ClientTicketFile extends AbstractModel implements EmailInterface
      * @var string[]
      */
     protected $dates = [
-       'approved_at',
-       'created_at'
+        'approved_at',
+        'created_at',
     ];
 
     /**

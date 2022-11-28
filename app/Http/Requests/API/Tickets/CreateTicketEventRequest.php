@@ -5,16 +5,13 @@ declare(strict_types=1);
 namespace App\Http\Requests\API\Tickets;
 
 use App\Enum\TicketPrioritiesEnum;
-use App\Enum\TicketTypeEnum;
 use App\Http\Requests\BaseRequest;
 use Carbon\Carbon;
 use DateTimeInterface;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Validation\Rule;
 
 final class CreateTicketEventRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;

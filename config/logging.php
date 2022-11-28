@@ -49,8 +49,8 @@ return [
 
     'channels' => [
         'stack' => [
-            'driver'   => 'stack',
-            'channels' => ['daily', 'sentry']
+            'driver' => 'stack',
+            'channels' => ['daily', 'sentry'],
         ],
 
         'single' => [
@@ -114,7 +114,7 @@ return [
         ],
         'sentry' => [
             'driver' => 'sentry',
-            'level'  => null,
+            'level' => null,
             'bubble' => true,
         ],
     ],

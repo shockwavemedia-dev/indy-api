@@ -27,5 +27,4 @@ final class DepartmentListRequest extends PaginationRequest
             'with_users' => '',
         ];
     }
-
 }

@@ -28,28 +28,28 @@ final class MarketingPlannerResource extends Resource
         $marketingPlanner = $this->resource;
 
         return [
-            "id" => $marketingPlanner->getId(),
-            "event_name" => $marketingPlanner->getEventName(),
-            "description" => $marketingPlanner->getDescription(),
-            "todo_list" => new MarketingPlannerTasksResource($marketingPlanner->getTasks()),
-            "start_date" => $marketingPlanner->getStartDateAsString(),
-            "end_date" => $marketingPlanner->getEndDateAsString(),
-            "is_recurring" => $marketingPlanner->isRecurring(),
-            "created_by" =>  sprintf(
+            'id' => $marketingPlanner->getId(),
+            'event_name' => $marketingPlanner->getEventName(),
+            'description' => $marketingPlanner->getDescription(),
+            'todo_list' => new MarketingPlannerTasksResource($marketingPlanner->getTasks()),
+            'start_date' => $marketingPlanner->getStartDateAsString(),
+            'end_date' => $marketingPlanner->getEndDateAsString(),
+            'is_recurring' => $marketingPlanner->isRecurring(),
+            'created_by' => sprintf(
                 '%s %s %s',
                 $marketingPlanner->getCreatedBy()->getFirstName(),
                 $marketingPlanner->getCreatedBy()->getMiddleName(),
                 $marketingPlanner->getCreatedBy()->getLastName(),
             ),
-            "updated_by" =>   sprintf(
+            'updated_by' => sprintf(
                 '%s %s %s',
                 $marketingPlanner->getUpdatedBy()?->getFirstName(),
                 $marketingPlanner->getCreatedBy()?->getMiddleName(),
                 $marketingPlanner->getCreatedBy()?->getLastName(),
             ),
-            "updated_at" => $marketingPlanner->getUpdatedAtAsString(),
-            "created_at" => $marketingPlanner->getCreatedAtAsString(),
-            "attachments" => new FilesResource($marketingPlanner->getAttachments()),
+            'updated_at' => $marketingPlanner->getUpdatedAtAsString(),
+            'created_at' => $marketingPlanner->getCreatedAtAsString(),
+            'attachments' => new FilesResource($marketingPlanner->getAttachments()),
         ];
     }
 }

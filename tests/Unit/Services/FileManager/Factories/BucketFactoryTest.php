@@ -40,7 +40,7 @@ final class BucketFactoryTest extends TestCase
 
         $sentryHandler = new ErrorLogStub();
         $storageClientFactory = new StorageClientFactoryStub([
-            'make' => $storageClient
+            'make' => $storageClient,
         ]);
 
         $bucketResolver = new BucketResolverStub([
@@ -48,7 +48,7 @@ final class BucketFactoryTest extends TestCase
         ]);
 
         $fileConfigResolver = new FileManagerConfigResolverStub([
-            'resolve' => 'gcs'
+            'resolve' => 'gcs',
         ]);
 
         $factory = new BucketFactory($bucketResolver, $fileConfigResolver, $sentryHandler, $storageClientFactory);
@@ -73,7 +73,7 @@ final class BucketFactoryTest extends TestCase
 
         $sentryHandler = new ErrorLogStub();
         $storageClientFactory = new StorageClientFactoryStub([
-            'make' => $storageClient
+            'make' => $storageClient,
         ]);
 
         $bucket = Mockery::mock(Bucket::class)
@@ -86,7 +86,7 @@ final class BucketFactoryTest extends TestCase
         ]);
 
         $fileConfigResolver = new FileManagerConfigResolverStub([
-            'resolve' => 'gcs'
+            'resolve' => 'gcs',
         ]);
 
         $factory = new BucketFactory($bucketResolver, $fileConfigResolver, $sentryHandler, $storageClientFactory);
@@ -96,7 +96,7 @@ final class BucketFactoryTest extends TestCase
         self::assertEquals([
             [
                 'resolve' => [
-                    'test-client'
+                    'test-client',
                 ],
             ],
         ], $bucketResolver->getCalls());

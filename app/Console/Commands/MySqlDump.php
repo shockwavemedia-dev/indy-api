@@ -46,16 +46,15 @@ final class MySqlDump extends Command
 
         $ts = time();
 
-        $path = database_path() . $ds . 'backups' . $ds . date('Y', $ts) . $ds . date('m', $ts) . $ds . date('d', $ts) . $ds;
-        $file = date('Y-m-d-His', $ts) . '-dump-' . $database . '.sql';
-        $command = sprintf('pg_dump -h %s -U %s -W\'%s\' %s > %s', $host, $username, $password, $database, $path . $file);
+        $path = database_path().$ds.'backups'.$ds.date('Y', $ts).$ds.date('m', $ts).$ds.date('d', $ts).$ds;
+        $file = date('Y-m-d-His', $ts).'-dump-'.$database.'.sql';
+        $command = sprintf('pg_dump -h %s -U %s -W\'%s\' %s > %s', $host, $username, $password, $database, $path.$file);
 
-        if (!is_dir($path)) {
+        if (! is_dir($path)) {
             mkdir($path, 0755, true);
         }
 
         exec($command);
 
-        return;
     }
 }

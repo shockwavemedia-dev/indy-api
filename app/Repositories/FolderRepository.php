@@ -34,7 +34,7 @@ final class FolderRepository extends BaseRepository implements FolderRepositoryI
     public function findParentFoldersByClient(Client $client): Collection
     {
         return $this->model
-            ->with(['files.clientTicketFile','parentFolder','childFolders'])
+            ->with(['files.clientTicketFile', 'parentFolder', 'childFolders'])
             ->where('client_id', '=', $client->getId())
             ->where('parent_folder_id', null)
             ->get();

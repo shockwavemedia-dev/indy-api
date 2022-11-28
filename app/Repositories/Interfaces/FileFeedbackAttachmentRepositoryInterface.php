@@ -8,7 +8,5 @@ use App\Models\Tickets\FileFeedbackAttachment;
 
 interface FileFeedbackAttachmentRepositoryInterface
 {
-
     public function deleteFeedbackAttachment(FileFeedbackAttachment $feedbackAttachment): void;
-
 }

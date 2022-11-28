@@ -12,8 +12,8 @@ use App\Repositories\Interfaces\ClientServiceRepositoryInterface;
 use App\Services\ClientServices\Interfaces\ClientServiceUpdateInterface;
 use App\Services\ClientServices\Interfaces\Validations\ClientServicesValidatorInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Throwable;
 use Symfony\Component\HttpFoundation\Response;
+use Throwable;
 
 final class UpdateClientServiceController extends AbstractAPIController
 {
@@ -55,7 +55,7 @@ final class UpdateClientServiceController extends AbstractAPIController
 
             $this->clientServiceValidator->validate($client, $request->getClientServices());
 
-            $this->clientServiceUpdate->update($client,$user,$request->getClientServices());
+            $this->clientServiceUpdate->update($client, $user, $request->getClientServices());
 
             $clientServices = $this->clientServiceRepository->getClientServices($client);
 

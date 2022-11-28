@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Stubs\Repositories;
 
-use App\Enum\TicketStatusEnum;
 use App\Models\Client;
 use App\Models\Department;
 use App\Models\Tickets\Ticket;
@@ -182,7 +181,6 @@ final class TicketRepositoryStub extends AbstractStub implements TicketRepositor
         return $this->fetchResponse(__FUNCTION__);
     }
 
-
     /**
      * @throws \Throwable
      */
@@ -263,5 +261,3 @@ final class TicketRepositoryStub extends AbstractStub implements TicketRepositor
         return $this->fetchResponse(__FUNCTION__);
     }
 }
-
-

@@ -47,7 +47,7 @@ final class UserEmailVerification extends Notification implements ShouldQueue
                 throw new \Exception('Url for client is empty');
             }
 
-            $host = sprintf('%s/auth/account-verified',$host);
+            $host = sprintf('%s/auth/account-verified', $host);
 
             $url = \sprintf('%s?token=%s&email=%s', $host, $this->token, $notifiable->getEmailForPasswordReset());
 

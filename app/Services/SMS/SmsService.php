@@ -15,7 +15,8 @@ final class SmsService implements SmsServiceInterface
 {
     private SmsClientInterface $smsClient;
 
-    public function __construct(SmsClientInterface $smsClient) {
+    public function __construct(SmsClientInterface $smsClient)
+    {
         $this->smsClient = $smsClient;
     }
 
@@ -54,11 +55,11 @@ final class SmsService implements SmsServiceInterface
     public function getMessages(?array $options = []): SmsMessagesResponse
     {
         $options = [
-            'query' =>  [
+            'query' => [
                 'start' => '2021-01-01',
                 'page' => Arr::get($options, 'page'),
                 'max' => Arr::get($options, 'max'),
-            ]
+            ],
         ];
 
         $response = $this->smsClient->makeRequest('POST', 'get-user-sms-sent.json', $options);

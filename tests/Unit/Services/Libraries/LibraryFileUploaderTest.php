@@ -44,13 +44,13 @@ final class LibraryFileUploaderTest extends TestCase
             'uploadedFile' => $uploadedFile,
             'file' => $file,
             'user' => $user,
-            'library' => $library
+            'library' => $library,
         ]);
 
         $uploader = new LibraryFileUploader();
 
         self::expectsJobs([
-            UploadFileJob::class
+            UploadFileJob::class,
         ]);
 
         $uploader->upload($resource);

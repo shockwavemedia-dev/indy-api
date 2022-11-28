@@ -7,7 +7,6 @@ namespace App\Http\Resources\API\Events;
 use App\Exceptions\InvalidResourceTypeException;
 use App\Http\Resources\Resource;
 use App\Models\Event;
-use App\Models\Tickets\FileFeedback;
 
 final class EventResource extends Resource
 {
@@ -18,6 +17,7 @@ final class EventResource extends Resource
 
     /**
      * @return mixed[]
+     *
      * @throws InvalidResourceTypeException
      */
     protected function getResponse(): array
@@ -34,7 +34,7 @@ final class EventResource extends Resource
         $stylingRequired = $event->isStylingRequired();
 
         if ($stylingRequired !== null) {
-            $stylingRequired = $stylingRequired ? 'Yes':'No';
+            $stylingRequired = $stylingRequired ? 'Yes' : 'No';
         }
 
         return [

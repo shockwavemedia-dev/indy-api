@@ -76,7 +76,7 @@ final class UpdateSocialMediaRequest extends BaseRequest
             'copy' => 'string|nullable',
             'status' => [
                 'string',
-                Rule::in(SocialMediaStatusesEnum::toArray())
+                Rule::in(SocialMediaStatusesEnum::toArray()),
             ],
             'channels' => 'array|nullable',
             'notes' => 'string|nullable',

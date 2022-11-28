@@ -247,7 +247,4 @@ final class CreatePrinterJobResource extends DataTransferObject
     {
         return $this->description;
     }
-
-
-
 }

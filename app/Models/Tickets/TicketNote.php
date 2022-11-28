@@ -53,7 +53,6 @@ final class TicketNote extends AbstractModel
         return $this->getAttribute('note');
     }
 
-
     public function getCreatedById(): int
     {
         return $this->getAttribute('created_by');
@@ -87,7 +86,6 @@ final class TicketNote extends AbstractModel
 
         return $this;
     }
-
 
     public function ticket(): BelongsTo
     {

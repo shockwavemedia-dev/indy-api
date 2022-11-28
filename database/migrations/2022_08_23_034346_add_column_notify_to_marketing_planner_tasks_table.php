@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('marketing_planner_tasks', function (Blueprint $table) {
-           $table->dropColumn('notify');
+            $table->dropColumn('notify');
         });
     }
 };

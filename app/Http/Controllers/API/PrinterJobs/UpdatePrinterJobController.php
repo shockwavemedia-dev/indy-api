@@ -72,7 +72,6 @@ final class UpdatePrinterJobController extends AbstractAPIController
             return $this->respondForbidden();
         }
 
-
         $changes = $request->only([
             'customer_name',
             'product',
@@ -95,7 +94,7 @@ final class UpdatePrinterJobController extends AbstractAPIController
             'purchase_order_number',
             'description',
             'attachments',
-            'file_ids'
+            'file_ids',
         ]);
 
         $changes = [
@@ -114,7 +113,7 @@ final class UpdatePrinterJobController extends AbstractAPIController
 
         GenericPrintManagerSlackNotificationJob::dispatch($printerJob->getId(), $message);
 
-        if (array_key_exists('attachments',$changes) && count($changes['attachments']) > 0) {
+        if (array_key_exists('attachments', $changes) && count($changes['attachments']) > 0) {
             $bucket = $this->bucketFactory->make($printerJob->getClient()->getClientCode());
 
             foreach ($changes['attachments'] as $attachment) {

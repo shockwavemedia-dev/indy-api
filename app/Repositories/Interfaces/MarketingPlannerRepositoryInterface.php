@@ -4,7 +4,6 @@ namespace App\Repositories\Interfaces;
 
 use App\Models\Client;
 use App\Models\MarketingPlanner;
-use App\Services\MarketingPlanners\Resources\MarketingPlannerUpdateResource;
 use Illuminate\Database\Eloquent\Collection;
 
 interface MarketingPlannerRepositoryInterface

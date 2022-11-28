@@ -14,9 +14,11 @@ final class LibraryCategoryFactory implements LibraryCategoryFactoryInterface
 {
     private LibraryCategoryRepositoryInterface $libraryCategoryRepository;
 
-    public function __construct(LibraryCategoryRepositoryInterface $libraryCategoryRepository) {
+    public function __construct(LibraryCategoryRepositoryInterface $libraryCategoryRepository)
+    {
         $this->libraryCategoryRepository = $libraryCategoryRepository;
     }
+
     public function make(User $user, CreateLibraryCategoryResource $resource): LibraryCategory
     {
         $exist = $this->libraryCategoryRepository->findByName($resource->getName());
@@ -27,7 +29,7 @@ final class LibraryCategoryFactory implements LibraryCategoryFactoryInterface
 
         /** @var LibraryCategory $libraryCategory */
         $libraryCategory = $this->libraryCategoryRepository->create([
-           'name' => $resource->getName(),
+            'name' => $resource->getName(),
             'slug' => $resource->getSlug(),
             'created_by' => $user->getId(),
         ]);

@@ -19,7 +19,7 @@ final class File extends AbstractModel
      * @var string[]
      */
     protected $dates = [
-        'url_expiration'
+        'url_expiration',
     ];
 
     /**

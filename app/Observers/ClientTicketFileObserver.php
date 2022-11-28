@@ -162,7 +162,7 @@ final class ClientTicketFileObserver
 
         $this->notificationUserFactory->make(new CreateNotificationUserResource([
             'notification' => $notification,
-            'user' => $user
+            'user' => $user,
         ]));
     }
 }

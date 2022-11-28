@@ -183,8 +183,6 @@ return [
         \BeyondCode\Mailbox\MailboxServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
 
-
-
     ],
 
     /*

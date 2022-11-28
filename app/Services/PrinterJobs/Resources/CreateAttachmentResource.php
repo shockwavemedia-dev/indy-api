@@ -29,6 +29,4 @@ final class CreateAttachmentResource extends DataTransferObject
     {
         return $this->file;
     }
-
-
 }

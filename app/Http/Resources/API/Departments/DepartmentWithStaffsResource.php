@@ -31,7 +31,7 @@ final class DepartmentWithStaffsResource extends Resource
             $services[] = new ServiceResource($service);
         }
 
-        $result =  [
+        $result = [
             'id' => $department->getId(),
             'name' => $department->getName(),
             'description' => $department->getDescription(),
@@ -62,7 +62,6 @@ final class DepartmentWithStaffsResource extends Resource
         }
 
         $result['users'] = $users;
-
 
         return $result;
     }

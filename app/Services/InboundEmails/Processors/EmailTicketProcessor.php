@@ -16,7 +16,8 @@ final class EmailTicketProcessor implements EmailTicketProcessorInterface
     public function __construct(
         private EmailAttachmentProcessorInterface $emailAttachmentProcessor,
         private TicketTypeResolverFactoryInterface $ticketTypeResolverFactory
-    ) {}
+    ) {
+    }
 
     /**
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
@@ -32,14 +33,14 @@ final class EmailTicketProcessor implements EmailTicketProcessorInterface
         );
 
         $emailDescription = [
-            "data" => $emailDescription,
+            'data' => $emailDescription,
         ];
 
         $ticket = $ticketCreator->create(new CreateTicketResource([
             'priority' => new TicketPrioritiesEnum(TicketPrioritiesEnum::STANDARD),
             'client' => $user->getUserType()->getClient(),
             'createdBy' => User::find(1),
-            'description' => "{\"blocks\":[{\"key\":\"a7itc\",\"text\":\"\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+            'description' => '{"blocks":[{"key":"a7itc","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
             'requestedBy' => $user,
             'services' => [],
             'subject' => $subject,

@@ -78,12 +78,10 @@ final class CreateTicketSupportByClientController extends AbstractAPIController
             return new TicketSupportResource($ticket);
         } catch (InvalidDueDateException $dueDateException) {
             return $this->respondBadRequest([
-                'message' => $dueDateException->getMessage()
+                'message' => $dueDateException->getMessage(),
             ]);
         } catch (Throwable $exception) {
             return $this->respondError($exception->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
-
-
     }
 }

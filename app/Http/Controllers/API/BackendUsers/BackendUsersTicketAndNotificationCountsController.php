@@ -8,7 +8,6 @@ use App\Http\Controllers\API\AbstractAPIController;
 use App\Models\Users\AdminUser;
 use App\Repositories\Interfaces\NotificationUserRepositoryInterface;
 use App\Repositories\Interfaces\TicketRepositoryInterface;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 final class BackendUsersTicketAndNotificationCountsController extends AbstractAPIController
 {
@@ -39,9 +38,9 @@ final class BackendUsersTicketAndNotificationCountsController extends AbstractAP
         $department = $adminUser->getDepartments()->first();
 
         return response()->json([
-                'new_ticket_count' => $this->ticketRepository->countNewTicketByDepartment($department),
-                'open_ticket_count' => $this->ticketRepository->countOpenTicketByDepartment($department),
-                'new_notification_count' => $this->notificationUserRepository->countNewNotificationByUser($user),
+            'new_ticket_count' => $this->ticketRepository->countNewTicketByDepartment($department),
+            'open_ticket_count' => $this->ticketRepository->countOpenTicketByDepartment($department),
+            'new_notification_count' => $this->notificationUserRepository->countNewNotificationByUser($user),
         ]);
     }
 }

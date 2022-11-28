@@ -22,6 +22,7 @@ final class UpdateTicketAssigneeResource extends DataTransferObject
     public function setStatusEnum(?TicketAssigneeStatusEnum $statusEnum): self
     {
         $this->statusEnum = $statusEnum;
+
         return $this;
     }
 
@@ -33,6 +34,7 @@ final class UpdateTicketAssigneeResource extends DataTransferObject
     public function setAdminUser(?AdminUser $adminUser): self
     {
         $this->adminUser = $adminUser;
+
         return $this;
     }
 }

@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace App\Services\TicketEmails;
 
-use App\Models\Tickets\Ticket;
 use App\Models\Tickets\TicketEmail;
-use App\Models\User;
 use App\Repositories\Interfaces\TicketEmailRepositoryInterface;
 use App\Services\TicketEmails\Interfaces\TicketEmailFactoryInterface;
 use App\Services\TicketEmails\Resources\CreateTicketEmailResource;
-use Illuminate\Database\Eloquent\Collection;
 
 final class TicketEmailFactory implements TicketEmailFactoryInterface
 {

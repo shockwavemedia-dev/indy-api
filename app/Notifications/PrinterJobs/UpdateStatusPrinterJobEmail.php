@@ -34,7 +34,7 @@ final class UpdateStatusPrinterJobEmail extends Notification implements ShouldQu
     }
 
     /**
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return string[]
      */
     public function via(mixed $notifiable): array
@@ -45,8 +45,9 @@ final class UpdateStatusPrinterJobEmail extends Notification implements ShouldQu
     /**
      * Get the mail representation of the notification.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return MailMessage
+     *
      * @throws \Exception
      * @throws \Throwable
      */

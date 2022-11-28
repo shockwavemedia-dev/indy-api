@@ -9,10 +9,8 @@ use App\Enum\TicketTypeEnum;
 use App\Enum\UserTypeEnum;
 use App\Models\Client;
 use App\Models\Department;
-use App\Models\File;
 use App\Models\User;
 use DateTimeInterface;
-use Illuminate\Http\UploadedFile;
 use Spatie\DataTransferObject\DataTransferObject;
 
 /**
@@ -169,7 +167,7 @@ final class CreateTicketResource extends DataTransferObject
     }
 
     /**
-     * @param mixed[]|null $services
+     * @param  mixed[]|null  $services
      */
     public function setServices(?array $services = []): self
     {

@@ -49,7 +49,6 @@ final class AccountManagerNewTicketNotificationJob implements ShouldQueue
         TicketRepositoryInterface $ticketRepository,
         UserRepositoryInterface $userRepository
     ): void {
-
         $ticket = $ticketRepository->find($this->ticketId);
 
         $user = $userRepository->find($this->userId);

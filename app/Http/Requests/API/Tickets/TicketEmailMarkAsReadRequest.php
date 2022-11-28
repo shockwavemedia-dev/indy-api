@@ -3,7 +3,6 @@
 namespace App\Http\Requests\API\Tickets;
 
 use App\Http\Requests\BaseRequest;
-use Illuminate\Validation\Rule;
 
 final class TicketEmailMarkAsReadRequest extends BaseRequest
 {
@@ -16,6 +15,7 @@ final class TicketEmailMarkAsReadRequest extends BaseRequest
     {
         return $this->getInt('is_read');
     }
+
     /**
      * @return mixed[]
      */

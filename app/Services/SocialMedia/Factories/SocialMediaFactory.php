@@ -13,7 +13,8 @@ final class SocialMediaFactory implements SocialMediaFactoryInterface
 {
     private SocialMediaRepositoryInterface $socialMediaRepository;
 
-    public function __construct(SocialMediaRepositoryInterface $socialMediaRepository) {
+    public function __construct(SocialMediaRepositoryInterface $socialMediaRepository)
+    {
         $this->socialMediaRepository = $socialMediaRepository;
     }
 

@@ -27,7 +27,7 @@ final class FileRepository extends BaseRepository implements FileRepositoryInter
         $file->deletedBy()->associate($user);
         $file->delete();
         $file->save();
-        return;
+
     }
 
     public function findAllByTicket(Ticket $ticket, ?int $size = null, ?int $pageNumber = null): LengthAwarePaginator
@@ -101,14 +101,13 @@ final class FileRepository extends BaseRepository implements FileRepositoryInter
         return $file;
     }
 
-
     public function findAllByClient(Client $client): Collection
     {
         return $this->model
             ->with('clientTicketFile.ticket')
-            ->whereHas('clientTicketFile', function($query) use ($client){
-            $query->where('client_id', '=', $client->getId());
-        })->get();
+            ->whereHas('clientTicketFile', function ($query) use ($client) {
+                $query->where('client_id', '=', $client->getId());
+            })->get();
     }
 
     public function findByIds(array $ids): Collection

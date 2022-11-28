@@ -18,7 +18,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Config;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
-final class SocialMediaSlackNotificationJob  implements ShouldQueue
+final class SocialMediaSlackNotificationJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -58,7 +58,7 @@ final class SocialMediaSlackNotificationJob  implements ShouldQueue
 
             $sentryHandler->log($this->message);
         } catch (SlackUserNullException | SlackSendMessageException $exception) {
-            $sentryHandler->log(sprintf('This email does not have slack account %s',$this->user->getEmail()));
+            $sentryHandler->log(sprintf('This email does not have slack account %s', $this->user->getEmail()));
         } catch (UnknownProperties $e) {
             $sentryHandler->reportError($e);
         }

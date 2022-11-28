@@ -14,7 +14,7 @@ class TicketNoteFactory extends Factory
     public function definition()
     {
         return [
-            'note' => '{}'
+            'note' => '{}',
         ];
     }
 }

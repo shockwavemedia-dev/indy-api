@@ -6,15 +6,14 @@ namespace App\Http\Controllers\API\TicketEmails;
 
 use App\Enum\ClientNotificationTypeEnum;
 use App\Enum\TicketEmailStatusEnum;
-use App\Enum\UserTypeEnum;
 use App\Events\Tickets\TicketEmailsEvent;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Tickets\CreateTicketEmailRequest;
 use App\Http\Resources\API\Tickets\TicketEmailResource;
 use App\Models\Tickets\Ticket;
 use App\Models\User;
-use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\TicketRepositoryInterface;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Services\ClientUserNotifications\Interfaces\ClientNotificationResolverFactoryInterface;
 use App\Services\TicketEmails\Interfaces\TicketEmailFactoryInterface;
 use App\Services\TicketEmails\Interfaces\TicketEmailSenderFactoryInterface;

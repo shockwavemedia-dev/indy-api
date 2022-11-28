@@ -18,7 +18,7 @@ final class NotificationRepository extends BaseRepository implements Notificatio
     }
 
     /**
-     * @param mixed $morph
+     * @param  mixed  $morph
      * @return Notification
      */
     public function findByMorph(mixed $morph, string $title): ?Notification
@@ -32,8 +32,7 @@ final class NotificationRepository extends BaseRepository implements Notificatio
 
     public function findAllNewNotificationByUser(User $user): Collection
     {
-
-        return $this->model->whereHas('notificationUsers', function ($query) use ($user)  {
+        return $this->model->whereHas('notificationUsers', function ($query) use ($user) {
             $query->where('user_id', '=', $user->getId());
             $query->where('status', '<>', NotificationUserStatusEnum::DELETED);
         })

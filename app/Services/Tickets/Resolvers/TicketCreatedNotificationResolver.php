@@ -8,8 +8,6 @@ use App\Enum\TicketNotificationTypeEnum;
 use App\Models\Tickets\Ticket;
 use App\Models\User;
 use App\Services\Tickets\Interfaces\Resolvers\TicketNotificationResolverInterface;
-use Exception;
-use Illuminate\Support\Facades\Config;
 use function ucfirst;
 
 final class TicketCreatedNotificationResolver extends AbstractTicketNotificationResolver implements TicketNotificationResolverInterface

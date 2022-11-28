@@ -85,7 +85,6 @@ final class SocialMedia extends AbstractModel implements AuditableInterface
 
     protected $table = 'social_media';
 
-
     public function activities(): HasMany
     {
         return $this->hasMany(SocialMediaActivity::class, 'social_media_id');

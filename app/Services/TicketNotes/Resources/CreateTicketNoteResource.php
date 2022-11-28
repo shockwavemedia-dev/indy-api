@@ -37,18 +37,21 @@ final class CreateTicketNoteResource extends DataTransferObject
     public function setTicket(Ticket $ticket): self
     {
         $this->ticket = $ticket;
+
         return $this;
     }
 
     public function setCreatedBy(User $user): self
     {
         $this->createdBy = $user;
+
         return $this;
     }
 
     public function setNote(string $note): self
     {
         $this->note = $note;
+
         return $this;
     }
 }

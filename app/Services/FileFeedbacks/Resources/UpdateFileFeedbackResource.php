@@ -8,7 +8,6 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 final class UpdateFileFeedbackResource extends DataTransferObject
 {
-
     public string $feedback;
 
     public function getFeedback(): ?string
@@ -22,5 +21,4 @@ final class UpdateFileFeedbackResource extends DataTransferObject
 
         return $this;
     }
-
 }

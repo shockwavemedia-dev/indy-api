@@ -117,7 +117,7 @@ final class UserRepositoryTest extends TestCase
             'gender' => 'male',
             'role' => AdminRoleEnum::STAFF,
             'departments' => [
-                $department->getId()
+                $department->getId(),
             ],
         ];
 

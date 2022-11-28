@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Jobs\File;
 
 use App\Exceptions\Interfaces\ErrorLogInterface;
-use App\Models\File;
 use App\Repositories\Interfaces\FileRepositoryInterface;
 use App\Services\Libraries\Interfaces\LibraryFileFetcherInterface;
 use Carbon\Carbon;
@@ -52,7 +51,7 @@ class UpdateLibraryFileSignedUrlJob implements ShouldQueue
         try {
             $file = $fileRepository->find($this->fileId);
 
-            if($file === null) {
+            if ($file === null) {
                 return;
             }
 

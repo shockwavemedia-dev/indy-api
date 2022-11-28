@@ -10,11 +10,9 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 interface TicketNoteRepositoryInterface
 {
-
     public function findAllTicketNotes(Ticket $ticket, ?int $size = null, ?int $pageNumber = null): LengthAwarePaginator;
 
     public function deleteTicketNote(TicketNote $ticketNote, User $user): void;
 
     public function updateTicketNote(TicketNote $ticketNote, UpdateTicketNoteResource $resource): TicketNote;
-
 }

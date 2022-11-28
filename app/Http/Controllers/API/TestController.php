@@ -13,7 +13,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 final class TestController extends AbstractAPIController
 {
     private FileRepositoryInterface $fileRepository;
+
     private SortByYearAndMonthResolverInterface $sortByYearAndMonthResolveritory;
+
     private ClientTicketFileRepositoryInterface $clientTicketFileRepository;
 
     public function __construct(
@@ -24,7 +26,6 @@ final class TestController extends AbstractAPIController
         $this->clientTicketFileRepository = $clientTicketFileRepository;
         $this->fileRepository = $fileRepository;
         $this->sortByYearAndMonthResolveritory = $sortByYearAndMonthResolver;
-
     }
 
     public function __invoke(): JsonResource

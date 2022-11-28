@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Stubs\Repositories;
 
-use App\Enum\TicketAssigneeStatusEnum;
 use App\Models\Tickets\Ticket;
 use App\Models\Tickets\TicketAssignee;
-use App\Models\User;
 use App\Models\Users\AdminUser;
 use App\Repositories\Interfaces\TicketAssigneeRepositoryInterface;
 use App\Services\Tickets\Resources\UpdateTicketAssigneeResource;
@@ -101,5 +99,4 @@ final class TicketAssigneeRepositoryStub extends AbstractStub implements TicketA
 
         return $this->fetchResponse(__FUNCTION__);
     }
-
 }

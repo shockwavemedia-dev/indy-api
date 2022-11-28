@@ -60,7 +60,7 @@ final class UpdateTicketAssigneeController extends AbstractAPIController
             );
         }
 
-        if($checkTicketAssignee !== null){
+        if ($checkTicketAssignee !== null) {
             return new TicketAssigneeResource($ticketAssignee);
         }
 

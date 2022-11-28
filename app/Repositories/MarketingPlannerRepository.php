@@ -9,7 +9,7 @@ use App\Models\MarketingPlanner;
 use App\Repositories\Interfaces\MarketingPlannerRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 
-final class MarketingPlannerRepository extends BaseRepository implements  MarketingPlannerRepositoryInterface
+final class MarketingPlannerRepository extends BaseRepository implements MarketingPlannerRepositoryInterface
 {
     public function __construct()
     {

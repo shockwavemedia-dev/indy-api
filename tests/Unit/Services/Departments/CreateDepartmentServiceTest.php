@@ -23,14 +23,14 @@ final class CreateDepartmentServiceTest extends TestCase
         $department = $this->env->department;
 
         $departmentRepository = new DepartmentRepositoryStub([
-            'create' => $department
+            'create' => $department,
         ]);
 
         $resource = new CreateDepartmentResources([
             'name' => 'Graphics Department',
             'description' => 'graphics',
             'status' => new DepartmentStatusEnum(DepartmentStatusEnum::ACTIVE),
-            'minDeliveryDays' => 7
+            'minDeliveryDays' => 7,
         ]);
 
         $resolver = new CreateDepartmentService(
@@ -44,15 +44,14 @@ final class CreateDepartmentServiceTest extends TestCase
                         'name' => 'Graphics Department',
                         'description' => 'graphics',
                         'status' => new DepartmentStatusEnum(DepartmentStatusEnum::ACTIVE),
-                        'min_delivery_days' => 7
-                    ]
+                        'min_delivery_days' => 7,
+                    ],
                 ],
-            ]
+            ],
         ];
 
         $resolver->create($resource);
 
         $this->assertEquals($expectedCall, $departmentRepository->getCalls());
-
     }
 }

@@ -16,8 +16,8 @@ use App\Services\FileManager\Interfaces\BucketFactoryInterface;
 use App\Services\Files\Interfaces\FileFactoryInterface;
 use App\Services\Files\Resources\CreateFileResource;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Throwable;
 use Symfony\Component\HttpFoundation\Response;
+use Throwable;
 
 final class UpdateClientController extends AbstractAPIController
 {
@@ -33,12 +33,10 @@ final class UpdateClientController extends AbstractAPIController
         ClientRepositoryInterface $clientRepository,
         BucketFactoryInterface $bucketFactory,
         FileFactoryInterface $fileFactory
-    )
-    {
+    ) {
         $this->clientRepository = $clientRepository;
         $this->bucketFactory = $bucketFactory;
         $this->fileFactory = $fileFactory;
-
     }
 
     public function __invoke(UpdateClientRequest $request, int $id): JsonResource

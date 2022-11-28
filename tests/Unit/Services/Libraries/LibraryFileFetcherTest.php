@@ -44,7 +44,7 @@ final class LibraryFileFetcherTest extends TestCase
         ->getMock();
 
         $bucketFactory = new BucketFactoryStub([
-            'make' => $bucket
+            'make' => $bucket,
         ]);
 
         $fileFetcher = new LibraryFileFetcher($bucketFactory);
@@ -52,7 +52,7 @@ final class LibraryFileFetcherTest extends TestCase
             [
                 'make' => [
                     'CRM-ADMIN',
-                ]
+                ],
             ],
         ];
 
@@ -86,7 +86,7 @@ final class LibraryFileFetcherTest extends TestCase
             ->getMock();
 
         $bucketFactory = new BucketFactoryStub([
-            'make' => $bucket
+            'make' => $bucket,
         ]);
 
         $fileFetcher = new LibraryFileFetcher($bucketFactory);
@@ -94,7 +94,7 @@ final class LibraryFileFetcherTest extends TestCase
             [
                 'make' => [
                     'CRM-ADMIN',
-                ]
+                ],
             ],
         ];
 

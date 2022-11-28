@@ -35,7 +35,8 @@ final class SupportRequestNotificationResolver extends AbstractBackendUserNotifi
     }
 
     /**
-     * @param SupportRequest $morph
+     * @param  SupportRequest  $morph
+     *
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     public function resolve(mixed $morph): void
@@ -49,7 +50,8 @@ final class SupportRequestNotificationResolver extends AbstractBackendUserNotifi
     }
 
     /**
-     * @param SupportRequest $morph
+     * @param  SupportRequest  $morph
+     *
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     private function resolveNotification(mixed $morph, User $user): void

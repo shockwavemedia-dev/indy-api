@@ -15,8 +15,6 @@ use App\Services\MarketingPlanners\Interfaces\MarketingPlannerFactoryInterface;
 use App\Services\MarketingPlanners\Resources\MarketingPlannerCreateResource;
 use App\Services\Tickets\Interfaces\Factories\TicketServicesFactoryInterface;
 use App\Services\Tickets\Resources\CreateTicketResource;
-use Google\Cloud\Storage\Bucket;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 abstract class AbstractTicketFactory
 {
@@ -120,6 +118,5 @@ abstract class AbstractTicketFactory
         }
 
         return $ticket;
-
     }
 }

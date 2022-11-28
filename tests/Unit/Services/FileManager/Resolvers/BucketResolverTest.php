@@ -38,7 +38,7 @@ final class BucketResolverTest extends TestCase
             ->getMock();
 
         $storageClientFactory = new StorageClientFactoryStub([
-            'make' => $storageClient
+            'make' => $storageClient,
         ]);
 
         $bucketFactory = new BucketFactoryStub();
@@ -46,7 +46,7 @@ final class BucketResolverTest extends TestCase
         $expectedCall = [
             [
                 'make' => [],
-            ]
+            ],
         ];
 
         $resolver = new BucketResolver($storageClientFactory);
@@ -77,15 +77,15 @@ final class BucketResolverTest extends TestCase
             ->getMock();
 
         $storageClientFactory = new StorageClientFactoryStub([
-            'make' => $storageClient
+            'make' => $storageClient,
         ]);
 
         $expectedCalls = [
             'storageClientFactory' => [
                 [
                     'make' => [],
-                ]
-            ]
+                ],
+            ],
         ];
 
         self::expectException(BucketNotFoundException::class);
@@ -95,7 +95,7 @@ final class BucketResolverTest extends TestCase
         $result = $resolver->resolve('test');
 
         $actualCalls = [
-            'storageClientFactory' => $storageClientFactory->getCalls()
+            'storageClientFactory' => $storageClientFactory->getCalls(),
         ];
 
         self::assertInstanceOf(Bucket::class, $result);

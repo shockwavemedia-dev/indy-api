@@ -35,18 +35,21 @@ final class SmsConfigResource extends DataTransferObject
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
         return $this;
     }
 
     public function setUrl(string $url): self
     {
         $this->url = $url;
+
         return $this;
     }
 
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
         return $this;
     }
 }

@@ -47,7 +47,6 @@ final class RemoveAttachmentsPrinterJobController extends AbstractAPIController
         $attachments = $this->printerJobAttachmentRepository->findByIds($request->getAttachmentIds());
 
         /** @var PrinterJobAttachment $attachments */
-
         foreach ($attachments as $attachment) {
             $printerJob->auditEvent = 'deleted';
             $printerJob->isCustomEvent = true;
@@ -55,7 +54,7 @@ final class RemoveAttachmentsPrinterJobController extends AbstractAPIController
                 'attachment' => $attachment->getFile()->getOriginalFilename(),
             ];
             $printerJob->auditCustomNew = [
-                'attachment' => ''
+                'attachment' => '',
             ];
 
             Event::dispatch(AuditCustom::class, [$printerJob]);

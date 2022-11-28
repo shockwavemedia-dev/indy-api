@@ -80,7 +80,7 @@ final class SmsClientTest extends TestCase
             'page',
             'lists_total',
             'lists',
-            'error'
+            'error',
         ], $actual);
     }
 
@@ -121,8 +121,8 @@ final class SmsClientTest extends TestCase
     }
 
     private function getSmsClient(
-        ?ClientInterface            $client = null,
-        ?ErrorLogInterface          $sentryHandler = null,
+        ?ClientInterface $client = null,
+        ?ErrorLogInterface $sentryHandler = null,
         ?SmsConfigResolverInterface $configResolver = null
     ): SmsClientInterface {
         return new SmsClient(

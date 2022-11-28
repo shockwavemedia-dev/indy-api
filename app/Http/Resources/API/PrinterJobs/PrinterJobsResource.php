@@ -8,7 +8,6 @@ use App\Http\Resources\Resource;
 
 final class PrinterJobsResource extends Resource
 {
-
     protected function getResponse(): array
     {
         $printerJobs = $this->resource;

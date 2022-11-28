@@ -15,7 +15,8 @@ final class TicketServiceObserver
 {
     private SocialMediaFactoryInterface $socialMediaFactory;
 
-    public function __construct(SocialMediaFactoryInterface $socialMediaFactory) {
+    public function __construct(SocialMediaFactoryInterface $socialMediaFactory)
+    {
         $this->socialMediaFactory = $socialMediaFactory;
     }
 

@@ -7,14 +7,15 @@ namespace App\Http\Controllers\API\Tickets;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\PaginationRequest;
 use App\Http\Resources\API\Tickets\TicketActivitiesResource;
-use App\Repositories\Interfaces\TicketRepositoryInterface;
 use App\Repositories\Interfaces\TicketActivityRepositoryInterface;
+use App\Repositories\Interfaces\TicketRepositoryInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Throwable;
 
 final class ListTicketActivitiesController extends AbstractAPIController
 {
     private TicketRepositoryInterface $ticketRepository;
+
     private TicketActivityRepositoryInterface $ticketActivityRepository;
 
     public function __construct(
@@ -25,7 +26,7 @@ final class ListTicketActivitiesController extends AbstractAPIController
         $this->ticketActivityRepository = $ticketActivityRepository;
     }
 
-    public function __invoke(PaginationRequest $request,int $id): JsonResource
+    public function __invoke(PaginationRequest $request, int $id): JsonResource
     {
         /** @var \App\Models\Tickets\Ticket $ticket */
         $ticket = $this->ticketRepository->find($id);
@@ -37,7 +38,7 @@ final class ListTicketActivitiesController extends AbstractAPIController
         }
 
         try {
-            $activity = $this->ticketActivityRepository->findAllTicketActivities($ticket,$request->getSize(), $request->getPageNumber());
+            $activity = $this->ticketActivityRepository->findAllTicketActivities($ticket, $request->getSize(), $request->getPageNumber());
 
             return new TicketActivitiesResource($activity);
         } catch (Throwable $throwable) {

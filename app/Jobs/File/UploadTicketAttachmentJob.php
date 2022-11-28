@@ -49,7 +49,7 @@ final class UploadTicketAttachmentJob implements ShouldQueue
             $bucket = $bucketResolver->resolve($client->getClientCode());
 
             // Fetch the temporary file to be uploaded in the client's bucket
-            $localFile = $filesystemManager->disk('local')->get(\sprintf('temporary/%s',$this->filename));
+            $localFile = $filesystemManager->disk('local')->get(\sprintf('temporary/%s', $this->filename));
 
             $filepath = \sprintf('%s/%s',
                 $this->filepath,
@@ -61,15 +61,16 @@ final class UploadTicketAttachmentJob implements ShouldQueue
             ]);
 
             $sentryHandler->log(
-                \sprintf('%s has been uploaded',$filepath),
+                \sprintf('%s has been uploaded', $filepath),
                 Severity::info()
             );
 
             // Once uploaded in the cloud delete the temporary file
             $filesystemManager->disk('local')->delete(
-                \sprintf('temporary/%s',$this->filename)
+                \sprintf('temporary/%s', $this->filename)
             );
         } catch (Throwable $exception) {
-            $sentryHandler->reportError($exception);        }
+            $sentryHandler->reportError($exception);
+        }
     }
 }

@@ -6,12 +6,12 @@ namespace App\Http\Controllers\API\Folders;
 
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Folders\CreateFolderRequest;
+use App\Models\Folder;
 use App\Repositories\Interfaces\ClientRepositoryInterface;
 use App\Repositories\Interfaces\FolderRepositoryInterface;
 use App\Services\Folders\Interfaces\FolderFactoryInterface;
 use App\Services\Folders\Interfaces\FolderNameResolverInterface;
 use App\Services\Folders\Resources\CreateFolderResource;
-use App\Models\Folder;
 
 final class CreateFolderController extends AbstractAPIController
 {

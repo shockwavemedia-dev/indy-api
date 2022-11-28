@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 final class TicketAssignee extends AbstractModel implements EmailInterface
 {
     use HasFactory;
+
     /**
      * @var string[]
      */

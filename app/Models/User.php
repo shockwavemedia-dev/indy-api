@@ -24,6 +24,7 @@ use App\Notifications\SupportRequestAccountManagerEmail;
 use App\Notifications\TicketCreatedEmail;
 use Carbon\Carbon;
 use DateTimeInterface;
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -32,7 +33,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Config;
 use Laravel\Passport\HasApiTokens;
-use Exception;
 
 final class User extends Authenticatable implements EmailInterface
 {
@@ -83,7 +83,7 @@ final class User extends Authenticatable implements EmailInterface
         $this->notify(new AssignedTicketEmail($this, $ticket, $createdBy, $emailLog));
     }
 
-    public function sendEmailToAccountManager(Ticket $ticket,  EmailLog $emailLog): void
+    public function sendEmailToAccountManager(Ticket $ticket, EmailLog $emailLog): void
     {
         $this->notify(new TicketCreatedEmail($this, $ticket, $emailLog));
     }
@@ -221,7 +221,7 @@ final class User extends Authenticatable implements EmailInterface
             throw new Exception('Url in resetting password is empty');
         }
 
-        $url = sprintf('%s/auth/password-reset',$url);
+        $url = sprintf('%s/auth/password-reset', $url);
 
 //        $this->notify((new ResetPasswordNotification($url, $token)));
     }
@@ -308,7 +308,7 @@ final class User extends Authenticatable implements EmailInterface
 
     public function sendTicketEmail(TicketEmail $ticketEmail, Ticket $ticket): void
     {
-        $this->notify(new SendTicketEmail($this, $ticketEmail, $ticket ));
+        $this->notify(new SendTicketEmail($this, $ticketEmail, $ticket));
     }
 
     public function sendEmailForSupportRequest(EmailLog $emailLog, SupportRequest $supportRequest): void

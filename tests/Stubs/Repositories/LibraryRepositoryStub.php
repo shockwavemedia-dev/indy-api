@@ -8,7 +8,6 @@ use App\Models\Library;
 use App\Repositories\Interfaces\LibraryRepositoryInterface;
 use App\Services\Libraries\Resources\CreateLibraryResource;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection;
 use Tests\Stubs\AbstractStub;
 
 /**
@@ -49,5 +48,3 @@ final class LibraryRepositoryStub extends AbstractStub implements LibraryReposit
         return $this->fetchResponse(__FUNCTION__);
     }
 }
-
-

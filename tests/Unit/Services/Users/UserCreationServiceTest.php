@@ -9,12 +9,11 @@ use App\Models\User;
 use App\Models\Users\AdminUser;
 use App\Services\Users\Resources\CreateUserResource;
 use App\Services\Users\UserCreationService;
+use function get_class;
 use Illuminate\Support\Facades\Notification;
 use Tests\Stubs\Repositories\UserRepositoryStub;
 use Tests\Stubs\ThirdParty\Illuminate\Hashing\HasherStub;
 use Tests\TestCase;
-use Throwable;
-use function get_class;
 
 /**
  * @covers \App\Services\Users\UserCreationService
@@ -43,7 +42,7 @@ final class UserCreationServiceTest extends TestCase
         ]);
 
         $userRepository = new UserRepositoryStub([
-            'create' => $user
+            'create' => $user,
         ]);
 
         $expectedCalls = [
@@ -58,7 +57,7 @@ final class UserCreationServiceTest extends TestCase
                 [
                     'create' => [
                         [
-                            'morphable_id'=> $userType->getId(),
+                            'morphable_id' => $userType->getId(),
                             'morphable_type' => get_class($userType),
                             'email' => 'test@testmail.com',
                             'password' => $token,
@@ -72,7 +71,7 @@ final class UserCreationServiceTest extends TestCase
                         ],
                     ],
                 ],
-            ]
+            ],
         ];
 
         $userCreationService = new UserCreationService($userRepository, $hash);
@@ -80,7 +79,7 @@ final class UserCreationServiceTest extends TestCase
         Notification::fake();
 
         $userCreationService->create(new CreateUserResource([
-            'userType'=> $userType,
+            'userType' => $userType,
             'email' => 'test@testmail.com',
             'password' => 'password',
             'status' => new UserStatusEnum(UserStatusEnum::INVITED),    // Default status is not verified
@@ -94,7 +93,7 @@ final class UserCreationServiceTest extends TestCase
 
         $actualCalls = [
             'hash' => $hash->getCalls(),
-            'userRepository' => $userRepository->getCalls()
+            'userRepository' => $userRepository->getCalls(),
         ];
 
         self::assertEquals($expectedCalls, $actualCalls);

@@ -15,6 +15,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 final class ListDepartmentTicketsController extends AbstractAPIController
 {
     private DepartmentRepositoryInterface $departmentRepository;
+
     private TicketRepositoryInterface $ticketRepository;
 
     public function __construct(

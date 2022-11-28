@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\Repositories\Interfaces;
 
-use App\Enum\TicketAssigneeStatusEnum;
 use App\Models\Tickets\Ticket;
 use App\Models\Tickets\TicketAssignee;
-use App\Models\User;
 use App\Models\Users\AdminUser;
 use App\Services\Tickets\Resources\UpdateTicketAssigneeResource;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -31,5 +29,4 @@ interface TicketAssigneeRepositoryInterface
         UpdateTicketAssigneeResource $resource,
         AdminUser $adminUser
     ): TicketAssignee;
-
 }

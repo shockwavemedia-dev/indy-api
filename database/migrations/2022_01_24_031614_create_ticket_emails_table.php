@@ -10,7 +10,7 @@ final class CreateTicketEmailsTable extends Migration
 {
     public const TABLE = 'ticket_emails';
 
-    public function up() : void
+    public function up(): void
     {
         if (Schema::hasTable(self::TABLE) === true) {
             return;

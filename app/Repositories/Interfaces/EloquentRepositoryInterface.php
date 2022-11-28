@@ -8,11 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Interface EloquentRepositoryInterface
- * @package App\Repositories
  */
 interface EloquentRepositoryInterface
 {
-    
     public function create(array $attributes): Model;
 
     public function delete(Model $model): void;

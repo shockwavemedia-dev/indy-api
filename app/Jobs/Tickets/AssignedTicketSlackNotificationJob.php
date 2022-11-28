@@ -13,7 +13,6 @@ use App\Services\Slack\Interfaces\SlackSendMessageInterface;
 use App\Services\Slack\Interfaces\SlackUserResolverInterface;
 use Exception;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -28,6 +27,7 @@ final class AssignedTicketSlackNotificationJob implements ShouldQueue
     private Ticket $ticket;
 
     private User $user;
+
     private User $createdBy;
 
     public function __construct(User $createdBy, User $user, Ticket $ticket)
@@ -70,7 +70,7 @@ final class AssignedTicketSlackNotificationJob implements ShouldQueue
             $sentryHandler->log($message);
         } catch (SlackUserNullException | SlackSendMessageException $exception) {
             $sentryHandler->reportError($exception);
-            $sentryHandler->log(\sprintf('This email does not have slack account %s',$this->user->getEmail()));
+            $sentryHandler->log(\sprintf('This email does not have slack account %s', $this->user->getEmail()));
         }
     }
 }

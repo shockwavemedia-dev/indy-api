@@ -2,20 +2,19 @@
 
 declare(strict_types=1);
 
- namespace Tests\Unit\Models;
+namespace Tests\Unit\Models;
 
- use App\Enum\DepartmentStatusEnum;
- use App\Models\Department;
- use PHPUnit\Framework\TestCase;
+use App\Enum\DepartmentStatusEnum;
+use App\Models\Department;
+use PHPUnit\Framework\TestCase;
 
- /**
-  * @covers \App\Models\Client
-  */
- final class DepartmentTest extends TestCase
- {
-     public function testGetterAndSetters(): void
+/**
+ * @covers \App\Models\Client
+ */
+final class DepartmentTest extends TestCase
+{
+    public function testGetterAndSetters(): void
     {
-
         $expected = [
             'id' => 1,
             'name' => 'Graphics Department',
@@ -41,4 +40,4 @@ declare(strict_types=1);
 
         self::assertEquals($expected, $actual);
     }
- }
+}

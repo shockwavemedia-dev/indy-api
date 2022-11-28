@@ -8,13 +8,12 @@ use App\Enum\ServiceExtraEnum;
 use App\Enum\ServicesEnum;
 use App\Models\Client;
 use App\Models\Service;
-use App\Models\User;
 use App\Repositories\Interfaces\ClientRepositoryInterface;
 use App\Repositories\Interfaces\ClientServiceRepositoryInterface;
 use App\Repositories\Interfaces\ServiceRepositoryInterface;
 use App\Services\ClientServices\Resources\CreateClientServiceResource;
-use Illuminate\Support\Arr;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 
 final class ServicesSeeder extends Seeder
 {
@@ -78,6 +77,5 @@ final class ServicesSeeder extends Seeder
                 ]));
             }
         }
-
     }
 }

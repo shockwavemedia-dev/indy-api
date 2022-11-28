@@ -17,10 +17,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('clients', function (Blueprint $table) {
-            if (Schema::hasColumn('clients','style_guide') === true) {
+            if (Schema::hasColumn('clients', 'style_guide') === true) {
                 $table->dropColumn('style_guide');
             }
-            if (Schema::hasColumn('clients','notes') === true) {
+            if (Schema::hasColumn('clients', 'notes') === true) {
                 $table->dropColumn('notes');
             }
         });

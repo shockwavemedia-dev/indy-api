@@ -33,7 +33,7 @@ final class DeleteUserController extends AbstractAPIController
             $this->userRepository->deleteUser($user);
 
             return $this->respondNoContent();
-        // @codeCoverageIgnoreStart
+            // @codeCoverageIgnoreStart
         } catch (Throwable $throwable) {
             return $this->respondError($throwable->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }

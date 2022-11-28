@@ -34,7 +34,7 @@ final class AllowedMentionUsersListController extends AbstractAPIController
 
         if ($client === null) {
             return $this->respondNotFound([
-                'message' => 'Client not found.'
+                'message' => 'Client not found.',
             ]);
         }
 

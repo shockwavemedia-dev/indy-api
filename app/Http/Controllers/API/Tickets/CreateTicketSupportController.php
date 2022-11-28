@@ -10,12 +10,9 @@ use App\Http\Resources\API\Tickets\TicketSupportResource;
 use App\Repositories\Interfaces\ClientRepositoryInterface;
 use App\Repositories\Interfaces\DepartmentRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
-use App\Services\Departments\Interfaces\DepartmentTicketNotificationHandlerInterface;
 use App\Services\Tickets\Exceptions\InvalidDueDateException;
 use App\Services\Tickets\Interfaces\Factories\TicketTypeResolverFactoryInterface;
-use App\Services\Tickets\Interfaces\Validations\DueDateValidatorInterface;
 use App\Services\Tickets\Resources\CreateTicketResource;
-use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
@@ -67,9 +64,9 @@ final class CreateTicketSupportController extends AbstractAPIController
 
             return new TicketSupportResource($ticket);
         } catch (InvalidDueDateException $dueDateException) {
-          return $this->respondBadRequest([
-              'message' => $dueDateException->getMessage()
-          ]);
+            return $this->respondBadRequest([
+                'message' => $dueDateException->getMessage(),
+            ]);
         } catch (Throwable $exception) {
             return $this->respondError($exception->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }

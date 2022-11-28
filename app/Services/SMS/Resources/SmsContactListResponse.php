@@ -77,54 +77,63 @@ final class SmsContactListResponse extends DataTransferObject
     public function setCreated(?string $created): self
     {
         $this->created = $created;
+
         return $this;
     }
 
     public function setError(?array $error): self
     {
         $this->error = $error;
+
         return $this;
     }
 
     public function setFields(?array $fields): self
     {
         $this->fields = $fields;
+
         return $this;
     }
 
     public function setId(?int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
 
     public function setMembers(?array $members): self
     {
         $this->members = $members;
+
         return $this;
     }
 
     public function setMembersActive(?int $members_active): self
     {
         $this->members_active = $members_active;
+
         return $this;
     }
 
     public function setMembersTotal(?int $members_total): self
     {
         $this->members_total = $members_total;
+
         return $this;
     }
 
     public function setName(?string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
     public function setPage(?array $page): self
     {
         $this->page = $page;
+
         return $this;
     }
 }

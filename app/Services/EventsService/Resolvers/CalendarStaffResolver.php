@@ -61,6 +61,7 @@ final class CalendarStaffResolver implements CalendarStaffResolverInterface
 
             if ($currentEvents->isEmpty() === true) {
                 $results[$date->toDateString()] = $staffs;
+
                 continue;
             }
 

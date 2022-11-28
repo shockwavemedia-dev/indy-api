@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use App\Repositories\AdminUserRepository;
+use App\Repositories\BaseRepository;
 use App\Repositories\ClientRepository;
 use App\Repositories\ClientServiceRepository;
 use App\Repositories\ClientTicketFileRepository;
@@ -14,6 +15,7 @@ use App\Repositories\EmailLogRepository;
 use App\Repositories\ErrorLogRepository;
 use App\Repositories\EventRepository;
 use App\Repositories\FeedbackAttachmentRepository;
+use App\Repositories\FileFeedbackRepository;
 use App\Repositories\FileRepository;
 use App\Repositories\FolderRepository;
 use App\Repositories\Interfaces\AdminUserRepositoryInterface;
@@ -23,11 +25,11 @@ use App\Repositories\Interfaces\ClientTicketFileRepositoryInterface;
 use App\Repositories\Interfaces\ClientUserRepositoryInterface;
 use App\Repositories\Interfaces\DepartmentRepositoryInterface;
 use App\Repositories\Interfaces\EloquentRepositoryInterface;
-use App\Repositories\BaseRepository;
 use App\Repositories\Interfaces\EmailLogRepositoryInterface;
 use App\Repositories\Interfaces\ErrorLogRepositoryInterface;
 use App\Repositories\Interfaces\EventRepositoryInterface;
 use App\Repositories\Interfaces\FileFeedbackAttachmentRepositoryInterface;
+use App\Repositories\Interfaces\FileFeedbackRepositoryInterface;
 use App\Repositories\Interfaces\FileRepositoryInterface;
 use App\Repositories\Interfaces\FolderRepositoryInterface;
 use App\Repositories\Interfaces\LeadClientRepositoryInterface;
@@ -52,11 +54,12 @@ use App\Repositories\Interfaces\SupportRequestRepositoryInterface;
 use App\Repositories\Interfaces\TicketActivityRepositoryInterface;
 use App\Repositories\Interfaces\TicketAssigneeLinkRepositoryInterface;
 use App\Repositories\Interfaces\TicketAssigneeRepositoryInterface;
+use App\Repositories\Interfaces\TicketEmailRepositoryInterface;
 use App\Repositories\Interfaces\TicketEventAttachmentRepositoryInterface;
 use App\Repositories\Interfaces\TicketEventRepositoryInterface;
-use App\Repositories\Interfaces\TicketServiceRepositoryInterface;
 use App\Repositories\Interfaces\TicketNoteRepositoryInterface;
 use App\Repositories\Interfaces\TicketRepositoryInterface;
+use App\Repositories\Interfaces\TicketServiceRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\LeadClientRepository;
 use App\Repositories\LibraryCategoryRepository;
@@ -80,21 +83,17 @@ use App\Repositories\SupportRequestRepository;
 use App\Repositories\TicketActivityRepository;
 use App\Repositories\TicketAssigneeLinkRepository;
 use App\Repositories\TicketAssigneeRepository;
+use App\Repositories\TicketEmailRepository;
 use App\Repositories\TicketEventAttachmentRepository;
 use App\Repositories\TicketEventRepository;
-use App\Repositories\Interfaces\TicketEmailRepositoryInterface;
-use App\Repositories\Interfaces\FileFeedbackRepositoryInterface;
-use App\Repositories\TicketServiceRepository;
 use App\Repositories\TicketNoteRepository;
 use App\Repositories\TicketRepository;
+use App\Repositories\TicketServiceRepository;
 use App\Repositories\UserRepository;
-use App\Repositories\TicketEmailRepository;
-use App\Repositories\FileFeedbackRepository;
 use Illuminate\Support\ServiceProvider;
 
 /**
  * Class RepositoryServiceProvider
- * @package App\Providers
  */
 final class RepositoryServiceProvider extends ServiceProvider
 {
@@ -143,7 +142,7 @@ final class RepositoryServiceProvider extends ServiceProvider
             TicketAssigneeRepositoryInterface::class => TicketAssigneeRepository::class,
             TicketNoteRepositoryInterface::class => TicketNoteRepository::class,
             TicketRepositoryInterface::class => TicketRepository::class,
-            TicketEmailRepositoryInterface::class =>TicketEmailRepository::class,
+            TicketEmailRepositoryInterface::class => TicketEmailRepository::class,
             TicketEventAttachmentRepositoryInterface::class => TicketEventAttachmentRepository::class,
             TicketEventRepositoryInterface::class => TicketEventRepository::class,
             TicketServiceRepositoryInterface::class => TicketServiceRepository::class,

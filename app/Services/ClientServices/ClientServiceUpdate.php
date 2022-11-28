@@ -16,11 +16,9 @@ final class ClientServiceUpdate implements ClientServiceUpdateInterface
 {
     private ClientServiceRepositoryInterface $clientServiceRepository;
 
-    public function __construct
-    (
+    public function __construct(
         ClientServiceRepositoryInterface $clientServiceRepository
-    )
-    {
+    ) {
         $this->clientServiceRepository = $clientServiceRepository;
     }
 
@@ -34,21 +32,21 @@ final class ClientServiceUpdate implements ClientServiceUpdateInterface
 
         $clientServicesCollection = new Collection();
 
-          foreach($services as $service) {
-              $clientService = $clientServices->where('service_id', '=' ,Arr::get($service, 'service_id'))->first();
+        foreach ($services as $service) {
+            $clientService = $clientServices->where('service_id', '=', Arr::get($service, 'service_id'))->first();
 
-              $clientService = $this->clientServiceRepository->updateClientService($clientService, new UpdateClientServiceResource([
-                  'serviceId' => $service['service_id'],
-                  'extras' => $service['extras'],
-                  'updatedBy' => $user->getId(),
-                  'marketingQuota' => $service['marketing_quota'],
-                  'isEnabled' => $service['is_enabled'],
-                  'extraQuota' => $service['extra_quota']
-              ]));
+            $clientService = $this->clientServiceRepository->updateClientService($clientService, new UpdateClientServiceResource([
+                'serviceId' => $service['service_id'],
+                'extras' => $service['extras'],
+                'updatedBy' => $user->getId(),
+                'marketingQuota' => $service['marketing_quota'],
+                'isEnabled' => $service['is_enabled'],
+                'extraQuota' => $service['extra_quota'],
+            ]));
 
-              $clientServicesCollection->add($clientService);
-          }
+            $clientServicesCollection->add($clientService);
+        }
 
-          return $clientServicesCollection;
+        return $clientServicesCollection;
     }
 }

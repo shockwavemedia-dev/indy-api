@@ -6,7 +6,6 @@ namespace App\Jobs\PrinterJobs;
 
 use App\Exceptions\Interfaces\ErrorLogInterface;
 use App\Models\PrinterJob;
-use App\Models\User;
 use App\Repositories\Interfaces\PrinterJobRepositoryInterface;
 use App\Services\Slack\Exceptions\SlackSendMessageException;
 use App\Services\Slack\Exceptions\SlackUserNullException;
@@ -20,7 +19,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Config;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
-final class GenericPrintManagerSlackNotificationJob  implements ShouldQueue
+final class GenericPrintManagerSlackNotificationJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 

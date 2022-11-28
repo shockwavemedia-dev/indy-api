@@ -42,11 +42,10 @@ final class LogoutController extends AbstractAPIController
 
             return new JsonResource([
                 'status' => 'success',
-                'message' => 'logout'
+                'message' => 'logout',
             ]);
             // @codeCoverageIgnoreStart
         } catch (Exception $exception) {
-
             return $this->respondInternalError([
                 'error' => $exception->getMessage(),
                 'code' => $exception->getCode(),

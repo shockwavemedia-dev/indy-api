@@ -12,7 +12,7 @@ final class CreateLibrariesTable extends Migration
 
     public function up(): void
     {
-        if (Schema::hasTable(self::TABLE)=== true) {
+        if (Schema::hasTable(self::TABLE) === true) {
             return;
         }
 

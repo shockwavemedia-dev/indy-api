@@ -35,5 +35,3 @@ final class TicketEventRepositoryStub extends AbstractStub implements TicketEven
         return $this->fetchResponse(__FUNCTION__);
     }
 }
-
-

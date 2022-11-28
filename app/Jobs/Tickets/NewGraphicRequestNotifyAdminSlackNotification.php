@@ -14,7 +14,6 @@ use App\Services\Slack\Interfaces\SlackSendMessageInterface;
 use App\Services\Slack\Interfaces\SlackUserResolverInterface;
 use Exception;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -32,7 +31,7 @@ final class NewGraphicRequestNotifyAdminSlackNotification implements ShouldQueue
 
     private User $user;
 
-    public function __construct(Client $client,User $user, Ticket $ticket)
+    public function __construct(Client $client, User $user, Ticket $ticket)
     {
         $this->client = $client->withoutRelations();
         $this->ticket = $ticket->withoutRelations();
@@ -43,6 +42,7 @@ final class NewGraphicRequestNotifyAdminSlackNotification implements ShouldQueue
      * Execute the job.
      *
      * @return void
+     *
      * @throws UnknownProperties
      * @throws Exception
      */
@@ -73,7 +73,7 @@ final class NewGraphicRequestNotifyAdminSlackNotification implements ShouldQueue
             $sentryHandler->log($message);
         } catch (SlackUserNullException | SlackSendMessageException $exception) {
             $sentryHandler->reportError($exception);
-            $sentryHandler->log(\sprintf('This email does not have slack account %s',$this->user->getEmail()));
+            $sentryHandler->log(\sprintf('This email does not have slack account %s', $this->user->getEmail()));
         }
     }
 }

@@ -7,8 +7,6 @@ namespace App\Services\FileManager\Factories;
 use App\Services\FileManager\Interfaces\S3ClientFactoryInterface;
 use Aws\Credentials\Credentials;
 use Aws\S3\S3Client;
-use Aws\S3\S3ClientInterface;
-use Aws\Sdk;
 use Illuminate\Contracts\Config\Repository;
 
 final class S3ClientFactory implements S3ClientFactoryInterface

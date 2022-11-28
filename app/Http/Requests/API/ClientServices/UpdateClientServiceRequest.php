@@ -22,7 +22,7 @@ final class UpdateClientServiceRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'client_services' => 'array|required'
+            'client_services' => 'array|required',
         ];
     }
 }

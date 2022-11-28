@@ -6,11 +6,9 @@ namespace App\Http\Requests\API\MarketingPlanners;
 
 use App\Http\Requests\BaseRequest;
 use Carbon\Carbon;
-use DateTime;
 
 final class UpdateMarketingPlannerRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;

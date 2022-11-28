@@ -2,7 +2,7 @@
 
 return [
 
-    'dsn' => env('SENTRY_LARAVEL_DSN', env('SENTRY_DSN', 'https://aa76bcd6410b47ce9051cf02a6a87cb8@o1133980.ingest.sentry.io/6181031')) ,
+    'dsn' => env('SENTRY_LARAVEL_DSN', env('SENTRY_DSN', 'https://aa76bcd6410b47ce9051cf02a6a87cb8@o1133980.ingest.sentry.io/6181031')),
 
     // capture release as git sha
     // 'release' => trim(exec('git --git-dir ' . base_path('.git') . ' log --pretty="%h" -n1 HEAD')),
@@ -50,7 +50,7 @@ return [
     // @see: https://docs.sentry.io/platforms/php/configuration/options/#send-default-pii
     'send_default_pii' => true,
 
-    'traces_sample_rate' => (float)(env('SENTRY_TRACES_SAMPLE_RATE', 1.0)),
+    'traces_sample_rate' => (float) (env('SENTRY_TRACES_SAMPLE_RATE', 1.0)),
 
     'controllers_base_namespace' => env('SENTRY_CONTROLLERS_BASE_NAMESPACE', 'App\\Http\\Controllers'),
 

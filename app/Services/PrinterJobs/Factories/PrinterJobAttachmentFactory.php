@@ -12,7 +12,8 @@ final class PrinterJobAttachmentFactory implements PrinterJobAttachmentFactoryIn
 {
     private PrinterJobAttachmentRepositoryInterface $printerJobAttachmentRepository;
 
-    public function __construct(PrinterJobAttachmentRepositoryInterface $printerJobAttachmentRepository) {
+    public function __construct(PrinterJobAttachmentRepositoryInterface $printerJobAttachmentRepository)
+    {
         $this->printerJobAttachmentRepository = $printerJobAttachmentRepository;
     }
 

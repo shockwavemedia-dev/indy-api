@@ -45,7 +45,7 @@ final class S3SignedUrlService implements S3SignedUrlServiceInterface
         $filepath = null;
 
         if ($file->getFilePath() !== '' && $file->getFilePath() !== null) {
-            $filepath =  sprintf('%s/', $file->getFilePath());
+            $filepath = sprintf('%s/', $file->getFilePath());
         }
 
         $filepath = sprintf(
@@ -66,7 +66,7 @@ final class S3SignedUrlService implements S3SignedUrlServiceInterface
 
         $this->fileRepository->updateSignedUrl(
             $file,
-            (string)$request->getUri(),
+            (string) $request->getUri(),
             $expiryDate
         );
 

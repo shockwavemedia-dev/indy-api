@@ -6,13 +6,14 @@ namespace App\Http\Resources\API\TicketFiles;
 
 use App\Exceptions\InvalidResourceTypeException;
 use App\Http\Resources\Resource;
+use App\Models\File;
 use App\Models\Tickets\ClientTicketFile;
 use function sprintf;
-use App\Models\File;
 
 final class TicketFileResource extends Resource
 {
     public static $wrap = null;
+
     /**
      * @throws InvalidResourceTypeException
      */
@@ -53,7 +54,7 @@ final class TicketFileResource extends Resource
                 $clientTicketFile->getApprovedBy()?->getFirstName(),
                 $clientTicketFile->getApprovedBy()?->getMiddleName(),
                 $clientTicketFile->getApprovedBy()?->getLastName(),
-            )
+            ),
         ];
     }
 }

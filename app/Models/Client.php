@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace App\Models;
+
 use App\Enum\ClientStatusEnum;
 use App\Models\Tickets\ClientTicketFile;
 use App\Models\Tickets\Ticket;
@@ -30,7 +31,7 @@ final class Client extends AbstractModel
         'name',
         'client_code',
         'address',
-        'phone' ,
+        'phone',
         'timezone',
         'client_since',
         'main_client_id',

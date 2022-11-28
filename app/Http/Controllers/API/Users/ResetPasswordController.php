@@ -56,7 +56,7 @@ final class ResetPasswordController extends AbstractAPIController
             $this->tokenRepository->delete($user);
 
             return $this->respondOk([
-               'message' => 'Password successfully changed.'
+                'message' => 'Password successfully changed.',
             ]);
         } catch (Throwable $throwable) {
             return $this->respondError($throwable->getMessage());

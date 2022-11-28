@@ -20,6 +20,7 @@ final class MarkUserAsOwnerRequest extends BaseRequest
     {
         return (int) $this->id;
     }
+
     /**
      * @return mixed[]
      */

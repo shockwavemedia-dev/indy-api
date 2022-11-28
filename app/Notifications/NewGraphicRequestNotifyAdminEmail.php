@@ -8,12 +8,12 @@ use App\Enum\EmailStatusEnum;
 use App\Models\Client;
 use App\Models\Emails\EmailLog;
 use App\Models\Tickets\Ticket;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Config;
-use Exception;
 use function sprintf;
 
 final class NewGraphicRequestNotifyAdminEmail extends Notification implements ShouldQueue
@@ -39,7 +39,6 @@ final class NewGraphicRequestNotifyAdminEmail extends Notification implements Sh
 
         $this->ticket = $ticket->withoutRelations();
     }
-
 
     /**
      * Get the notification's delivery channels.

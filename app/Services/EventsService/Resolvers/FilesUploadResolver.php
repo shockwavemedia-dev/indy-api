@@ -21,7 +21,6 @@ final class FilesUploadResolver implements FilesUploadResolverInterface
 
     private FileUploaderInterface $fileUploader;
 
-
     public function __construct(
         BucketFactoryInterface $bucketFactory,
         FileFactoryInterface $fileFactory,

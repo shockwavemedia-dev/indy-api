@@ -83,8 +83,12 @@ interface TicketRepositoryInterface
     ): LengthAwarePaginator;
 
     public function addUserNotes(Ticket $ticket, User $user): Ticket;
+
     public function removeUserNotes(Ticket $ticket, User $user): Ticket;
+
     public function increaseUserNotes(Ticket $ticket, User $user): Ticket;
+
     public function increaseUserNotesExceptSender(Ticket $ticket, User $user): Ticket;
+
     public function resetUserNotes(Ticket $ticket, User $user): Ticket;
 }

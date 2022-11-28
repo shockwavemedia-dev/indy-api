@@ -58,6 +58,7 @@ final class DeleteFileFeedbackController extends AbstractAPIController
             return $this->respondNoContent();
         } catch (Throwable $throwable) {
             $this->sentryHandler->reportError($throwable);
+
             return $this->respondNoContent();
         }
     }

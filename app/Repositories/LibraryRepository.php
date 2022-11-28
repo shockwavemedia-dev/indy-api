@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Models\Library;
-use App\Repositories\Interfaces\LibraryCategoryRepositoryInterface;
 use App\Repositories\Interfaces\LibraryRepositoryInterface;
 use App\Services\Libraries\Resources\CreateLibraryResource;
 use Carbon\Carbon;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection;
 
 final class LibraryRepository extends BaseRepository implements LibraryRepositoryInterface
 {

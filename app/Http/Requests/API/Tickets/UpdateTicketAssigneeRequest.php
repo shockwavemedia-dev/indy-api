@@ -58,7 +58,7 @@ final class UpdateTicketAssigneeRequest extends BaseRequest
             ],
             'status' => [
                 'string',
-                Rule::in(TicketAssigneeStatusEnum::toArray())
+                Rule::in(TicketAssigneeStatusEnum::toArray()),
             ],
             'admin_user_id' => 'int|nullable|exists:App\Models\Users\AdminUser,id',
         ];

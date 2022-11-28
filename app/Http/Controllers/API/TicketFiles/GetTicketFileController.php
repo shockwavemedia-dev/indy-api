@@ -15,7 +15,7 @@ final class GetTicketFileController extends AbstractAPIController
 {
     private ClientTicketFileRepositoryInterface $clientTicketFileRepository;
 
-    public function __construct (
+    public function __construct(
         ClientTicketFileRepositoryInterface $clientTicketFileRepository
     ) {
         $this->clientTicketFileRepository = $clientTicketFileRepository;

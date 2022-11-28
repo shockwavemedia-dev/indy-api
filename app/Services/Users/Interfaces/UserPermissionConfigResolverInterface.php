@@ -6,7 +6,6 @@ namespace App\Services\Users\Interfaces;
 
 use App\Enum\AdminRoleEnum;
 use App\Enum\ClientRoleEnum;
-use App\Enum\UserTypeEnum;
 
 interface UserPermissionConfigResolverInterface
 {

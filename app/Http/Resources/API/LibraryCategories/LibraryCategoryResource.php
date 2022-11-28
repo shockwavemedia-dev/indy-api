@@ -7,7 +7,6 @@ namespace App\Http\Resources\API\LibraryCategories;
 use App\Exceptions\InvalidResourceTypeException;
 use App\Http\Resources\Resource;
 use App\Models\LibraryCategory;
-use function get_class;
 
 final class LibraryCategoryResource extends Resource
 {

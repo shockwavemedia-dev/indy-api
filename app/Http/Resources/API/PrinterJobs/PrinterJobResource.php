@@ -51,8 +51,8 @@ final class PrinterJobResource extends Resource
         /** @var PrinterJobAttachment $attachment */
         foreach ($printerJob->getAttachments() as $attachment) {
             $attachments[] = [
-                'name' =>  $attachment->getFile()?->getOriginalFilename(),
-                'file_type' =>  $attachment->getFile()?->getFileType(),
+                'name' => $attachment->getFile()?->getOriginalFilename(),
+                'file_type' => $attachment->getFile()?->getFileType(),
                 'printer_job_attachment_id' => $attachment->getId(),
                 'url' => $attachment->getFile()?->getUrl(),
                 'thumbnail_url' => $attachment->getFile()?->getThumbnailUrl(),

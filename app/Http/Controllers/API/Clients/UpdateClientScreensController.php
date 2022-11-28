@@ -9,7 +9,6 @@ use App\Http\Requests\API\Clients\UpdateClientScreensRequest;
 use App\Http\Resources\API\Clients\ClientResource;
 use App\Models\Client;
 use App\Models\ClientScreen;
-use App\Models\Screen;
 use App\Repositories\Interfaces\ClientRepositoryInterface;
 use App\Repositories\Interfaces\ScreenRepositoryInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -27,6 +26,7 @@ final class UpdateClientScreensController extends AbstractAPIController
         $this->clientRepository = $clientRepository;
         $this->screenRepository = $screenRepository;
     }
+
     public function __invoke(UpdateClientScreensRequest $request, int $id): JsonResource
     {
         /** @var Client $client */
@@ -36,8 +36,8 @@ final class UpdateClientScreensController extends AbstractAPIController
 
         foreach ($request->getScreenIds() as $screenId) {
             ClientScreen::create([
-               'client_id' => $client->getId(),
-               'screen_id' =>  $screenId,
+                'client_id' => $client->getId(),
+                'screen_id' => $screenId,
             ]);
         }
 

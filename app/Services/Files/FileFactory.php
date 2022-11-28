@@ -11,10 +11,10 @@ use App\Services\Files\Resources\CreateFileResource;
 
 final class FileFactory implements FileFactoryInterface
 {
-
     private FileRepositoryInterface $fileRepository;
 
-    public function __construct(FileRepositoryInterface $fileRepository) {
+    public function __construct(FileRepositoryInterface $fileRepository)
+    {
         $this->fileRepository = $fileRepository;
     }
 
@@ -24,13 +24,13 @@ final class FileFactory implements FileFactoryInterface
 
         $filename = \pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
 
-        $regex = "/[^a-zA-Z0-9._ -]/";
+        $regex = '/[^a-zA-Z0-9._ -]/';
 
         $originalFileName = preg_replace($regex, '', $uploadedFile->getClientOriginalName());
 
         $originalFileName = str_replace(' ', '', $originalFileName);
 
-        $generatedFilename =  \sprintf(
+        $generatedFilename = \sprintf(
             '%s-%s',
             \sha1(\sprintf('%s%s', $filename, time())),
             $originalFileName

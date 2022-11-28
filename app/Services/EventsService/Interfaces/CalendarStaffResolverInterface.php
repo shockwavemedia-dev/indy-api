@@ -3,7 +3,6 @@
 namespace App\Services\EventsService\Interfaces;
 
 use App\Models\Client;
-use Illuminate\Database\Eloquent\Collection;
 
 interface CalendarStaffResolverInterface
 {

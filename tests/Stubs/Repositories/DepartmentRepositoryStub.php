@@ -8,7 +8,6 @@ use App\Models\Department;
 use App\Repositories\Interfaces\DepartmentRepositoryInterface;
 use App\Services\Departments\Resources\CreateDepartmentResources;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Tests\Stubs\AbstractStub;
 

@@ -24,7 +24,7 @@ final class FileRepositoryTest extends TestCase
 
         $repository = new FileRepository();
 
-        $repository->deleteFile($file,$user);
+        $repository->deleteFile($file, $user);
 
         $file->refresh();
 
@@ -48,7 +48,6 @@ final class FileRepositoryTest extends TestCase
             'file_id' => $file2->getId(),
         ])->clientTicketFile;
 
-
         $expected = [
             $clientFile1->getId(),
             $clientFile2->getId(),
@@ -69,7 +68,7 @@ final class FileRepositoryTest extends TestCase
 
         $repository = new FileRepository();
 
-        $findByNameAndPath = $repository->findByNameAndPath($file->getFileName(),$file->getFilePath());
+        $findByNameAndPath = $repository->findByNameAndPath($file->getFileName(), $file->getFilePath());
 
         $file->refresh();
 
@@ -92,7 +91,8 @@ final class FileRepositoryTest extends TestCase
         $this->assertEquals(2, $file->getVersion());
     }
 
-    public function testUpdateBucket(): void {
+    public function testUpdateBucket(): void
+    {
         $file = $this->env->file;
 
         $repository = new FileRepository();
@@ -170,7 +170,7 @@ final class FileRepositoryTest extends TestCase
 
         $newUrl = 'https://storage.googleapis.com/aap1-client/december/poster/96365efc65a27cac2e477c809f19f2def6bc298f-feedback.PNG';
 
-        $repository->updateSignedUrl($file,$newUrl,$dateToday);
+        $repository->updateSignedUrl($file, $newUrl, $dateToday);
 
         $file->refresh();
 

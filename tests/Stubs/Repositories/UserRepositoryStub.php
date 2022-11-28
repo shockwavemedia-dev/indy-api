@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Stubs\Repositories;
 
-use App\Enum\AdminRoleEnum;
 use App\Models\Client;
 use App\Models\User;
 use App\Models\Users\ClientUser;

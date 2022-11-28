@@ -8,7 +8,6 @@ use App\Http\Controllers\API\AbstractAPIController;
 use App\Repositories\Interfaces\DepartmentRepositoryInterface;
 use App\Repositories\Interfaces\TicketRepositoryInterface;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Str;
 
 final class TicketAnalyticsController extends AbstractAPIController
@@ -32,9 +31,7 @@ final class TicketAnalyticsController extends AbstractAPIController
         $groups = [];
 
         foreach ($results as $data) {
-            $groups
-            [$data['date']]
-            [Str::ucfirst($data['status'])]= $data['ticket_counts'];
+            $groups[$data['date']][Str::ucfirst($data['status'])] = $data['ticket_counts'];
         }
 
         return new JsonResponse($groups);

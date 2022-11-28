@@ -10,7 +10,7 @@ final class CreateClientTicketFilesTable extends Migration
 {
     public const TABLE = 'client_ticket_files';
 
-    public function up() : void
+    public function up(): void
     {
         if (Schema::hasTable(self::TABLE) === true) {
             return;

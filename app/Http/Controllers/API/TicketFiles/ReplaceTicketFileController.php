@@ -30,7 +30,7 @@ final class ReplaceTicketFileController extends AbstractAPIController
 
     public function __invoke(int $id, UploadFileRequest $request): JsonResource
     {
-        try{
+        try {
             /** @var ClientTicketFile $clientTicketFile */
             $clientTicketFile = $this->clientTicketFileRepository->find($id);
 

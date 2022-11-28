@@ -13,13 +13,11 @@ use App\Services\FileManager\Interfaces\FileManagerConfigResolverInterface;
 use App\Services\FileManager\Interfaces\StorageClientFactoryInterface;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\Exception\GoogleException;
-use Google\Cloud\Storage\Bucket;
-use Google\Cloud\Storage\Connection\Rest;
 use Illuminate\Support\Arr;
 
 final class BucketFactory implements BucketFactoryInterface
 {
-    protected const LOGGER_KEY = "%s-client";
+    protected const LOGGER_KEY = '%s-client';
 
     private BucketResolverInterface $bucketResolver;
 
@@ -30,10 +28,10 @@ final class BucketFactory implements BucketFactoryInterface
     private StorageClientFactoryInterface $storageClientFactory;
 
     public function __construct(
-        BucketResolverInterface            $bucketResolver,
+        BucketResolverInterface $bucketResolver,
         FileManagerConfigResolverInterface $fileManagerConfigResolver,
-        ErrorLogInterface                  $sentryHandler,
-        StorageClientFactoryInterface      $storageClientFactory
+        ErrorLogInterface $sentryHandler,
+        StorageClientFactoryInterface $storageClientFactory
     ) {
         $this->bucketResolver = $bucketResolver;
         $this->fileManagerConfigResolver = $fileManagerConfigResolver;

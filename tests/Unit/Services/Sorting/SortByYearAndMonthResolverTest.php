@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Services\Sorting;
 
-use App\Models\File;
 use App\Services\Sorting\SortByYearAndMonthResolver;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
@@ -38,6 +37,6 @@ final class SortByYearAndMonthResolverTest extends TestCase
 
         $result = $resolver->resolve($data);
 
-        self::assertArrayHasKey("2021", $result);
+        self::assertArrayHasKey('2021', $result);
     }
 }

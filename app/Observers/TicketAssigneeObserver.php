@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace App\Observers;
 
 use App\Enum\EmailStatusEnum;
@@ -37,7 +36,6 @@ final class TicketAssigneeObserver
 
         $createdBy = $ticketAssignee->getCreatedBy()->getUser();
 
-
         $ticket = $ticketAssignee->getTicket();
 
         $message = \sprintf(
@@ -68,7 +66,7 @@ final class TicketAssigneeObserver
                 $createdBy->getFirstName(),
                 $ticket->getTicketCode(),
                 $user->getFirstName(),
-            )
+            ),
         ]));
     }
 }

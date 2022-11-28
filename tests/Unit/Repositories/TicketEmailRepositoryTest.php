@@ -18,7 +18,7 @@ final class TicketEmailRepositoryTest extends TestCase
 
         $this->env->ticketEmail(
             [
-                'ticket_id' => $ticket->getId()
+                'ticket_id' => $ticket->getId(),
             ]
         )->ticketEmail;
 
@@ -39,7 +39,7 @@ final class TicketEmailRepositoryTest extends TestCase
             [
                 'sender_by' => $user->getId(),
                 'updated_by' => $user->getId(),
-                'sender_type' => $user->getUserType()->getType()->getValue()
+                'sender_type' => $user->getUserType()->getType()->getValue(),
             ]
         )->ticketEmail;
 

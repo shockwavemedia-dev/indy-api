@@ -14,10 +14,12 @@ final class EmailAttachmentProcessor implements EmailAttachmentProcessorInterfac
     public function __construct(
         private BucketFactoryInterface $bucketFactory,
         private EmailAttachmentUploadProcessorInterface $emailAttachmentUploadProcessor,
-    ) {}
+    ) {
+    }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
+     *
      * @throws \App\Services\FileManager\Exceptions\BucketNameExistsException
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      */

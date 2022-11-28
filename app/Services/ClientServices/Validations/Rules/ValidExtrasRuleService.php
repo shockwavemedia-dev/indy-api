@@ -19,7 +19,7 @@ final class ValidExtrasRuleService implements ClientServiceValidationRuleInterfa
         $serviceExtras = $service->getExtras();
 
         foreach ($extras as $extra) {
-            if(\in_array($extra, $serviceExtras) === true) {
+            if (\in_array($extra, $serviceExtras) === true) {
                 continue;
             }
 
@@ -30,6 +30,7 @@ final class ValidExtrasRuleService implements ClientServiceValidationRuleInterfa
                 )
             );
         }
+
         return true;
     }
 }

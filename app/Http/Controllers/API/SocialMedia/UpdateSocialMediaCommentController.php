@@ -48,7 +48,6 @@ final class UpdateSocialMediaCommentController extends AbstractAPIController
         $this->userRepository = $userRepository;
     }
 
-
     /**
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
@@ -78,7 +77,6 @@ final class UpdateSocialMediaCommentController extends AbstractAPIController
             // @Todo Transfer to a job
             /** @var User $user */
             foreach ($users as $user) {
-
                 $emailLog = $this->emailLogFactory->make(new CreateEmailLogResource([
                     'message' => 'Send email from mention comments.',
                     'to' => $user->getEmail(),
@@ -133,7 +131,7 @@ final class UpdateSocialMediaCommentController extends AbstractAPIController
 
         $this->notificationUserFactory->make(new CreateNotificationUserResource([
             'notification' => $notification,
-            'user' => $user
+            'user' => $user,
         ]));
     }
 }

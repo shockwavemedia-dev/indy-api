@@ -33,6 +33,7 @@ final class GoogleCloudStorageUploadManager extends AbstractFileManager implemen
         try {
             if ($rawFile === null) {
                 $this->sentryHandler->log('empty file');
+
                 return;
             }
 
@@ -41,7 +42,7 @@ final class GoogleCloudStorageUploadManager extends AbstractFileManager implemen
             $path = null;
 
             if ($file->getFilePath() !== '' && $file->getFilePath() !== null) {
-                $path =  sprintf('%s/', $file->getFilePath());
+                $path = sprintf('%s/', $file->getFilePath());
             }
 
             $filepath = sprintf(
@@ -68,7 +69,7 @@ final class GoogleCloudStorageUploadManager extends AbstractFileManager implemen
 
             $file->refresh();
 
-            $thumbnail =  Thumbnail::src($signedUrl)->crop(80, 80);
+            $thumbnail = Thumbnail::src($signedUrl)->crop(80, 80);
 
             $thumbnailObject = $bucket->upload(
                 $thumbnail->string(),

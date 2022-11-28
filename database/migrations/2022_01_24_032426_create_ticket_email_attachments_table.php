@@ -10,7 +10,7 @@ final class CreateTicketEmailAttachmentsTable extends Migration
 {
     public const TABLE = 'ticket_email_attachments';
 
-    public function up() : void
+    public function up(): void
     {
         if (Schema::hasTable(self::TABLE) === true) {
             return;

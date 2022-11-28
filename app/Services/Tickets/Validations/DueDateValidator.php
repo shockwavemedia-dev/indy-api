@@ -21,8 +21,8 @@ final class DueDateValidator implements DueDateValidatorInterface
 
         $minDate = $from->addDays($days);
 
-       if ($dueDate->startOfDay()->gte($minDate->startOfDay())) {
-           return true;
+        if ($dueDate->startOfDay()->gte($minDate->startOfDay())) {
+            return true;
         }
 
         throw new InvalidDueDateException(

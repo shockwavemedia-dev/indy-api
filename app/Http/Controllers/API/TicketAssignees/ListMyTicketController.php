@@ -35,7 +35,6 @@ final class ListMyTicketController extends AbstractAPIController
             );
 
             return new TicketSupportsResource($tickets);
-
         } catch (Throwable $throwable) {
             return $this->respondError($throwable->getMessage());
         }

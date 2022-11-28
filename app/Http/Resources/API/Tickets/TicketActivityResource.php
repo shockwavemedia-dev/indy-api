@@ -13,6 +13,7 @@ final class TicketActivityResource extends Resource
 {
     /**
      * @return mixed[]
+     *
      * @throws \App\Exceptions\InvalidResourceTypeException
      */
     protected function getResponse(): array

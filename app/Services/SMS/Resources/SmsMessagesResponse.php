@@ -42,24 +42,28 @@ final class SmsMessagesResponse extends DataTransferObject
     public function setError(?array $error): self
     {
         $this->error = $error;
+
         return $this;
     }
 
     public function setMessages(?array $messages): self
     {
         $this->messages = $messages;
+
         return $this;
     }
 
     public function setPage(?array $page): self
     {
         $this->page = $page;
+
         return $this;
     }
 
     public function setTotal(?int $total): self
     {
         $this->total = $total;
+
         return $this;
     }
 }

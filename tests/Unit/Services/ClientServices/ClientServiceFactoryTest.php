@@ -32,7 +32,7 @@ final class ClientServiceFactoryTest extends TestCase
     {
         $adminUser = new AdminUser();
         $user = new User();
-        $user->setRelation('userType',$adminUser);
+        $user->setRelation('userType', $adminUser);
         $user->setAttribute('id', 1);
 
         $client = new Client();
@@ -81,7 +81,7 @@ final class ClientServiceFactoryTest extends TestCase
                         'serviceId' => 1,
                         'extras' => Arr::get(ServiceExtraEnum::EXTRAS, ServicesEnum::GRAPHIC_DESIGN, []),
                         'createdById' => 1,
-                    ])
+                    ]),
                 ],
             ],
             [
@@ -91,12 +91,12 @@ final class ClientServiceFactoryTest extends TestCase
                         'serviceId' => 2,
                         'extras' => Arr::get(ServiceExtraEnum::EXTRAS, ServicesEnum::ADVERTISING, []),
                         'createdById' => 1,
-                    ])
+                    ]),
                 ],
-            ]
+            ],
         ];
 
-        $resolver->make($client,$user);
+        $resolver->make($client, $user);
 
         $this->assertEquals($expectedCall, $clientServiceRepository->getCalls());
     }

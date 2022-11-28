@@ -25,7 +25,7 @@ final class UserNotificationListController extends AbstractAPIController
         $user = $this->getUser();
 
         if ($user === null) {
-            return $this->respondNotFound(['message'=> 'User not found']);
+            return $this->respondNotFound(['message' => 'User not found']);
         }
 
         $notifications = $this->notificationRepository->findAllNewNotificationByUser($user);

@@ -23,6 +23,7 @@ final class NotificationResource extends Resource
 
     /**
      * @return mixed[]
+     *
      * @throws InvalidResourceTypeException
      */
     protected function getResponse(): array

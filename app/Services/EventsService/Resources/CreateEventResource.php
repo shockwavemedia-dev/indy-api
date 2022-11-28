@@ -79,7 +79,7 @@ final class CreateEventResource extends DataTransferObject
 
     public function getNumberOfDishesEnum(): ?EventNumberOfDishesEnum
     {
-        $dishesNumber =  $this->numberOfDishes;
+        $dishesNumber = $this->numberOfDishes;
 
         if ($dishesNumber === null) {
             return null;

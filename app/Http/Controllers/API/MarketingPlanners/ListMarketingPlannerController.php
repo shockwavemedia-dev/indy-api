@@ -13,6 +13,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 final class ListMarketingPlannerController extends AbstractAPIController
 {
     private MarketingPlannerRepositoryInterface $marketingPlannerRepository;
+
     private ClientRepositoryInterface $clientRepository;
 
     public function __construct(
@@ -36,7 +37,6 @@ final class ListMarketingPlannerController extends AbstractAPIController
         if ($client->getId() !== $this->getUser()->getUserType()->getClient()->getId()) {
             return $this->respondForbidden();
         }
-
 
         return new MarketingPlannersResource($this->marketingPlannerRepository->findAllByClient($client));
     }

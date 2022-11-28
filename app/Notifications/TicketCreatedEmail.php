@@ -50,8 +50,9 @@ final class TicketCreatedEmail extends Notification implements ShouldQueue
     /**
      * Get the mail representation of the notification.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return MailMessage
+     *
      * @throws \Exception
      * @throws \Throwable
      */
@@ -79,7 +80,6 @@ final class TicketCreatedEmail extends Notification implements ShouldQueue
             return (new MailMessage)
                 ->action(__('Ticket link'), $url)
                 ->line($message);
-
         } catch (\Throwable $exception) {
             $this->emailLog->setStatus(new EmailStatusEnum(EmailStatusEnum::FAILED));
             $this->emailLog->setFailedDetails($exception->getMessage());

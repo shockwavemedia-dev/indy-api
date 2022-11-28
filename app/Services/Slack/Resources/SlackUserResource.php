@@ -38,5 +38,4 @@ final class SlackUserResource extends DataTransferObject
 
         return $this;
     }
-
 }

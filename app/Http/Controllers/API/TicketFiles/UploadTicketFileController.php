@@ -7,7 +7,6 @@ namespace App\Http\Controllers\API\TicketFiles;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\TicketFiles\UploadFileRequest;
 use App\Http\Resources\API\TicketFiles\TicketFileResource;
-use App\Models\File;
 use App\Repositories\Interfaces\FolderRepositoryInterface;
 use App\Repositories\TicketRepository;
 use App\Services\ClientTicketFiles\Interfaces\ProcessTicketFileUploadInterface;
@@ -43,7 +42,7 @@ final class UploadTicketFileController extends AbstractAPIController
 
     public function __invoke(int $id, UploadFileRequest $request): JsonResource
     {
-        try{
+        try {
             /** @var \App\Models\Tickets\Ticket $ticket */
             $ticket = $this->ticketRepository->find($id);
 

@@ -10,7 +10,7 @@ final class CreateFileFeedbackAttachmentsTable extends Migration
 {
     public const TABLE = 'file_feedback_attachments';
 
-    public function up() : void
+    public function up(): void
     {
         if (Schema::hasTable(self::TABLE) === true) {
             return;

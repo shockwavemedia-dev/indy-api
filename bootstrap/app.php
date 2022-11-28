@@ -18,6 +18,8 @@ use App\Providers\DepartmentServiceProvider;
 use App\Providers\EmailLogServiceProvider;
 use App\Providers\ErrorServiceProvider;
 use App\Providers\EventBookingServiceProvider;
+use App\Providers\FileFeedbackAttachmentServiceProvider;
+use App\Providers\FileFeedbackServiceProvider;
 use App\Providers\FileManagerServiceProvider;
 use App\Providers\FileServiceProvider;
 use App\Providers\FolderServiceProvider;
@@ -41,11 +43,9 @@ use App\Providers\SortingServiceProvider;
 use App\Providers\SupportRequestServiceProvider;
 use App\Providers\TicketAssigneeLinkServiceProvider;
 use App\Providers\TicketAssigneeServiceProvider;
+use App\Providers\TicketEmailServiceProvider;
 use App\Providers\TicketServiceProvider;
 use App\Providers\UserServiceProvider;
-use App\Providers\TicketEmailServiceProvider;
-use App\Providers\FileFeedbackServiceProvider;
-use App\Providers\FileFeedbackAttachmentServiceProvider;
 
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)

@@ -40,7 +40,7 @@ final class S3FileRemoverManager extends AbstractFileManager implements FileRemo
             $path = null;
 
             if ($file->getFilePath() !== '' && $file->getFilePath() !== null) {
-                $path =  sprintf('%s/', $file->getFilePath());
+                $path = sprintf('%s/', $file->getFilePath());
             }
 
             $filepath = sprintf(
@@ -51,7 +51,7 @@ final class S3FileRemoverManager extends AbstractFileManager implements FileRemo
 
             $arguments = [
                 'Bucket' => $file->getBucket(),
-                'Key' => $filepath
+                'Key' => $filepath,
             ];
 
             $command = $s3Client->getCommand('DeleteObject', $arguments);

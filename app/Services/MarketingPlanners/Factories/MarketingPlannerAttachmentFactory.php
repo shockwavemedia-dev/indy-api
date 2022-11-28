@@ -13,7 +13,8 @@ final class MarketingPlannerAttachmentFactory implements MarketingPlannerAttachm
 {
     private MarketingPlannerAttachmentRepositoryInterface $marketingPlannerAttachmentRepository;
 
-    public function __construct(MarketingPlannerAttachmentRepositoryInterface $marketingPlannerAttachmentRepository) {
+    public function __construct(MarketingPlannerAttachmentRepositoryInterface $marketingPlannerAttachmentRepository)
+    {
         $this->marketingPlannerAttachmentRepository = $marketingPlannerAttachmentRepository;
     }
 

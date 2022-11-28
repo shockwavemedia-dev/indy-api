@@ -7,8 +7,8 @@ namespace App\Services\Users\Factories;
 use App\Enum\UserTypeEnum;
 use App\Models\Users\LeadClient;
 use App\Repositories\Interfaces\LeadClientRepositoryInterface;
-use App\Services\Users\Interfaces\UserTypeFactoryInterface;
 use App\Services\Users\Interfaces\CreateUserTypeResourceInterface;
+use App\Services\Users\Interfaces\UserTypeFactoryInterface;
 use App\Services\Users\Resources\CreateLeadClientResource;
 
 final class PrinterUserFactory implements UserTypeFactoryInterface

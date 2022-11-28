@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Functional\Http\Controllers\API;
 
 use App\Enum\UserStatusEnum;
-use Tests\TestCase;
 
 /**
  * @covers \App\Http\Controllers\API\Authentication\LoginController
@@ -16,7 +15,7 @@ final class LoginControllerTest extends AbstractAPITestCase
     public function testLoginSuccess(): void
     {
         $user = $this->env->user([
-            'email' => 'test@testmail.com'
+            'email' => 'test@testmail.com',
         ])->user;
 
         $response = $this->post(
@@ -52,18 +51,18 @@ final class LoginControllerTest extends AbstractAPITestCase
         );
 
         $response->assertExactJson([
-            "data" => [
-                "status" => 401,
-                "title" => "Unauthorized",
-                "message" => "Invalid credentials",
-            ]
+            'data' => [
+                'status' => 401,
+                'title' => 'Unauthorized',
+                'message' => 'Invalid credentials',
+            ],
         ]);
     }
 
     public function testLoginInvalidPassword(): void
     {
         $user = $this->env->user([
-            'email' => 'test@testmail.com'
+            'email' => 'test@testmail.com',
         ])->user;
 
         $response = $this->post(
@@ -75,11 +74,11 @@ final class LoginControllerTest extends AbstractAPITestCase
         );
 
         $response->assertExactJson([
-            "data" => [
-                "status" => 401,
-                "title" => "Unauthorized",
-                "message" => "The user credentials were incorrect.",
-            ]
+            'data' => [
+                'status' => 401,
+                'title' => 'Unauthorized',
+                'message' => 'The user credentials were incorrect.',
+            ],
         ]);
     }
 
@@ -99,11 +98,11 @@ final class LoginControllerTest extends AbstractAPITestCase
         );
 
         $response->assertExactJson([
-            "data" => [
-                "status" => 401,
-                "title" => "Unauthorized",
-                "message" => "User is not active.",
-            ]
+            'data' => [
+                'status' => 401,
+                'title' => 'Unauthorized',
+                'message' => 'User is not active.',
+            ],
         ]);
     }
 }

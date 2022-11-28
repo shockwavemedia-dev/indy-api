@@ -17,7 +17,6 @@ final class ShowTicketAssigneeController extends AbstractAPIController
     public function __construct(TicketAssigneeRepositoryInterface $ticketAssigneeRepository)
     {
         $this->ticketAssigneeRepository = $ticketAssigneeRepository;
-
     }
 
     public function __invoke(int $id): JsonResource

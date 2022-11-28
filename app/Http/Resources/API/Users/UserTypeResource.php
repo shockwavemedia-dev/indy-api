@@ -13,6 +13,7 @@ final class UserTypeResource extends Resource
 {
     /**
      * @return mixed[]
+     *
      * @throws InvalidResourceTypeException
      */
     protected function getResponse(): array

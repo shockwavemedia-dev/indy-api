@@ -61,7 +61,7 @@ final class CreateEventController extends AbstractAPIController
         }
 
         if ($resources['stylingRequired'] !== null) {
-            $resources['stylingRequired'] = $resources['stylingRequired'] ?? 'No' === 'Yes' ;
+            $resources['stylingRequired'] = $resources['stylingRequired'] ?? 'No' === 'Yes';
         }
 
         if ($request->get('photographer_id') !== null) {

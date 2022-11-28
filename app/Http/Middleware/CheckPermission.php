@@ -12,8 +12,8 @@ use App\Models\Users\AdminUser;
 use App\Models\Users\ClientUser;
 use App\Services\Users\Interfaces\CheckUserPermissionInterface;
 use Closure;
-use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Http\Request;
 use Sentry\Severity;
 
 final class CheckPermission
@@ -56,21 +56,21 @@ final class CheckPermission
 
             if ($hasPermission === false) {
                 $this->sentryHandler->log(
-                  \sprintf(
-                      '%s has no access to this %s module and %s action',
-                      $userTypeEnum->getValue(),
-                      $module,
-                      $permission
-                  ),
-                  Severity::info()
+                    \sprintf(
+                        '%s has no access to this %s module and %s action',
+                        $userTypeEnum->getValue(),
+                        $module,
+                        $permission
+                    ),
+                    Severity::info()
                 );
 
-                return response()->json(['status' => 'User has no permission for this module'],403);
+                return response()->json(['status' => 'User has no permission for this module'], 403);
             }
 
             return $next($request);
         } catch (Exception $e) {
-            return response()->json(['status' => $e->getMessage()],500);
+            return response()->json(['status' => $e->getMessage()], 500);
         }
     }
 }

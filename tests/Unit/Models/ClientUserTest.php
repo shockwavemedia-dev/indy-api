@@ -2,20 +2,19 @@
 
 declare(strict_types=1);
 
- namespace Tests\Unit\Models;
+namespace Tests\Unit\Models;
 
- use App\Enum\ClientRoleEnum;
- use App\Models\Users\ClientUser;
- use PHPUnit\Framework\TestCase;
+use App\Enum\ClientRoleEnum;
+use App\Models\Users\ClientUser;
+use PHPUnit\Framework\TestCase;
 
- /**
-  * @covers \App\Models\Users\ClientUser
-  */
- final class ClientUserTest extends TestCase
- {
-     public function testGetterAndSetters(): void
+/**
+ * @covers \App\Models\Users\ClientUser
+ */
+final class ClientUserTest extends TestCase
+{
+    public function testGetterAndSetters(): void
     {
-
         $expected = [
             'id' => 1,
             'client_id' => 1,
@@ -35,4 +34,4 @@ declare(strict_types=1);
 
         self::assertEquals($expected, $actual);
     }
- }
+}

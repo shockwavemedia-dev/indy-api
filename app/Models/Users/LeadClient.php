@@ -71,6 +71,6 @@ final class LeadClient extends AbstractModel implements UserTypeInterface
 
     public function getUser(): User
     {
-       return $this->user;
+        return $this->user;
     }
 }

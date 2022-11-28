@@ -34,7 +34,6 @@ final class UpdateEnumsSeeder extends Seeder
             ->where('status', 'in_progress')
             ->update(['status' => TicketAssigneeStatusEnum::IN_PROGRESS]);
 
-
         DB::table('client_ticket_files')
             ->where('status', 'in_progress')
             ->update(['status' => TicketFileStatusEnum::IN_PROGRESS]);

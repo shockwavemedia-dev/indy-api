@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Services\MailChimp\Factories;
 
 use App\Services\MailChimp\Interfaces\MailChimpClientFactoryInterface;
+use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use MailchimpMarketing\ApiClient;
-use Exception;
 
 final class MailChimpClientFactory implements MailChimpClientFactoryInterface
 {
@@ -31,7 +31,7 @@ final class MailChimpClientFactory implements MailChimpClientFactoryInterface
 
         $mailchimp->setConfig([
             'apiKey' => $key,
-            'server' => $server
+            'server' => $server,
         ]);
 
         $checkPing = $mailchimp->ping->get();

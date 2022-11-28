@@ -9,7 +9,6 @@ use App\Models\Tickets\ClientTicketFile;
 use App\Models\Tickets\Ticket;
 use App\Models\User;
 use App\Services\ClientTicketFiles\Exceptions\FileAlreadyExistException;
-use App\Services\ClientTicketFiles\Exceptions\ReplaceFileNotAllowedException;
 use Illuminate\Http\UploadedFile;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 

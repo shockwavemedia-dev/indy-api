@@ -2,20 +2,19 @@
 
 declare(strict_types=1);
 
- namespace Tests\Unit\Models;
+namespace Tests\Unit\Models;
 
- use App\Enum\AdminRoleEnum;
- use App\Models\Users\AdminUser;
- use PHPUnit\Framework\TestCase;
+use App\Enum\AdminRoleEnum;
+use App\Models\Users\AdminUser;
+use PHPUnit\Framework\TestCase;
 
- /**
-  * @covers \App\Models\Users\AdminUser
-  */
- final class AdminUserTest extends TestCase
- {
-     public function testGetterAndSetters(): void
+/**
+ * @covers \App\Models\Users\AdminUser
+ */
+final class AdminUserTest extends TestCase
+{
+    public function testGetterAndSetters(): void
     {
-
         $expected = [
             'id' => 1,
             'admin_role' => AdminRoleEnum::STAFF,
@@ -32,4 +31,4 @@ declare(strict_types=1);
 
         self::assertEquals($expected, $actual);
     }
- }
+}

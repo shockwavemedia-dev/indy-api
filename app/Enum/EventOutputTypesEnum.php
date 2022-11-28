@@ -17,5 +17,4 @@ final class EventOutputTypesEnum extends Enum
      * @var string
      */
     public const SOCIALS = 'Socials';
-
 }

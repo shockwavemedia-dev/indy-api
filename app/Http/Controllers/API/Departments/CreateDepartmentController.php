@@ -35,7 +35,7 @@ final class CreateDepartmentController extends AbstractAPIController
             ]));
 
             return new DepartmentResource($department);
-        }  catch (Throwable $throwable) {
+        } catch (Throwable $throwable) {
             return $this->respondError($throwable->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

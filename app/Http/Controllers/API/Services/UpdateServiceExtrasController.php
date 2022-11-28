@@ -9,7 +9,6 @@ use App\Http\Requests\API\Services\UpdateServiceExtrasRequest;
 use App\Repositories\Interfaces\ClientServiceRepositoryInterface;
 use App\Repositories\Interfaces\ServiceRepositoryInterface;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 final class UpdateServiceExtrasController extends AbstractAPIController
 {

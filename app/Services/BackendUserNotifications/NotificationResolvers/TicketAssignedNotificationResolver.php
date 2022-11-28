@@ -7,8 +7,6 @@ namespace App\Services\BackendUserNotifications\NotificationResolvers;
 use App\Enum\BackendUserNotificationTypeEnum;
 use App\Enum\NotificationStatusEnum;
 use App\Models\Tickets\TicketAssignee;
-use App\Models\Tickets\TicketNote;
-use App\Models\User;
 use App\Services\BackendUserNotifications\Interfaces\BackendUserNotificationResolverInterface;
 use App\Services\Notifications\Resources\CreateNotificationResource;
 
@@ -20,7 +18,8 @@ final class TicketAssignedNotificationResolver extends AbstractBackendUserNotifi
     private const TITLE_KEY = '%s has assigned a ticket # %s to you';
 
     /**
-     * @param TicketAssignee $morph
+     * @param  TicketAssignee  $morph
+     *
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     public function resolve(mixed $morph): void

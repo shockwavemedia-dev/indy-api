@@ -27,6 +27,7 @@ final class ClientServiceRepositoryStub extends AbstractStub implements ClientSe
 
         return $this->fetchResponse(__FUNCTION__);
     }
+
     /**
      * @throws \Throwable
      */
@@ -36,6 +37,7 @@ final class ClientServiceRepositoryStub extends AbstractStub implements ClientSe
 
         return $this->fetchResponse(__FUNCTION__);
     }
+
     /**
      * @throws \Throwable
      */
@@ -45,6 +47,7 @@ final class ClientServiceRepositoryStub extends AbstractStub implements ClientSe
 
         return $this->fetchResponse(__FUNCTION__);
     }
+
     /**
      * @throws \Throwable
      */

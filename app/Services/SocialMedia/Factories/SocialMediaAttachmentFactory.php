@@ -12,7 +12,8 @@ final class SocialMediaAttachmentFactory implements SocialMediaAttachmentFactory
 {
     private SocialMediaAttachmentRepositoryInterface $socialMediaAttachmentRepository;
 
-    public function __construct(SocialMediaAttachmentRepositoryInterface $socialMediaAttachmentRepository) {
+    public function __construct(SocialMediaAttachmentRepositoryInterface $socialMediaAttachmentRepository)
+    {
         $this->socialMediaAttachmentRepository = $socialMediaAttachmentRepository;
     }
 

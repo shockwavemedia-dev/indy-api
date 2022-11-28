@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 $localConfig = [
     'driver' => env('FILE_MANAGER_DRIVER', 'local'),
@@ -17,7 +17,7 @@ $s3Config = [
     'visibility' => 'public',
 ];
 
-$localOrS3 = function (array $merge = []) use ($localConfig, $s3Config): array {
+$localOrS3 = function (array $merge = []) use ($s3Config): array {
 //    if (
 //        env('APP_ENV') === 'local' &&
 //        filter_var(env('S3_ENABLED_IN_LOCAL'), FILTER_VALIDATE_BOOLEAN) === false
@@ -58,20 +58,20 @@ return [
     'disks' => [
         'gcs' => [
             'driver' => 'gcs',
-            'key_file_path' => base_path(). env('GOOGLE_CLOUD_KEY_FILE'), // optional: /path/to/service-account.jso
+            'key_file_path' => base_path().env('GOOGLE_CLOUD_KEY_FILE'), // optional: /path/to/service-account.jso
             'project_id' => env('GOOGLE_CLOUD_PROJECT_ID'), // optional: is included in key file
             'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 'crm-api'),
             'path_prefix' => env('GOOGLE_CLOUD_STORAGE_PATH_PREFIX', null), // optional: /default/path/to/apply/in/bucket
             'storage_api_uri' => env('GOOGLE_CLOUD_STORAGE_API_URI', 'https://storage.googleapis.com'), // see: Public URLs below
             'visibility' => 'public', // optional: public|private
-            'metadata' => ['cacheControl'=> 'public,max-age=86400'], // optional: default metadata
+            'metadata' => ['cacheControl' => 'public,max-age=86400'], // optional: default metadata
         ],
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
         'file_manager' => [
-          'driver' => env('FILE_MANAGER_DRIVER', 'local'),
+            'driver' => env('FILE_MANAGER_DRIVER', 'local'),
         ],
         'file-uploads' => $localOrS3([
             'version' => 'latest',

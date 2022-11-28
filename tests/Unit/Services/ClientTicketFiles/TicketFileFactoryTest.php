@@ -41,7 +41,7 @@ final class TicketFileFactoryTest extends TestCase
         $clientTicketFile = new ClientTicketFile();
 
         $repository = new ClientTicketFileRepositoryStub([
-            'create' => $clientTicketFile
+            'create' => $clientTicketFile,
         ]);
 
         $factory = new TicketFileFactory($repository);
@@ -69,9 +69,9 @@ final class TicketFileFactoryTest extends TestCase
                             'admin_user_id' => 1,
                             'approved_by' => null,
                             'approved_at' => null,
-                        ]
-                    ]
-                ]
+                        ],
+                    ],
+                ],
             ],
             $repository->getCalls(),
         );

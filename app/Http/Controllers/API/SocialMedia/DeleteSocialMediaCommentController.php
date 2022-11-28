@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API\SocialMedia;
 
 use App\Http\Controllers\API\AbstractAPIController;
-use App\Http\Requests\API\SocialMedia\CreateSocialMediaCommentRequest;
 use App\Http\Resources\API\SocialMedia\SocialMediaResource;
 use App\Models\SocialMediaComment;
 use App\Repositories\Interfaces\SocialMediaCommentRepositoryInterface;

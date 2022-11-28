@@ -6,8 +6,8 @@ namespace App\Services\MarketingPlanners\Resources;
 
 use App\Models\Client;
 use App\Models\User;
-use Spatie\DataTransferObject\DataTransferObject;
 use DateTime;
+use Spatie\DataTransferObject\DataTransferObject;
 
 final class MarketingPlannerCreateResource extends DataTransferObject
 {
@@ -66,6 +66,7 @@ final class MarketingPlannerCreateResource extends DataTransferObject
     {
         return $this->endDate;
     }
+
     public function isRecurring(): bool
     {
         return $this->isRecurring;

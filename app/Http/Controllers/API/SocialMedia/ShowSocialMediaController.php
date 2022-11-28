@@ -13,7 +13,8 @@ final class ShowSocialMediaController extends AbstractAPIController
 {
     private SocialMediaRepositoryInterface $socialMediaRepository;
 
-    public function __construct(SocialMediaRepositoryInterface $socialMediaRepository) {
+    public function __construct(SocialMediaRepositoryInterface $socialMediaRepository)
+    {
         $this->socialMediaRepository = $socialMediaRepository;
     }
 
@@ -21,7 +22,7 @@ final class ShowSocialMediaController extends AbstractAPIController
     {
         $socialMedia = $this->socialMediaRepository->find($id);
 
-        if($socialMedia === null) {
+        if ($socialMedia === null) {
             return $this->respondNotFound([
                 'message' => 'Social Media not found',
             ]);

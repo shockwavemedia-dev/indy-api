@@ -42,7 +42,7 @@ final class S3FileUploadManager extends AbstractFileManager implements FileUploa
             $path = null;
 
             if ($file->getFilePath() !== '' && $file->getFilePath() !== null) {
-                $path =  sprintf('%s/', $file->getFilePath());
+                $path = sprintf('%s/', $file->getFilePath());
             }
 
             $filepath = sprintf(

@@ -12,6 +12,7 @@ final class FileFeedbackResource extends Resource
 {
     /**
      * @return mixed[]
+     *
      * @throws InvalidResourceTypeException
      */
     protected function getResponse(): array
@@ -26,14 +27,14 @@ final class FileFeedbackResource extends Resource
         $fileFeedback = $this->resource;
 
         $fileAttachment = [];
-        foreach($fileFeedback->getFeedbackAttachments() as $attachment){
+        foreach ($fileFeedback->getFeedbackAttachments() as $attachment) {
             $fileAttachment[] = [
                 'file_id' => $attachment->getFile()->getId(),
                 'file_name' => $attachment->getFile()->getOriginalFilename(),
                 'file_type' => $attachment->getFile()->getFileType(),
                 'file_directory' => $attachment->getFile()->getFilePath(),
                 'url' => $attachment->getFile()->getUrl(),
-                'url_expiration' => $attachment->getFile()->getUrlExpiration()
+                'url_expiration' => $attachment->getFile()->getUrlExpiration(),
             ];
         }
 
@@ -49,7 +50,7 @@ final class FileFeedbackResource extends Resource
             ),
             'feedback_by_type' => $fileFeedback->getFeedbackByType(),
             'feedback_attachment' => $fileAttachment,
-            'created_at' => $fileFeedback->getCreatedAtAsString()
+            'created_at' => $fileFeedback->getCreatedAtAsString(),
         ];
 
         return $result;

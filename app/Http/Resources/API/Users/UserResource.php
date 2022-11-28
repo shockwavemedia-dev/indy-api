@@ -9,7 +9,6 @@ use App\Exceptions\InvalidResourceTypeException;
 use App\Http\Resources\Resource;
 use App\Models\User;
 use App\Models\Users\AdminUser;
-use App\Services\Identifiers\Interfaces\IdentifierEncoderInterface;
 
 final class UserResource extends Resource
 {
@@ -17,6 +16,7 @@ final class UserResource extends Resource
 
     /**
      * @return mixed[]
+     *
      * @throws InvalidResourceTypeException
      */
     protected function getResponse(): array

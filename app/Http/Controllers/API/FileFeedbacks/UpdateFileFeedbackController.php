@@ -9,8 +9,8 @@ use App\Http\Requests\API\FileFeedbacks\UpdateFileFeedbackRequest;
 use App\Http\Resources\API\FileFeedbacks\FileFeedbackResource;
 use App\Repositories\Interfaces\FileFeedbackRepositoryInterface;
 use App\Services\FileFeedbacks\Interfaces\DeleteFeedbackAttachmentsInterface;
-use App\Services\FileFeedbacks\Resources\UpdateFileFeedbackResource;
 use App\Services\FileFeedbacks\Interfaces\ProcessFeedbackAttachmentUploadInterface;
+use App\Services\FileFeedbacks\Resources\UpdateFileFeedbackResource;
 use App\Services\FileManager\Interfaces\BucketFactoryInterface;
 use App\Services\Files\Interfaces\FileFactoryInterface;
 use App\Services\Files\Resources\CreateFileResource;
@@ -74,7 +74,7 @@ final class UpdateFileFeedbackController extends AbstractAPIController
             /** @var \App\Models\Client $client */
             $client = $fileFeedback->getClientTicketFile()->getClient();
 
-            if(\count($newFiles) === 0) {
+            if (\count($newFiles) === 0) {
                 return new FileFeedbackResource($fileFeedback);
             }
 

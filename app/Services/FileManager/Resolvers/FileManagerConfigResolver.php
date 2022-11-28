@@ -4,7 +4,6 @@ namespace App\Services\FileManager\Resolvers;
 
 use App\Services\FileManager\Interfaces\FileManagerConfigResolverInterface;
 use Illuminate\Contracts\Config\Repository;
-use Illuminate\Support\Arr;
 
 final class FileManagerConfigResolver implements FileManagerConfigResolverInterface
 {

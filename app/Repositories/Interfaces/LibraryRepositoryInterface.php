@@ -7,7 +7,6 @@ namespace App\Repositories\Interfaces;
 use App\Models\Library;
 use App\Services\Libraries\Resources\CreateLibraryResource;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection;
 
 interface LibraryRepositoryInterface
 {

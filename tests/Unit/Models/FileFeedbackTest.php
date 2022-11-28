@@ -2,20 +2,19 @@
 
 declare(strict_types=1);
 
- namespace Tests\Unit\Models;
+namespace Tests\Unit\Models;
 
- use App\Enum\UserTypeEnum;
- use App\Models\Tickets\FileFeedback;
- use PHPUnit\Framework\TestCase;
+use App\Enum\UserTypeEnum;
+use App\Models\Tickets\FileFeedback;
+use PHPUnit\Framework\TestCase;
 
- /**
-  * @covers \App\Models\Tickets\FileFeedback
-  */
- final class FileFeedbackTest extends TestCase
- {
-     public function testGetterAndSetters(): void
+/**
+ * @covers \App\Models\Tickets\FileFeedback
+ */
+final class FileFeedbackTest extends TestCase
+{
+    public function testGetterAndSetters(): void
     {
-
         $expected = [
             'id' => 1,
             'client_file_id' => 1,
@@ -41,4 +40,4 @@ declare(strict_types=1);
 
         self::assertEquals($expected, $actual);
     }
- }
+}

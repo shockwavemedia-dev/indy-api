@@ -38,7 +38,8 @@ final class AdminUser extends AbstractModel implements UserTypeInterface
         return $this->departments;
     }
 
-    public function getRole(): string {
+    public function getRole(): string
+    {
         return $this->attributes('admin_role');
     }
 
@@ -53,7 +54,7 @@ final class AdminUser extends AbstractModel implements UserTypeInterface
     }
 
     /**
-     * @param int[] $ids
+     * @param  int[]  $ids
      */
     public function setDepartments(array $ids): self
     {

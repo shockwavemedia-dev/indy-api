@@ -18,8 +18,8 @@ final class RedisClientResolver implements RedisClientResolverInterface
         return new Client([
             'scheme' => 'tcp',
             'database' => Arr::get($config, 'database'),
-            'host'   => Arr::get($config, 'host'),
-            'port'   => Arr::get($config, 'port'),
+            'host' => Arr::get($config, 'host'),
+            'port' => Arr::get($config, 'port'),
         ]);
     }
 }

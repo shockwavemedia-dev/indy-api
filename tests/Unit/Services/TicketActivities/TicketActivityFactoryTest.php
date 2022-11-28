@@ -51,10 +51,10 @@ final class TicketActivityFactoryTest extends TestCase
                         'ticket_id' => 1,
                         'user_id' => 1,
                         'activity' => 'test',
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ],
-        $repository->getCalls());
+            $repository->getCalls());
     }
 }

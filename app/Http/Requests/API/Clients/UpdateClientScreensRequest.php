@@ -21,8 +21,8 @@ final class UpdateClientScreensRequest extends BaseRequest
     public function rules(): array
     {
         return [
-          'screen_ids' => 'array',
-          'screen_ids*' => 'int|exists:App\Models\Screen,id',
+            'screen_ids' => 'array',
+            'screen_ids*' => 'int|exists:App\Models\Screen,id',
         ];
     }
 }

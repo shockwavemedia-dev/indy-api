@@ -78,7 +78,6 @@ final class CreateUserResource extends DataTransferObject
         return $this->lastName;
     }
 
-
     public function getMiddleName(): ?string
     {
         return $this->middleName;
@@ -151,6 +150,7 @@ final class CreateUserResource extends DataTransferObject
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
         return $this;
     }
 

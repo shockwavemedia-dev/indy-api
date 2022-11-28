@@ -24,6 +24,7 @@ final class DepartmentResource extends Resource
 
     /**
      * @return mixed[]
+     *
      * @throws \App\Exceptions\InvalidResourceTypeException
      */
     protected function getResponse(): array
@@ -43,7 +44,7 @@ final class DepartmentResource extends Resource
             $services[] = new ServiceResource($service);
         }
 
-        $result =  [
+        $result = [
             'id' => $department->getId(),
             'name' => $department->getName(),
             'description' => $department->getDescription(),

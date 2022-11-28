@@ -25,15 +25,15 @@ final class TicketAssigneeLinkFactoryTest extends TestCase
     {
         $link = new TicketAssigneeLink();
         $repository = new TicketAssigneeLinkRepositoryStub([
-           'create' => $link,
+            'create' => $link,
         ]);
 
         $user = new User();
-        $user->setAttribute('id',1);
+        $user->setAttribute('id', 1);
         $assignee1 = new TicketAssignee();
-        $assignee1->setAttribute('id',1);
+        $assignee1->setAttribute('id', 1);
         $assignee2 = new TicketAssignee();
-        $assignee2->setAttribute('id',1);
+        $assignee2->setAttribute('id', 1);
 
         $expected = [
             [
@@ -44,8 +44,8 @@ final class TicketAssigneeLinkFactoryTest extends TestCase
                         'link_assignee_id' => 1,
                         'created_by' => 1,
                     ],
-                ]
-            ]
+                ],
+            ],
         ];
 
         $factory = new TicketAssigneeLinkFactory($repository);

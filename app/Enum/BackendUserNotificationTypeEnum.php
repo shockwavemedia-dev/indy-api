@@ -32,5 +32,4 @@ final class BackendUserNotificationTypeEnum extends Enum
      * @var string
      */
     public const SUPPORT_REQUEST = 'support_request';
-
 }

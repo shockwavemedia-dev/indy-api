@@ -7,7 +7,6 @@ namespace Tests\Unit\Services\EmailLogs;
 use App\Enum\EmailStatusEnum;
 use App\Models\Emails\EmailLog;
 use App\Models\Tickets\TicketAssignee;
-use App\Models\Tickets\TicketEmail;
 use App\Services\EmailLogs\EmailLogFactory;
 use App\Services\EmailLogs\resources\CreateEmailLogResource;
 use PHPUnit\Framework\TestCase;
@@ -30,7 +29,7 @@ final class EmailLogFactoryTest extends TestCase
         $emailLog = new EmailLog();
 
         $repository = new EmailLogRepositoryStub([
-            'create' => $emailLog
+            'create' => $emailLog,
         ]);
 
         $expectedCall = [

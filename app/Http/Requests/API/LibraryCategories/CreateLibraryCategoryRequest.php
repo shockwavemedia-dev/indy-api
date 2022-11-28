@@ -8,13 +8,12 @@ use App\Http\Requests\BaseRequest;
 
 final class CreateLibraryCategoryRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return $this->getString('name');
     }

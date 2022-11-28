@@ -21,7 +21,7 @@ final class FileManagerConfigResolverTest extends TestCase
         $repository = new ConfigStub([
             'get' => [
                 'project_id' => 'test',
-                'key_file_path' => 'test'
+                'key_file_path' => 'test',
             ],
         ]);
 

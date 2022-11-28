@@ -39,7 +39,7 @@ final class DeleteFeedbackAttachments implements DeleteFeedbackAttachmentsInterf
     {
         $attachments = $feedback->getFeedbackAttachments();
 
-        foreach($attachments as $attachment) {
+        foreach ($attachments as $attachment) {
             $file = $attachment->getFile();
 
             $this->fileFeedbackAttachmentRepository->deleteFeedbackAttachment($attachment);

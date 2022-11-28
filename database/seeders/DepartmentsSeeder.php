@@ -8,7 +8,6 @@ use App\Models\Department;
 use App\Services\Departments\Interfaces\CreateDepartmentServiceInterface;
 use App\Services\Departments\Resources\CreateDepartmentResources;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Throwable;
 
 final class DepartmentsSeeder extends Seeder
@@ -65,7 +64,7 @@ final class DepartmentsSeeder extends Seeder
                     'minDeliveryDays' => 7,
                 ]));
             }
-        }  catch (Throwable $throwable) {
+        } catch (Throwable $throwable) {
             $this->command->info($throwable->getMessage());
             $this->sentryHandler->reportError($throwable);
         }

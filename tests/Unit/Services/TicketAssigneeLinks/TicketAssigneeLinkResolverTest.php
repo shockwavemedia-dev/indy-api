@@ -29,11 +29,11 @@ final class TicketAssigneeLinkResolverTest extends TestCase
         $ticketAssigneeLink2 = new TicketAssigneeLink();
 
         $user = new User();
-        $user->setAttribute('id',1);
+        $user->setAttribute('id', 1);
         $assignee1 = new TicketAssignee();
-        $assignee1->setAttribute('id',1);
+        $assignee1->setAttribute('id', 1);
         $assignee2 = new TicketAssignee();
-        $assignee2->setAttribute('id',1);
+        $assignee2->setAttribute('id', 1);
 
         $expectedCall = [
             'factory' => [
@@ -44,7 +44,7 @@ final class TicketAssigneeLinkResolverTest extends TestCase
                             'linkAssignee' => $assignee2,
                             'mainAssignee' => $assignee1,
                             'linkIssue' => new TicketAssigneeLinkIssueEnum(TicketAssigneeLinkIssueEnum::BLOCKS),
-                        ])
+                        ]),
                     ],
                 ],
                 [
@@ -54,8 +54,8 @@ final class TicketAssigneeLinkResolverTest extends TestCase
                             'linkAssignee' => $assignee1,
                             'mainAssignee' => $assignee2,
                             'linkIssue' => new TicketAssigneeLinkIssueEnum(TicketAssigneeLinkIssueEnum::BLOCKED_BY),
-                        ])
-                   ],
+                        ]),
+                    ],
                 ],
             ],
             'repository' => [

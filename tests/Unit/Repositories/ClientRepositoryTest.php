@@ -48,7 +48,7 @@ final class ClientRepositoryTest extends TestCase
             'rating' => 5,
             'status' => new ClientStatusEnum(ClientStatusEnum::ACTIVE),
             'logo_file_id' => null,
-            'designated_designer_id' => null
+            'designated_designer_id' => null,
         ]);
 
         $repository = new ClientRepository();
@@ -65,7 +65,7 @@ final class ClientRepositoryTest extends TestCase
             'rating' => 5,
             'status' => new ClientStatusEnum(ClientStatusEnum::ACTIVE),
             'logo' => null,
-            'designated_designer' => null
+            'designated_designer' => null,
         ];
 
         $client = $repository->update($client, $updateResource);
@@ -82,7 +82,7 @@ final class ClientRepositoryTest extends TestCase
             'rating' => $client->getRating(),
             'status' => $client->getStatus(),
             'logo' => $client->getLogo(),
-            'designated_designer' => $client->getDesignatedDesigner()
+            'designated_designer' => $client->getDesignatedDesigner(),
         ];
 
         self::assertEquals($expected, $actual);
@@ -99,7 +99,7 @@ final class ClientRepositoryTest extends TestCase
         /** @var \App\Models\Client $actual */
         $actual = $results->find($client->getId());
 
-        $arrayActual =  \json_decode(\json_encode($actual), true);
+        $arrayActual = \json_decode(\json_encode($actual), true);
 
         $this->assertEquals($client->getId(), $actual->getId());
 
@@ -116,11 +116,9 @@ final class ClientRepositoryTest extends TestCase
                 'rating',
                 'status',
                 'logo_file_id',
-                'designated_designer_id'
+                'designated_designer_id',
             ],
             $arrayActual
         );
     }
-
-
 }

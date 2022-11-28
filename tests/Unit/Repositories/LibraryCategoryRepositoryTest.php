@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Repositories;
 
-use App\Models\Service;
 use App\Repositories\LibraryCategoryRepository;
-use App\Repositories\ServiceRepository;
 use App\Services\LibraryCategories\Resources\CreateLibraryCategoryResource;
 use Tests\TestCase;
 
@@ -34,7 +32,7 @@ final class LibraryCategoryRepositoryTest extends TestCase
     public function testUpdateSuccess(): void
     {
         $libraryCategory = $this->env->libraryCategory([
-            'name' => 'test 5'
+            'name' => 'test 5',
         ])->libraryCategory;
 
         $user = $this->env->user()->user;

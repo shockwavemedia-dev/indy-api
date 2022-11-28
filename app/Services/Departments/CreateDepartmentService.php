@@ -10,7 +10,8 @@ use App\Services\Departments\Interfaces\CreateDepartmentServiceInterface;
 use App\Services\Departments\Resources\CreateDepartmentResources;
 
 final class CreateDepartmentService implements CreateDepartmentServiceInterface
-{    private DepartmentRepositoryInterface $departmentRepository;
+{
+    private DepartmentRepositoryInterface $departmentRepository;
 
     public function __construct(DepartmentRepositoryInterface $departmentRepository)
     {

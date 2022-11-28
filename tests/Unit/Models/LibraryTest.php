@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Models;
 
-use App\Models\File;
 use App\Models\Library;
 use PHPUnit\Framework\TestCase;
 
@@ -34,5 +33,4 @@ final class LibraryTest extends TestCase
 
         $this->assertEquals($expected, $actual);
     }
-
 }

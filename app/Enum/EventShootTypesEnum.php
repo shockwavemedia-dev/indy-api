@@ -23,11 +23,8 @@ final class EventShootTypesEnum extends Enum
      */
     public const FOOD_PHOTOGRAPHY = 'Food Photography';
 
-
     /**
      * @var string
      */
     public const STAFF_HEADSHOTS = 'Staff/Headshots';
-
-
 }

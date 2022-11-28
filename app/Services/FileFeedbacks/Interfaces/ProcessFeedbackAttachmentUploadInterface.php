@@ -7,7 +7,6 @@ namespace App\Services\FileFeedbacks\Interfaces;
 use App\Models\File;
 use App\Models\Tickets\ClientTicketFile;
 use App\Models\Tickets\FileFeedback;
-use App\Models\Tickets\FileFeedbackAttachment;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
 

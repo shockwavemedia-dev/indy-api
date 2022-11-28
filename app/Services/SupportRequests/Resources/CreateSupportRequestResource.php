@@ -50,30 +50,35 @@ final class CreateSupportRequestResource extends DataTransferObject
     public function setClient(Client $client): self
     {
         $this->client = $client;
+
         return $this;
     }
 
     public function setDepartment(Department $department): self
     {
         $this->department = $department;
+
         return $this;
     }
 
     public function setCreatedBy(User $createdBy): self
     {
         $this->createdBy = $createdBy;
+
         return $this;
     }
 
     public function setMessage(string $message): self
     {
         $this->message = $message;
+
         return $this;
     }
 
     public function setStatusEnum(SupportRequestStatusEnum $statusEnum): self
     {
         $this->statusEnum = $statusEnum;
+
         return $this;
     }
 }

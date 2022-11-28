@@ -31,7 +31,7 @@ final class ClientServiceRepositoryTest extends TestCase
             'clientId' => $client->getId(),
             'serviceId' => $service->getId(),
             'extras' => $service->getextras(),
-            'createdById' => $user->getId()
+            'createdById' => $user->getId(),
         ]);
 
         $clientServices = $repository->createClientService($createResource);
@@ -40,14 +40,14 @@ final class ClientServiceRepositoryTest extends TestCase
             'client_id' => $clientServices->getClientId(),
             'service_id' => $clientServices->getServiceId(),
             'extras' => $clientServices->getExtras(),
-            'created_by' => $clientServices->getCreatedById()
+            'created_by' => $clientServices->getCreatedById(),
         ];
 
         $expected = [
             'client_id' => $client->getId(),
             'service_id' => $service->getId(),
             'extras' => $service->getextras(),
-            'created_by' => $user->getId()
+            'created_by' => $user->getId(),
         ];
 
         $this->assertEquals($actual, $expected);
@@ -91,7 +91,7 @@ final class ClientServiceRepositoryTest extends TestCase
                 'marketing_quota',
                 'extra_quota',
                 'total_used',
-                'is_enabled'
+                'is_enabled',
             ],
             $actual->toArray()
         );
@@ -106,22 +106,22 @@ final class ClientServiceRepositoryTest extends TestCase
 
         $updateResource = new UpdateClientServiceResource([
             'serviceId' => 1,
-            'extras' => ["Facebook Event", "Facebook Post", "Instagram", "Twitter"],
+            'extras' => ['Facebook Event', 'Facebook Post', 'Instagram', 'Twitter'],
             'updatedBy' => 1,
             'marketingQuota' => 0,
             'isEnabled' => true,
-            'extraQuota' => 0
+            'extraQuota' => 0,
         ]);
 
         $repository = new ClientServiceRepository();
 
         $expected = [
             'serviceId' => 1,
-            'extras' => ["Facebook Event", "Facebook Post", "Instagram", "Twitter"],
+            'extras' => ['Facebook Event', 'Facebook Post', 'Instagram', 'Twitter'],
             'updatedBy' => 1,
             'marketingQuota' => 0,
             'isEnabled' => true,
-            'extraQuota' => 0
+            'extraQuota' => 0,
         ];
 
         $clientService = $repository->updateClientService($clientService, $updateResource);
@@ -132,7 +132,7 @@ final class ClientServiceRepositoryTest extends TestCase
             'updatedBy' => $clientService->getUpdatedById(),
             'marketingQuota' => $clientService->getMarketingQuota(),
             'isEnabled' => $clientService->isEnabled(),
-            'extraQuota' => $clientService->getExtraQuota()
+            'extraQuota' => $clientService->getExtraQuota(),
         ];
 
         self::assertEquals($expected, $actual);

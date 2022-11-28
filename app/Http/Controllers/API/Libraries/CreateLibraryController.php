@@ -96,7 +96,7 @@ final class CreateLibraryController extends AbstractAPIController
                 'file' => $file,
                 'library' => $library,
                 'uploadedFile' => $request->getFile(),
-                'user' => $user
+                'user' => $user,
             ]));
 
             return new LibraryResource($library);

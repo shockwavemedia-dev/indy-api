@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Services\Users\Resolvers;
 
 use App\Enum\EmailStatusEnum;
-use App\Models\Emails\EmailLog;
 use App\Models\User;
 use App\Notifications\UserEmailVerification;
 use App\Services\EmailLogs\Interfaces\EmailLogFactoryInterface;
@@ -23,8 +22,8 @@ final class UserEmailVerificationResolver implements UserEmailVerificationResolv
         EmailLogFactoryInterface $emailLogFactory,
         TokenRepositoryInterface $tokenRepository
     ) {
-      $this->emailLogFactory = $emailLogFactory;
-      $this->tokenRepository = $tokenRepository;
+        $this->emailLogFactory = $emailLogFactory;
+        $this->tokenRepository = $tokenRepository;
     }
 
     /**

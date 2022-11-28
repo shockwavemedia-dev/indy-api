@@ -10,7 +10,7 @@ final class CreateDepartmentsTable extends Migration
 {
     public const TABLE = 'departments';
 
-    public function up() : void
+    public function up(): void
     {
         if (Schema::hasTable(self::TABLE) === true) {
             return;

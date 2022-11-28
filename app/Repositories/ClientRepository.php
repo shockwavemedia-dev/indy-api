@@ -6,7 +6,6 @@ namespace App\Repositories;
 
 use App\Enum\ClientStatusEnum;
 use App\Models\Client;
-use App\Models\ClientService;
 use App\Models\Users\ClientUser;
 use App\Repositories\Interfaces\ClientRepositoryInterface;
 use App\Services\Clients\Resources\UpdateClientResource;
@@ -56,7 +55,6 @@ final class ClientRepository extends BaseRepository implements ClientRepositoryI
         ?string $sortBy = null,
         ?string $sortOrder = null
     ): LengthAwarePaginator {
-
         if ($sortBy === null) {
             return $this->model
                 ->with(['clientScreens.screen', 'printer', 'logo', 'designatedDesigner'])
@@ -68,7 +66,6 @@ final class ClientRepository extends BaseRepository implements ClientRepositoryI
             ->with(['clientScreens.screen', 'printer', 'logo', 'designatedDesigner'])
             ->orderBy($sortBy, $sortOrder)
             ->paginate($size, ['*'], null, $pageNumber);
-
     }
 
     public function deleteClient(Client $client): void

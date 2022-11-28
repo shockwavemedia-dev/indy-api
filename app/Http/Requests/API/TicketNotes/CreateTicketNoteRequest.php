@@ -21,7 +21,7 @@ final class CreateTicketNoteRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'note' => 'required|json'
+            'note' => 'required|json',
         ];
     }
 }

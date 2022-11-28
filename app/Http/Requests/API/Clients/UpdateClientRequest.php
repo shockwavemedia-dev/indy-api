@@ -144,7 +144,7 @@ final class UpdateClientRequest extends BaseRequest
         return $this->getInt('rating');
     }
 
-    public function getStatus(): ? ClientStatusEnum
+    public function getStatus(): ?ClientStatusEnum
     {
         if ($this->getString('status') === null) {
             return null;
@@ -195,8 +195,8 @@ final class UpdateClientRequest extends BaseRequest
     {
         return [
             'printer_id' => 'int|nullable',
-            'name' => \sprintf('%s,%s','string|unique:App\Models\Client,name',$this->getId()),
-            'client_code' => \sprintf('%s,%s','string|unique:App\Models\Client,client_code',$this->getId()),
+            'name' => \sprintf('%s,%s', 'string|unique:App\Models\Client,name', $this->getId()),
+            'client_code' => \sprintf('%s,%s', 'string|unique:App\Models\Client,client_code', $this->getId()),
             'address' => 'string',
             'phone' => 'string',
             'timezone' => 'string',
@@ -206,7 +206,7 @@ final class UpdateClientRequest extends BaseRequest
             'rating' => 'integer',
             'status' => [
                 'string',
-                Rule::in(ClientStatusEnum::toArray())
+                Rule::in(ClientStatusEnum::toArray()),
             ],
             'logo' => 'nullable',
             'style_guide' => 'string|nullable',

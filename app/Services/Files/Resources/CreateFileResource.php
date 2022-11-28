@@ -76,7 +76,6 @@ final class CreateFileResource extends DataTransferObject
         return $this;
     }
 
-
     public function getUploadedFile(): UploadedFile
     {
         return $this->uploadedFile;

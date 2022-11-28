@@ -14,14 +14,14 @@ final class CreateAdminUserControllerTest extends AbstractAPITestCase
     public function testCreateUserAdminSuccess(): void
     {
         $user = $this->env->user([
-            'email' => 'test@testmail.com'
+            'email' => 'test@testmail.com',
         ])->user;
 
         $this->env->department();
 
         $this->setHeadersToken($user);
 
-        $data =  <<<JSON
+        $data = <<<'JSON'
         {
             "email" : "markf23sd4sss3s@dailypress.com",
             "password" : "letmein",
@@ -66,12 +66,12 @@ final class CreateAdminUserControllerTest extends AbstractAPITestCase
         $user = $this->env->user([
             'morphable_id' => $clientUser->getId(),
             'morphable_type' => \get_class($clientUser),
-            'email' => 'test@testmail.com'
+            'email' => 'test@testmail.com',
         ])->user;
 
         $this->setHeadersToken($user);
 
-        $data =  <<<JSON
+        $data = <<<'JSON'
         {
             "email" : "markf23sd4sss3s@dailypress.com",
             "password" : "letmein",
@@ -93,7 +93,7 @@ final class CreateAdminUserControllerTest extends AbstractAPITestCase
 
         self::assertEquals(
             [
-                'status' => "User has no permission for this module",
+                'status' => 'User has no permission for this module',
             ],
             $arrayResponse
         );

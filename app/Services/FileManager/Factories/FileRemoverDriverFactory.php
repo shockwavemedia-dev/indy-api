@@ -13,7 +13,8 @@ final class FileRemoverDriverFactory implements FileRemoverDriverFactoryInterfac
 {
     private iterable $drivers;
 
-    public function __construct(iterable $drivers) {
+    public function __construct(iterable $drivers)
+    {
         $this->drivers = CollectorHelper::filterByClassAsArray(
             $drivers,
             FileRemoverManagerResolverInterface::class

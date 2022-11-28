@@ -14,9 +14,11 @@ final class MarketingPlannerTaskFactory implements MarketingPlannerTaskFactoryIn
 {
     private MarketingPlannerTaskRepositoryInterface $marketingPlannerTaskRepository;
 
-    public function __construct(MarketingPlannerTaskRepositoryInterface $marketingPlannerTaskRepository) {
+    public function __construct(MarketingPlannerTaskRepositoryInterface $marketingPlannerTaskRepository)
+    {
         $this->marketingPlannerTaskRepository = $marketingPlannerTaskRepository;
     }
+
     public function make(MarketingPlannerTaskCreateResource $resource): MarketingPlannerTask
     {
         /** @var MarketingPlannerTask $marketingPlannerTask */

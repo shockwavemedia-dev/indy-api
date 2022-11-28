@@ -8,7 +8,7 @@ final class AlterDepartmentManagerColumnToEventsTable extends Migration
 {
     public function up(): void
     {
-        if (env('DB_CONNECTION') === 'sqlite'){
+        if (env('DB_CONNECTION') === 'sqlite') {
             return;
         }
 
@@ -25,7 +25,7 @@ final class AlterDepartmentManagerColumnToEventsTable extends Migration
 
     public function down(): void
     {
-        if (env('DB_CONNECTION') === 'sqlite'){
+        if (env('DB_CONNECTION') === 'sqlite') {
             return;
         }
 

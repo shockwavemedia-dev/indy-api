@@ -2,20 +2,19 @@
 
 declare(strict_types=1);
 
- namespace Tests\Unit\Models;
+namespace Tests\Unit\Models;
 
- use App\Models\Tickets\TicketEvent;
- use Carbon\Carbon;
- use PHPUnit\Framework\TestCase;
+use App\Models\Tickets\TicketEvent;
+use Carbon\Carbon;
+use PHPUnit\Framework\TestCase;
 
- /**
-  * @covers \App\Models\Tickets\TicketEvent
-  */
- final class TicketEventTest extends TestCase
- {
-     public function testGetterAndSetters(): void
+/**
+ * @covers \App\Models\Tickets\TicketEvent
+ */
+final class TicketEventTest extends TestCase
+{
+    public function testGetterAndSetters(): void
     {
-
         $expected = [
             'id' => 1,
             'ticket_id' => 1,
@@ -35,4 +34,4 @@ declare(strict_types=1);
 
         self::assertEquals($expected, $actual);
     }
- }
+}

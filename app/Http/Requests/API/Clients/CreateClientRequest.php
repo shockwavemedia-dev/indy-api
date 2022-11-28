@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\API\Clients;
 
-
 use App\Http\Requests\BaseRequest;
 use Carbon\Carbon;
 use DateTimeInterface;

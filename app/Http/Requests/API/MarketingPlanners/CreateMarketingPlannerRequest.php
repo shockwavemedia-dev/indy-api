@@ -10,7 +10,6 @@ use DateTime;
 
 final class CreateMarketingPlannerRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;

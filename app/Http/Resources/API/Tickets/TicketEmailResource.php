@@ -13,6 +13,7 @@ final class TicketEmailResource extends Resource
 {
     /**
      * @return mixed[]
+     *
      * @throws \App\Exceptions\InvalidResourceTypeException
      */
     protected function getResponse(): array
@@ -44,7 +45,7 @@ final class TicketEmailResource extends Resource
                 $user->getMiddleName(),
                 $user->getLastName(),
             ),
-            'created_at' => $email->getCreatedAtAsString()
+            'created_at' => $email->getCreatedAtAsString(),
         ];
     }
 }

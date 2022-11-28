@@ -12,7 +12,8 @@ final class RemoveMarketingPlannerTaskController extends AbstractAPIController
 {
     private MarketingPlannerTaskRepositoryInterface $marketingPlannerTaskRepository;
 
-    public function __construct(MarketingPlannerTaskRepositoryInterface $marketingPlannerTaskRepository) {
+    public function __construct(MarketingPlannerTaskRepositoryInterface $marketingPlannerTaskRepository)
+    {
         $this->marketingPlannerTaskRepository = $marketingPlannerTaskRepository;
     }
 

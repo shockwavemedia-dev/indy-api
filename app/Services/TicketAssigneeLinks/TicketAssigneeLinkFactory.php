@@ -13,7 +13,8 @@ final class TicketAssigneeLinkFactory implements TicketAssigneeLinkFactoryInterf
 {
     private TicketAssigneeLinkRepositoryInterface $ticketAssigneeLinkRepository;
 
-    public function __construct(TicketAssigneeLinkRepositoryInterface $ticketAssigneeLinkRepository) {
+    public function __construct(TicketAssigneeLinkRepositoryInterface $ticketAssigneeLinkRepository)
+    {
         $this->ticketAssigneeLinkRepository = $ticketAssigneeLinkRepository;
     }
 

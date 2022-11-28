@@ -44,7 +44,7 @@ final class TicketAssigneeRepositoryTest extends TestCase
 
         $result = $repository->findByTicket($ticket);
 
-        $assigneeIds = array_column($result->toArray()['data'], 'id' );
+        $assigneeIds = array_column($result->toArray()['data'], 'id');
 
         self::assertContains($ticketAssignee->getId(), $assigneeIds);
     }
@@ -109,12 +109,11 @@ final class TicketAssigneeRepositoryTest extends TestCase
         $ticketAssignee = $repository->update(
             $ticketAssignee,
             new UpdateTicketAssigneeResource([
-                'statusEnum' => new TicketAssigneeStatusEnum(TicketAssigneeStatusEnum::COMPLETED)
+                'statusEnum' => new TicketAssigneeStatusEnum(TicketAssigneeStatusEnum::COMPLETED),
             ]),
             $this->env->adminUser
         );
 
         self::assertEquals(TicketAssigneeStatusEnum::COMPLETED, $ticketAssignee->getStatus()->getValue());
     }
-
 }

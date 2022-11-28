@@ -8,7 +8,6 @@ use App\Services\Slack\Interfaces\SlackSendMessageInterface;
 use App\Services\Slack\Interfaces\SlackUserResolverInterface;
 use App\Services\Slack\Resolvers\SlackUserResolver;
 use App\Services\Slack\SlackSendMessage;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
 final class SlackServiceProvider extends ServiceProvider

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Repositories;
 
-use App\Models\Tickets\TicketActivity;
 use App\Repositories\TicketActivityRepository;
 use Tests\TestCase;
 
@@ -22,7 +21,7 @@ final class TicketActivityRepositoryTest extends TestCase
         $ticketActivity = $this->env->ticketActivity([
             'ticket_id' => $ticket->getId(),
             'user_id' => $user->getId(),
-        ])->ticketActivity ;
+        ])->ticketActivity;
 
         $repository = new TicketActivityRepository();
 
@@ -40,10 +39,9 @@ final class TicketActivityRepositoryTest extends TestCase
                 'ticket_id',
                 'activity',
                 'user_id',
-                'created_at'
+                'created_at',
             ],
             $actual->toArray()
         );
     }
-
 }

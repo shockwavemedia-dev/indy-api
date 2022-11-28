@@ -50,16 +50,15 @@ final class UpdateMarketingPlannerController extends AbstractAPIController
             return $this->respondForbidden();
         }
 
-
         $marketingPlanner = $this->marketingPlannerUpdateResolver->resolve(
             $marketingPlanner,
             new MarketingPlannerUpdateResource([
-                "eventName" => $request->getEventName(),
-                "description" => $request->getDescription(),
-                "startDate" => $request->getStartDate(),
-                "endDate" => $request->getEndDate(),
-                "isRecurring" => $request->isRecurring(),
-                "updatedBy" => $this->getUser(),
+                'eventName' => $request->getEventName(),
+                'description' => $request->getDescription(),
+                'startDate' => $request->getStartDate(),
+                'endDate' => $request->getEndDate(),
+                'isRecurring' => $request->isRecurring(),
+                'updatedBy' => $this->getUser(),
             ])
         );
 
@@ -67,7 +66,6 @@ final class UpdateMarketingPlannerController extends AbstractAPIController
             $marketingPlanner,
             $request->getTodoList()
         );
-
 
         return new MarketingPlannerResource($marketingPlanner);
     }

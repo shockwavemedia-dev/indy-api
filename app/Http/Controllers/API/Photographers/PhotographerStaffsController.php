@@ -14,7 +14,8 @@ final class PhotographerStaffsController extends AbstractAPIController
 {
     private DepartmentRepositoryInterface $departmentRepository;
 
-    public function __construct(DepartmentRepositoryInterface $departmentRepository) {
+    public function __construct(DepartmentRepositoryInterface $departmentRepository)
+    {
         $this->departmentRepository = $departmentRepository;
     }
 

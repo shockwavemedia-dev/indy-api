@@ -16,7 +16,7 @@ final class ListTicketFilesController extends AbstractAPIController
 {
     private TicketRepositoryInterface $ticketRepository;
 
-    public function __construct (
+    public function __construct(
         TicketRepositoryInterface $ticketRepository
     ) {
         $this->ticketRepository = $ticketRepository;
@@ -24,7 +24,7 @@ final class ListTicketFilesController extends AbstractAPIController
 
     public function __invoke(PaginationRequest $request, int $id): JsonResource
     {
-        try{
+        try {
             /** @var Ticket $ticket */
             $ticket = $this->ticketRepository->find($id);
 

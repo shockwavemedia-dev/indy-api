@@ -29,8 +29,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
         });
 
-        Schema::table('marketing_planner_tasks', function(Blueprint $table) {
-           $table->string('assignee')->nullable()->change();
+        Schema::table('marketing_planner_tasks', function (Blueprint $table) {
+            $table->string('assignee')->nullable()->change();
         });
     }
 

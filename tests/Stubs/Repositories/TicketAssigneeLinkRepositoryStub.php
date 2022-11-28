@@ -4,7 +4,6 @@ namespace Tests\Stubs\Repositories;
 
 use App\Enum\TicketAssigneeLinkIssueEnum;
 use App\Models\Tickets\TicketAssignee;
-use App\Models\Tickets\TicketAssigneeLink;
 use App\Repositories\Interfaces\TicketAssigneeLinkRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;

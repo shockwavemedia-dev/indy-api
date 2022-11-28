@@ -82,6 +82,7 @@ final class CreateLibraryResource extends DataTransferObject
     public function setFile(?File $file): self
     {
         $this->file = $file;
+
         return $this;
     }
 

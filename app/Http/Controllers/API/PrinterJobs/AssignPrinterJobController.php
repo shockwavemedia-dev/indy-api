@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\PrinterJobs;
 
-use App\Enum\UserTypeEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Resources\API\PrinterJobs\PrinterJobResource;
 use App\Repositories\Interfaces\PrinterJobRepositoryInterface;
@@ -51,5 +50,4 @@ final class AssignPrinterJobController extends AbstractAPIController
 
         return new PrinterJobResource($printerJob);
     }
-
 }

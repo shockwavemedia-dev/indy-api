@@ -8,8 +8,8 @@ use App\Enum\ClientNotificationTypeEnum;
 use App\Exceptions\Interfaces\ErrorLogInterface;
 use App\Repositories\Interfaces\FileRepositoryInterface;
 use App\Services\ClientUserNotifications\Interfaces\ClientNotificationResolverFactoryInterface;
-use App\Services\FileManager\Interfaces\FileUploadDriverFactoryInterface;
 use App\Services\FileManager\Interfaces\FileManagerConfigResolverInterface;
+use App\Services\FileManager\Interfaces\FileUploadDriverFactoryInterface;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -33,10 +33,10 @@ final class UploadFileJob implements ShouldQueue
 
     public function handle(
         ClientNotificationResolverFactoryInterface $clientNotificationResolverFactory,
-        FileUploadDriverFactoryInterface           $fileDriverFactory,
-        FileManagerConfigResolverInterface         $fileManagerConfigResolver,
-        FileRepositoryInterface                    $fileRepository,
-        ErrorLogInterface                          $sentryHandler
+        FileUploadDriverFactoryInterface $fileDriverFactory,
+        FileManagerConfigResolverInterface $fileManagerConfigResolver,
+        FileRepositoryInterface $fileRepository,
+        ErrorLogInterface $sentryHandler
     ): void {
         try {
             $file = $fileRepository->find($this->fileId);

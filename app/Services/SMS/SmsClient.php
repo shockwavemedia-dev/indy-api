@@ -12,8 +12,8 @@ use App\Services\SMS\Resources\SmsConfigResource;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
-use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 use function sprintf;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 final class SmsClient implements SmsClientInterface
 {
@@ -24,8 +24,8 @@ final class SmsClient implements SmsClientInterface
     private ClientInterface $client;
 
     public function __construct(
-        ClientInterface            $client,
-        ErrorLogInterface          $sentryHandler,
+        ClientInterface $client,
+        ErrorLogInterface $sentryHandler,
         SmsConfigResolverInterface $configResolver,
     ) {
         $this->config = $configResolver->resolve();

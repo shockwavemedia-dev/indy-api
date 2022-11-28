@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-
 namespace App\Services\Graphics\Resources;
 
 use App\Models\User;
-use Carbon\Carbon;
 use Spatie\DataTransferObject\DataTransferObject;
 
 final class CreateGraphicRequestResource extends DataTransferObject
@@ -62,54 +60,57 @@ final class CreateGraphicRequestResource extends DataTransferObject
     }
 
     /**
-     * @param User $requestedBy
+     * @param  User  $requestedBy
      * @return CreateGraphicRequestResource
      */
     public function setRequestedBy(User $requestedBy): self
     {
         $this->requestedBy = $requestedBy;
+
         return $this;
     }
 
     /**
-     * @param array $attachments
+     * @param  array  $attachments
      * @return CreateGraphicRequestResource
      */
     public function setAttachments(array $attachments): self
     {
         $this->attachments = $attachments;
+
         return $this;
     }
 
     /**
-     * @param string|null $description
+     * @param  string|null  $description
      * @return CreateGraphicRequestResource
      */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
         return $this;
     }
 
     /**
-     * @param array $service
+     * @param  array  $service
      * @return CreateGraphicRequestResource
      */
     public function setService(array $service): self
     {
         $this->service = $service;
+
         return $this;
     }
 
     /**
-     * @param string $subject
+     * @param  string  $subject
      * @return CreateGraphicRequestResource
      */
     public function setSubject(string $subject): self
     {
         $this->subject = $subject;
+
         return $this;
     }
-
-
 }

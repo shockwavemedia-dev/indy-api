@@ -6,5 +6,4 @@ namespace App\Models\Tickets\Interfaces;
 
 interface TicketInterface
 {
-
 }

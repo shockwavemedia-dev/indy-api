@@ -49,7 +49,6 @@ final class ClientServicesValidatorTest extends TestCase
 
         $validator = new ClientServicesValidator($serviceRepository, [$rule]);
 
-
         $client = new Client();
 
         $clientService1 = new ClientService();
@@ -70,7 +69,7 @@ final class ClientServicesValidatorTest extends TestCase
 
         $client->setRelation('clientServices', $clientServicesCollection);
 
-        $result = $validator->validate($client,$services);
+        $result = $validator->validate($client, $services);
 
         self::assertTrue($result);
     }
@@ -99,7 +98,6 @@ final class ClientServicesValidatorTest extends TestCase
         $rule = new ClientServiceValidationRuleStub();
 
         $validator = new ClientServicesValidator($serviceRepository, [$rule]);
-
 
         $client = new Client();
 

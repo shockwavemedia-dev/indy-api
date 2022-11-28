@@ -6,7 +6,6 @@ namespace App\Jobs\SocialMedia;
 
 use App\Exceptions\Interfaces\ErrorLogInterface;
 use App\Models\SocialMedia;
-use App\Models\User;
 use App\Repositories\Interfaces\SocialMediaRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Services\Slack\Exceptions\SlackSendMessageException;
@@ -18,7 +17,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Config;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 final class MentionedSlackNotificationJob implements ShouldQueue

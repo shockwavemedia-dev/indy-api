@@ -62,7 +62,8 @@ abstract class AbstractAPITestCase extends TestCase
         return $response;
     }
 
-    public function toArrayResponse(TestResponse $response): array {
+    public function toArrayResponse(TestResponse $response): array
+    {
         $response = \json_decode($response->getContent(), true);
 
         return $response['data'] ?? $response;
@@ -98,8 +99,8 @@ abstract class AbstractAPITestCase extends TestCase
             false
         );
 
-        putenv(\sprintf('CLIENT_SECRET=%s',$password->secret));
-        putenv(\sprintf('CLIENT_ID=%s',$password->id));
+        putenv(\sprintf('CLIENT_SECRET=%s', $password->secret));
+        putenv(\sprintf('CLIENT_ID=%s', $password->id));
 
         DB::table('oauth_personal_access_clients')->insert([
             'client_id' => $client->id,

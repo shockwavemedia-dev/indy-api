@@ -13,6 +13,7 @@ final class TicketNoteResource extends Resource
 {
     /**
      * @return mixed[]
+     *
      * @throws InvalidResourceTypeException
      */
     protected function getResponse(): array

@@ -2,11 +2,7 @@
 
 namespace App\Http\Requests\API\Users;
 
-use App\Enum\AdminRoleEnum;
-use App\Enum\ClientRoleEnum;
-use App\Enum\UserTypeEnum;
 use App\Http\Requests\BaseRequest;
-use Illuminate\Validation\Rule;
 
 abstract class AbstractCreateUserRequest extends BaseRequest
 {

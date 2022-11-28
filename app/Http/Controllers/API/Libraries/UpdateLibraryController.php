@@ -91,7 +91,6 @@ final class UpdateLibraryController extends AbstractAPIController
             }
         }
 
-
         try {
             $libraryCategory = $this->libraryCategoryRepository->find($request->getLibraryCategoryId());
 
@@ -110,12 +109,12 @@ final class UpdateLibraryController extends AbstractAPIController
                     'file' => $file,
                     'library' => $library,
                     'uploadedFile' => $request->getFile(),
-                    'user' => $user
+                    'user' => $user,
                 ]));
             }
 
             return new LibraryResource($library);
-        }  catch (\Throwable $throwable) {
+        } catch (\Throwable $throwable) {
             return $this->respondInternalError([
                 'message' => $throwable->getMessage(),
             ]);

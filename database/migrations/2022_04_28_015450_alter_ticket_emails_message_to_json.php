@@ -24,14 +24,13 @@ final class AlterTicketEmailsMessageToJson extends Migration
             DB::update("UPDATE ticket_emails set message = '{}'");
         }
 
-
         if (
             env('DB_CONNECTION') !== 'sqlite' &&
             env('DB_CONNECTION') !== 'mysql' &&
             env('DB_CONNECTION') !== null
         ) {
             DB::statement('ALTER TABLE ticket_emails ALTER COLUMN message TYPE json USING message::json;');
-        }  else {
+        } else {
             Schema::table(self::TABLE, function (Blueprint $table) {
                 $table->json('message')->nullable()->change();
             });

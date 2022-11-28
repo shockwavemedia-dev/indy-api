@@ -26,7 +26,7 @@ final class NewUserSetPasswordController extends AbstractAPIController
         $this->userRepository = $userRepository;
     }
 
-    public function __invoke(NewUserSetPasswordRequest $request):  JsonResource
+    public function __invoke(NewUserSetPasswordRequest $request): JsonResource
     {
         $user = $this->userRepository->findByEmail($request->getEmail());
 
@@ -54,7 +54,7 @@ final class NewUserSetPasswordController extends AbstractAPIController
             $this->tokenRepository->delete($user);
 
             return $this->respondOk([
-                'message' => 'Password set.'
+                'message' => 'Password set.',
             ]);
         } catch (Throwable $throwable) {
             return $this->respondError($throwable->getMessage());

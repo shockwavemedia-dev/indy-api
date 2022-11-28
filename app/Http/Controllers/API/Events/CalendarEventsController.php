@@ -6,16 +6,9 @@ namespace App\Http\Controllers\API\Events;
 
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Events\CalendarEventsRequest;
-use App\Models\Department;
-use App\Models\Event;
-use App\Models\Users\AdminUser;
 use App\Repositories\Interfaces\ClientRepositoryInterface;
 use App\Services\EventsService\Interfaces\CalendarStaffResolverInterface;
-use Carbon\Carbon;
-use Carbon\CarbonPeriod;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 final class CalendarEventsController extends AbstractAPIController
 {
@@ -47,5 +40,4 @@ final class CalendarEventsController extends AbstractAPIController
             )
         );
     }
-
 }

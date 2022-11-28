@@ -9,6 +9,7 @@ use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Tickets\TicketAssignStaffsRequest;
 use App\Models\Tickets\Ticket;
 use App\Models\User;
+use App\Models\Users\AdminUser;
 use App\Repositories\Interfaces\AdminUserRepositoryInterface;
 use App\Repositories\Interfaces\TicketAssigneeRepositoryInterface;
 use App\Repositories\Interfaces\TicketRepositoryInterface;
@@ -16,7 +17,6 @@ use App\Services\BackendUserNotifications\Interfaces\BackendUserNotificationReso
 use App\Services\Tickets\Interfaces\AssignTicketServiceInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Throwable;
-use App\Models\Users\AdminUser;
 
 final class TicketAssignStaffsController extends AbstractAPIController
 {
@@ -29,7 +29,6 @@ final class TicketAssignStaffsController extends AbstractAPIController
     private TicketRepositoryInterface $ticketRepository;
 
     private TicketAssigneeRepositoryInterface $ticketAssigneeRepository;
-
 
     public function __construct(
         AssignTicketServiceInterface $assignTicketService,
@@ -59,9 +58,9 @@ final class TicketAssignStaffsController extends AbstractAPIController
         /** @var AdminUser $adminUser */
         $adminUser = $this->adminUserRepository->find($request->getAdminUserId());
 
-        $checkTicketAssignee = $this->ticketAssigneeRepository->findByAdminUserAndTicket($ticket,$adminUser);
+        $checkTicketAssignee = $this->ticketAssigneeRepository->findByAdminUserAndTicket($ticket, $adminUser);
 
-        if($checkTicketAssignee !== null){
+        if ($checkTicketAssignee !== null) {
             return $this->respondNoContent();
         }
 

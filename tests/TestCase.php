@@ -44,8 +44,8 @@ abstract class TestCase extends BaseTestCase
      * Replaces dynamic properties in arrays with a known value
      * to be able to compare both actual and expected.
      *
-     * @param mixed[] $expected
-     * @param mixed[] $actual
+     * @param  mixed[]  $expected
+     * @param  mixed[]  $actual
      */
     protected function assertEqualsFuzzy(array $expected, array $actual, ?string $message = null): void
     {
@@ -56,10 +56,9 @@ abstract class TestCase extends BaseTestCase
     /**
      * Fuzzify actual array.
      *
-     * @param mixed[] $expected
-     * @param mixed[] $actual
-     * @param mixed[]|null $keys
-     *
+     * @param  mixed[]  $expected
+     * @param  mixed[]  $actual
+     * @param  mixed[]|null  $keys
      * @return mixed[] New actual array.
      */
     private function fuzzifyArray(array $actual, array $expected, string $fuzzyValue, ?array $keys = null): array
@@ -73,6 +72,7 @@ abstract class TestCase extends BaseTestCase
                 // Recursively call function to apply fuzziness to arrays on any depth
 
                 $value = $this->fuzzifyArray($value, $expected, $fuzzyValue, $iterationKeys);
+
                 continue;
             }
 

@@ -9,7 +9,6 @@ use App\Models\Tickets\TicketEmail;
 use App\Models\User;
 use App\Repositories\Interfaces\TicketEmailRepositoryInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection;
 use Tests\Stubs\AbstractStub;
 
 /**
