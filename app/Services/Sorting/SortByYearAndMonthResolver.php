@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services\Sorting;
 
+use App\Enum\TicketFileStatusEnum;
 use App\Models\Client;
 use App\Models\File;
 use App\Services\Sorting\Interfaces\SortByYearAndMonthResolverInterface;
@@ -20,11 +21,13 @@ final class SortByYearAndMonthResolver implements SortByYearAndMonthResolverInte
             'tickets'
         );
 
-
         /** @var File $record */
         foreach ($data as $record) {
-
             if ($record->getFilePath() !== $filepath) {
+                continue;
+            }
+
+            if ($record->getClientTicketFile()->getStatus()->getValue() !== TicketFileStatusEnum::APPROVED) {
                 continue;
             }
 

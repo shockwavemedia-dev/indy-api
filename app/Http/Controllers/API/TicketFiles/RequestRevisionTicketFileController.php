@@ -7,7 +7,6 @@ namespace App\Http\Controllers\API\TicketFiles;
 use App\Enum\BackendUserNotificationTypeEnum;
 use App\Enum\ClientNotificationTypeEnum;
 use App\Enum\TicketFileStatusEnum;
-use App\Enum\TicketStatusEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Resources\API\TicketFiles\TicketFileResource;
 use App\Models\Tickets\ClientTicketFile;
