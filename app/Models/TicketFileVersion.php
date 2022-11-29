@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Tickets\ClientTicketFile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class TicketFileVersion extends Model
+class TicketFileVersion extends AbstractModel
 {
     use HasFactory;
 
@@ -17,4 +19,24 @@ class TicketFileVersion extends Model
     ];
 
     protected $table = 'ticket_file_versions';
+
+    public function getFile(): File
+    {
+        return $this->file;
+    }
+
+    public function getTicketFile(): ClientTicketFile
+    {
+        return $this->ticketFile;
+    }
+
+    public function file(): BelongsTo
+    {
+        return $this->belongsTo(File::class, 'file_id');
+    }
+
+    public function ticketFile(): BelongsTo
+    {
+        return $this->belongsTo(ClientTicketFile::class, 'ticket_file_id');
+    }
 }

@@ -7,7 +7,6 @@ namespace App\Http\Resources\API\TicketNotes;
 use App\Exceptions\InvalidResourceTypeException;
 use App\Http\Resources\Resource;
 use App\Models\Tickets\TicketNote;
-use function sprintf;
 
 final class TicketNoteResource extends Resource
 {
@@ -31,12 +30,9 @@ final class TicketNoteResource extends Resource
             'id' => $ticketNote->getId(),
             'ticket_id' => $ticketNote->getTicketId(),
             'note' => $ticketNote->getNote(),
-            'created_by' => sprintf(
-                '%s %s %s',
-                $ticketNote->getCreatedBy()->getFirstName(),
-                $ticketNote->getCreatedBy()->getMiddleName(),
-                $ticketNote->getCreatedBy()->getLastName(),
-            ),
+            'file' => $ticketNote->getTicketFileVersion()?->getFile(),
+            'ticket_file' => $ticketNote->getTicketFileVersion()?->getTicketFile(),
+            'created_by' => $ticketNote->getCreatedBy()->getFullName(),
             'created_at' => $ticketNote->getCreatedAtAsString(),
         ];
     }

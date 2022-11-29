@@ -11,6 +11,15 @@ final class TicketFileStatusEnum extends Enum
     /**
      * @var string
      */
+    public const DECLINED = 'declined';
+
+    /**
+     * @var string
+     */
+    public const REQUEST_REVISION = 'request revision';
+    /**
+     * @var string
+     */
     public const APPROVED = 'approved';
 
     /**

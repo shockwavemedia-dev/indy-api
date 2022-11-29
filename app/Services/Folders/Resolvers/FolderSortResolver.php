@@ -29,10 +29,10 @@ final class FolderSortResolver implements FolderSortResolverInterface
     {
         $parentFolders = $this->folderRepository->findParentFoldersByClient($client);
 
-        return $this->sortParentFolders($parentFolders);
+        return $this->sortParentFolders($client, $parentFolders);
     }
 
-    private function sortParentFolders(Collection $folders): array
+    private function sortParentFolders(Client $client, Collection $folders): array
     {
         $result = [];
 
@@ -41,15 +41,15 @@ final class FolderSortResolver implements FolderSortResolverInterface
             if ($folder->getParentFolder() === null) {
                 $result[$folder->getName()]['id'] = $folder->getId();
                 $result[$folder->getName()]['name'] = $folder->getName();
-                $result[$folder->getName()]['files'] = $this->traverseFiles($folder->getFiles());
-                $result[$folder->getName()]['folders'][] = $this->sortSubFolders($folder->getChildFolders());
+                $result[$folder->getName()]['files'] = $this->traverseFiles($client, $folder->getFiles());
+                $result[$folder->getName()]['folders'][] = $this->sortSubFolders($client, $folder->getChildFolders());
             }
         }
 
         return $result;
     }
 
-    private function sortSubFolders(Collection $childFolders): array
+    private function sortSubFolders(Client $client, Collection $childFolders): array
     {
         $subFolders = [];
 
@@ -57,18 +57,18 @@ final class FolderSortResolver implements FolderSortResolverInterface
         foreach ($childFolders as $childFolder) {
             $subFolders[$childFolder->getName()]['id'] = $childFolder->getId();
             $subFolders[$childFolder->getName()]['name'] = $childFolder->getName();
-            $subFolders[$childFolder->getName()]['files'] = $this->traverseFiles($childFolder->getFiles());
+            $subFolders[$childFolder->getName()]['files'] = $this->traverseFiles($client, $childFolder->getFiles());
 
             if ($childFolder->getChildFolders()->isEmpty() !== true) {
-                $subFolders[$childFolder->getName()]['folders'][] = $this->sortSubFolders($childFolder->getChildFolders());
+                $subFolders[$childFolder->getName()]['folders'][] = $this->sortSubFolders($client, $childFolder->getChildFolders());
             }
         }
 
         return $subFolders;
     }
 
-    private function traverseFiles(Collection $files): array
+    private function traverseFiles(Client $client, Collection $files): array
     {
-        return $this->sortByYearAndMonthResolver->resolve($files, false);
+        return $this->sortByYearAndMonthResolver->resolve($client, $files);
     }
 }

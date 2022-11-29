@@ -127,6 +127,7 @@ use App\Http\Controllers\API\TicketFiles\DeleteTicketFileController;
 use App\Http\Controllers\API\TicketFiles\GetTicketFileController;
 use App\Http\Controllers\API\TicketFiles\ListTicketFilesController;
 use App\Http\Controllers\API\TicketFiles\ReplaceTicketFileController;
+use App\Http\Controllers\API\TicketFiles\RequestRevisionTicketFileController;
 use App\Http\Controllers\API\TicketFiles\UploadTicketFileController;
 use App\Http\Controllers\API\TicketNotes\CreateTicketNoteController;
 use App\Http\Controllers\API\TicketNotes\DeleteTicketNoteController;
@@ -783,6 +784,11 @@ Route::group([
         Route::post('/ticket-files/{id}/replace-file', [
             'as' => 'replace-file',
             'uses' => ReplaceTicketFileController::class,
+        ])->middleware('checkPermission:ticket-files,edit');
+
+        Route::post('/ticket-files/{id}/request-revision', [
+            'as' => 'request-revision',
+            'uses' => RequestRevisionTicketFileController::class,
         ])->middleware('checkPermission:ticket-files,edit');
     });
 

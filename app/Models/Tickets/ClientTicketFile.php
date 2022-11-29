@@ -9,12 +9,15 @@ use App\Models\AbstractModel;
 use App\Models\Client;
 use App\Models\Emails\Interfaces\EmailInterface;
 use App\Models\File;
+use App\Models\TicketFileVersion;
 use App\Models\User;
 use App\Models\Users\AdminUser;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 
 final class ClientTicketFile extends AbstractModel implements EmailInterface
 {
@@ -133,6 +136,32 @@ final class ClientTicketFile extends AbstractModel implements EmailInterface
         $this->setAttribute('status', $status->getValue());
 
         return $this;
+    }
+
+    public function getApproveFile(): ?File
+    {
+        /** @var TicketFileVersion $fileVersion */
+        $fileVersion = $this->fileVersions()->where('status', TicketFileStatusEnum::APPROVED)->first();
+
+        return $fileVersion?->getFile();
+    }
+
+    public function getLatestFileVersion(): ?TicketFileVersion
+    {
+        /** @var TicketFileVersion $fileVersion */
+        $fileVersion = $this->fileVersions()->latest()->first();
+
+        return $fileVersion;
+    }
+
+    public function getFileVersions(): Collection
+    {
+        return $this->fileVersions;
+    }
+
+    public function fileVersions(): HasMany
+    {
+        return $this->hasMany(TicketFileVersion::class, 'ticket_file_id');
     }
 
     public function adminUser(): BelongsTo
