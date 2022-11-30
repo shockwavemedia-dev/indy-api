@@ -23,11 +23,11 @@ final class SortByYearAndMonthResolver implements SortByYearAndMonthResolverInte
 
         /** @var File $record */
         foreach ($data as $record) {
-            if ($record->getFilePath() !== $filepath) {
+            if ($record->getFilePath() !== '' && $record->getFilePath() !== $filepath) {
                 continue;
             }
 
-            if ($record->getClientTicketFile()->getStatus()->getValue() !== TicketFileStatusEnum::APPROVED) {
+            if ($record->getClientTicketFile() && $record->getClientTicketFile()?->getStatus()->getValue() !== TicketFileStatusEnum::APPROVED) {
                 continue;
             }
 
