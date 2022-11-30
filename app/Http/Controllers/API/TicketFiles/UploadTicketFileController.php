@@ -6,7 +6,7 @@ namespace App\Http\Controllers\API\TicketFiles;
 
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\TicketFiles\UploadFileRequest;
-use App\Http\Resources\API\TicketFiles\TicketFileResource;
+use App\Http\Resources\API\TicketFiles\TicketFilesResource;
 use App\Models\File;
 use App\Repositories\Interfaces\FolderRepositoryInterface;
 use App\Repositories\TicketRepository;
@@ -63,7 +63,7 @@ final class UploadTicketFileController extends AbstractAPIController
             $folder = $this->folderRepository->find($request->getFolderId() ?? 0);
 
             $files = $request->getFile();
-
+            $ticketFile = [];
             foreach ($files as $file) {
                 $fileModel = $this->fileFactory->make(new CreateFileResource([
                     'bucket' => $bucket->name(),
@@ -78,7 +78,7 @@ final class UploadTicketFileController extends AbstractAPIController
                     ),
                 ]));
 
-                $ticketFile = $this->processTicketFileUpload->process(
+                $ticketFile[] = $this->processTicketFileUpload->process(
                     $fileModel,
                     $user,
                     $ticket,
@@ -86,7 +86,7 @@ final class UploadTicketFileController extends AbstractAPIController
                 );
             }
 
-            return new TicketFileResource($ticketFile);
+            return new TicketFilesResource($ticketFile);
         } catch (Throwable $throwable) {
             return $this->respondError($throwable->getMessage());
         }

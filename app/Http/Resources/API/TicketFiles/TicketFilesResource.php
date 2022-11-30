@@ -20,7 +20,9 @@ final class TicketFilesResource extends Resource
             self::$wrap = null;
         }
 
-        $files['page'] = $this->paginationResource($this->resource);
+        if(!empty($files['page'])){
+            $files['page'] = $this->paginationResource($this->resource);
+        }
 
         return $files;
     }
