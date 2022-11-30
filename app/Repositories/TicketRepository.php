@@ -78,6 +78,7 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
 
     public function deleteTicketSupport(Ticket $ticket, User $user): void
     {
+        $ticket->assignees()->delete();
         $ticket->delete();
         $ticket->updatedBy()->associate($user);
         $ticket->setStatus(new TicketStatusEnum(TicketStatusEnum::DELETED));
