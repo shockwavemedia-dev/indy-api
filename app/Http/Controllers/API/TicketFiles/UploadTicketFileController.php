@@ -62,25 +62,29 @@ final class UploadTicketFileController extends AbstractAPIController
 
             $folder = $this->folderRepository->find($request->getFolderId() ?? 0);
 
-            $file = $this->fileFactory->make(new CreateFileResource([
-                'bucket' => $bucket->name(),
-                'folder' => $folder,
-                'uploadedFile' => $request->getFile(),
-                'disk' => $bucket->disk(),
-                'uploadedBy' => $user,
-                'fileExtension' => $request->getFile()->getClientOriginalExtension(),
-                'filePath' => \sprintf('%s/%s',
-                    $client->getClientCode(),
-                    'tickets'
-                ),
-            ]));
+            $files = $request->getFile();
 
-            $ticketFile = $this->processTicketFileUpload->process(
-                $file,
-                $user,
-                $ticket,
-                $request->getFile(),
-            );
+            foreach ($files as $file) {
+                $fileModel = $this->fileFactory->make(new CreateFileResource([
+                    'bucket' => $bucket->name(),
+                    'folder' => $folder,
+                    'uploadedFile' => $file,
+                    'disk' => $bucket->disk(),
+                    'uploadedBy' => $user,
+                    'fileExtension' => $file->getClientOriginalExtension(),
+                    'filePath' => \sprintf('%s/%s',
+                        $client->getClientCode(),
+                        'tickets'
+                    ),
+                ]));
+
+                $ticketFile = $this->processTicketFileUpload->process(
+                    $fileModel,
+                    $user,
+                    $ticket,
+                    $file,
+                );
+            }
 
             return new TicketFileResource($ticketFile);
         } catch (Throwable $throwable) {
