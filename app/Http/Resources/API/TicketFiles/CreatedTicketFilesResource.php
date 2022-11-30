@@ -15,11 +15,7 @@ final class CreatedTicketFilesResource extends Resource
         foreach ($this->resource as $file) {
             $files['data'][] = new TicketFileResource($file);
         }
-
-        if (count($this->resource) === 0) {
-            self::$wrap = null;
-        }
-
+        
         return $files;
     }
 }
