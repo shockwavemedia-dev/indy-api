@@ -10,7 +10,7 @@ final class CreateFilesTable extends Migration
 {
     public const TABLE = 'files';
 
-    public function up() : void
+    public function up(): void
     {
         if (Schema::hasTable(self::TABLE) === true) {
             return;

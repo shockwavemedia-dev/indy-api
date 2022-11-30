@@ -26,7 +26,7 @@ final class ValidExtrasRuleServiceTest extends TestCase
         $clientService->setMarketingQuota(0);
 
         $serviceExtraResolver = new ServiceExtraResolverStub([
-           'resolve' =>  Arr::get(ServiceExtraEnum::EXTRAS, $service->getName()),
+            'resolve' => Arr::get(ServiceExtraEnum::EXTRAS, $service->getName()),
         ]);
 
         $rule = new ValidExtrasRuleService($serviceExtraResolver);
@@ -44,7 +44,7 @@ final class ValidExtrasRuleServiceTest extends TestCase
         $clientService = new ClientService();
 
         $serviceExtraResolver = new ServiceExtraResolverStub([
-            'resolve' =>  Arr::get(ServiceExtraEnum::EXTRAS, $service->getName()),
+            'resolve' => Arr::get(ServiceExtraEnum::EXTRAS, $service->getName()),
         ]);
 
         $rule = new ValidExtrasRuleService($serviceExtraResolver);

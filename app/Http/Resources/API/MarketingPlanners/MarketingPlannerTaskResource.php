@@ -6,12 +6,10 @@ namespace App\Http\Resources\API\MarketingPlanners;
 
 use App\Exceptions\InvalidResourceTypeException;
 use App\Http\Resources\Resource;
-use App\Models\MarketingPlanner;
 use App\Models\MarketingPlannerTask;
 
 final class MarketingPlannerTaskResource extends Resource
 {
-
     /**
      * @throws InvalidResourceTypeException
      */

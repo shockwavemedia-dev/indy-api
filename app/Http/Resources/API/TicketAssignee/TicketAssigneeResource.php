@@ -6,14 +6,15 @@ namespace App\Http\Resources\API\TicketAssignee;
 
 use App\Exceptions\InvalidResourceTypeException;
 use App\Http\Resources\Resource;
-use App\Models\Tickets\TicketAssignee;
-use function sprintf;
 use App\Models\Department;
+use App\Models\Tickets\TicketAssignee;
 use App\Models\Tickets\TicketAssigneeLink;
+use function sprintf;
 
 final class TicketAssigneeResource extends Resource
 {
     public static $wrap = null;
+
     /**
      * @throws InvalidResourceTypeException
      */

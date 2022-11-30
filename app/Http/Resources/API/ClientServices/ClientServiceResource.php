@@ -6,14 +6,13 @@ namespace App\Http\Resources\API\ClientServices;
 
 use App\Exceptions\InvalidResourceTypeException;
 use App\Http\Resources\Resource;
-use App\Models\Client;
 use App\Models\ClientService;
-use App\Services\Identifiers\Interfaces\IdentifierEncoderInterface;
 
 final class ClientServiceResource extends Resource
 {
     /**
      * @return mixed[]
+     *
      * @throws InvalidResourceTypeException
      */
     protected function getResponse(): array
@@ -47,7 +46,7 @@ final class ClientServiceResource extends Resource
                 $clientService->getUpdatedBy()?->getFirstName(),
                 $clientService->getUpdatedBy()?->getMiddleName(),
                 $clientService->getUpdatedBy()?->getLastName(),
-            )
+            ),
         ];
     }
 }

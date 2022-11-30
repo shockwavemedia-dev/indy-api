@@ -11,7 +11,7 @@ use Tests\Stubs\AbstractStub;
 /**
  * @coversNothing
  */
-final class ServiceExtraResolverStub extends AbstractStub implements  ServiceExtraResolverInterface
+final class ServiceExtraResolverStub extends AbstractStub implements ServiceExtraResolverInterface
 {
     /**
      * @throws \Throwable

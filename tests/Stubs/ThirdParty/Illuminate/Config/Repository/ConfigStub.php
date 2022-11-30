@@ -11,7 +11,6 @@ use Throwable;
 /**
  * Class ConfigStub
  *
- * @package Tests\Rex\Stubs\ThirdParty\Illuminate\Config\Repository
  * @coversNothing
  */
 final class ConfigStub extends AbstractStub implements Repository
@@ -20,6 +19,7 @@ final class ConfigStub extends AbstractStub implements Repository
      * Get all the configuration items for the application.
      *
      * @return mixed[]
+     *
      * @throws Throwable
      */
     public function all(): array
@@ -32,10 +32,10 @@ final class ConfigStub extends AbstractStub implements Repository
     /**
      * Get the specified configuration value.
      *
-     * @param array|string $key
-     * @param mixed $default
-     *
+     * @param  array|string  $key
+     * @param  mixed  $default
      * @return mixed
+     *
      * @throws Throwable
      */
     public function get($key, $default = null): mixed
@@ -48,7 +48,8 @@ final class ConfigStub extends AbstractStub implements Repository
     /**
      * Determine if the given configuration value exists.
      *
-     * @param string $key
+     * @param  string  $key
+     *
      * @throws Throwable
      */
     public function has($key): bool
@@ -61,8 +62,8 @@ final class ConfigStub extends AbstractStub implements Repository
     /**
      * Prepend a value onto an array configuration value.
      *
-     * @param string $key
-     * @param mixed $value
+     * @param  string  $key
+     * @param  mixed  $value
      */
     public function prepend($key, $value): void
     {
@@ -72,8 +73,8 @@ final class ConfigStub extends AbstractStub implements Repository
     /**
      * Push a value onto an array configuration value.
      *
-     * @param string $key
-     * @param mixed $value
+     * @param  string  $key
+     * @param  mixed  $value
      */
     public function push($key, $value): void
     {
@@ -83,8 +84,8 @@ final class ConfigStub extends AbstractStub implements Repository
     /**
      * Set a given configuration value.
      *
-     * @param mixed[]|string $key
-     * @param mixed $value
+     * @param  mixed[]|string  $key
+     * @param  mixed  $value
      */
     public function set($key, $value = null): void
     {

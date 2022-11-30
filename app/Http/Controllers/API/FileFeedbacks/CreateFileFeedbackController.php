@@ -10,11 +10,11 @@ use App\Enum\UserTypeEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\FileFeedbacks\CreateFileFeedbackRequest;
 use App\Http\Resources\API\FileFeedbacks\FileFeedbackResource;
+use App\Repositories\Interfaces\ClientTicketFileRepositoryInterface;
 use App\Services\BackendUserNotifications\Interfaces\BackendUserNotificationResolverFactoryInterface;
 use App\Services\ClientUserNotifications\Interfaces\ClientNotificationResolverFactoryInterface;
-use App\Services\FileFeedbacks\Interfaces\ProcessFeedbackAttachmentUploadInterface;
 use App\Services\FileFeedbacks\Interfaces\FileFeedbackCreationServiceInterface;
-use App\Repositories\Interfaces\ClientTicketFileRepositoryInterface;
+use App\Services\FileFeedbacks\Interfaces\ProcessFeedbackAttachmentUploadInterface;
 use App\Services\FileFeedbacks\Resources\CreateFileFeedbackResource;
 use App\Services\FileManager\Interfaces\BucketFactoryInterface;
 use App\Services\Files\Interfaces\FileFactoryInterface;
@@ -98,7 +98,7 @@ final class CreateFileFeedbackController extends AbstractAPIController
 
             $notificationResolver->resolve($fileFeedback);
 
-            if(\count($files) === 0) {
+            if (\count($files) === 0) {
                 return new FileFeedbackResource($fileFeedback);
             }
 

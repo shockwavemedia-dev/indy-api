@@ -7,7 +7,6 @@ namespace App\Repositories;
 use App\Models\MarketingPlannerTask;
 use App\Models\MarketingPlannerTaskAssignee;
 use App\Repositories\Interfaces\MarketingPlannerTaskAssigneeRepositoryInterface;
-use Illuminate\Database\Eloquent\Model;
 
 final class MarketingPlannerTaskAssigneeRepository extends BaseRepository implements MarketingPlannerTaskAssigneeRepositoryInterface
 {

@@ -6,8 +6,6 @@ namespace App\Services\TicketEmails;
 
 use App\Enum\UserTypeEnum;
 use App\Models\Tickets\TicketEmail;
-use App\Models\User;
-use App\Models\Users\Interfaces\UserTypeInterface;
 use App\Services\TicketEmails\Interfaces\TicketEmailSenderInterface;
 
 final class AssigneeTicketEmailSender extends AbstractTicketEmailSender implements TicketEmailSenderInterface

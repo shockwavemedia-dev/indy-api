@@ -29,7 +29,7 @@ final class SmsApiException extends BaseException
     /**
      * AbnApiException constructor.
      *
-     * @param mixed[]|null $errors
+     * @param  mixed[]|null  $errors
      */
     public function __construct(
         string $message,

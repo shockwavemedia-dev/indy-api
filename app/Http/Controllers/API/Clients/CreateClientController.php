@@ -90,11 +90,11 @@ final class CreateClientController extends AbstractAPIController
                 'note' => $request->getNote(),
             ]));
 
-            $this->clientServiceFactory->make($client,$user);
+            $this->clientServiceFactory->make($client, $user);
 
             // @TODO implement dispatching of event for sending of email
             return new ClientResource($client);
-        // @codeCoverageIgnoreStart
+            // @codeCoverageIgnoreStart
         } catch (Throwable $exception) {
             return $this->respondError($exception->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }

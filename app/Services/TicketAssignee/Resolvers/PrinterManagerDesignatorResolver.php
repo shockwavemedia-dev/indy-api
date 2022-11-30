@@ -16,7 +16,8 @@ final class PrinterManagerDesignatorResolver implements DesignatorResolverInterf
     public function __construct(
         private BackendUserNotificationResolverFactoryInterface $backendUserNotificationResolverFactory,
         private TicketAssigneeRepositoryInterface $ticketRepository
-    ) {}
+    ) {
+    }
 
     public function resolve(Ticket $ticket): void
     {
@@ -29,7 +30,7 @@ final class PrinterManagerDesignatorResolver implements DesignatorResolverInterf
             $ticket->getClient()->getDesignatedPrinterManager()
         );
 
-        if($checkTicketAssignee !== null){
+        if ($checkTicketAssignee !== null) {
             return;
         }
 

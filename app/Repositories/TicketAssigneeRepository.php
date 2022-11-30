@@ -8,7 +8,6 @@ use App\Enum\TicketAssigneeStatusEnum;
 use App\Enum\TicketStatusEnum;
 use App\Models\Tickets\Ticket;
 use App\Models\Tickets\TicketAssignee;
-use App\Models\User;
 use App\Models\Users\AdminUser;
 use App\Repositories\Interfaces\TicketAssigneeRepositoryInterface;
 use App\Services\Tickets\Resources\UpdateTicketAssigneeResource;
@@ -29,7 +28,7 @@ final class TicketAssigneeRepository extends BaseRepository implements TicketAss
     {
         $assignee = new TicketAssignee();
 
-        if ($adminUser->getDepartments()->count() === 0 ) {
+        if ($adminUser->getDepartments()->count() === 0) {
             throw new Exception('Staff does not have department.');
         }
 
@@ -101,5 +100,4 @@ final class TicketAssigneeRepository extends BaseRepository implements TicketAss
 
         return $ticketAssignee;
     }
-
 }

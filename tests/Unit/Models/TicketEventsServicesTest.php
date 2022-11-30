@@ -2,24 +2,23 @@
 
 declare(strict_types=1);
 
- namespace Tests\Unit\Models;
+namespace Tests\Unit\Models;
 
- use App\Models\Tickets\TicketService;
- use PHPUnit\Framework\TestCase;
+use App\Models\Tickets\TicketService;
+use PHPUnit\Framework\TestCase;
 
- /**
-  * @covers \App\Models\Tickets\TicketService
-  */
- final class TicketEventsServicesTest extends TestCase
- {
-     public function testGetterAndSetters(): void
+/**
+ * @covers \App\Models\Tickets\TicketService
+ */
+final class TicketEventsServicesTest extends TestCase
+{
+    public function testGetterAndSetters(): void
     {
-
         $expected = [
             'id' => 1,
-            'ticket_event_id'=> 1,
-            'service_id'=> 1,
-            'created_by' => 1
+            'ticket_event_id' => 1,
+            'service_id' => 1,
+            'created_by' => 1,
         ];
 
         $ticketEventServices = new TicketService();
@@ -37,4 +36,4 @@ declare(strict_types=1);
 
         self::assertEquals($expected, $actual);
     }
- }
+}

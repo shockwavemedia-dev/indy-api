@@ -15,7 +15,7 @@ final class AlterTicketEventsAddColumn extends Migration
 
     public function up(): void
     {
-        if (Schema::hasTable(self::TABLE)=== false) {
+        if (Schema::hasTable(self::TABLE) === false) {
             return;
         }
 
@@ -28,7 +28,7 @@ final class AlterTicketEventsAddColumn extends Migration
 
     public function down(): void
     {
-        if (Schema::hasTable(self::TABLE)=== false) {
+        if (Schema::hasTable(self::TABLE) === false) {
             return;
         }
 

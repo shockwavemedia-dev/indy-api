@@ -3,7 +3,6 @@
 namespace App\Events\Tickets;
 
 use App\Http\Resources\API\Tickets\TicketEmailResource;
-use App\Http\Resources\API\Tickets\TicketEmailsResource;
 use App\Models\Tickets\Ticket;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -11,7 +10,6 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Queue\SerializesModels;
 
 class TicketEmailsEvent implements ShouldBroadcast

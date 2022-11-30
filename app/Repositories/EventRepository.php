@@ -45,7 +45,7 @@ final class EventRepository extends BaseRepository implements EventRepositoryInt
         return $this->model
             ->with('photographer')
             ->whereMonth('shoot_date', $month)
-            ->whereYear('shoot_date',  $year)
+            ->whereYear('shoot_date', $year)
             ->where('client_id', $client->getId())
             ->get();
     }

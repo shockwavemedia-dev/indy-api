@@ -55,36 +55,42 @@ final class CreateEmailLogResource extends DataTransferObject
     public function setEmailType(EmailInterface $emailType): self
     {
         $this->emailType = $emailType;
+
         return $this;
     }
 
     public function setStatus(EmailStatusEnum $status): self
     {
         $this->status = $status;
+
         return $this;
     }
 
     public function setCc(?string $cc): self
     {
         $this->cc = $cc;
+
         return $this;
     }
 
     public function setFailedDetails(?string $failedDetails): self
     {
         $this->failedDetails = $failedDetails;
+
         return $this;
     }
 
     public function setMessage(string $message): self
     {
         $this->message = $message;
+
         return $this;
     }
 
     public function setTo(string $to): self
     {
         $this->to = $to;
+
         return $this;
     }
 }

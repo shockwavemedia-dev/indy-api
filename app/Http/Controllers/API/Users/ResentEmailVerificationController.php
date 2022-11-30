@@ -7,10 +7,8 @@ namespace App\Http\Controllers\API\Users;
 use App\Enum\UserStatusEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Users\ForgotPasswordRequest;
-use App\Notifications\UserEmailVerification;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Services\Users\Interfaces\UserEmailVerificationResolverInterface;
-use Illuminate\Auth\Passwords\TokenRepositoryInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Throwable;
 

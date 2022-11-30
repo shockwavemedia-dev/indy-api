@@ -89,6 +89,7 @@ final class UpdateTicketResource extends DataTransferObject
     public function setType(TicketTypeEnum $type): self
     {
         $this->type = $type->getValue();
+
         return $this;
     }
 
@@ -102,6 +103,7 @@ final class UpdateTicketResource extends DataTransferObject
     public function setStatus(TicketStatusEnum $status): self
     {
         $this->status = $status->getValue();
+
         return $this;
     }
 }

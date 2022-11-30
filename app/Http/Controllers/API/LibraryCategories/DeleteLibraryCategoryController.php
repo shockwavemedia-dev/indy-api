@@ -6,7 +6,6 @@ namespace App\Http\Controllers\API\LibraryCategories;
 
 use App\Exceptions\Interfaces\ErrorLogInterface;
 use App\Http\Controllers\API\AbstractAPIController;
-use App\Http\Resources\API\LibraryCategories\LibraryCategoryResource;
 use App\Repositories\Interfaces\LibraryCategoryRepositoryInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -37,6 +36,7 @@ final class DeleteLibraryCategoryController extends AbstractAPIController
             return $this->respondNoContent();
         } catch (\Throwable $exception) {
             $this->sentryHandler->log($exception->getMessage());
+
             return $this->respondNoContent();
         }
     }

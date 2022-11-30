@@ -8,7 +8,6 @@ use App\Http\Requests\BaseRequest;
 
 final class UpdateServiceExtrasRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;
@@ -22,7 +21,7 @@ final class UpdateServiceExtrasRequest extends BaseRequest
     public function rules(): array
     {
         return [
-          'extras' => 'array|required',
+            'extras' => 'array|required',
         ];
     }
 }

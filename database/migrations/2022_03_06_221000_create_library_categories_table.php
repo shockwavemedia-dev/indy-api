@@ -12,14 +12,14 @@ final class CreateLibraryCategoriesTable extends Migration
 
     public function up(): void
     {
-        if (Schema::hasTable(self::TABLE)=== true) {
+        if (Schema::hasTable(self::TABLE) === true) {
             return;
         }
 
         Schema::create(self::TABLE, function (Blueprint $table) {
             $table->id();
-            $table->string("name")->unique();
-            $table->text("slug");
+            $table->string('name')->unique();
+            $table->text('slug');
             $table->bigInteger('created_by')->unsigned();
             $table->bigInteger('updated_by')->unsigned()->nullable();
             $table->timestamps();

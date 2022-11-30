@@ -8,10 +8,8 @@ use App\Enum\UserTypeEnum;
 use App\Models\Department;
 use App\Models\Users\AdminUser;
 use App\Repositories\Interfaces\AdminUserRepositoryInterface;
-use App\Repositories\Interfaces\DepartmentRepositoryInterface;
-use App\Services\Users\Exceptions\InvalidDepartmentsException;
-use App\Services\Users\Interfaces\UserTypeFactoryInterface;
 use App\Services\Users\Interfaces\CreateUserTypeResourceInterface;
+use App\Services\Users\Interfaces\UserTypeFactoryInterface;
 use App\Services\Users\Resources\CreateAdminUserResource;
 
 final class UserAdminCreationService implements UserTypeFactoryInterface

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace App\Models\Tickets;
+
 use App\Models\AbstractModel;
 use App\Models\User;
 use Carbon\Carbon;
@@ -23,7 +24,7 @@ final class FileFeedback extends AbstractModel
         'client_file_id',
         'feedback_by',
         'feedback_by_type',
-        'feedback'
+        'feedback',
     ];
 
     protected $table = 'file_feedbacks';

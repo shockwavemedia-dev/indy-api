@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Models\Tickets;
 
-use App\Models\AbstractModel;
 use App\Enum\TicketEmailStatusEnum;
+use App\Models\AbstractModel;
 use App\Models\Client;
 use App\Models\Emails\Interfaces\EmailInterface;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Notifications\Notifiable;
 
 final class TicketEmail extends AbstractModel implements EmailInterface
 {

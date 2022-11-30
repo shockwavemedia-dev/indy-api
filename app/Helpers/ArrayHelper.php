@@ -27,7 +27,7 @@ final class ArrayHelper implements ArrayHelperInterface
 
     public function arrayIntersect(array $compareFrom, array $compareAgainst): array
     {
-        $firstArray = $secondArray = array();
+        $firstArray = $secondArray = [];
 
         // we don't care about keys anyway + avoids dupes
         foreach ($compareFrom as $value) {
@@ -39,7 +39,7 @@ final class ArrayHelper implements ArrayHelperInterface
 
         // unset different values values
         foreach ($firstArray as $value) {
-            if (!isset($secondArray[$value])) {
+            if (! isset($secondArray[$value])) {
                 unset($firstArray[$value]);
             }
         }

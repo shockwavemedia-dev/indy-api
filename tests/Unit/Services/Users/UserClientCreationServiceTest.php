@@ -43,8 +43,8 @@ final class UserClientCreationServiceTest extends TestCase
             [
                 'create' => [
                     [
-                        "client_id" => $client->getId(),
-                        "client_role" => ClientRoleEnum::MARKETING,
+                        'client_id' => $client->getId(),
+                        'client_role' => ClientRoleEnum::MARKETING,
                     ],
                 ],
             ],
@@ -72,12 +72,12 @@ final class UserClientCreationServiceTest extends TestCase
     {
         yield 'Supports true' => [
             'expected' => false,
-            'userType' => new UserTypeEnum(UserTypeEnum::ADMIN)
+            'userType' => new UserTypeEnum(UserTypeEnum::ADMIN),
         ];
 
         yield 'Supports false' => [
             'expected' => true,
-            'userType' => new UserTypeEnum(UserTypeEnum::CLIENT)
+            'userType' => new UserTypeEnum(UserTypeEnum::CLIENT),
         ];
     }
 }

@@ -12,7 +12,8 @@ abstract class AbstractFileManager
 
     private BucketFactoryInterface $bucketFactory;
 
-    public function __construct(BucketFactoryInterface $bucketFactory) {
+    public function __construct(BucketFactoryInterface $bucketFactory)
+    {
         $this->bucketFactory = $bucketFactory;
     }
 

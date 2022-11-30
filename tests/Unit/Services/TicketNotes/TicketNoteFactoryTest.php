@@ -51,10 +51,10 @@ final class TicketNoteFactoryTest extends TestCase
                         'ticket_id' => $ticket->getId(),
                         'created_by' => $createdBy->getId(),
                         'note' => 'test note',
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ],
-        $repository->getCalls());
+            $repository->getCalls());
     }
 }

@@ -15,6 +15,7 @@ final class ClientResource extends Resource
 
     /**
      * @return mixed[]
+     *
      * @throws InvalidResourceTypeException
      */
     protected function getResponse(): array
@@ -26,7 +27,7 @@ final class ClientResource extends Resource
         /** @var Client $client */
         $client = $this->resource;
 
-        $result =   [
+        $result = [
             'id' => $client->getId(),
             'name' => $client->getName(),
             'client_code' => $client->getClientCode(),
@@ -54,20 +55,19 @@ final class ClientResource extends Resource
 
         /** @var ClientScreen $clientScreen */
         foreach ($client->getClientScreens() as $clientScreen) {
-          $screen = $clientScreen->getScreen();
+            $screen = $clientScreen->getScreen();
 
-          $screen['logo'] = $clientScreen->getScreen()->getLogoFile();
+            $screen['logo'] = $clientScreen->getScreen()->getLogoFile();
 
-          $result['screens'][] = $screen;
+            $result['screens'][] = $screen;
         }
 
-        if($client->getDesignatedDesignerId() !== null){
+        if ($client->getDesignatedDesignerId() !== null) {
             $result['designated_designer_id'] = $client->getDesignatedDesignerId();
             $result['designated_designer'] = $client->getDesignatedDesigner()->getUser()->getFullName();
         }
 
-
-        if($client->getLogoFileId() !== null){
+        if ($client->getLogoFileId() !== null) {
             $result['logo_url'] = $client->getLogo()->getUrl();
             $result['logo_thumbnail_url'] = $client->getLogo()->getThumbnailUrl();
         }

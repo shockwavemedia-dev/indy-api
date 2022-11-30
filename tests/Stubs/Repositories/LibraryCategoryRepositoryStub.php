@@ -9,7 +9,6 @@ use App\Models\User;
 use App\Repositories\Interfaces\LibraryCategoryRepositoryInterface;
 use App\Services\LibraryCategories\Resources\CreateLibraryCategoryResource;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Tests\Stubs\AbstractStub;
 
@@ -61,5 +60,3 @@ final class LibraryCategoryRepositoryStub extends AbstractStub implements Librar
         return $this->fetchResponse(__FUNCTION__);
     }
 }
-
-

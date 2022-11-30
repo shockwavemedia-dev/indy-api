@@ -8,5 +8,4 @@ use App\Services\FileFeedbacks\Resources\CreateFileFeedbackResource;
 interface FileFeedbackCreationServiceInterface
 {
     public function create(CreateFileFeedbackResource $resource): FileFeedback;
-
 }

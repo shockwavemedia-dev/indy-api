@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API\Tickets;
 
 use App\Enum\TicketStatusEnum;
-use App\Enum\UserTypeEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Resources\API\Tickets\TicketSupportResource;
 use App\Models\User;

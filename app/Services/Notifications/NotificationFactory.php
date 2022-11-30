@@ -13,7 +13,8 @@ final class NotificationFactory implements NotificationFactoryInterface
 {
     private NotificationRepositoryInterface $notificationRepository;
 
-    public function __construct(NotificationRepositoryInterface $notificationRepository) {
+    public function __construct(NotificationRepositoryInterface $notificationRepository)
+    {
         $this->notificationRepository = $notificationRepository;
     }
 

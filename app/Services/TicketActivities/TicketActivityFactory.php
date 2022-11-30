@@ -24,7 +24,7 @@ final class TicketActivityFactory implements TicketActivityFactoryInterface
         $ticketActivity = $this->ticketActivityRepository->create([
             'ticket_id' => $resource->getTicket()->getId(),
             'user_id' => $resource->getUser()->getId(),
-            'activity' => $resource->getActivity()
+            'activity' => $resource->getActivity(),
         ]);
 
         return $ticketActivity;

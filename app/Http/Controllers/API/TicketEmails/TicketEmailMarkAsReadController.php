@@ -11,8 +11,8 @@ use App\Models\Tickets\TicketEmail;
 use App\Models\User;
 use App\Repositories\Interfaces\TicketEmailRepositoryInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Throwable;
 use Symfony\Component\HttpFoundation\Response;
+use Throwable;
 
 final class TicketEmailMarkAsReadController extends AbstractAPIController
 {

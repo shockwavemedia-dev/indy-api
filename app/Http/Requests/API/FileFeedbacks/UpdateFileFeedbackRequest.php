@@ -27,7 +27,7 @@ final class UpdateFileFeedbackRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'feedback' => 'string|required'
+            'feedback' => 'string|required',
         ];
     }
 }

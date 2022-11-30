@@ -23,7 +23,8 @@ final class UploadEmailAttachmentJob implements ShouldQueue
     public function __construct(
         private int $fileId,
         private string $rawFile
-    ){}
+    ) {
+    }
 
     public function handle(
         ErrorLogInterface $sentryHandler,
@@ -40,7 +41,7 @@ final class UploadEmailAttachmentJob implements ShouldQueue
             $path = null;
 
             if ($file->getFilePath() !== '' && $file->getFilePath() !== null) {
-                $path =  sprintf('%s/', $file->getFilePath());
+                $path = sprintf('%s/', $file->getFilePath());
             }
 
             $filepath = sprintf(

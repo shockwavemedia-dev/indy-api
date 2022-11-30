@@ -14,9 +14,10 @@ use App\Services\ClientServices\Resources\CreateClientServiceResource;
 final class ClientServiceFactory implements ClientServiceFactoryInterface
 {
     private ClientServiceRepositoryInterface $clientServiceRepository;
+
     private ServiceRepositoryInterface $serviceRepository;
 
-    public function __construct (
+    public function __construct(
         ClientServiceRepositoryInterface $clientServiceRepository,
         ServiceRepositoryInterface $serviceRepository,
     ) {
@@ -31,13 +32,13 @@ final class ClientServiceFactory implements ClientServiceFactoryInterface
     {
         $services = $this->serviceRepository->all();
 
-          foreach($services as $service) {
-              $this->clientServiceRepository->createClientService(new CreateClientServiceResource([
-                  'clientId' => $client->getId(),
-                  'serviceId' => $service->getId(),
-                  'extras' => $service->getExtras(),
-                  'createdById' => $user->getId()
-              ]));
-          }
+        foreach ($services as $service) {
+            $this->clientServiceRepository->createClientService(new CreateClientServiceResource([
+                'clientId' => $client->getId(),
+                'serviceId' => $service->getId(),
+                'extras' => $service->getExtras(),
+                'createdById' => $user->getId(),
+            ]));
+        }
     }
 }

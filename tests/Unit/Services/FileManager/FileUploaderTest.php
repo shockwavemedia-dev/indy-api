@@ -8,8 +8,8 @@ use App\Jobs\File\UploadFileJob;
 use App\Models\Client;
 use App\Models\File;
 use App\Models\User;
-use App\Services\FileManager\Resources\UploadFileResource;
 use App\Services\FileManager\FileUploader;
+use App\Services\FileManager\Resources\UploadFileResource;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
@@ -28,7 +28,7 @@ final class FileUploaderTest extends TestCase
     {
         $client = new Client();
         $client->setAttribute('id', 1);
-        $client->setClientCode("client-code");
+        $client->setClientCode('client-code');
 
         Storage::fake('avatars');
         $uploadedFile = UploadedFile::fake()->image('avatar.jpg');
@@ -50,7 +50,7 @@ final class FileUploaderTest extends TestCase
         $uploader = new FileUploader();
 
         self::expectsJobs([
-            UploadFileJob::class
+            UploadFileJob::class,
         ]);
 
         $uploader->upload($resource);

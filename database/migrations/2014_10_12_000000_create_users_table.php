@@ -10,7 +10,7 @@ final class CreateUsersTable extends Migration
 {
     public const TABLE = 'users';
 
-    public function up() : void
+    public function up(): void
     {
         if (Schema::hasTable(self::TABLE) === true) {
             return;
@@ -65,7 +65,6 @@ final class CreateUsersTable extends Migration
 //            $table->dropColumn('requested_by');
 //            $table->dropForeign('tickets_deleted_by_foreign');
 //            $table->dropColumn('deleted_by');
-
         });
 
         Schema::dropIfExists(self::TABLE);

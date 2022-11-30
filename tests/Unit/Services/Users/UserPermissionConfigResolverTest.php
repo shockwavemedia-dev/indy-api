@@ -27,7 +27,7 @@ final class UserPermissionConfigResolverTest extends TestCase
             'get' => [
                 AdminRoleEnum::ADMIN => [
                     'modules' => [
-                        'users' =>  $expected,
+                        'users' => $expected,
                     ],
                 ],
             ],
@@ -48,7 +48,7 @@ final class UserPermissionConfigResolverTest extends TestCase
             'get' => [
                 AdminRoleEnum::ADMIN => [
                     'modules' => [
-                        'users' =>  [
+                        'users' => [
                             'read' => true,
                             'delete' => true,
                             'edit' => true,
@@ -74,7 +74,7 @@ final class UserPermissionConfigResolverTest extends TestCase
             'get' => [
                 AdminRoleEnum::ADMIN => [
                     'modules' => [
-                        'users' =>  [],
+                        'users' => [],
                     ],
                 ],
             ],

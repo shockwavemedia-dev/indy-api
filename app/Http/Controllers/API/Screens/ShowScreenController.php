@@ -13,7 +13,8 @@ final class ShowScreenController extends AbstractAPIController
 {
     private ScreenRepositoryInterface $screenRepository;
 
-    public function __construct(ScreenRepositoryInterface $screenRepository) {
+    public function __construct(ScreenRepositoryInterface $screenRepository)
+    {
         $this->screenRepository = $screenRepository;
     }
 

@@ -60,12 +60,13 @@ final class UpdateClientResource extends DataTransferObject
     }
 
     /**
-     * @param int|null $designatedAnimatorId
+     * @param  int|null  $designatedAnimatorId
      * @return UpdateClientResource
      */
     public function setDesignatedAnimatorId(?int $designatedAnimatorId): self
     {
         $this->designatedAnimatorId = $designatedAnimatorId;
+
         return $this;
     }
 
@@ -78,12 +79,13 @@ final class UpdateClientResource extends DataTransferObject
     }
 
     /**
-     * @param int|null $designatedWebEditorId
+     * @param  int|null  $designatedWebEditorId
      * @return UpdateClientResource
      */
     public function setDesignatedWebEditorId(?int $designatedWebEditorId): self
     {
         $this->designatedWebEditorId = $designatedWebEditorId;
+
         return $this;
     }
 
@@ -95,6 +97,7 @@ final class UpdateClientResource extends DataTransferObject
     public function setDesignatedSocialMediaManagerId(?int $designatedSocialMediaManagerId): self
     {
         $this->designatedSocialMediaManagerId = $designatedSocialMediaManagerId;
+
         return $this;
     }
 
@@ -118,6 +121,7 @@ final class UpdateClientResource extends DataTransferObject
     public function setPrinterId(?int $printerId): self
     {
         $this->printerId = $printerId;
+
         return $this;
     }
 
@@ -161,13 +165,12 @@ final class UpdateClientResource extends DataTransferObject
         return $this->timezone;
     }
 
-
     public function getClientSince(): DateTimeInterface
     {
         return $this->clientSince;
     }
 
-    public function getMainClientId(): ? int
+    public function getMainClientId(): ?int
     {
         return $this->mainClientId;
     }
@@ -177,7 +180,7 @@ final class UpdateClientResource extends DataTransferObject
         return $this->overview;
     }
 
-    public function getRating(): ? int
+    public function getRating(): ?int
     {
         return $this->rating;
     }
@@ -191,7 +194,6 @@ final class UpdateClientResource extends DataTransferObject
     {
         return $this->designatedDesignerId;
     }
-
 
     public function setName(string $name): self
     {
@@ -266,6 +268,7 @@ final class UpdateClientResource extends DataTransferObject
     public function setStatus(ClientStatusEnum $status): self
     {
         $this->status = $status->getValue();
+
         return $this;
     }
 

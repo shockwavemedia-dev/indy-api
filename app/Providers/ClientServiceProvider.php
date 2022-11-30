@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Services\Clients\ClientCreationService;
+use App\Services\Clients\Interfaces\ClientCreationServiceInterface;
 use App\Services\ClientUserNotifications\ClientNotificationResolverFactory;
 use App\Services\ClientUserNotifications\Interfaces\ClientNotificationResolverFactoryInterface;
 use App\Services\ClientUserNotifications\Interfaces\ClientNotificationResolverInterface;
@@ -12,8 +14,6 @@ use App\Services\ClientUserNotifications\NotificationResolvers\TicketAssigneeSta
 use App\Services\ClientUserNotifications\NotificationResolvers\TicketEmailNotificationResolver;
 use App\Services\ClientUserNotifications\NotificationResolvers\TicketFileUploadNotificationResolver;
 use App\Services\ClientUserNotifications\NotificationResolvers\TicketNoteNotificationResolver;
-use App\Services\Clients\ClientCreationService;
-use App\Services\Clients\Interfaces\ClientCreationServiceInterface;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 

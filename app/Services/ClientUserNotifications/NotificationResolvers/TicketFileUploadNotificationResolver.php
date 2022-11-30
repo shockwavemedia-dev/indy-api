@@ -18,7 +18,8 @@ final class TicketFileUploadNotificationResolver extends AbstractClientNotificat
     private const TITLE_KEY = '%s is requesting approval for a design in ticket # %s';
 
     /**
-     * @param ClientTicketFile $morph
+     * @param  ClientTicketFile  $morph
+     *
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     public function resolve(mixed $morph): void

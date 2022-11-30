@@ -26,7 +26,7 @@ final class CreateClientControllerTest extends AbstractAPITestCase
 
         $this->setHeadersToken($user);
 
-        $data =  <<<JSON
+        $data = <<<'JSON'
         {
             "name": "Test Client 1",
             "client_code": "TC1",
@@ -47,18 +47,18 @@ final class CreateClientControllerTest extends AbstractAPITestCase
 
         $this->assertArrayHasKeys(
             [
-                "id",
-                "name",
-                "client_code",
-                "logo",
-                "address",
-                "phone",
-                "timezone",
-                "client_since",
-                "main_client_id",
-                "overview",
-                "rating",
-                "status"
+                'id',
+                'name',
+                'client_code',
+                'logo',
+                'address',
+                'phone',
+                'timezone',
+                'client_since',
+                'main_client_id',
+                'overview',
+                'rating',
+                'status',
             ],
             $arrayResponse
         );
@@ -81,10 +81,9 @@ final class CreateClientControllerTest extends AbstractAPITestCase
         $existingClient = $client->getName();
         $existingCode = $client->getClientCode();
 
-
         $this->setHeadersToken($user);
 
-        $data =  <<<JSON
+        $data = <<<JSON
         {
             "name": "$existingClient",
             "client_code": "$existingCode",
@@ -102,11 +101,10 @@ final class CreateClientControllerTest extends AbstractAPITestCase
 
         $expected =
             [
-                "name" => ["The name has already been taken."],
-                "client_code" => ["The client code has already been taken."],
-                "main_client_id" => ["The selected main client id is invalid."]
+                'name' => ['The name has already been taken.'],
+                'client_code' => ['The client code has already been taken.'],
+                'main_client_id' => ['The selected main client id is invalid.'],
             ];
-
 
         $response = $this->post('/api/v1/clients', json_decode($data, true));
 
@@ -114,5 +112,4 @@ final class CreateClientControllerTest extends AbstractAPITestCase
 
         $this->assertEquals($expected, $arrayResponse);
     }
-
 }

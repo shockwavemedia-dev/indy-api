@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Services\Identifiers;
 
-use Jenssegers\Optimus\Optimus;
 use App\Services\Identifiers\Interfaces\IdentifierEncoderInterface;
+use Jenssegers\Optimus\Optimus;
 
 final class IdentifierEncoder implements IdentifierEncoderInterface
 {

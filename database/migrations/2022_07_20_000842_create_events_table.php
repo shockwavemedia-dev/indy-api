@@ -46,13 +46,11 @@ final class CreateEventsTable extends Migration
             $table->foreign('updated_by')->references('id')->on('users');
             $table->index('department_manager');
             $table->foreign('department_manager')->references('id')->on('admin_users');
-
         });
     }
 
     public function down(): void
     {
         Schema::dropIfExists(self::TABLE);
-
     }
 }

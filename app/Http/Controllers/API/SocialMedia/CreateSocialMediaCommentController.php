@@ -12,7 +12,6 @@ use App\Http\Resources\API\SocialMedia\SocialMediaResource;
 use App\Jobs\SocialMedia\MentionedSlackNotificationJob;
 use App\Models\SocialMedia;
 use App\Models\SocialMediaComment;
-use App\Models\Tickets\ClientTicketFile;
 use App\Models\User;
 use App\Repositories\Interfaces\SocialMediaRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
@@ -82,7 +81,6 @@ final class CreateSocialMediaCommentController extends AbstractAPIController
             // @Todo Transfer to a job
             /** @var User $user */
             foreach ($users as $user) {
-
                 $emailLog = $this->emailLogFactory->make(new CreateEmailLogResource([
                     'message' => 'Send email from mention comments.',
                     'to' => $user->getEmail(),
@@ -137,7 +135,7 @@ final class CreateSocialMediaCommentController extends AbstractAPIController
 
         $this->notificationUserFactory->make(new CreateNotificationUserResource([
             'notification' => $notification,
-            'user' => $user
+            'user' => $user,
         ]));
     }
 }

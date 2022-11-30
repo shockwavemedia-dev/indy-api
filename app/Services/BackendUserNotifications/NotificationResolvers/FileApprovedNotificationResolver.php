@@ -18,8 +18,9 @@ final class FileApprovedNotificationResolver extends AbstractBackendUserNotifica
     private const TITLE_KEY = 'Your file uploaded in ticket # %s was approved!';
 
     /**
-     * @param ClientTicketFile $morph
+     * @param  ClientTicketFile  $morph
      * @return void
+     *
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     public function resolve(mixed $morph): void

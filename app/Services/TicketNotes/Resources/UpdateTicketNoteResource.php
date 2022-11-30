@@ -16,7 +16,6 @@ final class UpdateTicketNoteResource extends DataTransferObject
 
     public User $updatedBy;
 
-
     public function getNote(): string
     {
         return $this->note;
@@ -40,5 +39,4 @@ final class UpdateTicketNoteResource extends DataTransferObject
 
         return $this;
     }
-
 }

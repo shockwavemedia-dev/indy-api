@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\LibraryCategories;
 
+use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\PaginationRequest;
 use App\Http\Resources\API\LibraryCategories\LibraryCategoriesResource;
-use App\Http\Controllers\API\AbstractAPIController;
 use App\Repositories\Interfaces\LibraryCategoryRepositoryInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
 

@@ -13,7 +13,8 @@ final class NotificationUserFactory implements NotificationUserFactoryInterface
 {
     private NotificationUserRepositoryInterface $notificationUserRepository;
 
-    public function __construct(NotificationUserRepositoryInterface $notificationUserRepository) {
+    public function __construct(NotificationUserRepositoryInterface $notificationUserRepository)
+    {
         $this->notificationUserRepository = $notificationUserRepository;
     }
 
@@ -21,8 +22,8 @@ final class NotificationUserFactory implements NotificationUserFactoryInterface
     {
         /** @var NotificationUser $notificationUser */
         $notificationUser = $this->notificationUserRepository->create([
-           'user_id' => $resource->getUser()->getId(),
-           'notification_id' => $resource->getNotification()->getId(),
+            'user_id' => $resource->getUser()->getId(),
+            'notification_id' => $resource->getNotification()->getId(),
         ]);
 
         return $notificationUser;

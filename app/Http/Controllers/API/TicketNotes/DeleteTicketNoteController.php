@@ -14,7 +14,7 @@ final class DeleteTicketNoteController extends AbstractAPIController
 {
     private TicketNoteRepositoryInterface $ticketNoteRepository;
 
-    public function __construct(TicketNoteRepositoryInterface $ticketNoteRepository,)
+    public function __construct(TicketNoteRepositoryInterface $ticketNoteRepository)
     {
         $this->ticketNoteRepository = $ticketNoteRepository;
     }
@@ -32,7 +32,7 @@ final class DeleteTicketNoteController extends AbstractAPIController
         }
 
         try {
-            $this->ticketNoteRepository->deleteTicketNote($ticketNote,$user);
+            $this->ticketNoteRepository->deleteTicketNote($ticketNote, $user);
 
             return $this->respondNoContent();
         } catch (Throwable $throwable) {

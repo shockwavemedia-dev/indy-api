@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace App\Http\Requests\API;
 
 use App\Http\Requests\BaseRequest;
@@ -104,7 +103,7 @@ class PaginationRequest extends BaseRequest
             'subject' => 'string|nullable',
             'code' => 'string|nullable',
             'duedate' => 'string|nullable',
-            'library_category_id' => 'int|nullable'
+            'library_category_id' => 'int|nullable',
         ];
     }
 }

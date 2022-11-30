@@ -11,7 +11,6 @@ use App\Repositories\Interfaces\ClientServiceRepositoryInterface;
 use App\Services\ClientServices\Resources\CreateClientServiceResource;
 use App\Services\ClientServices\Resources\UpdateClientServiceResource;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection;
 
 final class ClientServiceRepository extends BaseRepository implements ClientServiceRepositoryInterface
 {
@@ -27,7 +26,7 @@ final class ClientServiceRepository extends BaseRepository implements ClientServ
             'client_id' => $resource->getClientId(),
             'service_id' => $resource->getServiceId(),
             'extras' => $resource->getExtras(),
-            'created_by' => $resource->getCreatedById()
+            'created_by' => $resource->getCreatedById(),
         ]);
     }
 

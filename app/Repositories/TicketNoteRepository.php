@@ -20,7 +20,7 @@ final class TicketNoteRepository extends BaseRepository implements TicketNoteRep
     {
         return $this->model
             ->with('createdBy')
-            ->where('ticket_id', '=' , $ticket->getId())
+            ->where('ticket_id', '=', $ticket->getId())
             ->orderBy('id', 'desc')
             ->paginate($size, ['*'], null, $pageNumber);
     }
@@ -40,6 +40,4 @@ final class TicketNoteRepository extends BaseRepository implements TicketNoteRep
 
         return $ticketNote;
     }
-
-
 }

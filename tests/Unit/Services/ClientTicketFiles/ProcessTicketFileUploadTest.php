@@ -53,7 +53,7 @@ final class ProcessTicketFileUploadTest extends TestCase
             'disk' => 'gcs',
             'uploadedFile' => $uploadedFile,
             'filePath' => '',
-            'uploadedBy' => $user
+            'uploadedBy' => $user,
         ]);
 
         $fileUploader = new FileUploaderStub();
@@ -71,7 +71,7 @@ final class ProcessTicketFileUploadTest extends TestCase
                         new UploadFileResource([
                             'fileObject' => $uploadedFile,
                             'fileModel' => $file,
-                        ])
+                        ]),
                     ],
                 ],
             ],
@@ -80,7 +80,7 @@ final class ProcessTicketFileUploadTest extends TestCase
         $fileUploaderProcessor->process($file, $user, $ticket, $uploadedFile);
 
         $actualCalls = [
-            'fileUploader' => $fileUploader->getCalls()
+            'fileUploader' => $fileUploader->getCalls(),
         ];
 
         self::assertEquals($expectedCalls, $actualCalls);

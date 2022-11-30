@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Services\Tickets\Factories;
 
-use App\Models\File;
 use App\Models\Tickets\TicketEvent;
 use App\Services\Tickets\Factories\TicketEventAttachmentFactory;
 use App\Services\Tickets\Resources\CreateTicketEventAttachmentResource;
@@ -24,7 +23,7 @@ final class TicketEventAttachmentFactoryTest extends TestCase
         $ticket = $this->env->ticket;
 
         $ticketEvent = new TicketEvent();
-        $ticketEvent->setAttribute('id',1);
+        $ticketEvent->setAttribute('id', 1);
         $ticketEvent->ticket()->associate($ticket);
         $ticketEvent->save();
 

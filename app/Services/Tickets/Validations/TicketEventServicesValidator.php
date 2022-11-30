@@ -8,8 +8,8 @@ use App\Models\Client;
 use App\Repositories\Interfaces\ServiceRepositoryInterface;
 use App\Services\Tickets\Exceptions\ClientEmptyServicesException;
 use App\Services\Tickets\Exceptions\InvalidServiceException;
-use App\Services\Tickets\Interfaces\Validations\TicketEventServiceValidationRuleInterface;
 use App\Services\Tickets\Interfaces\Validations\TicketEventServicesValidatorInterface;
+use App\Services\Tickets\Interfaces\Validations\TicketEventServiceValidationRuleInterface;
 use EonX\EasyUtils\CollectorHelper;
 use Illuminate\Support\Arr;
 
@@ -49,7 +49,7 @@ final class TicketEventServicesValidator implements TicketEventServicesValidator
         $clientServices = $client->getClientServices();
 
         if (\count($clientServices) === 0) {
-            throw new ClientEmptyServicesException("Client does not have services configured.");
+            throw new ClientEmptyServicesException('Client does not have services configured.');
         }
 
         foreach ($services as $service) {
@@ -60,7 +60,7 @@ final class TicketEventServicesValidator implements TicketEventServicesValidator
             $clientService = $clientServices->firstWhere('service_id', '=', $validService->getId());
 
             if ($clientService === null) {
-                throw new ClientEmptyServicesException("Client does not have services configured.");
+                throw new ClientEmptyServicesException('Client does not have services configured.');
             }
 
             foreach ($this->rules as $rule) {

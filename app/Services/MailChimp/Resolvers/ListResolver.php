@@ -12,7 +12,8 @@ final class ListResolver implements ListResolverInterface
 {
     private MailChimpClientFactoryInterface $mailChimpClientFactory;
 
-    public function __construct(MailChimpClientFactoryInterface $mailChimpClientFactory) {
+    public function __construct(MailChimpClientFactoryInterface $mailChimpClientFactory)
+    {
         $this->mailChimpClientFactory = $mailChimpClientFactory;
     }
 

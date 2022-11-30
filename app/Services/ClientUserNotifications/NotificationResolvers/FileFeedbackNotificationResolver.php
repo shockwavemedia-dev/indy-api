@@ -18,8 +18,9 @@ final class FileFeedbackNotificationResolver extends AbstractClientNotificationR
     private const TITLE_KEY = '%s has messaged you regarding ticket # %s';
 
     /**
-     * @param FileFeedback $morph
+     * @param  FileFeedback  $morph
      * @return void
+     *
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     public function resolve(mixed $morph): void

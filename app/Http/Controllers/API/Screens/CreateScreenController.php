@@ -33,7 +33,6 @@ final class CreateScreenController extends AbstractAPIController
         $this->bucketFactory = $bucketFactory;
         $this->fileFactory = $fileFactory;
         $this->screenFactory = $screenFactory;
-
     }
 
     /**

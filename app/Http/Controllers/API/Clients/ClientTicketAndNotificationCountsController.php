@@ -10,7 +10,6 @@ use App\Models\User;
 use App\Repositories\Interfaces\ClientRepositoryInterface;
 use App\Repositories\Interfaces\NotificationUserRepositoryInterface;
 use App\Repositories\Interfaces\TicketRepositoryInterface;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 final class ClientTicketAndNotificationCountsController extends AbstractAPIController
 {

@@ -11,7 +11,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 interface DepartmentRepositoryInterface
 {
     /**
-     * @param int[] $adminUserIds
+     * @param  int[]  $adminUserIds
      */
     public function addMembers(Department $department, array $adminUserIds): Department;
 
@@ -28,7 +28,7 @@ interface DepartmentRepositoryInterface
     public function deleteDepartment(Department $department): void;
 
     /**
-     * @param int[] $adminUserIds
+     * @param  int[]  $adminUserIds
      */
     public function deleteMembers(Department $department, array $adminUserIds): Department;
 

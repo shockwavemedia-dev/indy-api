@@ -7,11 +7,11 @@ namespace App\Services\ClientTicketFiles;
 use App\Models\Tickets\ClientTicketFile;
 use App\Models\User;
 use App\Repositories\Interfaces\FileRepositoryInterface;
-use App\Services\FileManager\Resources\UploadFileResource;
 use App\Services\ClientTicketFiles\Exceptions\ReplaceFileNotAllowedException;
 use App\Services\ClientTicketFiles\Interfaces\ProcessTicketFileReplaceInterface;
 use App\Services\FileManager\Interfaces\FileRemoverInterface;
 use App\Services\FileManager\Interfaces\FileUploaderInterface;
+use App\Services\FileManager\Resources\UploadFileResource;
 use App\Services\Files\Resources\CreateFileResource;
 use Illuminate\Http\UploadedFile;
 
@@ -53,7 +53,7 @@ final class ProcessTicketFileReplace implements ProcessTicketFileReplaceInterfac
 
         $filename = \pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
 
-        $generatedFilename =  \sprintf(
+        $generatedFilename = \sprintf(
             '%s/%s-%s',
             $clientTicketFile->getClient()->getClientCode(),
             \sha1(\sprintf('%s%s', $filename, time())),
@@ -69,7 +69,7 @@ final class ProcessTicketFileReplace implements ProcessTicketFileReplaceInterfac
                 'uploadedFile' => $uploadedFile,
                 'fileName' => $generatedFilename,
                 'filePath' => $filepath,
-                'uploadedBy' => $user
+                'uploadedBy' => $user,
             ])
         );
 

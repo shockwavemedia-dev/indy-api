@@ -69,8 +69,8 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
                 /** @var SocialMediaAttachment $attachment */
                 foreach ($socialMedia->getAttachments() as $attachment) {
                     $attachments[] = [
-                        'name' =>  $attachment->getFile()?->getOriginalFilename(),
-                        'file_type' =>  $attachment->getFile()?->getFileType(),
+                        'name' => $attachment->getFile()?->getOriginalFilename(),
+                        'file_type' => $attachment->getFile()?->getFileType(),
                         'social_media_attachment_id' => $attachment->getId(),
                         'url' => $attachment->getFile()?->getUrl(),
                         'thumbnail_url' => $attachment->getFile()?->getThumbnailUrl(),

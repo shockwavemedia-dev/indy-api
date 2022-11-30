@@ -14,11 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', function () {
     return view('welcome');
+
     return [
-        "data" => [
-            "message" => "crm-api",
-            "code" => 200,
-            "error" => false,
+        'data' => [
+            'message' => 'crm-api',
+            'code' => 200,
+            'error' => false,
         ],
     ];
 });

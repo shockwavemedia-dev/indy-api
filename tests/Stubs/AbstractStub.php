@@ -6,7 +6,6 @@ namespace Tests\Stubs;
 
 use Throwable;
 
-
 /**
  * Abstract class for all stubs. The responses are stored as method name as array key and
  * response for that method as array value.

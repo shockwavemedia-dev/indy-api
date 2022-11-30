@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
-use App\Models\Tickets\TicketEmail;
 use App\Models\Tickets\Ticket;
+use App\Models\Tickets\TicketEmail;
 use App\Models\User;
 use App\Repositories\Interfaces\TicketEmailRepositoryInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;

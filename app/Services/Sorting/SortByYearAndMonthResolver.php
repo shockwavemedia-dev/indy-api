@@ -4,26 +4,35 @@ declare(strict_types=1);
 
 namespace App\Services\Sorting;
 
-use App\Models\Department;
+use App\Enum\TicketFileStatusEnum;
+use App\Models\Client;
 use App\Models\File;
-use App\Models\Users\AdminUser;
 use App\Services\Sorting\Interfaces\SortByYearAndMonthResolverInterface;
 use Illuminate\Database\Eloquent\Collection;
 
 final class SortByYearAndMonthResolver implements SortByYearAndMonthResolverInterface
 {
-    public function resolve(Collection $data): array
+    public function resolve(Client $client, Collection $data): array
     {
         $result = [];
 
+        $filepath = \sprintf('%s/%s',
+            $client->getClientCode(),
+            'tickets'
+        );
+
         /** @var File $record */
         foreach ($data as $record) {
-            if ($record->getFilePath() !== '') {
+            if ($record->getFilePath() !== '' && $record->getFilePath() !== $filepath) {
+                continue;
+            }
+
+            if ($record->getClientTicketFile() && $record->getClientTicketFile()?->getStatus()->getValue() !== TicketFileStatusEnum::APPROVED) {
                 continue;
             }
 
             $year = \sprintf(
-                "%s",
+                '%s',
                 $record->getCreatedAt()->format('Y')
             );
 

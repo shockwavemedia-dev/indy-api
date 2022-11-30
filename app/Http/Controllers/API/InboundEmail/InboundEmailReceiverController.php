@@ -4,17 +4,14 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\InboundEmail;
 
-use App\Exceptions\Interfaces\ErrorLogInterface;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Models\User;
 use App\Models\Users\ClientUser;
 use App\Repositories\Interfaces\UserRepositoryInterface;
-use App\Services\FileManager\Interfaces\BucketFactoryInterface;
-use App\Services\Files\Interfaces\FileFactoryInterface;
 use App\Services\InboundEmails\Interfaces\EmailTicketProcessorInterface;
 use App\Services\InboundEmails\Interfaces\MailMimeParserResolverInterface;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Config;
 
 final class InboundEmailReceiverController extends AbstractAPIController
@@ -23,7 +20,8 @@ final class InboundEmailReceiverController extends AbstractAPIController
         private MailMimeParserResolverInterface $mailMimeParserResolver,
         private EmailTicketProcessorInterface $emailTicketProcessor,
         private UserRepositoryInterface $userRepository,
-    ) {}
+    ) {
+    }
 
     /**
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties

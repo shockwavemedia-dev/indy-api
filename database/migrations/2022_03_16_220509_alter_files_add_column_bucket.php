@@ -15,18 +15,18 @@ final class AlterFilesAddColumnBucket extends Migration
 
     public function up(): void
     {
-        if (Schema::hasTable(self::TABLE)=== false) {
+        if (Schema::hasTable(self::TABLE) === false) {
             return;
         }
 
         Schema::table(self::TABLE, function (Blueprint $table) {
-            $table->string('bucket')->nullable()->after("file_name");
+            $table->string('bucket')->nullable()->after('file_name');
         });
     }
 
     public function down(): void
     {
-        if (Schema::hasTable(self::TABLE)=== false) {
+        if (Schema::hasTable(self::TABLE) === false) {
             return;
         }
 
@@ -35,4 +35,3 @@ final class AlterFilesAddColumnBucket extends Migration
         });
     }
 }
-

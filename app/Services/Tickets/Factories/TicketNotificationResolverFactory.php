@@ -12,7 +12,6 @@ use EonX\EasyUtils\CollectorHelper;
 
 final class TicketNotificationResolverFactory implements TicketNotificationResolverFactoryInterface
 {
-
     /**
      * @var \App\Services\Tickets\Interfaces\Resolvers\TicketNotificationResolverInterface[]
      */

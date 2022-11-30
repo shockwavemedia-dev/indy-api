@@ -65,12 +65,12 @@ final class LeadClientFactoryTest extends TestCase
     {
         yield 'Supports true' => [
             'expected' => true,
-            'userType' => new UserTypeEnum(UserTypeEnum::LEAD_CLIENT)
+            'userType' => new UserTypeEnum(UserTypeEnum::LEAD_CLIENT),
         ];
 
         yield 'Supports false' => [
             'expected' => false,
-            'userType' => new UserTypeEnum(UserTypeEnum::CLIENT)
+            'userType' => new UserTypeEnum(UserTypeEnum::CLIENT),
         ];
     }
 }

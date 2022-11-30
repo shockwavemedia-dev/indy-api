@@ -2,15 +2,22 @@
 
 use App\Http\Controllers\API\Analytics\AnalyticFolderController;
 use App\Http\Controllers\API\Animations\AnimationMemberController;
+use App\Http\Controllers\API\Authentication\LoginAsClientController;
+use App\Http\Controllers\API\Authentication\LoginController;
 use App\Http\Controllers\API\Authentication\LogoutController;
+use App\Http\Controllers\API\Authentication\RefreshTokenController;
 use App\Http\Controllers\API\BackendUsers\BackendUsersTicketAndNotificationCountsController;
 use App\Http\Controllers\API\Clients\ClientEDMController;
 use App\Http\Controllers\API\Clients\ClientFileListController;
 use App\Http\Controllers\API\Clients\ClientFileListV2Controller;
 use App\Http\Controllers\API\Clients\ClientTicketAndNotificationCountsController;
-use App\Http\Controllers\API\Clients\CreateTicketSupportByClientController;
+use App\Http\Controllers\API\Clients\CreateClientController;
+use App\Http\Controllers\API\Clients\DeleteClientController;
+use App\Http\Controllers\API\Clients\ListClientController;
 use App\Http\Controllers\API\Clients\ListClientUsersController;
 use App\Http\Controllers\API\Clients\MarkUserAsOwnerController;
+use App\Http\Controllers\API\Clients\ShowClientController;
+use App\Http\Controllers\API\Clients\UpdateClientController;
 use App\Http\Controllers\API\Clients\UpdateClientScreensController;
 use App\Http\Controllers\API\ClientServices\ListClientServiceController;
 use App\Http\Controllers\API\ClientServices\UpdateClientServiceController;
@@ -42,6 +49,7 @@ use App\Http\Controllers\API\Folders\UpdateFolderController;
 use App\Http\Controllers\API\Folders\UploadFileFolderController;
 use App\Http\Controllers\API\Graphics\CreateGraphicRequestController;
 use App\Http\Controllers\API\Graphics\GraphicMembersController;
+use App\Http\Controllers\API\Graphics\GraphicStaffController;
 use App\Http\Controllers\API\Graphics\ListClientGraphicTicketsController;
 use App\Http\Controllers\API\InboundEmail\InboundEmailReceiverController;
 use App\Http\Controllers\API\Libraries\ClientCreateLibraryTicketController;
@@ -56,17 +64,14 @@ use App\Http\Controllers\API\LibraryCategories\DeleteLibraryCategoryController;
 use App\Http\Controllers\API\LibraryCategories\ListLibraryCategoryController;
 use App\Http\Controllers\API\LibraryCategories\ShowLibraryCategoryController;
 use App\Http\Controllers\API\LibraryCategories\UpdateLibraryCategoryController;
-use App\Http\Controllers\API\Authentication\LoginAsClientController;
-use App\Http\Controllers\API\Authentication\LoginController;
-use App\Http\Controllers\API\Authentication\RefreshTokenController;
 use App\Http\Controllers\API\MarketingPlanners\CreateMarketingPlannerController;
 use App\Http\Controllers\API\MarketingPlanners\DeleteMarketingPlannerController;
 use App\Http\Controllers\API\MarketingPlanners\ListMarketingPlannerController;
 use App\Http\Controllers\API\MarketingPlanners\RemoveMarketingPlannerTaskController;
 use App\Http\Controllers\API\MarketingPlanners\ShowMarketingPlannerController;
 use App\Http\Controllers\API\MarketingPlanners\UpdateMarketingPlannerController;
-use App\Http\Controllers\API\Notifications\NotificationDeleteController;
 use App\Http\Controllers\API\Notifications\NotificationDeleteAllController;
+use App\Http\Controllers\API\Notifications\NotificationDeleteController;
 use App\Http\Controllers\API\Notifications\NotificationMarkAllAsReadController;
 use App\Http\Controllers\API\Notifications\NotificationMarkAsReadController;
 use App\Http\Controllers\API\Notifications\UserNotificationListController;
@@ -98,43 +103,50 @@ use App\Http\Controllers\API\Services\ListServiceController;
 use App\Http\Controllers\API\Services\UpdateServiceExtrasController;
 use App\Http\Controllers\API\SocialMedia\AllowedMentionUsersListController;
 use App\Http\Controllers\API\SocialMedia\CreateSocialMediaCommentController;
-use App\Http\Controllers\API\SocialMedia\DeleteSocialMediaCommentController;
-use App\Http\Controllers\API\SocialMedia\SocialMediaMemberController;
-use App\Http\Controllers\API\SocialMedia\UpdateSocialMediaCommentController;
 use App\Http\Controllers\API\SocialMedia\CreateSocialMediaController;
-use App\Http\Controllers\API\SocialMedia\ListSocialMediaController;
+use App\Http\Controllers\API\SocialMedia\DeleteSocialMediaCommentController;
 use App\Http\Controllers\API\SocialMedia\DeleteSocialMediaController;
+use App\Http\Controllers\API\SocialMedia\ListSocialMediaController;
 use App\Http\Controllers\API\SocialMedia\RemoveAttachmentsSocialMediaController;
 use App\Http\Controllers\API\SocialMedia\ShowSocialMediaController;
+use App\Http\Controllers\API\SocialMedia\SocialMediaMemberController;
 use App\Http\Controllers\API\SocialMedia\SocialMediaMonthlyListController;
+use App\Http\Controllers\API\SocialMedia\UpdateSocialMediaCommentController;
 use App\Http\Controllers\API\SocialMedia\UpdateSocialMediaController;
 use App\Http\Controllers\API\SupportRequests\CreateSupportRequestController;
 use App\Http\Controllers\API\TicketAssignees\ListMyTicketController;
 use App\Http\Controllers\API\TicketAssignees\RemoveTicketAssigneeController;
 use App\Http\Controllers\API\TicketAssignees\ShowTicketAssigneeController;
+use App\Http\Controllers\API\TicketAssignees\TicketAssignStaffsController;
 use App\Http\Controllers\API\TicketAssignees\UpdateTicketAssigneeController;
+use App\Http\Controllers\API\TicketEmails\CreateTicketEmailController;
+use App\Http\Controllers\API\TicketEmails\ListTicketEmailController;
+use App\Http\Controllers\API\TicketEmails\TicketEmailMarkAsReadController;
 use App\Http\Controllers\API\TicketFiles\ApproveTicketFileController;
 use App\Http\Controllers\API\TicketFiles\DeleteTicketFileController;
 use App\Http\Controllers\API\TicketFiles\GetTicketFileController;
 use App\Http\Controllers\API\TicketFiles\ListTicketFilesController;
 use App\Http\Controllers\API\TicketFiles\ReplaceTicketFileController;
+use App\Http\Controllers\API\TicketFiles\RequestRevisionTicketFileController;
 use App\Http\Controllers\API\TicketFiles\UploadTicketFileController;
 use App\Http\Controllers\API\TicketNotes\CreateTicketNoteController;
 use App\Http\Controllers\API\TicketNotes\DeleteTicketNoteController;
 use App\Http\Controllers\API\TicketNotes\ListTicketNotesController;
 use App\Http\Controllers\API\TicketNotes\UpdateTicketNoteController;
 use App\Http\Controllers\API\Tickets\CreateEventTicketController;
-use App\Http\Controllers\API\TicketEmails\ListTicketEmailController;
-use App\Http\Controllers\API\TicketAssignees\TicketAssignStaffsController;
-use App\Http\Controllers\API\TicketEmails\TicketEmailMarkAsReadController;
+use App\Http\Controllers\API\Tickets\CreateTicketSupportController;
+use App\Http\Controllers\API\Tickets\DeleteTicketController;
+use App\Http\Controllers\API\Tickets\ListClientTicketController;
 use App\Http\Controllers\API\Tickets\ListTicketActivitiesController;
+use App\Http\Controllers\API\Tickets\ListTicketSupportController;
 use App\Http\Controllers\API\Tickets\ReadTicketNotesController;
+use App\Http\Controllers\API\Tickets\ShowTicketController;
 use App\Http\Controllers\API\Tickets\ShowTicketsByAdminUserController;
 use App\Http\Controllers\API\Tickets\TicketAnalyticsController;
 use App\Http\Controllers\API\Tickets\TicketAssigneeListController;
+use App\Http\Controllers\API\Tickets\UpdateTicketController;
 use App\Http\Controllers\API\Users\CreateAdminUserController;
 use App\Http\Controllers\API\Users\CreateClientUserController;
-use App\Http\Controllers\API\Tickets\CreateTicketSupportController;
 use App\Http\Controllers\API\Users\CreateLeadClientController;
 use App\Http\Controllers\API\Users\DeleteUserController;
 use App\Http\Controllers\API\Users\ForgotPasswordController;
@@ -146,21 +158,10 @@ use App\Http\Controllers\API\Users\RevokeUserController;
 use App\Http\Controllers\API\Users\ShowAdminUserController;
 use App\Http\Controllers\API\Users\UpdateUserController;
 use App\Http\Controllers\API\Users\VerifyUserController;
-use App\Http\Controllers\API\Clients\CreateClientController;
-use App\Http\Controllers\API\Clients\UpdateClientController;
-use App\Http\Controllers\API\Clients\ListClientController;
-use App\Http\Controllers\API\Clients\DeleteClientController;
-use App\Http\Controllers\API\Clients\ShowClientController;
-use App\Http\Controllers\API\Tickets\DeleteTicketController;
-use App\Http\Controllers\API\Tickets\UpdateTicketController;
-use App\Http\Controllers\API\Tickets\ShowTicketController;
-use App\Http\Controllers\API\Tickets\ListTicketSupportController;
-use App\Http\Controllers\API\Tickets\ListClientTicketController;
-use App\Http\Controllers\API\TicketEmails\CreateTicketEmailController;
 use App\Http\Controllers\API\Websites\ListClientWebsiteTicketsController;
-use App\Http\Controllers\API\Graphics\GraphicStaffController;
 use App\Http\Controllers\API\Websites\WebsiteMemberController;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -172,18 +173,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-header("Cache-Control: no-cache, must-revalidate");
-header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-header('Access-Control-Allow-Origin:  *');
-header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
-header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization, *');
+//header("Cache-Control: no-cache, must-revalidate");
+//header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+//header('Access-Control-Allow-Origin:  *');
+//header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
+//header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization, *');
 
 Route::get('/', function () {
     return [
-        "data" => [
-            "message" => "indy-app-api",
-            "code" => 200,
-            "error" => false,
+        'data' => [
+            'message' => 'indy-app-api',
+            'code' => 200,
+            'error' => false,
         ],
     ];
 });
@@ -323,8 +324,6 @@ Route::group([
         'uses' => BackendUsersTicketAndNotificationCountsController::class,
     ])->middleware('checkPermission:backend-users,ticket-notification-counts');
 
-
-
     Route::group([
         'middleware' => ['checkUserStatus'],
         'as' => 'clients.',
@@ -439,12 +438,10 @@ Route::group([
             'uses' => CreateMarketingPlannerController::class,
         ])->middleware('checkPermission:marketing-planner,create');
 
-
         Route::delete('/marketing-planner-tasks/{id}', [
             'as' => 'marketing-planner-task.delete',
             'uses' => RemoveMarketingPlannerTaskController::class,
         ])->middleware('checkPermission:marketing-planner,edit');
-
 
         Route::put('/marketing-planners/{id}', [
             'as' => 'marketing-planner.update',
@@ -606,7 +603,6 @@ Route::group([
             'as' => 'update-notes',
             'uses' => UpdateTicketNoteController::class,
         ])->middleware('checkPermission:tickets,edit');
-
     });
 
     Route::group([
@@ -650,7 +646,7 @@ Route::group([
 
         Route::get('/departments/{id}/ticket-counts', [
             'uses' => TicketAnalyticsController::class,
-            'as' => 'ticket-counts'
+            'as' => 'ticket-counts',
         ])->middleware('checkPermission:department-tickets,read');
 
         Route::post('/departments/{id}/members', [
@@ -706,8 +702,6 @@ Route::group([
             'as' => 'get-staffs',
             'uses' => DepartmentStaffsListController::class,
         ])->middleware('checkPermission:departments,read-members');
-
-
     });
 
     Route::group([
@@ -757,7 +751,6 @@ Route::group([
         ])->middleware('checkPermission:file-feedbacks,delete');
     });
 
-
     Route::group([
         'middleware' => ['checkUserStatus'],
         'as' => 'ticket-files.',
@@ -791,6 +784,11 @@ Route::group([
         Route::post('/ticket-files/{id}/replace-file', [
             'as' => 'replace-file',
             'uses' => ReplaceTicketFileController::class,
+        ])->middleware('checkPermission:ticket-files,edit');
+
+        Route::post('/ticket-files/{id}/request-revision', [
+            'as' => 'request-revision',
+            'uses' => RequestRevisionTicketFileController::class,
         ])->middleware('checkPermission:ticket-files,edit');
     });
 
@@ -1020,7 +1018,7 @@ Route::group([
         Route::put('printer-jobs/{id}/assign-price', [
             'as' => 'update-price',
             'uses' => AssignPricePrinterJobController::class,
-        ])->middleware('checkPermission:printer-jobs,assign-price');;
+        ])->middleware('checkPermission:printer-jobs,assign-price');
         Route::put('/printer-jobs/{id}/attachments', [
             'as' => 'delete-attachments',
             'uses' => RemoveAttachmentsPrinterJobController::class,
@@ -1058,7 +1056,6 @@ Route::group([
         'as' => 'admin-users.',
         'prefix' => '',
     ], function ($router) {
-
         Route::get('admin-users/{id}', [
             'as' => 'show',
             'uses' => ShowAdminUserController::class,
@@ -1072,5 +1069,3 @@ Route::group([
 
     /* ---- End of File --- */
 });
-
-

@@ -2,19 +2,18 @@
 
 declare(strict_types=1);
 
- namespace Tests\Unit\Models;
+namespace Tests\Unit\Models;
 
- use App\Models\Tickets\FileFeedbackAttachment;
- use PHPUnit\Framework\TestCase;
+use App\Models\Tickets\FileFeedbackAttachment;
+use PHPUnit\Framework\TestCase;
 
- /**
-  * @covers \App\Models\Tickets\FileFeedbackAttachment
-  */
- final class FileFeedbackAttachmentTest extends TestCase
- {
-     public function testGetterAndSetters(): void
+/**
+ * @covers \App\Models\Tickets\FileFeedbackAttachment
+ */
+final class FileFeedbackAttachmentTest extends TestCase
+{
+    public function testGetterAndSetters(): void
     {
-
         $expected = [
             'id' => 1,
             'client_file_id' => 1,
@@ -32,9 +31,9 @@ declare(strict_types=1);
             'id' => $attachment->getId(),
             'client_file_id' => $attachment->getClientFileId(),
             'feedback_id' => $attachment->getFeedbackId(),
-            'file_id' => $attachment->getFileId()
+            'file_id' => $attachment->getFileId(),
         ];
 
         self::assertEquals($expected, $actual);
     }
- }
+}

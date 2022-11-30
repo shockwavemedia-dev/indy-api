@@ -13,7 +13,8 @@ final class GraphicStaffController extends AbstractAPIController
 {
     public function __construct(
         private DepartmentRepositoryInterface $departmentRepository
-    ) {}
+    ) {
+    }
 
     public function __invoke(): JsonResource
     {

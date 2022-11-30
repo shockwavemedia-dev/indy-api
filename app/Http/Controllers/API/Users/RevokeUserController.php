@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\Users;
 
-
-use App\Enum\UserStatusEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Models\User;
 use App\Repositories\Interfaces\UserRepositoryInterface;

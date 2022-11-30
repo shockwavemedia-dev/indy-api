@@ -11,7 +11,6 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 final class CreateFeedbackAttachmentResource extends DataTransferObject
 {
-
     public ClientTicketFile $clientTicketFile;
 
     public FileFeedback $fileFeedback;
@@ -22,7 +21,6 @@ final class CreateFeedbackAttachmentResource extends DataTransferObject
     {
         return $this->clientTicketFile;
     }
-
 
     public function getFileFeedback(): FileFeedback
     {
@@ -54,5 +52,4 @@ final class CreateFeedbackAttachmentResource extends DataTransferObject
 
         return $this;
     }
-
 }

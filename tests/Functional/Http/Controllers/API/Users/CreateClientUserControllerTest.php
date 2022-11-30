@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Functional\Http\Controllers\API\Users;
 
 use App\Enum\AdminRoleEnum;
-use App\Models\Client;
 use Tests\Functional\Http\Controllers\API\AbstractAPITestCase;
 
 /**
@@ -31,7 +30,7 @@ final class CreateClientUserControllerTest extends AbstractAPITestCase
 
         $clientId = $client->getId();
 
-        $data =  <<<JSON
+        $data = <<<JSON
         {
             "email" : "markf23sd4sss3s@dailypress.com",
             "password" : "letmein",

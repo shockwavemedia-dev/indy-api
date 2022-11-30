@@ -31,7 +31,7 @@ final class TicketTypeResolverFactoryTest extends TestCase
         $expectedCalls = [
             [
                 'supports' => [
-                    $ticketType
+                    $ticketType,
                 ],
             ],
         ];
@@ -40,7 +40,6 @@ final class TicketTypeResolverFactoryTest extends TestCase
 
         $this->assertEquals($expectedCalls, $resolver->getCalls());
     }
-
 
     /**
      * @throws \App\Services\Tickets\Exceptions\UnsupportedTicketTypeException
@@ -58,7 +57,7 @@ final class TicketTypeResolverFactoryTest extends TestCase
         $expectedCalls = [
             [
                 'supports' => [
-                    $ticketType
+                    $ticketType,
                 ],
             ],
         ];

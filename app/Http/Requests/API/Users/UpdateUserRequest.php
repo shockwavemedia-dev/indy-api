@@ -5,7 +5,6 @@ namespace App\Http\Requests\API\Users;
 use App\Enum\AdminRoleEnum;
 use App\Enum\ClientRoleEnum;
 use App\Enum\UserStatusEnum;
-use App\Enum\UserTypeEnum;
 use App\Http\Requests\BaseRequest;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Validation\Rule;
@@ -160,18 +159,18 @@ final class UpdateUserRequest extends BaseRequest
             'birth_date' => 'date',
             'password' => 'nullable|min:6|string',
             'contact_number' => 'string|nullable',
-            'email' => \sprintf('%s,%s','string|unique:App\Models\User,email',$this->getId()),
+            'email' => \sprintf('%s,%s', 'string|unique:App\Models\User,email', $this->getId()),
             'first_name' => 'string|required',
             'gender' => 'string|nullable',
             'last_name' => 'string|nullable',
             'middle_name' => 'string|nullable',
             'status' => [
                 'string',
-                Rule::in(UserStatusEnum::toArray())
+                Rule::in(UserStatusEnum::toArray()),
             ],
             'role' => [
                 'string',
-                Rule::in($roles)
+                Rule::in($roles),
             ],
             'department_id' => 'int|nullable|exists:App\Models\Department,id',
             'client_id' => 'int|exists:App\Models\Client,id',

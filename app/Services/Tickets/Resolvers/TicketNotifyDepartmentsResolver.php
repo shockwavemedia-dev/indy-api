@@ -14,7 +14,8 @@ final class TicketNotifyDepartmentsResolver implements TicketNotifyDepartmentsRe
 {
     private DepartmentTicketNotificationHandlerInterface $departmentTicketNotificationHandler;
 
-    public function __construct(DepartmentTicketNotificationHandlerInterface $departmentTicketNotificationHandler) {
+    public function __construct(DepartmentTicketNotificationHandlerInterface $departmentTicketNotificationHandler)
+    {
         $this->departmentTicketNotificationHandler = $departmentTicketNotificationHandler;
     }
 
@@ -38,4 +39,3 @@ final class TicketNotifyDepartmentsResolver implements TicketNotifyDepartmentsRe
         }
     }
 }
-

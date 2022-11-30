@@ -2,21 +2,20 @@
 
 declare(strict_types=1);
 
- namespace Tests\Unit\Models;
+namespace Tests\Unit\Models;
 
- use App\Enum\TicketEmailStatusEnum;
- use App\Enum\UserTypeEnum;
- use App\Models\Tickets\TicketEmail;
- use PHPUnit\Framework\TestCase;
+use App\Enum\TicketEmailStatusEnum;
+use App\Enum\UserTypeEnum;
+use App\Models\Tickets\TicketEmail;
+use PHPUnit\Framework\TestCase;
 
- /**
-  * @covers \App\Models\Tickets\TicketEmail
-  */
- final class TicketEmailTest extends TestCase
- {
-     public function testGetterAndSetters(): void
+/**
+ * @covers \App\Models\Tickets\TicketEmail
+ */
+final class TicketEmailTest extends TestCase
+{
+    public function testGetterAndSetters(): void
     {
-
         $expected = [
             'id' => 1,
             'client_id' => 1,
@@ -57,4 +56,4 @@ declare(strict_types=1);
 
         self::assertEquals($expected, $actual);
     }
- }
+}

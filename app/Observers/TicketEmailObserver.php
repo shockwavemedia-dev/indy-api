@@ -12,7 +12,8 @@ final class TicketEmailObserver
 {
     private TicketActivityFactoryInterface $activityFactory;
 
-    public function __construct(TicketActivityFactoryInterface $activityFactory) {
+    public function __construct(TicketActivityFactoryInterface $activityFactory)
+    {
         $this->activityFactory = $activityFactory;
     }
 
@@ -27,7 +28,7 @@ final class TicketEmailObserver
             'activity' => \sprintf(
                 '%s sent an email',
                 $ticketEmail->getSenderBy()->getFirstName(),
-            )
+            ),
         ]));
     }
 }

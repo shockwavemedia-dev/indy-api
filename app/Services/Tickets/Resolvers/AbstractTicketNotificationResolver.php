@@ -68,7 +68,6 @@ abstract class AbstractTicketNotificationResolver
 
         try {
             $this->sendSlackNotification($ticket, $user, $url);
-
         } catch (\Throwable $throwable) {
             $this->errorLogger->reportError($throwable);
         } finally {
@@ -112,7 +111,7 @@ abstract class AbstractTicketNotificationResolver
     /**
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
-    private function saveNotification(Ticket $ticket, User $user):  void
+    private function saveNotification(Ticket $ticket, User $user): void
     {
         $notification = $this->notificationFactory->make(new CreateNotificationResource([
             'statusEnum' => new NotificationStatusEnum(NotificationStatusEnum::NEW),

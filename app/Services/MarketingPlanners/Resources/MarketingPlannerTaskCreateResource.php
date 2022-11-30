@@ -51,5 +51,4 @@ final class MarketingPlannerTaskCreateResource extends DataTransferObject
     {
         return $this->deadline;
     }
-
 }

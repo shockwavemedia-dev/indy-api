@@ -2,20 +2,18 @@
 
 declare(strict_types=1);
 
- namespace Tests\Unit\Models;
+namespace Tests\Unit\Models;
 
- use App\Models\File;
- use Carbon\Carbon;
- use PHPUnit\Framework\TestCase;
+use App\Models\File;
+use PHPUnit\Framework\TestCase;
 
- /**
-  * @covers \App\Models\File
-  */
- final class FileTest extends TestCase
- {
-     public function testGetterAndSetters(): void
-     {
-
+/**
+ * @covers \App\Models\File
+ */
+final class FileTest extends TestCase
+{
+    public function testGetterAndSetters(): void
+    {
         $expected = [
             'id' => 1,
             'original_filename' => 'logo.png',
@@ -57,4 +55,4 @@ declare(strict_types=1);
 
         self::assertEquals($expected, $actual);
     }
- }
+}

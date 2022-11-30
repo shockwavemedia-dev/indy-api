@@ -22,6 +22,4 @@ final class EventServiceTypesEnum extends Enum
      * @var string
      */
     public const VIDEOGRAPHY = 'Videography';
-
-
 }

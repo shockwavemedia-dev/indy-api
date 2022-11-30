@@ -16,7 +16,7 @@ final class AdminUserRepositoryTest extends TestCase
     public function testFindStaffByIds(): void
     {
         $adminUser = $this->env->adminUser([
-            'admin_role' => AdminRoleEnum::STAFF
+            'admin_role' => AdminRoleEnum::STAFF,
         ])->adminUser;
 
         $repository = new AdminUserRepository();
@@ -32,7 +32,7 @@ final class AdminUserRepositoryTest extends TestCase
     public function testSetDepartments(): void
     {
         $adminUser = $this->env->adminUser([
-            'admin_role' => AdminRoleEnum::STAFF
+            'admin_role' => AdminRoleEnum::STAFF,
         ])->adminUser;
 
         $department = $this->env->department()->department;

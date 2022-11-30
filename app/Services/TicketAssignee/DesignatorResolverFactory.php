@@ -12,7 +12,8 @@ use Exception;
 
 final class DesignatorResolverFactory implements DesignatorResolverFactoryInterface
 {
-    public function __construct(protected iterable $drivers) {
+    public function __construct(protected iterable $drivers)
+    {
         $this->drivers = CollectorHelper::filterByClassAsArray(
             $drivers,
             DesignatorResolverInterface::class
@@ -24,7 +25,7 @@ final class DesignatorResolverFactory implements DesignatorResolverFactoryInterf
      */
     public function make(ServicesEnum $serviceType): DesignatorResolverInterface
     {
-        /** @var DesignatorResolverInterface  $driver */
+        /** @var DesignatorResolverInterface $driver */
         foreach ($this->drivers as $driver) {
             if ($driver->supports($serviceType) === true) {
                 return $driver;

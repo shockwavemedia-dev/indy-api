@@ -9,7 +9,6 @@ use App\Models\Client;
 use App\Models\ClientService;
 use App\Models\Department;
 use App\Models\Emails\EmailLog;
-use App\Models\Emails\EmailLogs;
 use App\Models\File;
 use App\Models\Library;
 use App\Models\LibraryCategory;
@@ -101,17 +100,17 @@ final class EnvironmentFactory
 
     public function clientService(array $params = []): self
     {
-        if(isset($params['client_id']) === false) {
+        if (isset($params['client_id']) === false) {
             $client = $this->client()->client;
             $params['client_id'] = $client->getId();
         }
 
-        if(isset($params['created_by']) === false) {
+        if (isset($params['created_by']) === false) {
             $user = $this->user()->user;
             $params['created_by'] = $user->getId();
         }
 
-        if(isset($params['service_id']) === false) {
+        if (isset($params['service_id']) === false) {
             // Default to  1, no need for service factory we run the service seeder for the test.
             $params['service_id'] = 1;
         }
@@ -123,34 +122,34 @@ final class EnvironmentFactory
 
     public function clientTicketFile(array $params = []): self
     {
-        if(isset($params['admin_user_id']) === false){
+        if (isset($params['admin_user_id']) === false) {
             $params['admin_user_id'] = $this->user()
                     ->user
                     ->getUserType()
                     ->getId();
         }
 
-        if(isset($params['client_id']) === false){
+        if (isset($params['client_id']) === false) {
             $client = $this->client()->client;
 
             $params = array_merge([
-                'client_id' => $client->getId()
+                'client_id' => $client->getId(),
             ], $params);
         }
 
-        if(isset($params['file_id']) === false){
+        if (isset($params['file_id']) === false) {
             $file = $this->file()->file;
 
             $params = array_merge([
-                'file_id' => $file->getId()
+                'file_id' => $file->getId(),
             ], $params);
         }
 
-        if(isset($params['ticket_id']) === false){
+        if (isset($params['ticket_id']) === false) {
             $ticket = $this->ticket()->ticket;
 
             $params = array_merge([
-                'ticket_id' => $ticket->getId()
+                'ticket_id' => $ticket->getId(),
             ], $params);
         }
 
@@ -162,7 +161,6 @@ final class EnvironmentFactory
     public function clientUser(array $params = []): self
     {
         if ($this->has('client') === false || isset($params['client_id']) === false) {
-
             $this->client();
 
             $params = array_merge([
@@ -211,29 +209,29 @@ final class EnvironmentFactory
     public function fileFeedbackAttachment(array $params = []): self
     {
         //file
-        if (isset($params['file_id']) === false){
+        if (isset($params['file_id']) === false) {
             $file = $this->file()->file;
 
             $params = array_merge([
-                'file_id' => $file->getId()
+                'file_id' => $file->getId(),
             ], $params);
         }
 
         //clientTicketFile
-        if(isset($params['client_file_id']) === false){
+        if (isset($params['client_file_id']) === false) {
             $clientTicketFile = $this->clientTicketFile()->clientTicketFile;
 
             $params = array_merge([
-                'client_file_id' => $clientTicketFile->getId()
+                'client_file_id' => $clientTicketFile->getId(),
             ], $params);
         }
 
         //feedback
-        if(isset($params['feedback_id']) === false){
+        if (isset($params['feedback_id']) === false) {
             $fileFeedback = $this->fileFeedback()->fileFeedback;
 
             $params = array_merge([
-                'feedback_id' => $fileFeedback->getId()
+                'feedback_id' => $fileFeedback->getId(),
             ], $params);
         }
 
@@ -244,11 +242,11 @@ final class EnvironmentFactory
 
     public function file(array $params = []): self
     {
-        if(isset($params['uploaded_by']) === false){
+        if (isset($params['uploaded_by']) === false) {
             $user = $this->user()->user;
 
             $params = array_merge([
-                'uploaded_by' => $user->getId()
+                'uploaded_by' => $user->getId(),
             ], $params);
         }
 
@@ -259,23 +257,22 @@ final class EnvironmentFactory
 
     public function fileFeedback(array $params = []): self
     {
-
         //clientTicketFile
-        if(isset($params['client_file_id']) === false){
+        if (isset($params['client_file_id']) === false) {
             $clientTicketFile = $this->clientTicketFile()->clientTicketFile;
 
             $params = array_merge([
-                'client_file_id' => $clientTicketFile->getId()
+                'client_file_id' => $clientTicketFile->getId(),
             ], $params);
         }
 
         //user
-        if(isset($params['feedback_by']) === false && isset($params['feedback_by_type']) === false){
+        if (isset($params['feedback_by']) === false && isset($params['feedback_by_type']) === false) {
             $user = $this->user()->user;
 
             $params = array_merge([
                 'feedback_by' => $user->getId(),
-                'feedback_by_type' => $user->getUserType()->getType()->getValue()
+                'feedback_by_type' => $user->getUserType()->getType()->getValue(),
             ], $params);
         }
 
@@ -326,31 +323,31 @@ final class EnvironmentFactory
     public function ticket(array $params = []): self
     {
         //client
-        if(isset($params['client_id']) === false){
+        if (isset($params['client_id']) === false) {
             $client = $this->client()->client;
 
             $params = array_merge([
-                'client_id' => $client->getId()
+                'client_id' => $client->getId(),
             ], $params);
         }
 
         //department
-        if(isset($params['department_id']) === false){
+        if (isset($params['department_id']) === false) {
             $department = $this->department()->department;
 
             $params = array_merge([
-                'department_id' => $department->getId()
+                'department_id' => $department->getId(),
             ], $params);
         }
 
         //user
-        if(isset($params['created_by']) === false && isset($params['requested_by']) === false && isset($params['created_by_user_type']) === false){
+        if (isset($params['created_by']) === false && isset($params['requested_by']) === false && isset($params['created_by_user_type']) === false) {
             $user = $this->user()->user;
 
             $params = array_merge([
                 'created_by' => $user->getId(),
                 'requested_by' => $user->getId(),
-                'created_by_user_type' => $user->getUserType()->getType()->getValue()
+                'created_by_user_type' => $user->getUserType()->getType()->getValue(),
             ], $params);
         }
 
@@ -414,28 +411,28 @@ final class EnvironmentFactory
 
     public function ticketEmail(array $params = []): self
     {
-        if(isset($params['client_id']) === false){
+        if (isset($params['client_id']) === false) {
             $client = $this->client()->client;
 
             $params = array_merge([
-                'client_id' => $client->getId()
+                'client_id' => $client->getId(),
             ], $params);
         }
 
-        if(isset($params['ticket_id']) === false){
+        if (isset($params['ticket_id']) === false) {
             $ticket = $this->ticket()->ticket;
 
             $params = array_merge([
-                'ticket_id' => $ticket->getId()
+                'ticket_id' => $ticket->getId(),
             ], $params);
         }
 
-        if(isset($params['sender_by']) === false && isset($params['sender_type']) === false){
+        if (isset($params['sender_by']) === false && isset($params['sender_type']) === false) {
             $user = $this->user()->user;
 
             $params = array_merge([
                 'sender_by' => $user->getId(),
-                'sender_type' => $user->getUserType()->getType()->getValue()
+                'sender_type' => $user->getUserType()->getType()->getValue(),
             ], $params);
         }
 

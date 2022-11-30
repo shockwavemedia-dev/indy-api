@@ -6,8 +6,6 @@ namespace App\Jobs\File;
 
 use App\Models\File;
 use App\Repositories\Interfaces\FileRepositoryInterface;
-use App\Repositories\Interfaces\UserRepositoryInterface;
-use App\Services\FileManager\Interfaces\FileRemoverInterface;
 use App\Services\FileManager\Interfaces\S3SignedUrlServiceInterface;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

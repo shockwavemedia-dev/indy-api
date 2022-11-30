@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'morphable_id'=> 1,
+            'morphable_id' => 1,
             'morphable_type' => 'App\Models\Users\AdminUser',
             'email' => 'superadmin@indy.com.au',
             'password' => Hash::make('iNdYau013991'),
@@ -41,8 +41,7 @@ class UsersTableSeeder extends Seeder
             'gender' => 'Male',
             'birth_date' => '1990/12/12',
             'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
+            'updated_at' => Carbon::now(),
         ]);
-
     }
 }

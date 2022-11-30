@@ -24,14 +24,13 @@ final class LoginAsClientController extends AbstractAPIController
     ];
 
     private UserRepositoryInterface $userRepository;
+
     private ClientUserRepositoryInterface $clientUserRepository;
 
     public function __construct(
         UserRepositoryInterface $userRepository,
         ClientUserRepositoryInterface $clientUserRepository
     ) {
-
-
         $this->userRepository = $userRepository;
         $this->clientUserRepository = $clientUserRepository;
     }
@@ -58,7 +57,7 @@ final class LoginAsClientController extends AbstractAPIController
 
             if (\in_array($user->getStatus()->getValue(), self::NOT_ALLOWED_STATUS, true) === true) {
                 return $this->respondUnauthorised([
-                    'message' => 'User is not active.'
+                    'message' => 'User is not active.',
                 ]);
             }
 

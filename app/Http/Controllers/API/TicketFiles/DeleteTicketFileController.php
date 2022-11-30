@@ -18,7 +18,7 @@ final class DeleteTicketFileController extends AbstractAPIController
 
     private FileRepositoryInterface $fileRepository;
 
-    public function __construct (
+    public function __construct(
         ClientTicketFileRepositoryInterface $clientTicketFileRepository,
         FileRepositoryInterface $fileRepository
     ) {
@@ -43,6 +43,7 @@ final class DeleteTicketFileController extends AbstractAPIController
                 $user = $this->getUser();
                 $this->fileRepository->deleteFile($clientTicketFile->file, $user);
             }
+
             return $this->respondNoContent();
         } catch (Throwable $exception) {
             return $this->respondError($exception->getMessage());

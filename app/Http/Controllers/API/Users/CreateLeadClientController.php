@@ -8,7 +8,6 @@ use App\Enum\UserStatusEnum;
 use App\Enum\UserTypeEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Users\CreateLeadClientRequest;
-use App\Http\Resources\API\Users\UserResource;
 use App\Services\Users\Interfaces\UserCreationServiceInterface;
 use App\Services\Users\Interfaces\UserTypeFactoryResolverInterface;
 use App\Services\Users\Resources\CreateLeadClientResource;
@@ -44,7 +43,7 @@ final class CreateLeadClientController extends AbstractAPIController
             ]));
 
             $user = $this->userCreationService->create(new CreateUserResource([
-                'userType'=> $userType,
+                'userType' => $userType,
                 'email' => $request->getEmail(),
                 'password' => $request->getPassword(),
                 'status' => new UserStatusEnum(UserStatusEnum::GUEST),    // Default status is not verified

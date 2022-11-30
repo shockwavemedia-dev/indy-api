@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Unit\Repositories;
 
 use App\Enum\DepartmentStatusEnum;
-use App\Models\Department;
 use App\Repositories\DepartmentRepository;
 use App\Services\Departments\Resources\CreateDepartmentResources;
 use App\Services\Users\Exceptions\InvalidDepartmentsException;
@@ -42,7 +41,7 @@ final class DepartmentRepositoryTest extends TestCase
             'name' => 'Graphics Department',
             'description' => 'for graphics department',
             'minDeliveryDays' => 1,
-            'status' => new DepartmentStatusEnum(DepartmentStatusEnum::ACTIVE)
+            'status' => new DepartmentStatusEnum(DepartmentStatusEnum::ACTIVE),
         ]);
 
         $repository = new DepartmentRepository();
@@ -76,7 +75,7 @@ final class DepartmentRepositoryTest extends TestCase
 
         $results = $repository->all(500);
 
-        $departmentIds = array_column($results->toArray()['data'], 'id' );
+        $departmentIds = array_column($results->toArray()['data'], 'id');
 
         self::assertContains($department->getId(), $departmentIds);
     }

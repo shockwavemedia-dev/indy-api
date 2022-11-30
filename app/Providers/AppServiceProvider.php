@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(TokenRepositoryInterface::class, function ($app) {
             $factory = $app->make(PasswordBrokerFactory::class);
+
             return $factory->broker()->getRepository();
         });
 
@@ -45,16 +46,17 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      *
      * @return void
+     *
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     public function boot()
     {
-        $sentryHandler =  new ErrorLog();
-        Mailbox::catchAll(function(InboundEmail $email) use ($sentryHandler) {
+        $sentryHandler = new ErrorLog();
+        Mailbox::catchAll(function (InboundEmail $email) use ($sentryHandler) {
             $sentryHandler->log($email->subject());
         });
 
-        Mailbox::from('design@indy.com.au', function(InboundEmail $email) use ($sentryHandler) {
+        Mailbox::from('design@indy.com.au', function (InboundEmail $email) use ($sentryHandler) {
             $sentryHandler->log($email->subject());
         });
 
@@ -83,7 +85,6 @@ class AppServiceProvider extends ServiceProvider
 //                        ->withPath('');
 //                });
 //        }
-
 
         Schema::defaultStringLength(191);
     }

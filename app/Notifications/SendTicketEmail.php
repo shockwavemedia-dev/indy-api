@@ -50,7 +50,8 @@ final class SendTicketEmail extends Notification implements ShouldQueue
     /**
      * Get the mail representation of the notification.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
+     *
      * @throws \Throwable
      */
     public function toMail($notifiable): MailMessage

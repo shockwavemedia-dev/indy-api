@@ -72,12 +72,14 @@ final class Folder extends AbstractModel
         return $this->belongsTo(User::class, 'updated_by');
     }
 
-    public function childFolders(): HasMany {
-        return $this->hasMany(Folder::class,'parent_folder_id');
+    public function childFolders(): HasMany
+    {
+        return $this->hasMany(Folder::class, 'parent_folder_id');
     }
 
-    public function parentFolder(): ?BelongsTo {
-        return $this->belongsTo(Folder::class,'parent_folder_id');
+    public function parentFolder(): ?BelongsTo
+    {
+        return $this->belongsTo(Folder::class, 'parent_folder_id');
     }
 
     public function files(): HasMany

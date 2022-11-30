@@ -13,14 +13,15 @@ final class SupportRequestFactory implements SupportRequestFactoryInterface
 {
     private SupportRequestRepositoryInterface $supportRequestRepository;
 
-    public function __construct(SupportRequestRepositoryInterface $supportRequestRepository) {
+    public function __construct(SupportRequestRepositoryInterface $supportRequestRepository)
+    {
         $this->supportRequestRepository = $supportRequestRepository;
     }
 
     public function make(CreateSupportRequestResource $resource): SupportRequest
     {
         /** @var SupportRequest $supportRequest */
-        $supportRequest =  $this->supportRequestRepository->create([
+        $supportRequest = $this->supportRequestRepository->create([
             'client_id' => $resource->getClient()->getId(),
             'created_by' => $resource->getCreatedBy()->getId(),
             'department_id' => $resource->getDepartment()->getId(),

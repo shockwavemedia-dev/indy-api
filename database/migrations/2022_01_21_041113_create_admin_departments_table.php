@@ -8,10 +8,9 @@ use Illuminate\Support\Facades\Schema;
 
 final class CreateAdminDepartmentsTable extends Migration
 {
-
     public const TABLE = 'admin_departments';
 
-    public function up() : void
+    public function up(): void
     {
         if (Schema::hasTable(self::TABLE) === true) {
             return;

@@ -13,7 +13,8 @@ final class MarketingPlannerFactory implements MarketingPlannerFactoryInterface
 {
     private MarketingPlannerRepositoryInterface $marketingPlannerRepository;
 
-    public function __construct(MarketingPlannerRepositoryInterface $marketingPlannerRepository) {
+    public function __construct(MarketingPlannerRepositoryInterface $marketingPlannerRepository)
+    {
         $this->marketingPlannerRepository = $marketingPlannerRepository;
     }
 

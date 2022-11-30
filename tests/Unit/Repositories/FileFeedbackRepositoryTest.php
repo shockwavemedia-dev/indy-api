@@ -16,7 +16,6 @@ final class FileFeedbackRepositoryTest extends TestCase
 {
     public function testFindByClientTicketFile(): void
     {
-
         $clientTicketFile = $this->env->clientTicketFile()->clientTicketFile;
 
         $this->env->fileFeedback(
@@ -37,17 +36,16 @@ final class FileFeedbackRepositoryTest extends TestCase
      */
     public function testUpdateFeedbackSuccess(): void
     {
-
         $fileFeedback = $this->env->fileFeedback()->fileFeedback;
 
         $updateResource = new UpdateFileFeedbackResource([
-            'feedback' => 'Please change the color to #fffff'
+            'feedback' => 'Please change the color to #fffff',
         ]);
 
         $repository = new FileFeedbackRepository();
 
         $expected = [
-            'feedback' => 'Please change the color to #fffff'
+            'feedback' => 'Please change the color to #fffff',
         ];
 
         $ticket = $repository->update($fileFeedback, $updateResource);

@@ -11,8 +11,8 @@ use App\Repositories\Interfaces\TicketNoteRepositoryInterface;
 use App\Services\TicketNotes\Resources\UpdateTicketNoteResource;
 use App\Services\Tickets\Exceptions\InvalidDueDateException;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Throwable;
 use Symfony\Component\HttpFoundation\Response;
+use Throwable;
 
 final class UpdateTicketNoteController extends AbstractAPIController
 {
@@ -36,20 +36,19 @@ final class UpdateTicketNoteController extends AbstractAPIController
         }
 
         try {
-
-            if ($ticketNote->getNote() === $request->getNote()){
+            if ($ticketNote->getNote() === $request->getNote()) {
                 return new TicketNoteResource($ticketNote);
             }
 
             $ticketNote = $this->ticketNoteRepository->updateTicketNote($ticketNote, new UpdateTicketNoteResource([
                 'note' => $request->getNote() ?? $ticketNote->getNote(),
-                'updatedBy' => $this->getUser()
+                'updatedBy' => $this->getUser(),
             ]));
 
             return new TicketNoteResource($ticketNote);
         } catch (InvalidDueDateException $dueDateException) {
             return $this->respondBadRequest([
-                'message' => $dueDateException->getMessage()
+                'message' => $dueDateException->getMessage(),
             ]);
         } catch (Throwable $exception) {
             return $this->respondError($exception->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\API\FileFeedbacks;
 
-
 use App\Http\Requests\BaseRequest;
 
 final class CreateFileFeedbackRequest extends BaseRequest
@@ -28,7 +27,7 @@ final class CreateFileFeedbackRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'feedback' => 'string|required'
+            'feedback' => 'string|required',
         ];
     }
 }

@@ -10,7 +10,8 @@ final class Bucket
 
     private string $disk;
 
-    public function __construct(string $bucket, string $disk) {
+    public function __construct(string $bucket, string $disk)
+    {
         $this->bucket = $bucket;
         $this->disk = $disk;
     }

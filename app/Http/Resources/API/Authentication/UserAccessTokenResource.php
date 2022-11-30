@@ -7,8 +7,6 @@ namespace App\Http\Resources\API\Authentication;
 use App\Exceptions\InvalidResourceTypeException;
 use App\Http\Resources\API\Users\UserResource;
 use App\Http\Resources\Resource;
-use App\Models\Client;
-use App\Services\Identifiers\Interfaces\IdentifierEncoderInterface;
 use Illuminate\Support\Arr;
 
 final class UserAccessTokenResource extends Resource
@@ -17,6 +15,7 @@ final class UserAccessTokenResource extends Resource
 
     /**
      * @return mixed[]
+     *
      * @throws InvalidResourceTypeException
      */
     protected function getResponse(): array

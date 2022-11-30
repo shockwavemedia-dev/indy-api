@@ -43,7 +43,7 @@ final class SocialMediaRepository extends BaseRepository implements SocialMediaR
     {
         return $this->model
             ->whereMonth('post_date', $month)
-            ->whereYear('post_date',  $year)
+            ->whereYear('post_date', $year)
             ->where('client_id', $client->getId())
             ->with('attachments.file')
             ->get();

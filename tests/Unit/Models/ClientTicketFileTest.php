@@ -2,20 +2,19 @@
 
 declare(strict_types=1);
 
- namespace Tests\Unit\Models;
+namespace Tests\Unit\Models;
 
- use App\Enum\TicketFileStatusEnum;
- use App\Models\Tickets\ClientTicketFile;
-  use PHPUnit\Framework\TestCase;
+use App\Enum\TicketFileStatusEnum;
+use App\Models\Tickets\ClientTicketFile;
+use PHPUnit\Framework\TestCase;
 
- /**
-  * @covers \App\Models\Tickets\ClientTicketFile
-  */
- final class ClientTicketFileTest extends TestCase
- {
-     public function testGetterAndSetters(): void
+/**
+ * @covers \App\Models\Tickets\ClientTicketFile
+ */
+final class ClientTicketFileTest extends TestCase
+{
+    public function testGetterAndSetters(): void
     {
-
         $expected = [
             'id' => 1,
             'file_id' => 1,
@@ -50,4 +49,4 @@ declare(strict_types=1);
 
         self::assertEquals($expected, $actual);
     }
- }
+}

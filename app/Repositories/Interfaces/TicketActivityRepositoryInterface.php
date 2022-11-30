@@ -8,5 +8,4 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 interface TicketActivityRepositoryInterface
 {
     public function findAllTicketActivities(Ticket $ticket, ?int $size = null, ?int $pageNumber = null): LengthAwarePaginator;
-
 }

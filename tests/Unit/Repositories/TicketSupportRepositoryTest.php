@@ -6,9 +6,9 @@ namespace Tests\Unit\Repositories;
 
 use App\Enum\TicketStatusEnum;
 use App\Enum\TicketTypeEnum;
+use App\Repositories\TicketRepository;
 use App\Services\Tickets\Resources\TicketFilterOptionsResource;
 use App\Services\Tickets\Resources\UpdateTicketResource;
-use App\Repositories\TicketRepository;
 use Carbon\Carbon;
 use Tests\TestCase;
 
@@ -23,7 +23,7 @@ final class TicketSupportRepositoryTest extends TestCase
 
         $ticket = $this->env->ticket(
             [
-                'client_id' => $client->getId()
+                'client_id' => $client->getId(),
             ]
         )->ticket;
 
@@ -57,7 +57,7 @@ final class TicketSupportRepositoryTest extends TestCase
 
         $ticket = $this->env->ticket(
             [
-                'client_id' => $client->getId()
+                'client_id' => $client->getId(),
             ]
         )->ticket;
 
@@ -75,9 +75,8 @@ final class TicketSupportRepositoryTest extends TestCase
         $department = $this->env->department;
 
         $ticket1 = $this->env->ticket([
-            'department_id' => $department->getId()
+            'department_id' => $department->getId(),
         ])->ticket;
-
 
         $ticket2 = $this->env->ticket()->ticket;
 
@@ -137,7 +136,7 @@ final class TicketSupportRepositoryTest extends TestCase
             [
                 'created_by' => $user->getId(),
                 'requested_by' => $user->getId(),
-                'created_by_user_type' => $user->getUserType()->getType()->getValue()
+                'created_by_user_type' => $user->getUserType()->getType()->getValue(),
             ]
         )->ticket;
 
@@ -147,7 +146,7 @@ final class TicketSupportRepositoryTest extends TestCase
             'type' => (new TicketTypeEnum(TicketTypeEnum::EMAIL)),
             'updatedBy' => $user,
             'dueDate' => new Carbon('03/01/2023'),
-            'status' => (new TicketStatusEnum(TicketStatusEnum::OPEN))
+            'status' => (new TicketStatusEnum(TicketStatusEnum::OPEN)),
         ]);
 
         $repository = new TicketRepository();
@@ -158,7 +157,7 @@ final class TicketSupportRepositoryTest extends TestCase
             'type' => (new TicketTypeEnum(TicketTypeEnum::EMAIL)),
             'updatedBy' => $user->getId(),
             'dueDate' => new Carbon('03/01/2023'),
-            'status' => (new TicketStatusEnum(TicketStatusEnum::OPEN))
+            'status' => (new TicketStatusEnum(TicketStatusEnum::OPEN)),
 
         ];
 
@@ -172,7 +171,7 @@ final class TicketSupportRepositoryTest extends TestCase
             'type' => $ticket->getType(),
             'updatedBy' => $ticket->getUpdatedById(),
             'dueDate' => $ticket->getDueDate(),
-            'status' => $ticket->getStatus()
+            'status' => $ticket->getStatus(),
         ];
 
         self::assertEquals($expected, $actual);
@@ -180,7 +179,6 @@ final class TicketSupportRepositoryTest extends TestCase
 
     public function testFindByOptionsSortedSuccess(): void
     {
-
         $ticket1 = $this->env->ticket;
         $ticket2 = $this->env->ticket;
 
@@ -188,7 +186,7 @@ final class TicketSupportRepositoryTest extends TestCase
 
         $options = [
             'status' => [TicketStatusEnum::NEW],
-            'types' => [TicketTypeEnum::EMAIL]
+            'types' => [TicketTypeEnum::EMAIL],
         ];
 
         $findSupportTickets = $repository->findByOptions($options);
@@ -198,7 +196,6 @@ final class TicketSupportRepositoryTest extends TestCase
 
     public function testFindMyTicket(): void
     {
-
         $ticket = $this->env->ticket;
 
         $repository = new TicketRepository();

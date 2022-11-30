@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
- namespace Tests\Unit\Models;
+namespace Tests\Unit\Models;
 
- use App\Enum\ClientStatusEnum;
- use App\Models\Client;
- use PHPUnit\Framework\TestCase;
+use App\Enum\ClientStatusEnum;
+use App\Models\Client;
+use PHPUnit\Framework\TestCase;
 
- /**
-  * @covers \App\Models\Client
-  */
- final class ClientTest extends TestCase
- {
-     public function testGetterAndSetters(): void
+/**
+ * @covers \App\Models\Client
+ */
+final class ClientTest extends TestCase
+{
+    public function testGetterAndSetters(): void
     {
         $expected = [
             'id' => 1,
@@ -27,7 +27,7 @@ declare(strict_types=1);
             'rating' => 5,
             'status' => ClientStatusEnum::ACTIVE,
             'logo_file_id' => null,
-            'designated_designer_id' => null
+            'designated_designer_id' => null,
         ];
 
         $client = new Client();
@@ -56,9 +56,9 @@ declare(strict_types=1);
             'rating' => $client->getRating(),
             'status' => $client->getStatus(),
             'logo_file_id' => $client->getLogoFileId(),
-            'designated_designer_id' => $client->getDesignatedDesignerId()
+            'designated_designer_id' => $client->getDesignatedDesignerId(),
         ];
 
         self::assertEquals($expected, $actual);
     }
- }
+}

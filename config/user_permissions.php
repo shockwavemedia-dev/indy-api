@@ -14,16 +14,16 @@ return [
             'backend-users' => [
                 'ticket-notification-counts' => true,
             ],
-            'users' =>  [
+            'users' => [
                 'read' => false,
                 'delete' => false,
                 'edit' => false,
                 'create' => false,
             ],
-            'clients' =>  [
+            'clients' => [
                 'read' => true,
             ],
-            'tickets' =>  [
+            'tickets' => [
                 'read' => true,
                 'delete' => true,
                 'edit' => true,
@@ -32,31 +32,31 @@ return [
                 'assign' => true,
                 'create-note' => true,
             ],
-            'ticket-emails' =>  [
+            'ticket-emails' => [
                 'read' => true,
                 'create' => true,
-                'edit' => true
+                'edit' => true,
             ],
-            'ticket-files' =>  [
+            'ticket-files' => [
                 'read' => true,
                 'create' => true,
                 'edit' => true,
                 'approval' => true,
                 'delete' => true,
             ],
-            'file-feedbacks' =>  [
+            'file-feedbacks' => [
                 'read' => true,
                 'create' => true,
                 'edit' => true,
                 'delete' => true,
             ],
-            'client-services' =>  [
+            'client-services' => [
                 'read' => true,
                 'create' => true,
-                'edit' => true
+                'edit' => true,
             ],
-            'services' =>  [
-                'read' => true
+            'services' => [
+                'read' => true,
             ],
             'library-categories' => [
                 'read' => true,
@@ -64,7 +64,7 @@ return [
                 'edit' => true,
                 'delete' => true,
             ],
-            'departments' =>  [
+            'departments' => [
                 'read' => true,
                 'delete' => false,
                 'edit' => false,
@@ -80,21 +80,21 @@ return [
     AdminRoleEnum::ADMIN => [
         'modules' => [
             'printer-jobs' => [
-              'assign-price' => true,
+                'assign-price' => true,
             ],
-            'users' =>  [
+            'users' => [
                 'read' => true,
                 'delete' => true,
                 'edit' => true,
                 'create' => true,
             ],
-            'clients' =>  [
+            'clients' => [
                 'read' => true,
                 'delete' => true,
                 'edit' => true,
                 'create' => true,
             ],
-            'departments' =>  [
+            'departments' => [
                 'read' => true,
                 'delete' => true,
                 'edit' => true,
@@ -104,7 +104,7 @@ return [
                 'read-staffs' => true,
                 'remove-members' => true,
             ],
-            'tickets' =>  [
+            'tickets' => [
                 'read' => true,
                 'delete' => true,
                 'edit' => true,
@@ -113,28 +113,28 @@ return [
                 'assign' => true,
                 'create-note' => true,
             ],
-            'ticket-emails' =>  [
+            'ticket-emails' => [
                 'read' => false,
                 'create' => false,
-                'edit' => false
+                'edit' => false,
             ],
-            'ticket-files' =>  [
+            'ticket-files' => [
                 'read' => true,
                 'create' => true,
                 'edit' => true,
                 'approval' => true,
                 'delete' => true,
             ],
-            'file-feedbacks' =>  [
+            'file-feedbacks' => [
                 'read' => true,
                 'create' => true,
                 'edit' => true,
                 'delete' => true,
             ],
-            'client-services' =>  [
+            'client-services' => [
                 'read' => true,
                 'create' => true,
-                'edit' => true
+                'edit' => true,
             ],
             'library-categories' => [
                 'read' => true,
@@ -142,13 +142,13 @@ return [
                 'edit' => true,
                 'delete' => true,
             ],
-            'services' =>  [
+            'services' => [
                 'read' => true,
                 'update' => true,
             ],
             'my-tickets' => [
                 'read' => true,
-            ]
+            ],
         ],
     ],
     AdminRoleEnum::ACCOUNT_MANAGER => [
@@ -157,18 +157,18 @@ return [
                 'assign-price' => true,
             ],
             'backend-users' => [
-              'ticket-notification-counts' => true,
+                'ticket-notification-counts' => true,
             ],
-            'users' =>  [
+            'users' => [
                 'read' => false,
                 'delete' => false,
                 'edit' => false,
                 'create' => false,
             ],
-            'clients' =>  [
+            'clients' => [
                 'read' => true,
             ],
-            'tickets' =>  [
+            'tickets' => [
                 'read' => true,
                 'delete' => true,
                 'edit' => true,
@@ -177,31 +177,31 @@ return [
                 'assign' => true,
                 'create-note' => true,
             ],
-            'ticket-emails' =>  [
+            'ticket-emails' => [
                 'read' => true,
                 'create' => true,
-                'edit' => true
+                'edit' => true,
             ],
-            'ticket-files' =>  [
+            'ticket-files' => [
                 'read' => true,
                 'create' => true,
                 'edit' => true,
                 'approval' => true,
                 'delete' => true,
             ],
-            'file-feedbacks' =>  [
+            'file-feedbacks' => [
                 'read' => true,
                 'create' => true,
                 'edit' => true,
                 'delete' => true,
             ],
-            'client-services' =>  [
+            'client-services' => [
                 'read' => true,
                 'create' => true,
-                'edit' => true
+                'edit' => true,
             ],
-            'services' =>  [
-                'read' => true
+            'services' => [
+                'read' => true,
             ],
             'library-categories' => [
                 'read' => true,
@@ -209,7 +209,7 @@ return [
                 'edit' => true,
                 'delete' => true,
             ],
-            'departments' =>  [
+            'departments' => [
                 'read' => true,
                 'delete' => false,
                 'edit' => false,
@@ -230,16 +230,16 @@ return [
             'backend-users' => [
                 'ticket-notification-counts' => true,
             ],
-            'users' =>  [
+            'users' => [
                 'read' => false,
                 'delete' => false,
                 'edit' => false,
                 'create' => false,
             ],
-            'clients' =>  [
+            'clients' => [
                 'read' => true,
             ],
-            'tickets' =>  [
+            'tickets' => [
                 'read' => true,
                 'delete' => true,
                 'edit' => true,
@@ -248,33 +248,33 @@ return [
                 'assign' => true,
                 'create-note' => true,
             ],
-            'ticket-emails' =>  [
+            'ticket-emails' => [
                 'read' => true,
                 'create' => true,
-                'edit' => true
+                'edit' => true,
             ],
-            'ticket-files' =>  [
+            'ticket-files' => [
                 'read' => true,
                 'create' => true,
                 'edit' => true,
                 'approval' => true,
                 'delete' => true,
             ],
-            'file-feedbacks' =>  [
+            'file-feedbacks' => [
                 'read' => true,
                 'create' => true,
                 'edit' => true,
                 'delete' => true,
             ],
-            'client-services' =>  [
+            'client-services' => [
                 'read' => true,
                 'create' => true,
-                'edit' => true
+                'edit' => true,
             ],
-            'services' =>  [
-                'read' => true
+            'services' => [
+                'read' => true,
             ],
-            'departments' =>  [
+            'departments' => [
                 'read' => true,
                 'delete' => true,
                 'edit' => true,
@@ -300,14 +300,14 @@ return [
             'backend-users' => [
                 'ticket-notification-counts' => true,
             ],
-            'users' =>  [
+            'users' => [
                 'read' => true,
                 'edit' => true,
             ],
-            'clients' =>  [
+            'clients' => [
                 'read' => true,
             ],
-            'tickets' =>  [
+            'tickets' => [
                 'read' => true,
                 'delete' => false,
                 'edit' => false,
@@ -316,33 +316,33 @@ return [
                 'assign' => true,
                 'create-note' => true,
             ],
-            'ticket-emails' =>  [
+            'ticket-emails' => [
                 'read' => true,
                 'create' => true,
-                'edit' => true
+                'edit' => true,
             ],
-            'ticket-files' =>  [
+            'ticket-files' => [
                 'read' => true,
                 'create' => true,
                 'edit' => true,
                 'approval' => false,
                 'delete' => true,
             ],
-            'file-feedbacks' =>  [
+            'file-feedbacks' => [
                 'read' => true,
                 'create' => true,
                 'edit' => true,
                 'delete' => true,
             ],
-            'client-services' =>  [
+            'client-services' => [
                 'read' => true,
                 'create' => false,
-                'edit' => false
+                'edit' => false,
             ],
-            'services' =>  [
-                'read' => true
+            'services' => [
+                'read' => true,
             ],
-            'departments' =>  [
+            'departments' => [
                 'read' => true,
                 'delete' => false,
                 'edit' => false,
@@ -357,7 +357,7 @@ return [
             ],
             'my-tickets' => [
                 'read' => true,
-            ]
+            ],
         ],
     ],
     ClientRoleEnum::MARKETING => [
@@ -369,20 +369,20 @@ return [
             'graphics' => [
                 'request-create' => true,
             ],
-            'users' =>  [
+            'users' => [
                 'read' => true,
                 'edit' => true,
                 'create' => true,
                 'delete' => true,
             ],
-            'clients' =>  [
+            'clients' => [
                 'read' => true,
                 'support-request' => true,
             ],
             'tickets-client' => [
                 'create' => true,
             ],
-            'tickets' =>  [
+            'tickets' => [
                 'read' => true,
                 'delete' => true,
                 'edit' => true,
@@ -391,31 +391,31 @@ return [
                 'assign' => false,
                 'create-note' => true,
             ],
-            'ticket-emails' =>  [
+            'ticket-emails' => [
                 'read' => true,
                 'create' => true,
-                'edit' => true
+                'edit' => true,
             ],
-            'ticket-files' =>  [
+            'ticket-files' => [
                 'read' => true,
                 'create' => true,
                 'edit' => true,
                 'approval' => true,
                 'delete' => true,
             ],
-            'file-feedbacks' =>  [
+            'file-feedbacks' => [
                 'read' => true,
                 'create' => true,
                 'edit' => true,
                 'delete' => true,
             ],
-            'client-services' =>  [
-                'read' => true
+            'client-services' => [
+                'read' => true,
             ],
-            'services' =>  [
-                'read' => true
+            'services' => [
+                'read' => true,
             ],
-            'departments' =>  [
+            'departments' => [
                 'read' => true,
                 'read-staffs' => true,
             ],
@@ -426,7 +426,7 @@ return [
                 'delete' => false,
             ],
             'library-ticket' => [
-              'create' => true,
+                'create' => true,
             ],
         ],
     ],
@@ -439,20 +439,20 @@ return [
             'graphics' => [
                 'request-create' => true,
             ],
-            'users' =>  [
+            'users' => [
                 'create' => true,
                 'read' => true,
                 'edit' => true,
                 'delete' => true,
             ],
-            'clients' =>  [
+            'clients' => [
                 'read' => true,
                 'support-request' => true,
             ],
             'tickets-client' => [
                 'create' => true,
             ],
-            'tickets' =>  [
+            'tickets' => [
                 'read' => true,
                 'delete' => true,
                 'edit' => true,
@@ -461,31 +461,31 @@ return [
                 'assign' => false,
                 'create-note' => true,
             ],
-            'ticket-emails' =>  [
+            'ticket-emails' => [
                 'read' => true,
                 'create' => true,
-                'edit' => true
+                'edit' => true,
             ],
-            'ticket-files' =>  [
+            'ticket-files' => [
                 'read' => true,
                 'create' => true,
                 'edit' => true,
                 'approval' => true,
                 'delete' => true,
             ],
-            'file-feedbacks' =>  [
+            'file-feedbacks' => [
                 'read' => true,
                 'create' => true,
                 'edit' => true,
                 'delete' => true,
             ],
-            'client-services' =>  [
-                'read' => true
+            'client-services' => [
+                'read' => true,
             ],
-            'services' =>  [
-                'read' => true
+            'services' => [
+                'read' => true,
             ],
-            'departments' =>  [
+            'departments' => [
                 'read' => true,
                 'read-staffs' => true,
             ],
@@ -509,20 +509,20 @@ return [
             'graphics' => [
                 'request-create' => true,
             ],
-            'users' =>  [
+            'users' => [
                 'create' => true,
                 'read' => true,
                 'edit' => true,
                 'delete' => true,
             ],
-            'clients' =>  [
+            'clients' => [
                 'read' => true,
                 'support-request' => true,
             ],
             'tickets-client' => [
                 'create' => true,
             ],
-            'tickets' =>  [
+            'tickets' => [
                 'read' => true,
                 'delete' => true,
                 'edit' => true,
@@ -531,31 +531,31 @@ return [
                 'assign' => false,
                 'create-note' => true,
             ],
-            'ticket-emails' =>  [
+            'ticket-emails' => [
                 'read' => true,
                 'create' => true,
-                'edit' => true
+                'edit' => true,
             ],
-            'ticket-files' =>  [
+            'ticket-files' => [
                 'read' => true,
                 'create' => true,
                 'edit' => true,
                 'approval' => true,
                 'delete' => true,
             ],
-            'file-feedbacks' =>  [
+            'file-feedbacks' => [
                 'read' => true,
                 'create' => true,
                 'edit' => true,
                 'delete' => true,
             ],
-            'client-services' =>  [
-                'read' => true
+            'client-services' => [
+                'read' => true,
             ],
-            'services' =>  [
-                'read' => true
+            'services' => [
+                'read' => true,
             ],
-            'departments' =>  [
+            'departments' => [
                 'read' => true,
                 'read-staffs' => true,
             ],

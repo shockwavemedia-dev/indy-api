@@ -10,7 +10,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 final class ReadTicketNotesController extends AbstractAPIController
 {
-    public function __construct(private TicketRepositoryInterface $ticketRepository) {}
+    public function __construct(private TicketRepositoryInterface $ticketRepository)
+    {
+    }
 
     public function __invoke(int $id): JsonResource
     {

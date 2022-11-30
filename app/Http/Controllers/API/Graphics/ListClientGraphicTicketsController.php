@@ -7,8 +7,8 @@ namespace App\Http\Controllers\API\Graphics;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\PaginationRequest;
 use App\Http\Resources\API\Tickets\TicketSupportsResource;
-use App\Repositories\Interfaces\TicketRepositoryInterface;
 use App\Repositories\Interfaces\ClientRepositoryInterface;
+use App\Repositories\Interfaces\TicketRepositoryInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Throwable;
 
@@ -26,7 +26,7 @@ final class ListClientGraphicTicketsController extends AbstractAPIController
         $this->ticketRepository = $ticketRepository;
     }
 
-    public function __invoke(PaginationRequest $request,int $id): JsonResource
+    public function __invoke(PaginationRequest $request, int $id): JsonResource
     {
         /** @var \App\Models\Client $client */
         $client = $this->clientRepository->find($id);

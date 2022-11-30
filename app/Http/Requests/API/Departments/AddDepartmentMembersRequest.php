@@ -8,7 +8,6 @@ use App\Http\Requests\BaseRequest;
 
 final class AddDepartmentMembersRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;
@@ -23,7 +22,7 @@ final class AddDepartmentMembersRequest extends BaseRequest
     {
         return [
             'admin_users' => 'array|required',
-            'admin_users.*' => 'integer|exists:App\Models\Users\AdminUser,id'
+            'admin_users.*' => 'integer|exists:App\Models\Users\AdminUser,id',
         ];
     }
 }

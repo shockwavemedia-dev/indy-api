@@ -42,7 +42,7 @@ final class AssignedTicketEmail extends Notification implements ShouldQueue
     }
 
     /**
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return string[]
      */
     public function via(mixed $notifiable): array
@@ -53,8 +53,9 @@ final class AssignedTicketEmail extends Notification implements ShouldQueue
     /**
      * Get the mail representation of the notification.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return MailMessage
+     *
      * @throws \Exception
      * @throws \Throwable
      */

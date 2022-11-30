@@ -15,21 +15,19 @@ use Throwable;
 final class ListTicketNotesController extends AbstractAPIController
 {
     private TicketRepositoryInterface $ticketRepository;
+
     private TicketNoteRepositoryInterface $ticketNoteRepository;
 
     public function __construct(
         TicketRepositoryInterface $ticketRepository,
         TicketNoteRepositoryInterface $ticketNoteRepository,
-    )
-    {
+    ) {
         $this->ticketRepository = $ticketRepository;
         $this->ticketNoteRepository = $ticketNoteRepository;
-
     }
 
-    public function __invoke(PaginationRequest $request,int $id): JsonResource
+    public function __invoke(PaginationRequest $request, int $id): JsonResource
     {
-
         /** @var \App\Models\Tickets\Ticket $ticket */
         $ticket = $this->ticketRepository->find($id);
 
@@ -40,7 +38,7 @@ final class ListTicketNotesController extends AbstractAPIController
         }
 
         try {
-            $notes = $this->ticketNoteRepository->findAllTicketNotes($ticket,$request->getSize(), $request->getPageNumber());
+            $notes = $this->ticketNoteRepository->findAllTicketNotes($ticket, $request->getSize(), $request->getPageNumber());
 
             return new TicketNotesResource($notes);
         } catch (Throwable $throwable) {

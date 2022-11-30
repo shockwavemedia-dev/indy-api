@@ -43,7 +43,7 @@ final class CreateGraphicRequest extends BaseRequest
             'extras.*' => [
                 'required',
                 'string',
-            ]
+            ],
         ];
     }
 }

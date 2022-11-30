@@ -53,7 +53,7 @@ final class ClientServicesValidator implements ClientServicesValidatorInterface
             /** @var Service $validService */
             $validService = $validServices->find(Arr::get($service, 'service_id'));
 
-            $clientService = $clientServices->where('service_id', '=' ,Arr::get($service, 'service_id'))->first();
+            $clientService = $clientServices->where('service_id', '=', Arr::get($service, 'service_id'))->first();
 
             foreach ($this->rules as $rule) {
                 $rule->validate(

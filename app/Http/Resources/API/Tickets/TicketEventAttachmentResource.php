@@ -12,6 +12,7 @@ final class TicketEventAttachmentResource extends Resource
 {
     /**
      * @return mixed[]
+     *
      * @throws InvalidResourceTypeException
      */
     protected function getResponse(): array

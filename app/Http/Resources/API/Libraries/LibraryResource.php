@@ -22,6 +22,7 @@ final class LibraryResource extends Resource
 
     /**
      * @return mixed[]
+     *
      * @throws \App\Exceptions\InvalidResourceTypeException
      */
     protected function getResponse(): array
@@ -42,7 +43,7 @@ final class LibraryResource extends Resource
             'title' => $library->getTitle(),
             'description' => $library->getDescription(),
             'library_category_name' => $category->getName(),
-            'library_category_id' => $category->getId()
+            'library_category_id' => $category->getId(),
         ];
 
         if ($this->showLink === true) {

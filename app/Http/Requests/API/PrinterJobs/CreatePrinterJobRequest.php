@@ -13,7 +13,6 @@ final class CreatePrinterJobRequest extends BaseRequest
         return true;
     }
 
-
     public function rules(): array
     {
         return [
@@ -35,11 +34,11 @@ final class CreatePrinterJobRequest extends BaseRequest
             'address' => 'string|nullable',
             'purchase_order_number' => 'string|nullable',
             'attachments' => '',
-//            'printer_id' => [
-//                'int',
-//                'nullable',
-//                'exists:App\Models\Printer,id',
-//            ],
+            //            'printer_id' => [
+            //                'int',
+            //                'nullable',
+            //                'exists:App\Models\Printer,id',
+            //            ],
         ];
     }
 }

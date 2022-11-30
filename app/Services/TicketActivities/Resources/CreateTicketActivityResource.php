@@ -34,18 +34,21 @@ final class CreateTicketActivityResource extends DataTransferObject
     public function setTicket(Ticket $ticket): self
     {
         $this->ticket = $ticket;
+
         return $this;
     }
 
     public function setUser(User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
 
     public function setActivity(string $activity): self
     {
         $this->activity = $activity;
+
         return $this;
     }
 }

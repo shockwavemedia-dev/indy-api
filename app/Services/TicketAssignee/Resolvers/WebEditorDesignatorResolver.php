@@ -16,7 +16,8 @@ final class WebEditorDesignatorResolver implements DesignatorResolverInterface
     public function __construct(
         private BackendUserNotificationResolverFactoryInterface $backendUserNotificationResolverFactory,
         private TicketAssigneeRepositoryInterface $ticketRepository
-    ) {}
+    ) {
+    }
 
     public function resolve(Ticket $ticket): void
     {
@@ -29,7 +30,7 @@ final class WebEditorDesignatorResolver implements DesignatorResolverInterface
             $ticket->getClient()->getDesignatedWebEditor()
         );
 
-        if($checkTicketAssignee !== null){
+        if ($checkTicketAssignee !== null) {
             return;
         }
 

@@ -41,7 +41,7 @@ final class LibraryFileRemoverTest extends TestCase
             ->getMock();
 
         $bucketFactory = new BucketFactoryStub([
-            'make' => $bucket
+            'make' => $bucket,
         ]);
 
         $fileFetcher = new LibraryFileRemover($bucketFactory);
@@ -50,7 +50,7 @@ final class LibraryFileRemoverTest extends TestCase
             [
                 'make' => [
                     'CRM-ADMIN',
-                ]
+                ],
             ],
         ];
 
@@ -81,7 +81,7 @@ final class LibraryFileRemoverTest extends TestCase
             ->getMock();
 
         $bucketFactory = new BucketFactoryStub([
-            'make' => $bucket
+            'make' => $bucket,
         ]);
 
         $fileFetcher = new LibraryFileRemover($bucketFactory);
@@ -89,7 +89,7 @@ final class LibraryFileRemoverTest extends TestCase
             [
                 'make' => [
                     'CRM-ADMIN',
-                ]
+                ],
             ],
         ];
 

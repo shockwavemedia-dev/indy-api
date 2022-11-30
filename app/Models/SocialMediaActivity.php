@@ -6,7 +6,6 @@ namespace App\Models;
 
 use App\Models\Traits\HasSocialMediaRelationship;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 final class SocialMediaActivity extends AbstractModel
 {

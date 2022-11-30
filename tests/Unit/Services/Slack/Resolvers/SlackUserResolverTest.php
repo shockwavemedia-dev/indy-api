@@ -86,6 +86,5 @@ final class SlackUserResolverTest extends TestCase
         self::expectException(SlackUserNullException::class);
 
         $result = $resolver->findSlackUser($user);
-
     }
 }

@@ -57,6 +57,7 @@ final class CreateClientResource extends DataTransferObject
     public function setDesignatedAnimatorId(?int $designatedAnimatorId): self
     {
         $this->designatedAnimatorId = $designatedAnimatorId;
+
         return $this;
     }
 
@@ -68,6 +69,7 @@ final class CreateClientResource extends DataTransferObject
     public function setDesignatedWebEditorId(?int $designatedWebEditorId): self
     {
         $this->designatedWebEditorId = $designatedWebEditorId;
+
         return $this;
     }
 
@@ -79,6 +81,7 @@ final class CreateClientResource extends DataTransferObject
     public function setDesignatedSocialMediaManagerId(?int $designatedSocialMediaManagerId): self
     {
         $this->designatedSocialMediaManagerId = $designatedSocialMediaManagerId;
+
         return $this;
     }
 
@@ -164,7 +167,6 @@ final class CreateClientResource extends DataTransferObject
         return $this->designatedDesignerId;
     }
 
-
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -238,6 +240,7 @@ final class CreateClientResource extends DataTransferObject
     public function setStatus(ClientStatusEnum $status): self
     {
         $this->status = $status->getValue();
+
         return $this;
     }
 

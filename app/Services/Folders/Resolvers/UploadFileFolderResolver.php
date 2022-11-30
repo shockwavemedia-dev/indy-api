@@ -21,13 +21,11 @@ final class UploadFileFolderResolver implements UploadFileFolderResolverInterfac
 
     private FileUploaderInterface $fileUploader;
 
-
     public function __construct(
         BucketFactoryInterface $bucketFactory,
-        FileFactoryInterface   $fileFactory,
-        FileUploaderInterface  $fileUploader
-    )
-    {
+        FileFactoryInterface $fileFactory,
+        FileUploaderInterface $fileUploader
+    ) {
         $this->bucketFactory = $bucketFactory;
         $this->fileFactory = $fileFactory;
         $this->fileUploader = $fileUploader;

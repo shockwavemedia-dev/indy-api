@@ -18,7 +18,7 @@ final class CreateEventTicketControllerTest extends AbstractAPITestCase
         $user = $this->env->user([
             'morphable_id' => $clientUser->getId(),
             'morphable_type' => \get_class($clientUser),
-            'email' => 'test@testmail.com'
+            'email' => 'test@testmail.com',
         ])->user;
 
         $this->env->clientService([
@@ -28,7 +28,7 @@ final class CreateEventTicketControllerTest extends AbstractAPITestCase
 
         $this->setHeadersToken($user);
 
-        $data =  <<<JSON
+        $data = <<<'JSON'
         {
             "subject": "Apple Company 23445454",
             "description": "APP214434",
@@ -76,7 +76,7 @@ final class CreateEventTicketControllerTest extends AbstractAPITestCase
         $user = $this->env->user([
             'morphable_id' => $clientUser->getId(),
             'morphable_type' => \get_class($clientUser),
-            'email' => 'test@testmail.com'
+            'email' => 'test@testmail.com',
         ])->user;
 
         $this->env->clientService([
@@ -86,7 +86,7 @@ final class CreateEventTicketControllerTest extends AbstractAPITestCase
 
         $this->setHeadersToken($user);
 
-        $data =  <<<JSON
+        $data = <<<'JSON'
         {
             "subject": "Apple Company 23445454",
             "description": "APP214434",
@@ -122,7 +122,7 @@ final class CreateEventTicketControllerTest extends AbstractAPITestCase
         $expected = [
             'status' => 400,
             'title' => 'Bad Request',
-            'message' => 'Twitter not found.'
+            'message' => 'Twitter not found.',
         ];
 
         $response = $this->post('/api/v1/tickets/event', json_decode($data, true));
@@ -139,7 +139,7 @@ final class CreateEventTicketControllerTest extends AbstractAPITestCase
         $user = $this->env->user([
             'morphable_id' => $clientUser->getId(),
             'morphable_type' => \get_class($clientUser),
-            'email' => 'test@testmail.com'
+            'email' => 'test@testmail.com',
         ])->user;
 
         $this->env->clientService([
@@ -149,7 +149,7 @@ final class CreateEventTicketControllerTest extends AbstractAPITestCase
 
         $this->setHeadersToken($user);
 
-        $data =  <<<JSON
+        $data = <<<'JSON'
         {
             "subject": "Apple Company 23445454",
             "description": "APP214434",
@@ -174,7 +174,7 @@ final class CreateEventTicketControllerTest extends AbstractAPITestCase
         $expected = [
             'status' => 400,
             'title' => 'Bad Request',
-            'message' => 'Due date should be more than or equal 7 days'
+            'message' => 'Due date should be more than or equal 7 days',
         ];
 
         $response = $this->post('/api/v1/tickets/event', json_decode($data, true));

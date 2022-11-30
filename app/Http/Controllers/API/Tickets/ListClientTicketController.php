@@ -7,10 +7,9 @@ namespace App\Http\Controllers\API\Tickets;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\PaginationRequest;
 use App\Http\Resources\API\Tickets\TicketSupportsResource;
-use App\Repositories\Interfaces\TicketRepositoryInterface;
 use App\Repositories\Interfaces\ClientRepositoryInterface;
+use App\Repositories\Interfaces\TicketRepositoryInterface;
 use App\Services\Tickets\Resources\TicketFilterOptionsResource;
-use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Throwable;
 
@@ -28,7 +27,7 @@ final class ListClientTicketController extends AbstractAPIController
         $this->ticketRepository = $ticketRepository;
     }
 
-    public function __invoke(PaginationRequest $request,int $id): JsonResource
+    public function __invoke(PaginationRequest $request, int $id): JsonResource
     {
         /** @var \App\Models\Client $client */
         $client = $this->clientRepository->find($id);
@@ -58,7 +57,6 @@ final class ListClientTicketController extends AbstractAPIController
             );
 
             return new TicketSupportsResource($ticket, $showOverdue);
-
         } catch (Throwable $throwable) {
             return $this->respondError($throwable->getMessage());
         }

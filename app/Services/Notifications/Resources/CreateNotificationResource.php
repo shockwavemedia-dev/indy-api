@@ -47,30 +47,35 @@ final class CreateNotificationResource extends DataTransferObject
     public function setStatusEnum(NotificationStatusEnum $statusEnum): self
     {
         $this->statusEnum = $statusEnum;
+
         return $this;
     }
 
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
         return $this;
     }
 
     public function setLink(?string $link): self
     {
         $this->link = $link;
+
         return $this;
     }
 
     public function setMorphable(mixed $morphable): self
     {
         $this->morphable = $morphable;
+
         return $this;
     }
 
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 }

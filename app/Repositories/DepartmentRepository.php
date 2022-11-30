@@ -20,30 +20,31 @@ final class DepartmentRepository extends BaseRepository implements DepartmentRep
     }
 
     /**
-     * @param mixed $adminUserIds
+     * @param  mixed  $adminUserIds
      */
     public function addMembers(Department $department, array $adminUserIds): Department
     {
         $department->adminUsers()->syncWithoutDetaching($adminUserIds);
         $department->save();
+
         return $department;
     }
 
     public function all(?int $size = null, ?int $pageNumber = null, bool $withUser = false): LengthAwarePaginator
     {
-       $query = $this->model
-           ->where('status', '=', DepartmentStatusEnum::ACTIVE);
+        $query = $this->model
+            ->where('status', '=', DepartmentStatusEnum::ACTIVE);
 
-       if ($withUser === true) {
-           $query->with('adminUsers.user');
-       }
+        if ($withUser === true) {
+            $query->with('adminUsers.user');
+        }
 
-       return $query->paginate(
-           $size,
-           ['*'],
-           null,
-           $pageNumber
-       );
+        return $query->paginate(
+            $size,
+            ['*'],
+            null,
+            $pageNumber
+        );
     }
 
     public function allWithStaffs(?int $size = null, ?int $pageNumber = null, bool $withUser = false): LengthAwarePaginator

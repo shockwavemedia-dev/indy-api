@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
- namespace Tests\Unit\Models;
+namespace Tests\Unit\Models;
 
- use App\Enum\UserStatusEnum;
- use App\Models\User;
- use App\Models\Users\AdminUser;
- use Carbon\Carbon;
- use PHPUnit\Framework\TestCase;
+use App\Enum\UserStatusEnum;
+use App\Models\User;
+use App\Models\Users\AdminUser;
+use Carbon\Carbon;
+use PHPUnit\Framework\TestCase;
 
- /**
-  * @covers \App\Models\User
-  */
- final class UserTest extends TestCase
- {
-     public function testGetterAndSetters(): void
+/**
+ * @covers \App\Models\User
+ */
+final class UserTest extends TestCase
+{
+    public function testGetterAndSetters(): void
     {
         $userType = new AdminUser();
         $userType->setAttribute('id', 1);
@@ -25,7 +25,7 @@ declare(strict_types=1);
             'email' => 'test@test.com',
             'contact_number' => 'test',
             'gender' => 'male',
-            'middle_name' =>null,
+            'middle_name' => null,
             'first_name' => 'test',
             'last_name' => 'test',
             'morphable_id' => 1,
@@ -63,4 +63,4 @@ declare(strict_types=1);
 
         self::assertEquals($expected, $actual);
     }
- }
+}

@@ -41,7 +41,7 @@ final class CreateTicketNoteController extends AbstractAPIController
         $this->ticketNoteFactory = $ticketNoteFactory;
     }
 
-    public function __invoke(CreateTicketNoteRequest $request,int $id): JsonResource
+    public function __invoke(CreateTicketNoteRequest $request, int $id): JsonResource
     {
         /** @var Ticket $ticket */
         $ticket = $this->ticketRepository->find($id);
@@ -56,7 +56,7 @@ final class CreateTicketNoteController extends AbstractAPIController
             $ticketNote = $this->ticketNoteFactory->make(new CreateTicketNoteResource([
                 'createdBy' => $this->getUser(),
                 'ticket' => $ticket,
-                'note' => $request->getNote()
+                'note' => $request->getNote(),
             ]));
 
             $backendUserNotificationResolver = $this->backendUserNotificationResolverFactory->make(
@@ -68,7 +68,6 @@ final class CreateTicketNoteController extends AbstractAPIController
             $clientNotificationResolver = $this->clientNotificationResolverFactory->make(
                 new ClientNotificationTypeEnum(ClientNotificationTypeEnum::TICKET_NOTES)
             );
-
 
             $clientNotificationResolver->resolve($ticketNote);
 

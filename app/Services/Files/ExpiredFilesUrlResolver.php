@@ -12,7 +12,8 @@ final class ExpiredFilesUrlResolver implements ExpiredFilesUrlResolverInterface
 {
     private FileRepositoryInterface $fileRepository;
 
-    public function __construct(FileRepositoryInterface $fileRepository) {
+    public function __construct(FileRepositoryInterface $fileRepository)
+    {
         $this->fileRepository = $fileRepository;
     }
 

@@ -14,8 +14,8 @@ use App\Services\Tickets\Exceptions\InvalidDueDateException;
 use App\Services\Tickets\Interfaces\Validations\DueDateValidatorInterface;
 use App\Services\Tickets\Resources\UpdateTicketResource;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Throwable;
 use Symfony\Component\HttpFoundation\Response;
+use Throwable;
 
 final class UpdateTicketController extends AbstractAPIController
 {
@@ -80,7 +80,7 @@ final class UpdateTicketController extends AbstractAPIController
             return new TicketSupportResource($ticket);
         } catch (InvalidDueDateException $dueDateException) {
             return $this->respondBadRequest([
-                'message' => $dueDateException->getMessage()
+                'message' => $dueDateException->getMessage(),
             ]);
         } catch (Throwable $exception) {
             return $this->respondError($exception->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);

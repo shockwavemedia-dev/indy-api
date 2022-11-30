@@ -10,7 +10,7 @@ final class CorsMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param Request $request
+     * @param  Request  $request
      */
     public function handle($request, Closure $next)
     {

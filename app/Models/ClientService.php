@@ -33,7 +33,7 @@ final class ClientService extends AbstractModel
         'total_used',
         'is_enabled',
         'created_by',
-        'updated_by'
+        'updated_by',
     ];
 
     protected $table = 'client_services';
@@ -50,7 +50,7 @@ final class ClientService extends AbstractModel
 
     public function getExtras(): array
     {
-        return $this->getAttribute('extras')  ?? [];
+        return $this->getAttribute('extras') ?? [];
     }
 
     public function getMarketingQuota(): int
@@ -119,6 +119,7 @@ final class ClientService extends AbstractModel
 
         return $this;
     }
+
     public function markAsEnabled(bool $markAsEnabled): self
     {
         $this->setAttribute('is_enabled', $markAsEnabled);
@@ -168,5 +169,4 @@ final class ClientService extends AbstractModel
     {
         return $this->belongsTo(User::class, 'updated_by');
     }
-
 }

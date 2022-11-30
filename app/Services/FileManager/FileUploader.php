@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Services\FileManager;
 
 use App\Jobs\File\UploadFileJob;
-use App\Services\FileManager\Resources\UploadFileResource;
 use App\Services\FileManager\Interfaces\FileUploaderInterface;
+use App\Services\FileManager\Resources\UploadFileResource;
 
 final class FileUploader implements FileUploaderInterface
 {

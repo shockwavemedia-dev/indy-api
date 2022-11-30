@@ -22,7 +22,7 @@ final class Notification extends AbstractModel
         'morphable_type',
         'status',
         'title',
-        'user_id'
+        'user_id',
     ];
 
     public function getLink(): ?string

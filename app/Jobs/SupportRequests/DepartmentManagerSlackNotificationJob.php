@@ -52,7 +52,7 @@ final class DepartmentManagerSlackNotificationJob implements ShouldQueue
             $sentryHandler->log($message);
         } catch (SlackUserNullException | SlackSendMessageException $exception) {
             $sentryHandler->reportError($exception);
-            $sentryHandler->log(sprintf('This email does not have slack account %s',$this->user->getEmail()));
+            $sentryHandler->log(sprintf('This email does not have slack account %s', $this->user->getEmail()));
         } catch (UnknownProperties $e) {
             $sentryHandler->reportError($e);
         }

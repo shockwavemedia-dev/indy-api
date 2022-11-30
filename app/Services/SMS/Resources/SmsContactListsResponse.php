@@ -42,24 +42,28 @@ final class SmsContactListsResponse extends DataTransferObject
     public function setPage(?array $page): self
     {
         $this->page = $page;
+
         return $this;
     }
 
     public function setListsTotal(?int $lists_total): self
     {
         $this->lists_total = $lists_total;
+
         return $this;
     }
 
     public function setLists(?array $lists): self
     {
         $this->lists = $lists;
+
         return $this;
     }
 
     public function setError(?array $error): self
     {
         $this->error = $error;
+
         return $this;
     }
 }

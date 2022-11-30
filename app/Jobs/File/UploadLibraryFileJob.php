@@ -44,7 +44,7 @@ final class UploadLibraryFileJob implements ShouldQueue
     ): void {
         try {
             // Fetch the temporary file to be uploaded in the client's bucket
-            $localFile = $filesystemManager->disk('local')->get(\sprintf('temporary/%s',$this->filename));
+            $localFile = $filesystemManager->disk('local')->get(\sprintf('temporary/%s', $this->filename));
 
             $bucket = $bucketResolver->resolve(self::INTERNAL_BUCKET);
 
@@ -62,7 +62,7 @@ final class UploadLibraryFileJob implements ShouldQueue
             ]);
 
             $sentryHandler->log(
-                \sprintf('%s has been uploaded',$filepath),
+                \sprintf('%s has been uploaded', $filepath),
                 Severity::info()
             );
         } catch (Throwable $exception) {

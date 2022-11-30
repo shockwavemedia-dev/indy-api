@@ -8,7 +8,6 @@ use App\Http\Requests\BaseRequest;
 
 final class UploadFileFolderRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;

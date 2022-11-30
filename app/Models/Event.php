@@ -9,18 +9,16 @@ use App\Models\Users\AdminUser;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 final class Event extends AbstractModel
 {
     use HasFactory, HasRelationshipWithUser, SoftDeletes;
 
-
     /**
      * @var string[]
      */
-    protected  $casts = [
+    protected $casts = [
         'outputs' => 'array',
         'shoot_type' => 'array',
         'styling_required' => 'boolean',

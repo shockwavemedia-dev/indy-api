@@ -23,8 +23,8 @@ use App\Services\Files\Interfaces\FileFactoryInterface;
 use App\Services\Files\Resources\CreateFileResource;
 use App\Services\PrinterJobs\Interfaces\PrinterJobAttachmentFactoryInterface;
 use App\Services\PrinterJobs\Interfaces\PrinterJobFactoryInterface;
-use App\Services\PrinterJobs\Resources\CreatePrinterJobResource;
 use App\Services\PrinterJobs\Resources\CreateAttachmentResource;
+use App\Services\PrinterJobs\Resources\CreatePrinterJobResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Str;
 
@@ -77,7 +77,7 @@ final class CreatePrinterJobsController extends AbstractAPIController
 
         if ($client === null) {
             return $this->respondNotFound([
-                'message' => 'Client not found.'
+                'message' => 'Client not found.',
             ]);
         }
 
@@ -114,7 +114,7 @@ final class CreatePrinterJobsController extends AbstractAPIController
             'purchase_order_number',
             'attachments',
             'file_ids',
-            'description'
+            'description',
         ]);
 
         $data = [];
@@ -153,7 +153,7 @@ final class CreatePrinterJobsController extends AbstractAPIController
 
         $client->getPrinter()->getUser()->sendEmailToPrinter($printerJob, $emailLog, $this->getUser());
 
-        if (array_key_exists('attachments',$payload) && count($payload['attachments']) > 0) {
+        if (array_key_exists('attachments', $payload) && count($payload['attachments']) > 0) {
             $bucket = $this->bucketFactory->make($client->getClientCode());
 
             foreach ($payload['attachments'] as $attachment) {

@@ -29,7 +29,7 @@ final class ClientServicesResource extends Resource
             foreach ($this->resource as $clientService) {
                 $service = $clientService->getService();
 
-                iF ($serviceOrder !== $service->getName()) {
+                if ($serviceOrder !== $service->getName()) {
                     continue;
                 }
 

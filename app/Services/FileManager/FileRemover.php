@@ -18,7 +18,7 @@ final class FileRemover implements FileRemoverInterface
 
     public function __construct(
         FileManagerConfigResolverInterface $fileManagerConfigResolver,
-        FileRemoverDriverFactoryInterface  $fileRemoverDriverFactory,
+        FileRemoverDriverFactoryInterface $fileRemoverDriverFactory,
     ) {
         $this->fileManagerConfigResolver = $fileManagerConfigResolver;
         $this->fileRemoverDriverFactory = $fileRemoverDriverFactory;

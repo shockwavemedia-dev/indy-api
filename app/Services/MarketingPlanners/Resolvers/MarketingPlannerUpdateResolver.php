@@ -13,7 +13,8 @@ final class MarketingPlannerUpdateResolver implements MarketingPlannerUpdateReso
 {
     private MarketingPlannerRepositoryInterface $marketingPlannerRepository;
 
-    public function __construct(MarketingPlannerRepositoryInterface $marketingPlannerRepository) {
+    public function __construct(MarketingPlannerRepositoryInterface $marketingPlannerRepository)
+    {
         $this->marketingPlannerRepository = $marketingPlannerRepository;
     }
 
@@ -22,19 +23,19 @@ final class MarketingPlannerUpdateResolver implements MarketingPlannerUpdateReso
         MarketingPlannerUpdateResource $resource
     ): MarketingPlanner {
         $marketingPlannerArray = [
-            "event_name" => $marketingPlanner->getEventName(),
-            "description" => $marketingPlanner->getDescription(),
-            "start_date" => $marketingPlanner->getStartDateAsString(),
-            "end_date" => $marketingPlanner->getEndDateAsString(),
-            "is_recurring" => $marketingPlanner->isRecurring(),
+            'event_name' => $marketingPlanner->getEventName(),
+            'description' => $marketingPlanner->getDescription(),
+            'start_date' => $marketingPlanner->getStartDateAsString(),
+            'end_date' => $marketingPlanner->getEndDateAsString(),
+            'is_recurring' => $marketingPlanner->isRecurring(),
         ];
 
         $updateRequest = [
-            "event_name" => $resource->getEventName(),
-            "description" => $resource->getDescription(),
-            "start_date" => $resource->getStartDate()?->toDateTimeString(),
-            "end_date" => $resource->getEndDate()?->toDateTimeString(),
-            "is_recurring" => $resource->isRecurring(),
+            'event_name' => $resource->getEventName(),
+            'description' => $resource->getDescription(),
+            'start_date' => $resource->getStartDate()?->toDateTimeString(),
+            'end_date' => $resource->getEndDate()?->toDateTimeString(),
+            'is_recurring' => $resource->isRecurring(),
         ];
 
         $changes = array_diff($updateRequest, $marketingPlannerArray);

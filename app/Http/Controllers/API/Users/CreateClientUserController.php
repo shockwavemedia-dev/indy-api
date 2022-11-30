@@ -56,7 +56,7 @@ final class CreateClientUserController extends AbstractAPIController
             ]));
 
             $data = [
-                'userType'=> $userType,
+                'userType' => $userType,
                 'email' => $request->getEmail(),
                 'status' => new UserStatusEnum(UserStatusEnum::INVITED),    // Default status is not verified
                 'firstName' => $request->getFirstName(),
@@ -71,7 +71,6 @@ final class CreateClientUserController extends AbstractAPIController
                 $data['password'] = $request->getPassword();
                 $data['status'] = new UserStatusEnum(UserStatusEnum::ACTIVE);
             }
-
 
             $user = $this->userCreationService->create(new CreateUserResource($data));
 

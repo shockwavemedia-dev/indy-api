@@ -22,13 +22,13 @@ final class AlterTicketEmailsColumn extends Migration
         }
 
         Schema::table(self::TABLE, function (Blueprint $table) {
-            $table->text('title')->nullable()->after("ticket_id");
+            $table->text('title')->nullable()->after('ticket_id');
         });
     }
 
     public function down(): void
     {
-        if (Schema::hasColumn(self::TABLE,'title') === false) {
+        if (Schema::hasColumn(self::TABLE, 'title') === false) {
             return;
         }
 

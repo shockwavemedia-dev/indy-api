@@ -6,7 +6,6 @@ namespace App\Services\PrinterJobs\Resolvers;
 
 use App\Models\PrinterJob;
 use App\Services\PrinterJobs\Interfaces\UpdatePrinterJobResolverInterface;
-use Illuminate\Support\Arr;
 
 final class UpdatePrinterJobResolver implements UpdatePrinterJobResolverInterface
 {

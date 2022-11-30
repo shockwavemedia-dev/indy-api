@@ -61,13 +61,13 @@ final class AnalyticFolderController extends AbstractAPIController
                 'client' => $client,
                 'createdBy' => $this->getUser(),
                 'name' => $menuName,
-             ]));
+            ]));
         }
 
         $data[$folder->getName()] = [
-            "id" => $folder->getId(),
-            "name" => $folder->getName(),
-            "files" => $this->sortByYearAndMonthResolver->resolve($folder->getFiles()),
+            'id' => $folder->getId(),
+            'name' => $folder->getName(),
+            'files' => $this->sortByYearAndMonthResolver->resolve($client, $folder->getFiles()),
         ];
 
         return new JsonResponse($data);

@@ -7,13 +7,12 @@ namespace App\Services\FileFeedbacks;
 use App\Models\File;
 use App\Models\Tickets\ClientTicketFile;
 use App\Models\Tickets\FileFeedback;
-use App\Models\Tickets\FileFeedbackAttachment;
 use App\Models\User;
-use App\Services\FileManager\Resources\UploadFileResource;
-use App\Services\FileFeedbacks\Interfaces\ProcessFeedbackAttachmentUploadInterface;
 use App\Services\FileFeedbacks\Interfaces\FeedbackAttachmentFactoryInterface;
+use App\Services\FileFeedbacks\Interfaces\ProcessFeedbackAttachmentUploadInterface;
 use App\Services\FileFeedbacks\Resources\CreateFeedbackAttachmentResource;
 use App\Services\FileManager\Interfaces\FileUploaderInterface;
+use App\Services\FileManager\Resources\UploadFileResource;
 use Illuminate\Http\UploadedFile;
 
 final class ProcessFeedbackAttachmentUpload implements ProcessFeedbackAttachmentUploadInterface
@@ -43,7 +42,7 @@ final class ProcessFeedbackAttachmentUpload implements ProcessFeedbackAttachment
         $this->feedbackAttachment->make(new CreateFeedbackAttachmentResource([
             'file' => $file,
             'fileFeedback' => $fileFeedback,
-            'clientTicketFile' => $clientTicketFile
+            'clientTicketFile' => $clientTicketFile,
         ]));
 
         $this->fileUploader->upload(new UploadFileResource([

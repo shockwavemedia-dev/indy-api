@@ -14,7 +14,8 @@ final class DeleteSocialMediaController extends AbstractAPIController
 {
     private SocialMediaRepositoryInterface $socialMediaRepository;
 
-    public function __construct(SocialMediaRepositoryInterface $socialMediaRepository) {
+    public function __construct(SocialMediaRepositoryInterface $socialMediaRepository)
+    {
         $this->socialMediaRepository = $socialMediaRepository;
     }
 
@@ -23,7 +24,7 @@ final class DeleteSocialMediaController extends AbstractAPIController
         /** @var SocialMedia $socialMedia */
         $socialMedia = $this->socialMediaRepository->find($id);
 
-        if($socialMedia === null) {
+        if ($socialMedia === null) {
             return $this->respondNoContent();
         }
 

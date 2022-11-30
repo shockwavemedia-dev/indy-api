@@ -13,7 +13,8 @@ final class EmailLogFactory implements EmailLogFactoryInterface
 {
     private EmailLogRepositoryInterface $emailLogRepository;
 
-    public function __construct(EmailLogRepositoryInterface $emailLogRepository) {
+    public function __construct(EmailLogRepositoryInterface $emailLogRepository)
+    {
         $this->emailLogRepository = $emailLogRepository;
     }
 
@@ -26,7 +27,7 @@ final class EmailLogFactory implements EmailLogFactoryInterface
             'cc' => $resource->getCc(),
             'message' => $resource->getMessage(),
             'to' => $resource->getTo(),
-            'morphable_id'=> $resource->getEmailType()->getId(),
+            'morphable_id' => $resource->getEmailType()->getId(),
             'morphable_type' => \get_class($resource->getEmailType()),
         ]);
 

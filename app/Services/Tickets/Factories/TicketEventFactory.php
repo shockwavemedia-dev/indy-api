@@ -71,13 +71,13 @@ final class TicketEventFactory extends AbstractTicketFactory implements TicketTy
             'ticket_id' => $ticket->getId(),
         ]);
 
-        foreach($resource->getAttachments() ?? [] as $attachment) {
+        foreach ($resource->getAttachments() ?? [] as $attachment) {
             $file = $this->fileFactory->make(new CreateFileResource([
                 'uploadedFile' => $attachment,
                 'bucket' => $this->bucket->name(),
                 'disk' => $this->bucket->disk(),
                 'filePath' => \sprintf('attachments/%s', $ticket->getId()),
-                'uploadedBy' => $resource->getCreatedBy()
+                'uploadedBy' => $resource->getCreatedBy(),
             ]));
 
             $this->ticketEventAttachmentFactory->make(new CreateTicketEventAttachmentResource([
@@ -86,7 +86,7 @@ final class TicketEventFactory extends AbstractTicketFactory implements TicketTy
             ]));
 
             $this->fileUploader->upload(new UploadFileResource([
-                'fileModel' =>  $file,
+                'fileModel' => $file,
                 'fileObject' => $attachment,
             ]));
         }

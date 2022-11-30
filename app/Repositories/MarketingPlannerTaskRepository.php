@@ -7,7 +7,6 @@ namespace App\Repositories;
 use App\Models\MarketingPlanner;
 use App\Models\MarketingPlannerTask;
 use App\Repositories\Interfaces\MarketingPlannerTaskRepositoryInterface;
-use Illuminate\Database\Eloquent\Model;
 
 final class MarketingPlannerTaskRepository extends BaseRepository implements MarketingPlannerTaskRepositoryInterface
 {
@@ -18,9 +17,9 @@ final class MarketingPlannerTaskRepository extends BaseRepository implements Mar
 
     public function deleteByMarketingPlannerAndIds(MarketingPlanner $marketingPlanner, array $ids): void
     {
-            $this->model->where('marketing_planner_id', $marketingPlanner->getId())
-            ->whereNotIn('id', $ids)
-            ->delete();
+        $this->model->where('marketing_planner_id', $marketingPlanner->getId())
+        ->whereNotIn('id', $ids)
+        ->delete();
     }
 
     public function findByMarketingPlannerAndId(MarketingPlanner $marketingPlanner, int $id): ?MarketingPlannerTask

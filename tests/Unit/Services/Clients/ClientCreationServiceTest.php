@@ -12,7 +12,6 @@ use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 use Tests\Stubs\Repositories\ClientRepositoryStub;
 
-
 /**
  * @covers \App\Services\Clients\ClientCreationService
  */
@@ -27,7 +26,7 @@ final class ClientCreationServiceTest extends TestCase
         $client->setAttribute('id', 1);
 
         $clientRepository = new ClientRepositoryStub([
-            'create' => $client
+            'create' => $client,
         ]);
 
         $resource = new CreateClientResource([
@@ -42,7 +41,7 @@ final class ClientCreationServiceTest extends TestCase
             'rating' => 5,
             'status' => new ClientStatusEnum(ClientStatusEnum::ACTIVE),
             'logo_file_id' => null,
-            'designated_designer_id' => null
+            'designated_designer_id' => null,
         ]);
 
         $resolver = new ClientCreationService(
@@ -67,14 +66,13 @@ final class ClientCreationServiceTest extends TestCase
                         'designated_designer_id' => null,
                         'style_guide' => null,
                         'note' => null,
-                    ]
+                    ],
                 ],
-            ]
+            ],
         ];
 
         $resolver->create($resource);
 
         $this->assertEquals($expectedCall, $clientRepository->getCalls());
-
     }
 }

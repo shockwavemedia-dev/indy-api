@@ -16,7 +16,7 @@ final class LibraryCategoryTest extends TestCase
     {
         $expected = [
             'name' => 'test name',
-            'slug' => 'test-name'
+            'slug' => 'test-name',
         ];
 
         $libraryCategory = new LibraryCategory();

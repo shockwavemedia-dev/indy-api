@@ -8,7 +8,6 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 final class CreateFileFeedbackResource extends DataTransferObject
 {
-
     public ?int $clientTicketFile;
 
     public ?int $feedbackBy;
@@ -16,7 +15,6 @@ final class CreateFileFeedbackResource extends DataTransferObject
     public string $feedback;
 
     public string $feedbackByType;
-
 
     public function getClientTicketFile(): ?int
     {
@@ -65,5 +63,4 @@ final class CreateFileFeedbackResource extends DataTransferObject
 
         return $this;
     }
-
 }

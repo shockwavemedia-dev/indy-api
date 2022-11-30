@@ -14,6 +14,7 @@ final class TicketEventAttachment extends AbstractModel
     protected $table = 'ticket_event_attachments';
 
     public $timestamps = false;
+
     /**
      * @var string[]
      */

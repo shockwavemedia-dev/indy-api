@@ -26,4 +26,3 @@ interface NotificationUserRepositoryInterface
         NotificationUserStatusEnum $statusEnum
     ): NotificationUser;
 }
-

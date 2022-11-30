@@ -9,7 +9,6 @@ use Illuminate\Http\UploadedFile;
 
 final class CreateLibraryRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;

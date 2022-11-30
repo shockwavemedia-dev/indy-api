@@ -2,22 +2,21 @@
 
 declare(strict_types=1);
 
- namespace Tests\Unit\Models;
+namespace Tests\Unit\Models;
 
- use App\Enum\TicketStatusEnum;
- use App\Enum\TicketTypeEnum;
- use App\Enum\UserTypeEnum;
- use App\Models\Tickets\Ticket;
-  use PHPUnit\Framework\TestCase;
+use App\Enum\TicketStatusEnum;
+use App\Enum\TicketTypeEnum;
+use App\Enum\UserTypeEnum;
+use App\Models\Tickets\Ticket;
+use PHPUnit\Framework\TestCase;
 
- /**
-  * @covers \App\Models\Tickets\Ticket
-  */
- final class TicketTest extends TestCase
- {
-     public function testGetterAndSetters(): void
+/**
+ * @covers \App\Models\Tickets\Ticket
+ */
+final class TicketTest extends TestCase
+{
+    public function testGetterAndSetters(): void
     {
-
         $expected = [
             'id' => 1,
             'client_id' => 1,
@@ -36,7 +35,7 @@ declare(strict_types=1);
         $ticket->setAttribute('id', 1);
         $ticket->setAttribute('client_id', 1);
         $ticket->setAttribute('created_by', 1);
-        $ticket->setAttribute('created_by_user_type',UserTypeEnum::ADMIN);
+        $ticket->setAttribute('created_by_user_type', UserTypeEnum::ADMIN);
         $ticket->setAttribute('department_id', 1);
         $ticket->setAttribute('requested_by', 2);
         $ticket->setAttribute('ticket_code', 'AAP-1');
@@ -44,7 +43,6 @@ declare(strict_types=1);
         $ticket->setDescription('Test ticket demo');
         $ticket->setType(new TicketTypeEnum(TicketTypeEnum::EMAIL));
         $ticket->setStatus(new TicketStatusEnum(TicketStatusEnum::NEW));
-
 
         $actual = [
             'id' => $ticket->getId(),
@@ -62,4 +60,4 @@ declare(strict_types=1);
 
         self::assertEquals($expected, $actual);
     }
- }
+}

@@ -3,6 +3,7 @@
 namespace App\Models\Tickets;
 
 use App\Models\AbstractModel;
+use App\Models\TicketFileVersion;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,6 +21,7 @@ final class TicketNote extends AbstractModel
         'note',
         'ticket_id',
         'created_by',
+        'ticket_file_version_id',
         'updated_by',
     ];
 
@@ -52,7 +54,6 @@ final class TicketNote extends AbstractModel
     {
         return $this->getAttribute('note');
     }
-
 
     public function getCreatedById(): int
     {
@@ -88,10 +89,19 @@ final class TicketNote extends AbstractModel
         return $this;
     }
 
+    public function getTicketFileVersion(): ?TicketFileVersion
+    {
+        return $this->ticketFileVersion;
+    }
 
     public function ticket(): BelongsTo
     {
         return $this->belongsTo(Ticket::class, 'ticket_id');
+    }
+
+    public function ticketFileVersion(): BelongsTo
+    {
+        return $this->belongsTo(TicketFileVersion::class, 'ticket_file_version_id');
     }
 
     public function createdBy(): BelongsTo

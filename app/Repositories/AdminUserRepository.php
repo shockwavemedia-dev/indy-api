@@ -18,7 +18,7 @@ final class AdminUserRepository extends BaseRepository implements AdminUserRepos
     }
 
     /**
-     * @param Department $department
+     * @param  Department  $department
      * @return Collection<AdminUser>
      */
     public function findAccountManagersByDepartment(Department $department): Collection

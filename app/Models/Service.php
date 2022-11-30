@@ -25,7 +25,7 @@ final class Service extends AbstractModel
      */
     protected $fillable = [
         'extras',
-        'name'
+        'name',
     ];
 
     protected $table = 'services';
@@ -37,7 +37,7 @@ final class Service extends AbstractModel
 
     public function getExtras(): array
     {
-        return $this->getAttribute('extras')  ?? [];
+        return $this->getAttribute('extras') ?? [];
     }
 
     public function getId(): int
@@ -51,7 +51,7 @@ final class Service extends AbstractModel
     }
 
     /**
-     * @param string[] $extras
+     * @param  string[]  $extras
      */
     public function updateExtras(array $extras): self
     {

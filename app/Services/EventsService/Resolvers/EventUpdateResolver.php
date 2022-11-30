@@ -13,7 +13,7 @@ final class EventUpdateResolver implements EventUpdateResolverInterface
 {
     public function resolve(Event $event, User $user, array $updates): Event
     {
-        if ($event->getPhotographer() !== null && isset($updates['photographer_id']) === true ) {
+        if ($event->getPhotographer() !== null && isset($updates['photographer_id']) === true) {
             $event->photographer_id = $updates['photographer_id'];
         }
 
@@ -22,7 +22,7 @@ final class EventUpdateResolver implements EventUpdateResolverInterface
         }
 
         if ($updates['styling_required'] !== null) {
-            $updates['styling_required'] = $updates['styling_required'] === 'Yes' ? 1:0;
+            $updates['styling_required'] = $updates['styling_required'] === 'Yes' ? 1 : 0;
         }
 
         if (isset($updates['preferred_due_date']) === true) {

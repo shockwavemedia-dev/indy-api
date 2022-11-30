@@ -10,8 +10,8 @@ use App\Http\Resources\API\Clients\ClientResource;
 use App\Repositories\Interfaces\ClientRepositoryInterface;
 use App\Repositories\Interfaces\ClientUserRepositoryInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Throwable;
 use Symfony\Component\HttpFoundation\Response;
+use Throwable;
 
 final class MarkUserAsOwnerController extends AbstractAPIController
 {
@@ -22,8 +22,7 @@ final class MarkUserAsOwnerController extends AbstractAPIController
     public function __construct(
         ClientRepositoryInterface $clientRepository,
         ClientUserRepositoryInterface $clientUserRepository
-    )
-    {
+    ) {
         $this->clientRepository = $clientRepository;
         $this->clientUserRepository = $clientUserRepository;
     }
@@ -51,15 +50,11 @@ final class MarkUserAsOwnerController extends AbstractAPIController
         }
 
         try {
-
-            $client = $this->clientRepository->updateClientOwner($client,$clientUser);
+            $client = $this->clientRepository->updateClientOwner($client, $clientUser);
 
             return new ClientResource($client);
-
         } catch (Throwable $throwable) {
             return $this->respondError($throwable->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
-
-
     }
 }

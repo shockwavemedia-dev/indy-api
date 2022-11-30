@@ -83,7 +83,7 @@ final class CreateAdminUserController extends AbstractAPIController
             $data = [
                 'displayInDashboard' => $request->isDisplayInDashboard(),
                 'profileFile' => $file,
-                'userType'=> $userType,
+                'userType' => $userType,
                 'email' => $request->getEmail(),
                 'status' => new UserStatusEnum(UserStatusEnum::INVITED),    // Default status is not verified
                 'firstName' => $request->getFirstName(),

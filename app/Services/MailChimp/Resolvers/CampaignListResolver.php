@@ -13,7 +13,8 @@ final class CampaignListResolver implements CampaignListResolverInterface
 {
     private MailChimpClientFactoryInterface $mailChimpClientFactory;
 
-    public function __construct(MailChimpClientFactoryInterface $mailChimpClientFactory) {
+    public function __construct(MailChimpClientFactoryInterface $mailChimpClientFactory)
+    {
         $this->mailChimpClientFactory = $mailChimpClientFactory;
     }
 
@@ -38,7 +39,7 @@ final class CampaignListResolver implements CampaignListResolverInterface
             null,
             null,
             null,
-            "create_time",
+            'create_time',
             'DESC',
         )->campaigns;
 
@@ -53,10 +54,10 @@ final class CampaignListResolver implements CampaignListResolverInterface
 
             $collection->add([
                 'id' => $campaign->id,
-                "subject_line" => $campaign->settings->subject_line,
-                "title" => $campaign->settings->title,
-                "total_recipients" => $campaign->emails_sent,
-                "send_time" => $sendDate->format('d-m-Y H:i:s'),
+                'subject_line' => $campaign->settings->subject_line,
+                'title' => $campaign->settings->title,
+                'total_recipients' => $campaign->emails_sent,
+                'send_time' => $sendDate->format('d-m-Y H:i:s'),
                 'opens' => $campaign->report_summary?->unique_opens ?? 0,
                 'clicks' => $campaign->report_summary?->clicks ?? 0,
             ]);

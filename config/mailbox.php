@@ -63,7 +63,7 @@ return [
             'key' => env('MAILBOX_MAILGUN_KEY'),
         ],
         'sendgrid' => [
-            'key' => env('SENDGRID_API_KEY','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')
+            'key' => env('SENDGRID_API_KEY', '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'),
         ],
     ],
 

@@ -38,7 +38,7 @@ final class Department extends AbstractModel
         'name',
         'description',
         'status',
-        'min_delivery_days'
+        'min_delivery_days',
     ];
 
     protected $table = 'departments';

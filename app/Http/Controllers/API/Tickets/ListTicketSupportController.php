@@ -50,7 +50,7 @@ final class ListTicketSupportController extends AbstractAPIController
         $options = [
             'department_ids' => $request->getDepartmentIds(),
             'status' => $statuses,
-            'types' => $types
+            'types' => $types,
         ];
 
         $client = null;

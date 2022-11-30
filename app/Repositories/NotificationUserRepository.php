@@ -29,7 +29,7 @@ final class NotificationUserRepository extends BaseRepository implements Notific
         $this->model->where('user_id', '=', $user->getId())
             ->where('status', '=', NotificationUserStatusEnum::NEW)
             ->update([
-                'status' =>  NotificationUserStatusEnum::READ,
+                'status' => NotificationUserStatusEnum::READ,
             ]);
     }
 

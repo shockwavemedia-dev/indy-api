@@ -24,15 +24,15 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Mockery;
-use Tests\Stubs\Services\Departments\DepartmentTicketNotificationHandlerStub;
-use Tests\Stubs\Services\Tickets\Factories\TicketEventAttachmentFactoryStub;
-use Tests\TestCase;
 use Tests\Stubs\Repositories\TicketEventRepositoryStub;
 use Tests\Stubs\Repositories\TicketRepositoryStub;
+use Tests\Stubs\Services\Departments\DepartmentTicketNotificationHandlerStub;
 use Tests\Stubs\Services\FileManager\Factories\BucketFactoryStub;
 use Tests\Stubs\Services\FileManager\FileUploaderStub;
 use Tests\Stubs\Services\Files\FileFactoryStub;
+use Tests\Stubs\Services\Tickets\Factories\TicketEventAttachmentFactoryStub;
 use Tests\Stubs\Services\Tickets\Factories\TicketServicesFactoryStub;
+use Tests\TestCase;
 
 // @TODO Refactor and complete the test
 /**
@@ -84,7 +84,7 @@ final class TicketEventFactoryTest extends TestCase
         $adminUser = new AdminUser();
 
         $createdBy = new User();
-        $createdBy->setRelation('userType',$adminUser);
+        $createdBy->setRelation('userType', $adminUser);
         $createdBy->setAttribute('id', 1);
 
         $requestedBy = new User();
@@ -114,7 +114,7 @@ final class TicketEventFactoryTest extends TestCase
             'dueDate' => $dueDate,
             'subject' => 'test',
             'type' => new TicketTypeEnum(TicketTypeEnum::PROJECT),
-            'services' => $services
+            'services' => $services,
         ]);
 
         $bucket = Mockery::mock(Bucket::class)
@@ -138,7 +138,7 @@ final class TicketEventFactoryTest extends TestCase
         ]);
 
         $fileUploader = new FileUploaderStub([
-            'upload'
+            'upload',
         ]);
 
         $repository = new TicketRepositoryStub([
@@ -147,7 +147,7 @@ final class TicketEventFactoryTest extends TestCase
         ]);
 
         $eventRepository = new TicketEventRepositoryStub([
-            'create' => $ticketEvent
+            'create' => $ticketEvent,
         ]);
 
         $ticketServicesFactory = new TicketServicesFactoryStub();
@@ -174,7 +174,7 @@ final class TicketEventFactoryTest extends TestCase
             'ticketRepository' => [
                 [
                     'countTicketByClient' => [
-                        $client
+                        $client,
                     ],
                 ],
                 [
@@ -271,12 +271,12 @@ final class TicketEventFactoryTest extends TestCase
     {
         yield 'Supports true' => [
             'expected' => false,
-            'userType' => new TicketTypeEnum(TicketTypeEnum::GRAPHIC)
+            'userType' => new TicketTypeEnum(TicketTypeEnum::GRAPHIC),
         ];
 
         yield 'Supports false' => [
             'expected' => true,
-            'userType' => new TicketTypeEnum(TicketTypeEnum::PROJECT)
+            'userType' => new TicketTypeEnum(TicketTypeEnum::PROJECT),
         ];
     }
 }

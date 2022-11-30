@@ -16,7 +16,6 @@ use App\Services\Printers\Interfaces\PrinterFactoryInterface;
 use App\Services\Printers\Resources\CreatePrinterResource;
 use App\Services\Users\Resources\CreateUserResource;
 use App\Services\Users\UserCreationService;
-use Illuminate\Http\JsonResponse;
 
 final class CreatePrinterController extends AbstractAPIController
 {

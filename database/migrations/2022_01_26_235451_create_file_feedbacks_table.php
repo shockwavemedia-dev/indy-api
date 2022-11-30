@@ -10,7 +10,7 @@ final class CreateFileFeedbacksTable extends Migration
 {
     public const TABLE = 'file_feedbacks';
 
-    public function up() : void
+    public function up(): void
     {
         if (Schema::hasTable(self::TABLE) === true) {
             return;
@@ -29,7 +29,6 @@ final class CreateFileFeedbacksTable extends Migration
             $table->index('feedback_by');
             $table->foreign('client_file_id')->references('id')->on('client_ticket_files');
             $table->foreign('feedback_by')->references('id')->on('users');
-
         });
     }
 

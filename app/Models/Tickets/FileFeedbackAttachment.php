@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace App\Models\Tickets;
+
 use App\Models\AbstractModel;
 use App\Models\File;
 use Carbon\Carbon;
@@ -12,7 +13,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 final class FileFeedbackAttachment extends AbstractModel
 {
-
     use SoftDeletes, HasFactory;
 
     /**
@@ -21,7 +21,7 @@ final class FileFeedbackAttachment extends AbstractModel
     protected $fillable = [
         'client_file_id',
         'feedback_id',
-        'file_id'
+        'file_id',
     ];
 
     protected $table = 'file_feedback_attachments';

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API\Departments;
 
 use App\Http\Controllers\API\AbstractAPIController;
-use App\Http\Requests\API\Departments\AddDepartmentMembersRequest;
 use App\Http\Resources\API\Departments\DepartmentWithMembersResource;
 use App\Models\Department;
 use App\Repositories\Interfaces\DepartmentRepositoryInterface;

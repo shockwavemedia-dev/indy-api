@@ -2,22 +2,21 @@
 
 declare(strict_types=1);
 
- namespace Tests\Unit\Models;
+namespace Tests\Unit\Models;
 
- use App\Models\Service;
- use PHPUnit\Framework\TestCase;
+use App\Models\Service;
+use PHPUnit\Framework\TestCase;
 
- /**
-  * @covers \App\Models\Service
-  */
- final class ServiceTest extends TestCase
- {
-     public function testGetterAndSetters(): void
+/**
+ * @covers \App\Models\Service
+ */
+final class ServiceTest extends TestCase
+{
+    public function testGetterAndSetters(): void
     {
-
         $expected = [
             'id' => 1,
-            'name' => 'Graphic Design'
+            'name' => 'Graphic Design',
         ];
 
         $service = new Service();
@@ -26,9 +25,9 @@ declare(strict_types=1);
 
         $actual = [
             'id' => $service->getId(),
-            'name' => $service->getName()
+            'name' => $service->getName(),
         ];
 
         self::assertEquals($expected, $actual);
     }
- }
+}

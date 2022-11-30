@@ -13,7 +13,8 @@ final class DeletePrinterJobController extends AbstractAPIController
 {
     private PrinterJobRepositoryInterface $printerJobRepository;
 
-    public function __construct(PrinterJobRepositoryInterface $printerJobRepository) {
+    public function __construct(PrinterJobRepositoryInterface $printerJobRepository)
+    {
         $this->printerJobRepository = $printerJobRepository;
     }
 

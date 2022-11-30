@@ -19,7 +19,8 @@ final class ShowTicketsByAdminUserController extends AbstractAPIController
 
     private ErrorLogInterface $errorLog;
 
-    public function __construct(AdminUserRepositoryInterface $adminUserRepository, ErrorLogInterface $errorLog) {
+    public function __construct(AdminUserRepositoryInterface $adminUserRepository, ErrorLogInterface $errorLog)
+    {
         $this->adminUserRepository = $adminUserRepository;
         $this->errorLog = $errorLog;
     }
@@ -31,7 +32,7 @@ final class ShowTicketsByAdminUserController extends AbstractAPIController
 
         if ($adminUser === null) {
             return $this->respondNotFound([
-                'message' => 'Admin User Not found.'
+                'message' => 'Admin User Not found.',
             ]);
         }
 

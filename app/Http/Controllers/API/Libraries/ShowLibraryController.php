@@ -11,7 +11,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 final class ShowLibraryController extends AbstractAPIController
 {
-
     private LibraryRepositoryInterface $libraryRepository;
 
     public function __construct(LibraryRepositoryInterface $libraryRepository)

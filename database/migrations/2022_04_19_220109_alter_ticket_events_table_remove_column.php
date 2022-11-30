@@ -28,7 +28,7 @@ final class AlterTicketEventsTableRemoveColumn extends Migration
 
     public function down(): void
     {
-        if (Schema::hasColumn(self::TABLE,'attachment_id') === true) {
+        if (Schema::hasColumn(self::TABLE, 'attachment_id') === true) {
             return;
         }
 

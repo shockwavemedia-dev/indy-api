@@ -17,7 +17,8 @@ final class FolderNameResolver implements FolderNameResolverInterface
 
     private string $name;
 
-    public function __construct(FolderRepositoryInterface $folderRepository) {
+    public function __construct(FolderRepositoryInterface $folderRepository)
+    {
         $this->folderRepository = $folderRepository;
     }
 

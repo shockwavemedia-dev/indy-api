@@ -13,7 +13,8 @@ final class SocialMediaCommentFactory implements SocialMediaCommentFactoryInterf
 {
     private SocialMediaCommentRepositoryInterface $socialMediaCommentRepository;
 
-    public function __construct(SocialMediaCommentRepositoryInterface $socialMediaCommentRepository) {
+    public function __construct(SocialMediaCommentRepositoryInterface $socialMediaCommentRepository)
+    {
         $this->socialMediaCommentRepository = $socialMediaCommentRepository;
     }
 

@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\API\Users;
 
-use App\Enum\AdminRoleEnum;
 use App\Enum\ClientRoleEnum;
-use App\Enum\UserTypeEnum;
 use Illuminate\Validation\Rule;
 
 final class CreateClientUserRequest extends AbstractCreateUserRequest
 {
-
     public function getClientId(): int
     {
         return $this->getInt('client_id');

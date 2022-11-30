@@ -16,7 +16,7 @@ final class FileFeedbackFactory extends Factory
     public function definition(): array
     {
         return [
-            'feedback' => $this->faker->randomLetter
+            'feedback' => $this->faker->randomLetter,
         ];
     }
 }

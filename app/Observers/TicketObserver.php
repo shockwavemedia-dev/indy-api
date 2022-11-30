@@ -42,7 +42,7 @@ final class TicketObserver
      */
     private function checkDescriptionActivity(Ticket $ticket): void
     {
-        if($ticket->isDirty('description') === false) {
+        if ($ticket->isDirty('description') === false) {
             return;
         }
 
@@ -52,7 +52,7 @@ final class TicketObserver
             'activity' => \sprintf(
                 '%s updated the description.',
                 $ticket->getUpdatedBy()->getFirstName(),
-            )
+            ),
         ]));
     }
 
@@ -61,7 +61,7 @@ final class TicketObserver
      */
     private function checkStatusActivity(Ticket $ticket): void
     {
-        if($ticket->isDirty('status') === false && $ticket->getUpdatedBy() === null) {
+        if ($ticket->isDirty('status') === false && $ticket->getUpdatedBy() === null) {
             return;
         }
 
@@ -81,7 +81,7 @@ final class TicketObserver
                 $ticket->getUpdatedBy()?->getFirstName(),
                 ucfirst($ticket->getOriginal('status')),
                 ucfirst($ticket->getStatus()->getValue()),
-            )
+            ),
         ]));
     }
 
@@ -90,7 +90,7 @@ final class TicketObserver
      */
     private function checkSubjectActivity(Ticket $ticket): void
     {
-        if($ticket->isDirty('subject') === false) {
+        if ($ticket->isDirty('subject') === false) {
             return;
         }
 
@@ -101,7 +101,7 @@ final class TicketObserver
                 '%s updated the subject to %s.',
                 $ticket->getUpdatedBy()->getFirstName(),
                 $ticket->getSubject(),
-            )
+            ),
         ]));
     }
 

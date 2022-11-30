@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
- namespace Tests\Unit\Models;
+namespace Tests\Unit\Models;
 
- use App\Models\ClientService;
- use PHPUnit\Framework\TestCase;
+use App\Models\ClientService;
+use PHPUnit\Framework\TestCase;
 
- /**
-  * @covers \App\Models\ClientService
-  */
- final class ClientServiceTest extends TestCase
- {
-     public function testGetterAndSetters(): void
+/**
+ * @covers \App\Models\ClientService
+ */
+final class ClientServiceTest extends TestCase
+{
+    public function testGetterAndSetters(): void
     {
         $expected = [
             'id' => 1,
-            'client_id'=> 1,
-            'service_id'=> 1,
+            'client_id' => 1,
+            'service_id' => 1,
             'marketing_quota' => null,
             'extra_quota' => null,
             'total_used' => null,
@@ -46,9 +46,9 @@ declare(strict_types=1);
             'total_used' => $clientService->getTotalUsed(),
             'is_enable' => $clientService->isEnabled(),
             'created_by' => $clientService->getCreatedById(),
-            'updated_by' => $clientService->getUpdatedById()
+            'updated_by' => $clientService->getUpdatedById(),
         ];
 
         self::assertEquals($expected, $actual);
     }
- }
+}

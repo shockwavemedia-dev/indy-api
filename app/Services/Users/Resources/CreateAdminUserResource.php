@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Services\Users\Resources;
 
 use App\Enum\AdminRoleEnum;
-use App\Models\Department;
 use App\Services\Users\Interfaces\CreateUserTypeResourceInterface;
 use Spatie\DataTransferObject\DataTransferObject;
 

@@ -6,8 +6,8 @@ namespace Tests\Stubs\Repositories;
 
 use App\Models\Tickets\Ticket;
 use App\Repositories\Interfaces\TicketActivityRepositoryInterface;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Model;
 use Tests\Stubs\AbstractStub;
 
 /**

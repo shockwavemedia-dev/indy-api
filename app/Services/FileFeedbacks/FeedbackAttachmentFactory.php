@@ -13,7 +13,8 @@ final class FeedbackAttachmentFactory implements FeedbackAttachmentFactoryInterf
 {
     private FileFeedbackAttachmentRepositoryInterface $feedbackAttachmentRepository;
 
-    public function __construct(FileFeedbackAttachmentRepositoryInterface $feedbackAttachmentRepository) {
+    public function __construct(FileFeedbackAttachmentRepositoryInterface $feedbackAttachmentRepository)
+    {
         $this->feedbackAttachmentRepository = $feedbackAttachmentRepository;
     }
 
@@ -23,7 +24,7 @@ final class FeedbackAttachmentFactory implements FeedbackAttachmentFactoryInterf
         $feedbackAttachment = $this->feedbackAttachmentRepository->create([
             'file_id' => $resource->getFile()->getId(),
             'client_file_id' => $resource->getClientTicketFile()->getId(),
-            'feedback_id' => $resource->getFileFeedback()->getId()
+            'feedback_id' => $resource->getFileFeedback()->getId(),
         ]);
 
         return $feedbackAttachment;

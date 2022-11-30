@@ -34,18 +34,21 @@ final class CreateNotificationUserResource extends DataTransferObject
     public function setNotification(Notification $notification): self
     {
         $this->notification = $notification;
+
         return $this;
     }
 
     public function setTitle(?string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
     public function setUser(User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
 }

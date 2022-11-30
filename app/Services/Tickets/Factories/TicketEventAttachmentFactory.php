@@ -11,7 +11,8 @@ final class TicketEventAttachmentFactory implements TicketEventAttachmentFactory
 {
     private TicketEventAttachmentRepositoryInterface $eventAttachmentRepository;
 
-    public function __construct(TicketEventAttachmentRepositoryInterface $eventAttachmentRepository) {
+    public function __construct(TicketEventAttachmentRepositoryInterface $eventAttachmentRepository)
+    {
         $this->eventAttachmentRepository = $eventAttachmentRepository;
     }
 

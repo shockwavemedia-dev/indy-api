@@ -23,8 +23,8 @@ class ClientFactory extends Factory
             'client_since' => '1990-10-10',
             'main_client_id' => null,
             'overview' => $this->faker->randomLetter(),
-            'rating' => $this->faker->randomElement([1,5,10]),
-            'status' => ClientStatusEnum::ACTIVE
+            'rating' => $this->faker->randomElement([1, 5, 10]),
+            'status' => ClientStatusEnum::ACTIVE,
         ];
     }
 }

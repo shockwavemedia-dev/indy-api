@@ -8,10 +8,9 @@ use App\Exceptions\Interfaces\ErrorLogInterface;
 use App\Models\File;
 use App\Repositories\Interfaces\FileRepositoryInterface;
 use App\Services\FileManager\Interfaces\FileUploadManagerResolverInterface;
+use Illuminate\Http\File as HttpFile;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
-use Illuminate\Http\File as HttpFile;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 
 final class LocalStorageUploadManager extends AbstractFileManager implements FileUploadManagerResolverInterface

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Requests\API\Tickets;
 
 use App\Enum\TicketAssigneeLinkIssueEnum;
-use App\Enum\TicketAssigneeStatusEnum;
 use App\Http\Requests\BaseRequest;
 use Illuminate\Validation\Rule;
 
@@ -50,5 +49,4 @@ final class TicketAssignStaffsRequest extends BaseRequest
             ],
         ];
     }
-
 }

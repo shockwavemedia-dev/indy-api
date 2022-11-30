@@ -32,7 +32,7 @@ final class GoogleCloudConfigResolver implements GoogleCloudConfigResolverInterf
 
         return new GoogleCloudConfigResource([
             'projectId' => Arr::get($config, 'project_id'),
-            'keyFilePath' => Arr::get($config, 'key_file_path')
+            'keyFilePath' => Arr::get($config, 'key_file_path'),
         ]);
     }
 }

@@ -13,7 +13,8 @@ final class TicketFileFactory implements TicketFileFactoryInterface
 {
     private ClientTicketFileRepositoryInterface $clientTicketFileRepository;
 
-    public function __construct(ClientTicketFileRepositoryInterface $clientTicketFileRepository) {
+    public function __construct(ClientTicketFileRepositoryInterface $clientTicketFileRepository)
+    {
         $this->clientTicketFileRepository = $clientTicketFileRepository;
     }
 

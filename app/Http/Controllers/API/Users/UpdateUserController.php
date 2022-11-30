@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\Users;
 
-
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Users\UpdateUserRequest;
 use App\Http\Resources\API\Users\UserResource;

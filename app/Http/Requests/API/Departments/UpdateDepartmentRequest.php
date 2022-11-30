@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\API\Departments;
 
-
 use App\Enum\DepartmentStatusEnum;
 use App\Http\Requests\BaseRequest;
 use Illuminate\Validation\Rule;
@@ -61,8 +60,7 @@ final class UpdateDepartmentRequest extends BaseRequest
                 Rule::in(DepartmentStatusEnum::toArray()),
             ],
             'services' => 'required|array',
-            'services.*' => 'integer|exists:App\Models\Service,id'
+            'services.*' => 'integer|exists:App\Models\Service,id',
         ];
     }
-
 }

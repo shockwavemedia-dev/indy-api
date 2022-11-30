@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Services\Tickets\Validations\Rules;
 
-use App\Enum\ServicesEnum;
 use App\Models\ClientService;
 use App\Models\Service;
 use App\Services\Tickets\Exceptions\InvalidExtraException;
@@ -23,22 +22,21 @@ final class ValidExtrasRuleService implements TicketEventServiceValidationRuleIn
      */
     public function validate(ClientService $clientService, Service $service, array $extras = []): bool
     {
-
         $serviceExtras = $service->getExtras();
 
         foreach ($extras as $extra) {
             $extraName = $extra['name'] ?? $extra;
-                if(\in_array($extraName, $serviceExtras) === true) {
-                    continue;
-                }
-
-                throw new InvalidExtraException(
-                    \sprintf(
-                        '%s not found.',
-                        $extraName
-                    )
-                );
+            if (\in_array($extraName, $serviceExtras) === true) {
+                continue;
             }
+
+            throw new InvalidExtraException(
+                \sprintf(
+                    '%s not found.',
+                    $extraName
+                )
+            );
+        }
 
         return true;
     }

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Enum\TicketFileStatusEnum;
-use App\Enum\TicketStatusEnum;
 use App\Models\Tickets\ClientTicketFile;
 use App\Models\User;
 use App\Repositories\Interfaces\ClientTicketFileRepositoryInterface;
@@ -37,6 +36,5 @@ final class ClientTicketFileRepository extends BaseRepository implements ClientT
         $file->delete();
         $file->save();
 
-        return;
     }
 }

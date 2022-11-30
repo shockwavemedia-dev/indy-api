@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             LibraryCategoriesSeeder::class,
             UsersTableSeeder::class,
             DepartmentsSeeder::class,
-            ServicesSeeder::class
+            ServicesSeeder::class,
         ]);
     }
 }

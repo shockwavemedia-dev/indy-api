@@ -26,5 +26,4 @@ interface ClientRepositoryInterface
     public function deleteClient(Client $client): void;
 
     public function updateClientOwner(Client $client, ClientUser $clientUser): Client;
-
 }

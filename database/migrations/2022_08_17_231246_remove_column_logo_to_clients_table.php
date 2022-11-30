@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        if (Schema::hasColumn('clients','logo') === true) {
+        if (Schema::hasColumn('clients', 'logo') === true) {
             Schema::table('clients', function (Blueprint $table) {
                 $table->dropColumn('logo');
             });
@@ -17,12 +17,10 @@ return new class extends Migration
 
     public function down(): void
     {
-        if (Schema::hasColumn('clients','logo') === false) {
+        if (Schema::hasColumn('clients', 'logo') === false) {
             Schema::table('clients', function (Blueprint $table) {
                 $table->json('logo')->nullable();
-
             });
         }
-
     }
 };

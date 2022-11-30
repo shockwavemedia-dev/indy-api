@@ -12,6 +12,7 @@ final class ServiceResource extends Resource
 {
     /**
      * @return mixed[]
+     *
      * @throws \App\Exceptions\InvalidResourceTypeException
      */
     protected function getResponse(): array
@@ -28,7 +29,7 @@ final class ServiceResource extends Resource
         return [
             'id' => $service->getId(),
             'name' => $service->getName(),
-            'extras' => $service->getExtras()
+            'extras' => $service->getExtras(),
         ];
     }
 }

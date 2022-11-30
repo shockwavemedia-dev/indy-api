@@ -42,7 +42,7 @@ final class GenericTicketFactoryTest extends TestCase
         $adminUser = new AdminUser();
 
         $createdBy = new User();
-        $createdBy->setRelation('userType',$adminUser);
+        $createdBy->setRelation('userType', $adminUser);
         $createdBy->setAttribute('id', 1);
 
         $requestedBy = new User();
@@ -72,7 +72,7 @@ final class GenericTicketFactoryTest extends TestCase
         ]);
 
         $bucketFactory = new BucketFactoryStub([
-            'make' => new Bucket(new Rest([]), 'test')
+            'make' => new Bucket(new Rest([]), 'test'),
         ]);
 
         $ticketServiceFactory = new TicketServicesFactoryStub();
@@ -87,7 +87,7 @@ final class GenericTicketFactoryTest extends TestCase
         $expectedCalls = [
             [
                 'countTicketByClient' => [
-                          $client
+                    $client,
                 ],
             ],
             [
@@ -138,12 +138,12 @@ final class GenericTicketFactoryTest extends TestCase
     {
         yield 'Supports true' => [
             'expected' => false,
-            'userType' => new TicketTypeEnum(TicketTypeEnum::PROJECT)
+            'userType' => new TicketTypeEnum(TicketTypeEnum::PROJECT),
         ];
 
         yield 'Supports false' => [
             'expected' => true,
-            'userType' => new TicketTypeEnum(TicketTypeEnum::GRAPHIC)
+            'userType' => new TicketTypeEnum(TicketTypeEnum::GRAPHIC),
         ];
     }
 }

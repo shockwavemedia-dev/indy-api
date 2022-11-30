@@ -16,3 +16,7 @@ yarn-error.log
 .env.development
 
 .env.production
+
+app/.DS_Store
+
+app/Enum/.DS_Store

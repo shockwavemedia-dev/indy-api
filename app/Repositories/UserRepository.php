@@ -6,12 +6,10 @@ namespace App\Repositories;
 
 use App\Enum\UserStatusEnum;
 use App\Models\Client;
-use App\Models\Department;
 use App\Models\User;
 use App\Models\Users\AdminUser;
 use App\Models\Users\ClientUser;
 use App\Repositories\Interfaces\UserRepositoryInterface;
-use App\Services\Users\Exceptions\InvalidDepartmentsException;
 use App\Services\Users\Resources\UpdateUserResource;
 use Carbon\Carbon;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -66,7 +64,6 @@ final class UserRepository extends BaseRepository implements UserRepositoryInter
             ->setContactNumber($resource->getContactNumber())
             ->setStatus($resource->getStatus());
 
-
         if ($resource->getPassword() !== null) {
             $user->setPassword(Hash::make($resource->getPassword()));
         }
@@ -92,7 +89,7 @@ final class UserRepository extends BaseRepository implements UserRepositoryInter
         }
 
         if ($userType instanceof ClientUser === true) {
-           $userType->client()->associate($resource->getClient());
+            $userType->client()->associate($resource->getClient());
         }
 
         $userType->save();

@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 
 /**
  * Must only be used in TESTS
- * @package Nodeploy\Tests\Rex\Stubs\Middleware
  *
  * @coversNothing
  */

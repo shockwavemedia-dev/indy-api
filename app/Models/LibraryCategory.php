@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\Traits\HasDates;
 use App\Models\Traits\HasRelationshipWithUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 final class LibraryCategory extends AbstractModel
 {

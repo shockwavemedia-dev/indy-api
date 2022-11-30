@@ -81,20 +81,20 @@ final class UpdateTicketRequest extends BaseRequest
             'priority' => [
                 'nullable',
                 'string',
-                Rule::in(TicketPrioritiesEnum::toArray())
+                Rule::in(TicketPrioritiesEnum::toArray()),
             ],
             'subject' => 'string',
             'department_id' => 'int|exists:App\Models\Department,id',
             'description' => 'string',
             'type' => [
                 'string',
-                Rule::in(TicketTypeEnum::toArray())
+                Rule::in(TicketTypeEnum::toArray()),
             ],
             'duedate' => 'date',
             'status' => [
                 'string',
-                Rule::in(TicketStatusEnum::toArray())
-            ]
+                Rule::in(TicketStatusEnum::toArray()),
+            ],
         ];
     }
 }

@@ -43,6 +43,7 @@ final class ForgotPasswordController extends AbstractAPIController
         try {
             $token = $this->tokenRepository->create($user);
             $this->userResetPasswordResolver->resolve($user, $token);
+
             return $this->respondNoContent();
         } catch (Throwable $throwable) {
             return $this->respondError($throwable->getMessage());

@@ -13,7 +13,8 @@ final class PrinterJobFactory implements PrinterJobFactoryInterface
 {
     private PrinterJobRepositoryInterface $printerJobRepository;
 
-    public function __construct(PrinterJobRepositoryInterface $printerJobRepository) {
+    public function __construct(PrinterJobRepositoryInterface $printerJobRepository)
+    {
         $this->printerJobRepository = $printerJobRepository;
     }
 

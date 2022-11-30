@@ -2,10 +2,8 @@
 
 namespace App\Http\Requests\API\TicketFiles;
 
-
 use App\Http\Requests\BaseRequest;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Validation\Rule;
 
 final class UploadFileRequest extends BaseRequest
 {
@@ -18,7 +16,6 @@ final class UploadFileRequest extends BaseRequest
     {
         return $this->file('file');
     }
-
 
     public function getFilePath(): string
     {
@@ -47,5 +44,4 @@ final class UploadFileRequest extends BaseRequest
             'folder_id' => 'int|nullable|exists:App\Models\Folder,id',
         ];
     }
-
 }

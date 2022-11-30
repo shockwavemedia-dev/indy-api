@@ -27,7 +27,7 @@ final class Ticket extends AbstractModel implements EmailInterface
     use SoftDeletes, HasFactory;
 
     public $dates = [
-        'duedate'
+        'duedate',
     ];
 
     protected $casts = [
@@ -50,7 +50,7 @@ final class Ticket extends AbstractModel implements EmailInterface
         'requested_by',
         'ticket_code',
         'subject',
-        'description' ,
+        'description',
         'type',
         'status',
         'user_notes',

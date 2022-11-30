@@ -41,7 +41,7 @@ final class UserCreationService implements UserCreationServiceInterface
         $user = $this->userRepository->create([
             'display_in_dashboard' => $resource->isDisplayInDashboard(),
             'profile_file_id' => $resource->getProfileFile()?->getId(),
-            'morphable_id'=> $userType->getId(),
+            'morphable_id' => $userType->getId(),
             'morphable_type' => \get_class($userType),
             'email' => $resource->getEmail(),
             'password' => $password,

@@ -110,6 +110,7 @@ final class CreateTicketEmailResource extends DataTransferObject
     public function setStatus(TicketEmailStatusEnum $status): self
     {
         $this->status = $status->getValue();
+
         return $this;
     }
 

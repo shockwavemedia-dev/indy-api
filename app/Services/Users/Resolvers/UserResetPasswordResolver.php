@@ -42,7 +42,7 @@ final class UserResetPasswordResolver implements UserResetPasswordResolverInterf
             throw new Exception('Url in resetting password is empty');
         }
 
-        $url = sprintf('%s/auth/password-reset',$url);
+        $url = sprintf('%s/auth/password-reset', $url);
 
         $emailLog = $this->emailLogFactory->make(new CreateEmailLogResource([
             'emailType' => $user,

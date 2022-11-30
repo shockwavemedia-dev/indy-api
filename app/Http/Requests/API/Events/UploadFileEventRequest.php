@@ -8,7 +8,6 @@ use App\Http\Requests\BaseRequest;
 
 final class UploadFileEventRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;
@@ -22,7 +21,7 @@ final class UploadFileEventRequest extends BaseRequest
     public function rules(): array
     {
         return [
-          'files' => 'required',
+            'files' => 'required',
         ];
     }
 }

@@ -21,7 +21,7 @@ final class ServiceRepositoryTest extends TestCase
 
         $results = $repository->all();
 
-        $arrayResults =  \json_decode(\json_encode($results), true);
+        $arrayResults = \json_decode(\json_encode($results), true);
 
         $this->assertArrayHasKeys(
             [
@@ -31,6 +31,7 @@ final class ServiceRepositoryTest extends TestCase
             $arrayResults['data'][0]
         );
     }
+
     public function testFindByIds(): void
     {
         $service = $this->env->service()->service;

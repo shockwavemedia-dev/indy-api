@@ -49,7 +49,6 @@ final class CreateSocialMediaResource extends DataTransferObject
         return $this->ticket;
     }
 
-
     /**
      * @return Carbon
      */

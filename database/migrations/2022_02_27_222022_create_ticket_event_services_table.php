@@ -10,7 +10,7 @@ final class CreateTicketEventServicesTable extends Migration
 {
     public const TABLE = 'ticket_event_services';
 
-    public function up() : void
+    public function up(): void
     {
         if (Schema::hasTable(self::TABLE) === true) {
             return;

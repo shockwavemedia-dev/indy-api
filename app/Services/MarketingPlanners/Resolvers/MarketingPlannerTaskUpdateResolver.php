@@ -48,14 +48,13 @@ final class MarketingPlannerTaskUpdateResolver implements MarketingPlannerTaskUp
         $this->marketingPlannerTaskRepository->deleteByMarketingPlannerAndIds($marketingPlanner, $existingIds);
 
         foreach ($marketingPlannerTasks as $marketingPlannerTask) {
-            if (empty($marketingPlannerTask['deadline']) === false ) {
+            if (empty($marketingPlannerTask['deadline']) === false) {
                 $marketingPlannerTask['deadline'] = (new Carbon($marketingPlannerTask['deadline']))->toDateString();
             }
 
             $assignees = Arr::get($marketingPlannerTask, 'assignees', []) ?? [Arr::get($marketingPlannerTask, 'assignee', [])];
 
             if (Arr::get($marketingPlannerTask, 'id') === null) {
-
                 $this->marketingPlannerTaskFactory->make(new MarketingPlannerTaskCreateResource([
                     'name' => Arr::get($marketingPlannerTask, 'name'),
                     'assignees' => $assignees,

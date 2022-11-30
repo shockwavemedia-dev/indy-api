@@ -44,7 +44,7 @@ final class ClientFileListController extends AbstractAPIController
 
             $files = $this->fileRepository->findAllByClient($client);
 
-            return response()->json($this->sortByYearAndMonthResolver->resolve($files));
+            return response()->json($this->sortByYearAndMonthResolver->resolve($client, $files));
         } catch (Throwable $throwable) {
             return $this->respondError($throwable->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }

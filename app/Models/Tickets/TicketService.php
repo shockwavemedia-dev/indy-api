@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models\Tickets;
 
+use App\Models\AbstractModel;
 use App\Models\Service;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\AbstractModel;
 
 final class TicketService extends AbstractModel
 {
@@ -30,7 +30,7 @@ final class TicketService extends AbstractModel
         'ticket_id',
         'service_id',
         'created_by',
-        'updated_by'
+        'updated_by',
     ];
 
     protected $table = 'ticket_services';
@@ -90,4 +90,3 @@ final class TicketService extends AbstractModel
         return $this->belongsTo(Ticket::class, 'ticket_id');
     }
 }
-

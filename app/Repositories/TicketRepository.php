@@ -19,7 +19,6 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use function Clue\StreamFilter\fun;
 
 final class TicketRepository extends BaseRepository implements TicketRepositoryInterface
 {
@@ -41,18 +40,17 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
         return $this->model->where('client_id', $client->getId())->count();
     }
 
-
     public function countNewTicketByDepartment(Department $department): int
     {
         return $this->model
             ->with('ticketServices.service')
             ->where('status', '=', TicketStatusEnum::NEW)
             ->where('department_id', $department->getId())
-            ->orWhereHas('assignees', function($query) use ($department){
-                $query->where('department_id', '=',$department->getId());
+            ->orWhereHas('assignees', function ($query) use ($department) {
+                $query->where('department_id', '=', $department->getId());
             })
-            ->orWhereHas('ticketServices.service.departments', function($query) use ($department){
-                $query->where('department_id', '=',$department->getId());
+            ->orWhereHas('ticketServices.service.departments', function ($query) use ($department) {
+                $query->where('department_id', '=', $department->getId());
             })->count();
     }
 
@@ -62,11 +60,11 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
         ->with('ticketServices.service')
         ->where('status', '=', TicketStatusEnum::OPEN)
         ->where('department_id', $department->getId())
-        ->orWhereHas('assignees', function($query) use ($department){
-            $query->where('department_id', '=',$department->getId());
+        ->orWhereHas('assignees', function ($query) use ($department) {
+            $query->where('department_id', '=', $department->getId());
         })
-        ->orWhereHas('ticketServices.service.departments', function($query) use ($department){
-            $query->where('department_id', '=',$department->getId());
+        ->orWhereHas('ticketServices.service.departments', function ($query) use ($department) {
+            $query->where('department_id', '=', $department->getId());
         })->count();
     }
 
@@ -111,15 +109,15 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
                 return $query->whereIn('status', $statuses);
             })
             ->when($subject, function ($query, $subject) {
-                return $query->where('subject', 'LIKE', '%' . $subject . '%');
+                return $query->where('subject', 'LIKE', '%'.$subject.'%');
             })
             ->when($code, function ($query, $code) {
-                return $query->where('ticket_code', 'LIKE', '%' . $code . '%');
+                return $query->where('ticket_code', 'LIKE', '%'.$code.'%');
             })
             ->when($deadline, function ($query, $deadline) {
-                return $query->whereBetween('duedate',[
-                    \sprintf('%s 00:00:00',$deadline->toDateString()),
-                    \sprintf('%s 00:00:00',$deadline->addDays(2)->toDateString())
+                return $query->whereBetween('duedate', [
+                    \sprintf('%s 00:00:00', $deadline->toDateString()),
+                    \sprintf('%s 00:00:00', $deadline->addDays(2)->toDateString()),
                 ]);
             })
             ->where('client_id', $client->getId())
@@ -132,11 +130,11 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
         return $this->model
             ->with('ticketServices.service')
             ->where('department_id', $department->getId())
-            ->orWhereHas('assignees', function($query) use ($department){
-                $query->where('department_id', '=',$department->getId());
+            ->orWhereHas('assignees', function ($query) use ($department) {
+                $query->where('department_id', '=', $department->getId());
             })
-            ->orWhereHas('ticketServices.service.departments', function($query) use ($department){
-                $query->where('department_id', '=',$department->getId());
+            ->orWhereHas('ticketServices.service.departments', function ($query) use ($department) {
+                $query->where('department_id', '=', $department->getId());
             })
             ->orderBy('created_at', 'desc')
             ->paginate($size, ['*'], null, $pageNumber);
@@ -146,7 +144,7 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
     {
         return $this->model
             ->where('id', '=', $id)
-            ->whereHas('clientTicketFiles', function ($query) use ($id)  {
+            ->whereHas('clientTicketFiles', function ($query) use ($id) {
                 $query->where('ticket_id', '=', $id);
             })
             ->with(['clientTicketFiles.file'])
@@ -174,10 +172,10 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
     ): LengthAwarePaginator {
         return $this->model
             ->with('ticketServices.service')
-            ->whereHas('department', function ($query)  {
+            ->whereHas('department', function ($query) {
                 $query->where('name', '=', 'Graphics Department');
             })
-            ->whereHas('ticketServices.service', function ($query)  {
+            ->whereHas('ticketServices.service', function ($query) {
                 $query->where('name', '=', ServicesEnum::GRAPHIC_DESIGN);
             })
             ->where('client_id', $client->getId())
@@ -193,10 +191,10 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
     ): LengthAwarePaginator {
         return $this->model
             ->with('ticketServices.service')
-            ->orWhereHas('department', function ($query)  {
+            ->orWhereHas('department', function ($query) {
                 $query->where('name', '=', 'Website Department');
             })
-            ->orWhereHas('ticketServices.service', function ($query)  {
+            ->orWhereHas('ticketServices.service', function ($query) {
                 $query->where('name', '=', ServicesEnum::WEBSITE);
             })
             ->where('client_id', $client->getId())
@@ -259,8 +257,8 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
 
     public function findByAssigneeAdminUser(AdminUser $adminUser, ?int $size = null, ?int $pageNumber = null): LengthAwarePaginator
     {
-        return $this->model->whereHas('assignees', function($query) use ($adminUser){
-            $query->where('admin_user_id', '=',$adminUser->getId());
+        return $this->model->whereHas('assignees', function ($query) use ($adminUser) {
+            $query->where('admin_user_id', '=', $adminUser->getId());
         })
             ->with('ticketServices.service')
             ->orderBy('id', 'desc')
@@ -270,13 +268,13 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
     public function findDepartmentTicketCountByStatusAndMonth(Department $department): ?Collection
     {
         return $this->model
-            ->select([ DB::raw('count(*) as ticket_counts,status,DATE_FORMAT(created_at, "%M = %Y") as date')])
+            ->select([DB::raw('count(*) as ticket_counts,status,DATE_FORMAT(created_at, "%M = %Y") as date')])
             ->orWhere('department_id', $department->getId())
-            ->orWhereHas('assignees', function($query) use ($department){
-                $query->where('department_id', '=',$department->getId());
+            ->orWhereHas('assignees', function ($query) use ($department) {
+                $query->where('department_id', '=', $department->getId());
             })
-            ->orWhereHas('ticketServices.service.departments', function($query) use ($department){
-                $query->where('department_id', '=',$department->getId());
+            ->orWhereHas('ticketServices.service.departments', function ($query) use ($department) {
+                $query->where('department_id', '=', $department->getId());
             })
             ->groupBy(['status', DB::raw('DATE_FORMAT(created_at, "%M = %Y")')])
             ->get();
@@ -324,7 +322,7 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             return $ticket;
         }
 
-        $userNotes[$user->getId()] =  $userNotes[$user->getId()] + 1;
+        $userNotes[$user->getId()] = $userNotes[$user->getId()] + 1;
 
         $ticket->setAttribute('user_notes', json_encode($userNotes));
 
@@ -341,7 +339,7 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             return $ticket;
         }
 
-        $userNotes[$user->getId()] =  0;
+        $userNotes[$user->getId()] = 0;
 
         $ticket->setAttribute('user_notes', json_encode($userNotes));
 
@@ -359,7 +357,7 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
                 continue;
             }
 
-            $userNotes[$userNote] = $count+1;
+            $userNotes[$userNote] = $count + 1;
         }
 
         $ticket->setAttribute('user_notes', json_encode($userNotes));

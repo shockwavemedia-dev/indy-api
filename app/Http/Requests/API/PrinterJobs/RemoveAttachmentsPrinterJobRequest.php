@@ -25,4 +25,3 @@ final class RemoveAttachmentsPrinterJobRequest extends BaseRequest
         ];
     }
 }
-

@@ -50,19 +50,19 @@ final class LoginController extends AbstractAPIController
 
         if ($user === null) {
             return $this->respondUnauthorised([
-                'message' => 'Invalid credentials'
+                'message' => 'Invalid credentials',
             ]);
         }
 
         if ($user->getUserType() instanceof  LeadClient === true) {
             return $this->respondUnauthorised([
-                'message' => 'User is not allowed to access this.'
+                'message' => 'User is not allowed to access this.',
             ]);
         }
 
         if (\in_array($user->getStatus()->getValue(), self::NOT_ALLOWED_STATUS, true) === true) {
             return $this->respondUnauthorised([
-                'message' => 'User is not active.'
+                'message' => 'User is not active.',
             ]);
         }
 
@@ -80,7 +80,7 @@ final class LoginController extends AbstractAPIController
 
             DB::table('oauth_access_tokens')->where('id', $oauthAccessToken->id)
             ->update([
-                'ip_address' => $request->getUserIP()
+                'ip_address' => $request->getUserIP(),
             ]);
 
             $response['user'] = $user;
@@ -91,7 +91,7 @@ final class LoginController extends AbstractAPIController
             return new JsonResource([
                 'error' => $exception->getMessage(),
                 'code' => $exception->getCode(),
-                ],
+            ],
                 Response::HTTP_BAD_REQUEST
             );
 //            return $this->respondInternalError([
@@ -107,7 +107,7 @@ final class LoginController extends AbstractAPIController
      */
     private function authenticate(string $username, string $password): array
     {
-        $request =  $this->createRequest->create('/oauth/token', 'POST');
+        $request = $this->createRequest->create('/oauth/token', 'POST');
         $request->headers->set('Accept', 'application/json');
         $request->request->add([
             'client_id' => Config::get('auth.guards.api.client_id'),

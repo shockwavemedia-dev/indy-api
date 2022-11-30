@@ -10,6 +10,5 @@ final class ClientNotificationHandler implements ClientNotificationHandlerInterf
 {
     public function handle(): void
     {
-
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API;
 
+use function app;
 use App\Exceptions\Interfaces\ErrorLogInterface;
 use App\Http\Resources\ErrorResource;
 use App\Models\User;
@@ -13,7 +14,6 @@ use Illuminate\Http\Response;
 use Sentry\Severity;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 use Throwable;
-use function app;
 
 abstract class AbstractAPIController
 {
@@ -35,8 +35,8 @@ abstract class AbstractAPIController
     /**
      * Return HTTP OK (200) response
      *
-     * @param mixed[] $data
-     * @param mixed[] $headers
+     * @param  mixed[]  $data
+     * @param  mixed[]  $headers
      */
     protected function respondOk(array $data = [], array $headers = []): JsonResource
     {
@@ -46,8 +46,8 @@ abstract class AbstractAPIController
     /**
      * Return HTTP bad request (400) response
      *
-     * @param mixed[] $data
-     * @param mixed[] $headers
+     * @param  mixed[]  $data
+     * @param  mixed[]  $headers
      */
     protected function respondBadRequest(array $data = [], array $headers = []): JsonResource
     {
@@ -60,8 +60,8 @@ abstract class AbstractAPIController
     /**
      * Return HTTP conflict (409) response
      *
-     * @param mixed[] $data
-     * @param mixed[] $headers
+     * @param  mixed[]  $data
+     * @param  mixed[]  $headers
      */
     protected function respondConflict(array $data = [], array $headers = []): JsonResource
     {
@@ -71,8 +71,8 @@ abstract class AbstractAPIController
     /**
      * Return HTTP created (201) response
      *
-     * @param mixed[] $data
-     * @param mixed[] $headers
+     * @param  mixed[]  $data
+     * @param  mixed[]  $headers
      */
     protected function respondCreated(array $data = [], array $headers = []): JsonResponse
     {
@@ -82,8 +82,8 @@ abstract class AbstractAPIController
     /**
      * Return HTTP bad request (400) response
      *
-     * @param mixed[] $data
-     * @param mixed[] $headers
+     * @param  mixed[]  $data
+     * @param  mixed[]  $headers
      */
     protected function respondInternalError(array $data = [], array $headers = []): JsonResource
     {
@@ -96,8 +96,8 @@ abstract class AbstractAPIController
     /**
      * Return HTTP forbidden (403) response
      *
-     * @param mixed[] $data
-     * @param mixed[] $headers
+     * @param  mixed[]  $data
+     * @param  mixed[]  $headers
      */
     protected function respondForbidden(?array $data = null, array $headers = []): JsonResource
     {
@@ -113,7 +113,7 @@ abstract class AbstractAPIController
     /**
      * Return HTTP no content (204) response
      *
-     * @param mixed[] $headers
+     * @param  mixed[]  $headers
      */
     protected function respondNoContent(array $headers = []): JsonResource
     {
@@ -123,8 +123,8 @@ abstract class AbstractAPIController
     /**
      * Return HTTP not found (404) response
      *
-     * @param mixed[] $data
-     * @param mixed[] $headers
+     * @param  mixed[]  $data
+     * @param  mixed[]  $headers
      */
     protected function respondNotFound(array $data = [], array $headers = []): JsonResource
     {
@@ -134,8 +134,8 @@ abstract class AbstractAPIController
     /**
      * Return HTTP unauthorized (401) response
      *
-     * @param mixed[] $data
-     * @param mixed[] $headers
+     * @param  mixed[]  $data
+     * @param  mixed[]  $headers
      */
     protected function respondUnauthorised(array $data = [], array $headers = []): JsonResource
     {
@@ -145,8 +145,8 @@ abstract class AbstractAPIController
     /**
      * Return HTTP unprocessable (422) response
      *
-     * @param mixed[] $data
-     * @param mixed[] $headers
+     * @param  mixed[]  $data
+     * @param  mixed[]  $headers
      */
     protected function respondUnprocessable(array $data = [], array $headers = []): JsonResource
     {

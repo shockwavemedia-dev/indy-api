@@ -106,7 +106,6 @@ final class TicketEventServicesValidatorTest extends TestCase
 
         $validator = new TicketEventServicesValidator($serviceRepository, [$rule]);
 
-
         $client = new Client();
 
         self::expectException(InvalidServiceException::class);

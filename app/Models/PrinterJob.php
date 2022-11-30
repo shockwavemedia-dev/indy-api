@@ -42,7 +42,7 @@ class PrinterJob extends AbstractModel implements EmailInterface, AuditableInter
         'coding',
         'address',
         'purchase_order_number',
-        'description'
+        'description',
     ];
 
     protected $table = 'printer_jobs';

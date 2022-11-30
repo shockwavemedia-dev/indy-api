@@ -21,7 +21,8 @@ final class EmailAttachmentUploadProcessor implements EmailAttachmentUploadProce
         private ErrorLogInterface $errorLog,
         private FileRepositoryInterface $fileRepository,
         private TicketEventAttachmentFactoryInterface $ticketEventAttachmentFactory
-    ) {}
+    ) {
+    }
 
     /**
      * @throws UnknownProperties
@@ -31,13 +32,13 @@ final class EmailAttachmentUploadProcessor implements EmailAttachmentUploadProce
         try {
             $filename = \pathinfo($attachment->getFilename(), PATHINFO_FILENAME);
 
-            $regex = "/[^a-zA-Z0-9._ -]/";
+            $regex = '/[^a-zA-Z0-9._ -]/';
 
             $originalFileName = preg_replace($regex, '', $attachment->getFilename());
 
             $originalFileName = str_replace(' ', '', $originalFileName);
 
-            $generatedFilename =  \sprintf(
+            $generatedFilename = \sprintf(
                 '%s-%s',
                 \sha1(\sprintf('%s%s', $filename, time())),
                 $originalFileName

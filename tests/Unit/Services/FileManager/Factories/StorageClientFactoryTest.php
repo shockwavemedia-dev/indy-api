@@ -23,7 +23,7 @@ final class StorageClientFactoryTest extends TestCase
         // Actual Config
         $resource = new GoogleCloudConfigResource([
             'projectId' => env('GOOGLE_CLOUD_PROJECT_ID', 'loyal-burner-340623'),
-            'keyFilePath' => env('GOOGLE_CLOUD_KEY_FILE', base_path().'/loyal-burner-340623-bff15907a50b.json')
+            'keyFilePath' => env('GOOGLE_CLOUD_KEY_FILE', base_path().'/loyal-burner-340623-bff15907a50b.json'),
         ]);
 
         $configResolver = new GoogleCloudConfigResolverStub([

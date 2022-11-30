@@ -8,7 +8,6 @@ use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\PaginationRequest;
 use App\Http\Resources\API\ClientServices\ClientServicesResource;
 use App\Models\Client;
-use App\Models\ClientService;
 use App\Models\Users\AdminUser;
 use App\Repositories\Interfaces\ClientRepositoryInterface;
 use App\Repositories\Interfaces\ClientServiceRepositoryInterface;
@@ -18,13 +17,13 @@ use Throwable;
 final class ListClientServiceController extends AbstractAPIController
 {
     private ClientRepositoryInterface $clientRepository;
+
     private ClientServiceRepositoryInterface $clientServiceRepository;
 
     public function __construct(
         ClientRepositoryInterface $clientRepository,
         ClientServiceRepositoryInterface $clientServiceRepository,
-    )
-    {
+    ) {
         $this->clientRepository = $clientRepository;
         $this->clientServiceRepository = $clientServiceRepository;
     }

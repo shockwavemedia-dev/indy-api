@@ -6,7 +6,6 @@ namespace App\Jobs\Tickets;
 
 use App\Exceptions\Interfaces\ErrorLogInterface;
 use App\Models\Tickets\Ticket;
-use App\Models\User;
 use App\Models\Users\AdminUser;
 use App\Repositories\Interfaces\AdminUserRepositoryInterface;
 use Illuminate\Bus\Queueable;

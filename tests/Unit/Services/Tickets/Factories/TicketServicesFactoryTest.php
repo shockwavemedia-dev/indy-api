@@ -36,7 +36,7 @@ final class TicketServicesFactoryTest extends TestCase
 
         $adminUser = new AdminUser();
         $createdBy = new User();
-        $createdBy->setRelation('userType',$adminUser);
+        $createdBy->setRelation('userType', $adminUser);
         $createdBy->setAttribute('id', 1);
         $services = [
             [
@@ -48,7 +48,6 @@ final class TicketServicesFactoryTest extends TestCase
                 'extras' => Arr::get(ServiceExtraEnum::EXTRAS, ServicesEnum::GRAPHIC_DESIGN, []),
             ],
         ];
-
 
         $factory = new TicketServicesFactory();
 

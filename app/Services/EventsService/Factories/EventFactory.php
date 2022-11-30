@@ -13,7 +13,8 @@ final class EventFactory implements EventFactoryInterface
 {
     private EventRepositoryInterface $eventRepository;
 
-    public function __construct(EventRepositoryInterface $eventRepository) {
+    public function __construct(EventRepositoryInterface $eventRepository)
+    {
         $this->eventRepository = $eventRepository;
     }
 

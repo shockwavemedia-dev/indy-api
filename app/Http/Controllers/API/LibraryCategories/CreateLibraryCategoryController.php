@@ -33,7 +33,7 @@ final class CreateLibraryCategoryController extends AbstractAPIController
             return new LibraryCategoryResource($libraryCategory);
         } catch (\Throwable $exception) {
             return $this->respondInternalError([
-                'message' => $exception->getMessage()
+                'message' => $exception->getMessage(),
             ]);
         }
     }

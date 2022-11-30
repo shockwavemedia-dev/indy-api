@@ -26,7 +26,7 @@ final class ListClientLibraryTicketsController extends AbstractAPIController
         $this->ticketRepository = $ticketRepository;
     }
 
-    public function __invoke(PaginationRequest $request,int $id): JsonResource
+    public function __invoke(PaginationRequest $request, int $id): JsonResource
     {
         /** @var \App\Models\Client $client */
         $client = $this->clientRepository->find($id);

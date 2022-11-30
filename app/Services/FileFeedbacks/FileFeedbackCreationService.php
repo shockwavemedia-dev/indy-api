@@ -26,10 +26,9 @@ final class FileFeedbackCreationService implements FileFeedbackCreationServiceIn
             'client_file_id' => $resource->getClientTicketFile(),
             'feedback_by' => $resource->getFeedbackBy(),
             'feedback_by_type' => $resource->getFeedbackByType(),
-            'feedback' => $resource->getFeedback()
+            'feedback' => $resource->getFeedback(),
         ]);
 
         return $feedback;
     }
-
 }

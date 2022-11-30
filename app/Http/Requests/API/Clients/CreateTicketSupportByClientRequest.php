@@ -12,7 +12,6 @@ use Illuminate\Validation\Rule;
 
 final class CreateTicketSupportByClientRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;
@@ -65,7 +64,7 @@ final class CreateTicketSupportByClientRequest extends BaseRequest
                 'required',
                 'string',
                 Rule::in(TicketTypeEnum::toArray()),
-            ]
+            ],
         ];
     }
 }

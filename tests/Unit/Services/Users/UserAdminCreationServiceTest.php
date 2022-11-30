@@ -8,12 +8,10 @@ use App\Enum\AdminRoleEnum;
 use App\Enum\UserTypeEnum;
 use App\Models\Department;
 use App\Models\Users\AdminUser;
-use App\Services\Users\Exceptions\InvalidDepartmentsException;
 use App\Services\Users\Resources\CreateAdminUserResource;
 use App\Services\Users\UserAdminCreationService;
 use PHPUnit\Framework\TestCase;
 use Tests\Stubs\Repositories\AdminUserRepositoryStub;
-use Tests\Stubs\Repositories\DepartmentRepositoryStub;
 
 /**
  * @covers \App\Services\Users\UserAdminCreationService
@@ -48,7 +46,7 @@ final class UserAdminCreationServiceTest extends TestCase
                 [
                     'create' => [
                         [
-                            "admin_role" => "admin",
+                            'admin_role' => 'admin',
                         ],
                     ],
                 ],
@@ -60,7 +58,6 @@ final class UserAdminCreationServiceTest extends TestCase
         $actualCalls = [
             'adminUserRepository' => $adminUserRepository->getCalls(),
         ];
-
 
         $this->assertEquals($expectedCalls, $actualCalls);
     }
@@ -74,7 +71,7 @@ final class UserAdminCreationServiceTest extends TestCase
             new AdminUserRepositoryStub(),
         );
 
-         $this->assertEquals($expected, $userAdminCreationService->supports($userType));
+        $this->assertEquals($expected, $userAdminCreationService->supports($userType));
     }
 
     /**
@@ -84,12 +81,12 @@ final class UserAdminCreationServiceTest extends TestCase
     {
         yield 'Supports true' => [
             'expected' => true,
-            'userType' => new UserTypeEnum(UserTypeEnum::ADMIN)
+            'userType' => new UserTypeEnum(UserTypeEnum::ADMIN),
         ];
 
         yield 'Supports false' => [
             'expected' => false,
-            'userType' => new UserTypeEnum(UserTypeEnum::CLIENT)
+            'userType' => new UserTypeEnum(UserTypeEnum::CLIENT),
         ];
     }
 }

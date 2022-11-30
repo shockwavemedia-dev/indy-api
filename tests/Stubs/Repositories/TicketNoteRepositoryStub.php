@@ -57,5 +57,4 @@ final class TicketNoteRepositoryStub extends AbstractStub implements TicketNoteR
 
         return $this->fetchResponse(__FUNCTION__);
     }
-
 }

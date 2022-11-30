@@ -2,11 +2,7 @@
 
 namespace App\Http\Requests\API\Tickets;
 
-
-use App\Enum\TicketEmailStatusEnum;
-use App\Enum\UserTypeEnum;
 use App\Http\Requests\BaseRequest;
-use Illuminate\Validation\Rule;
 
 final class CreateTicketEmailRequest extends BaseRequest
 {

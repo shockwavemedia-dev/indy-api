@@ -38,11 +38,11 @@ class ErrorLogJob implements ShouldQueue
     public function handle(
         ErrorLogFactoryInterface $errorLogFactory
     ): void {
-        $errorLogFactory->make( new CreateErrorLogResource([
-                'context' => $this->context,
-                'level' => $this->message,
-                'message' => $this->level,
-            ])
+        $errorLogFactory->make(new CreateErrorLogResource([
+            'context' => $this->context,
+            'level' => $this->message,
+            'message' => $this->level,
+        ])
         );
     }
 }

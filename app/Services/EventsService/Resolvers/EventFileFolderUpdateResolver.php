@@ -12,7 +12,8 @@ final class EventFileFolderUpdateResolver implements EventFileFolderUpdateResolv
 {
     private FolderRepositoryInterface $folderRepository;
 
-    public function __construct(FolderRepositoryInterface $folderRepository) {
+    public function __construct(FolderRepositoryInterface $folderRepository)
+    {
         $this->folderRepository = $folderRepository;
     }
 

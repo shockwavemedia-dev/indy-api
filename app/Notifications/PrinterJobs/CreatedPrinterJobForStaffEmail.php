@@ -37,7 +37,7 @@ final class CreatedPrinterJobForStaffEmail extends Notification implements Shoul
     }
 
     /**
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return string[]
      */
     public function via(mixed $notifiable): array
@@ -48,8 +48,9 @@ final class CreatedPrinterJobForStaffEmail extends Notification implements Shoul
     /**
      * Get the mail representation of the notification.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return MailMessage
+     *
      * @throws \Exception
      * @throws \Throwable
      */

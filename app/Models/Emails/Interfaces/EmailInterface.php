@@ -6,5 +6,4 @@ namespace App\Models\Emails\Interfaces;
 
 interface EmailInterface
 {
-
 }

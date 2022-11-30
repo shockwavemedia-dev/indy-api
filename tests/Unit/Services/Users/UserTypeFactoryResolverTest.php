@@ -24,7 +24,7 @@ final class UserTypeFactoryResolverTest extends TestCase
         $adminUser = new AdminUser();
 
         $userAdminCreationService = new UserAdminCreationServiceStub([
-            'supports' => true
+            'supports' => true,
         ]);
 
         $factory = new UserTypeFactoryResolver([$userAdminCreationService]);
@@ -51,7 +51,7 @@ final class UserTypeFactoryResolverTest extends TestCase
         $adminUser = new AdminUser();
 
         $userAdminCreationService = new UserAdminCreationServiceStub([
-            'supports' => false
+            'supports' => false,
         ]);
 
         $factory = new UserTypeFactoryResolver([$userAdminCreationService]);

@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
-use App\Enum\DepartmentStatusEnum;
 use App\Models\LibraryCategory;
 use App\Models\User;
 use App\Repositories\Interfaces\LibraryCategoryRepositoryInterface;
 use App\Services\LibraryCategories\Resources\CreateLibraryCategoryResource;
 use Carbon\Carbon;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection;
 
 final class LibraryCategoryRepository extends BaseRepository implements LibraryCategoryRepositoryInterface
 {

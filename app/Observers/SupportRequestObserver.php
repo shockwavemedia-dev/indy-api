@@ -8,7 +8,6 @@ use App\Enum\EmailStatusEnum;
 use App\Jobs\SupportRequests\DepartmentManagerSlackNotificationJob;
 use App\Models\SupportRequest;
 use App\Models\Users\AdminUser;
-use App\Notifications\SupportRequestAccountManagerEmail;
 use App\Repositories\Interfaces\AdminUserRepositoryInterface;
 use App\Services\EmailLogs\Interfaces\EmailLogFactoryInterface;
 use App\Services\EmailLogs\resources\CreateEmailLogResource;

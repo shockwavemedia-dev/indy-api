@@ -7,7 +7,6 @@ namespace App\Notifications;
 use App\Enum\EmailStatusEnum;
 use App\Models\Emails\EmailLog;
 use App\Models\Tickets\Ticket;
-use App\Models\Tickets\TicketEventAttachment;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -38,7 +37,7 @@ final class SocialMediaTicketCreatedEmail extends Notification implements Should
     }
 
     /**
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return string[]
      */
     public function via(mixed $notifiable): array
@@ -49,8 +48,9 @@ final class SocialMediaTicketCreatedEmail extends Notification implements Should
     /**
      * Get the mail representation of the notification.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return MailMessage
+     *
      * @throws \Exception
      * @throws \Throwable
      */

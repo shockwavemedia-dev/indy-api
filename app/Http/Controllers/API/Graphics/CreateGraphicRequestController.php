@@ -46,7 +46,7 @@ final class CreateGraphicRequestController extends AbstractAPIController
                 'message' => \sprintf(
                     '%s service does not exist.',
                     ServicesEnum::GRAPHIC_DESIGN
-                )
+                ),
             ]);
         }
 
@@ -71,14 +71,13 @@ final class CreateGraphicRequestController extends AbstractAPIController
                 'attachments' => $request->getAttachments(),
                 'description' => $request->getDescription(),
                 'subject' => $request->getSubject(),
-                'service' => $serviceWithExtras
+                'service' => $serviceWithExtras,
             ]));
 
             return new TicketSupportResource($ticket);
-
         } catch (TicketEventServiceRuleException $serviceRuleException) {
             return $this->respondBadRequest([
-                'message' => $serviceRuleException->getMessage()
+                'message' => $serviceRuleException->getMessage(),
             ]);
             // @codeCoverageIgnoreStart
         } catch (\Throwable $throwable) {

@@ -36,7 +36,7 @@ final class CheckUserPermissionTest extends TestCase
                 [
                     'resolve' => [
                         $userType,
-                        'users'
+                        'users',
                     ],
                 ],
             ],
@@ -57,12 +57,11 @@ final class CheckUserPermissionTest extends TestCase
                 [
                     'resolve' => [
                         $userType,
-                        'users'
+                        'users',
                     ],
                 ],
             ],
         ];
-
     }
 
     /**
@@ -77,7 +76,7 @@ final class CheckUserPermissionTest extends TestCase
         array $expectedCalls
     ): void {
         $config = new UserPermissionConfigResolverStub([
-            'resolve' => $config
+            'resolve' => $config,
         ]);
 
         $checkPermission = new CheckUserPermission($config);

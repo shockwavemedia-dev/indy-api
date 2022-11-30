@@ -13,7 +13,6 @@ use Illuminate\Validation\Rule;
 
 final class CreateTicketSupportRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;
@@ -84,10 +83,10 @@ final class CreateTicketSupportRequest extends BaseRequest
             'subject' => 'string|required',
             'requested_by' => 'int|required|exists:App\Models\User,id',
             'type' => [
-              'required',
-              'string',
-              Rule::in(TicketTypeEnum::toArray()),
-            ]
+                'required',
+                'string',
+                Rule::in(TicketTypeEnum::toArray()),
+            ],
         ];
     }
 }

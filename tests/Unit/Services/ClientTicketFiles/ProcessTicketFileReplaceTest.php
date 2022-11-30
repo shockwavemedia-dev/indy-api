@@ -46,7 +46,7 @@ final class ProcessTicketFileReplaceTest extends TestCase
             'disk' => 'gcs',
             'uploadedFile' => $uploadedFile,
             'filePath' => '',
-            'uploadedBy' => $user
+            'uploadedBy' => $user,
         ]);
 
         $fileRepository = new FileRepositoryStub([
