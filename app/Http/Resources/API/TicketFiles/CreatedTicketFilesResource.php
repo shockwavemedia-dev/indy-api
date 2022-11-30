@@ -6,7 +6,7 @@ namespace App\Http\Resources\API\TicketFiles;
 
 use App\Http\Resources\Resource;
 
-final class TicketFilesResource extends Resource
+final class CreatedTicketFilesResource extends Resource
 {
     protected function getResponse(): array
     {
@@ -19,9 +19,6 @@ final class TicketFilesResource extends Resource
         if (count($this->resource) === 0) {
             self::$wrap = null;
         }
-
-
-        $files['page'] = $this->paginationResource($this->resource);
 
         return $files;
     }

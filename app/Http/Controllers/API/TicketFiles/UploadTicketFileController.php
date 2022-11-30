@@ -6,7 +6,7 @@ namespace App\Http\Controllers\API\TicketFiles;
 
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\TicketFiles\UploadFileRequest;
-use App\Http\Resources\API\TicketFiles\TicketFilesResource;
+use App\Http\Resources\API\TicketFiles\CreatedTicketFilesResource;
 use App\Models\File;
 use App\Repositories\Interfaces\FolderRepositoryInterface;
 use App\Repositories\TicketRepository;
@@ -86,7 +86,7 @@ final class UploadTicketFileController extends AbstractAPIController
                 );
             }
 
-            return new TicketFilesResource($ticketFile);
+            return new CreatedTicketFilesResource($ticketFile);
         } catch (Throwable $throwable) {
             return $this->respondError($throwable->getMessage());
         }
