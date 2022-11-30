@@ -6,7 +6,7 @@ namespace App\Http\Controllers\API\TicketFiles;
 
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\TicketFiles\UploadFileRequest;
-use App\Http\Resources\API\TicketFiles\TicketFileResource;
+use App\Http\Resources\API\TicketFiles\CreatedTicketFilesResource;
 use App\Repositories\Interfaces\FolderRepositoryInterface;
 use App\Repositories\TicketRepository;
 use App\Services\ClientTicketFiles\Interfaces\ProcessTicketFileUploadInterface;
@@ -61,27 +61,32 @@ final class UploadTicketFileController extends AbstractAPIController
 
             $folder = $this->folderRepository->find($request->getFolderId() ?? 0);
 
-            $file = $this->fileFactory->make(new CreateFileResource([
-                'bucket' => $bucket->name(),
-                'folder' => $folder,
-                'uploadedFile' => $request->getFile(),
-                'disk' => $bucket->disk(),
-                'uploadedBy' => $user,
-                'fileExtension' => $request->getFile()->getClientOriginalExtension(),
-                'filePath' => \sprintf('%s/%s',
-                    $client->getClientCode(),
-                    'tickets'
-                ),
-            ]));
+            $files = $request->getFile();
+            $ticketFile = [];
 
-            $ticketFile = $this->processTicketFileUpload->process(
-                $file,
-                $user,
-                $ticket,
-                $request->getFile(),
-            );
+            foreach ($files as $file) {
+                $fileModel = $this->fileFactory->make(new CreateFileResource([
+                    'bucket' => $bucket->name(),
+                    'folder' => $folder,
+                    'uploadedFile' => $file,
+                    'disk' => $bucket->disk(),
+                    'uploadedBy' => $user,
+                    'fileExtension' => $file->getClientOriginalExtension(),
+                    'filePath' => \sprintf('%s/%s',
+                        $client->getClientCode(),
+                        'tickets'
+                    ),
+                ]));
 
-            return new TicketFileResource($ticketFile);
+                $ticketFile[] = $this->processTicketFileUpload->process(
+                    $fileModel,
+                    $user,
+                    $ticket,
+                    $file,
+                );
+            }
+
+            return new CreatedTicketFilesResource($ticketFile);
         } catch (Throwable $throwable) {
             return $this->respondError($throwable->getMessage());
         }
