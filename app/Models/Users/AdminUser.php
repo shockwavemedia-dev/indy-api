@@ -72,7 +72,10 @@ final class AdminUser extends AbstractModel implements UserTypeInterface
 
     public function getOpenTickets(): int
     {
-        return $this->tickets()->where('tickets.status', TicketStatusEnum::OPEN)->count();
+        return $this->tickets()
+            ->whereNull('tickets.deleted_at')
+            ->where('tickets.status', TicketStatusEnum::OPEN)
+            ->count();
     }
 
     public function getClosedTicketsBy30Days(): int
@@ -84,6 +87,7 @@ final class AdminUser extends AbstractModel implements UserTypeInterface
         return $this->tickets()
             ->whereBetween('tickets.created_at', [$dateLast30Days, $dateToday])
             ->where('tickets.status', TicketStatusEnum::CLOSED)
+            ->whereNull('tickets.deleted_at')
             ->count();
     }
 
@@ -96,6 +100,7 @@ final class AdminUser extends AbstractModel implements UserTypeInterface
         return $this->tickets()
             ->whereBetween('tickets.created_at', [$dateLast90Days, $dateToday])
             ->where('tickets.status', TicketStatusEnum::CLOSED)
+            ->whereNull('tickets.deleted_at')
             ->count();
     }
 

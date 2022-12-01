@@ -26,7 +26,7 @@ final class ListTicketFilesController extends AbstractAPIController
     {
         try {
             /** @var Ticket $ticket */
-            $ticket = $this->ticketRepository->find($id);
+            $ticket = $this->ticketRepository->findWithFileVersions($id);
 
             if ($ticket === null) {
                 return $this->respondNotFound([

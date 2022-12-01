@@ -64,6 +64,7 @@ final class UploadTicketFileController extends AbstractAPIController
             $folder = $this->folderRepository->find($request->getFolderId() ?? 0);
 
             $files = $request->getFiles();
+
             $ticketFile = [];
 
             $this->ticketRepository->updateIsApprovalRequired($ticket, true);

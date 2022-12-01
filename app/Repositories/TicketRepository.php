@@ -78,6 +78,7 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
 
     public function deleteTicketSupport(Ticket $ticket, User $user): void
     {
+        $ticket->assignees()->delete();
         $ticket->delete();
         $ticket->updatedBy()->associate($user);
         $ticket->setStatus(new TicketStatusEnum(TicketStatusEnum::DELETED));
@@ -365,6 +366,13 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
         $ticket->save();
 
         return $ticket;
+    }
+
+    public function findWithFileVersions(int $id): ?Ticket
+    {
+        return $this->model->where('id', $id)
+            ->with('clientTicketFiles.fileVersions.file')
+            ->first();
     }
 
     public function updateIsApprovalRequired(Ticket $ticket, bool $isApprovalRequired): void

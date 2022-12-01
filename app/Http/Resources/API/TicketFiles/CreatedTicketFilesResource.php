@@ -15,7 +15,7 @@ final class CreatedTicketFilesResource extends Resource
         foreach ($this->resource as $file) {
             $files['data'][] = new TicketFileResource($file);
         }
-        
+
         return $files;
     }
 }

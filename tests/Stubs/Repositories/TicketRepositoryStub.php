@@ -261,6 +261,11 @@ final class TicketRepositoryStub extends AbstractStub implements TicketRepositor
         return $this->fetchResponse(__FUNCTION__);
     }
 
+    public function findWithFileVersions(int $id): ?Ticket
+    {
+        // TODO: Implement findWithFileVersions() method.
+    }
+
     /**
      * @throws \Throwable
      */
