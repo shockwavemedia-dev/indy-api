@@ -6,6 +6,7 @@ namespace App\Jobs\File;
 
 use App\Enum\ClientNotificationTypeEnum;
 use App\Exceptions\Interfaces\ErrorLogInterface;
+use App\Models\File;
 use App\Repositories\Interfaces\FileRepositoryInterface;
 use App\Services\ClientUserNotifications\Interfaces\ClientNotificationResolverFactoryInterface;
 use App\Services\FileManager\Interfaces\FileManagerConfigResolverInterface;
@@ -39,6 +40,7 @@ final class UploadFileJob implements ShouldQueue
         ErrorLogInterface $sentryHandler
     ): void {
         try {
+            /** @var File $file */
             $file = $fileRepository->find($this->fileId);
 
             if ($file === null) {

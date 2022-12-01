@@ -27,7 +27,6 @@ final class FileRepository extends BaseRepository implements FileRepositoryInter
         $file->deletedBy()->associate($user);
         $file->delete();
         $file->save();
-
     }
 
     public function findAllByTicket(Ticket $ticket, ?int $size = null, ?int $pageNumber = null): LengthAwarePaginator

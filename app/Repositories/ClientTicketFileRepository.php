@@ -35,6 +35,5 @@ final class ClientTicketFileRepository extends BaseRepository implements ClientT
         $file->setStatus(new TicketFileStatusEnum(TicketFileStatusEnum::DELETED));
         $file->delete();
         $file->save();
-
     }
 }

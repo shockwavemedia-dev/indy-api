@@ -3,6 +3,7 @@
 namespace App\Http\Requests\API\TicketFiles;
 
 use App\Http\Requests\BaseRequest;
+use Illuminate\Http\UploadedFile;
 
 final class UploadFileRequest extends BaseRequest
 {
@@ -11,7 +12,12 @@ final class UploadFileRequest extends BaseRequest
         return true;
     }
 
-    public function getFile(): array
+    public function getFile(): UploadedFile
+    {
+        return $this->file('file');
+    }
+
+    public function getFiles(): array
     {
         return $this->file('file') ?? [];
     }

@@ -61,7 +61,8 @@ final class UploadTicketFileController extends AbstractAPIController
 
             $folder = $this->folderRepository->find($request->getFolderId() ?? 0);
 
-            $files = $request->getFile();
+            $files = $request->getFiles();
+
             $ticketFile = [];
 
             foreach ($files as $file) {

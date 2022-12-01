@@ -367,4 +367,11 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
 
         return $ticket;
     }
+
+    public function findWithFileVersions(int $id): ?Ticket
+    {
+        return $this->model->where('id', $id)
+            ->with('clientTicketFiles.fileVersions.file')
+            ->first();
+    }
 }

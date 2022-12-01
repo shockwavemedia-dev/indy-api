@@ -22,6 +22,7 @@ use App\Notifications\SocialMediaMentionEmail;
 use App\Notifications\SocialMediaTicketFileApprovedEmail;
 use App\Notifications\SupportRequestAccountManagerEmail;
 use App\Notifications\TicketCreatedEmail;
+use App\Notifications\TicketFiles\UploadedTicketFileEmail;
 use Carbon\Carbon;
 use DateTimeInterface;
 use Exception;
@@ -208,6 +209,11 @@ final class User extends Authenticatable implements EmailInterface
     public function notifySocialMediaForFileApproved(ClientTicketFile $clientTicketFile, EmailLog $emailLog): void
     {
         $this->notify(new SocialMediaTicketFileApprovedEmail($clientTicketFile, $emailLog, $this));
+    }
+
+    public function notifyClientForFileUpload(EmailLog $emailLog, string $message, string $url): void
+    {
+        $this->notify(new UploadedTicketFileEmail($emailLog, $message, $url));
     }
 
     /**
