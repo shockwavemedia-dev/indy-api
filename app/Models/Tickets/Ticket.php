@@ -240,7 +240,7 @@ final class Ticket extends AbstractModel implements EmailInterface
 
     public function isApprovalRequired(): bool
     {
-        return $this->getAttribute('is_approval_required') ?? false;
+        return $this->getAttribute('is_approval_required');
     }
 
     public function setDescription(string $description): self
