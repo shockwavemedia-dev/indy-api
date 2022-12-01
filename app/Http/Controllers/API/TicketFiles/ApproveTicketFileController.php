@@ -68,7 +68,7 @@ final class ApproveTicketFileController extends AbstractAPIController
 
             $countNewTicketFile = $this->ticketFileRepository->countNewTicketFile($ticketFile);
 
-            if($countNewTicketFile == 0){
+            if($countNewTicketFile === 0){
                 $this->ticketRepository->updateIsApprovalRequired($ticketFile->getTicket(), false);
             }
 
