@@ -49,6 +49,9 @@ final class TicketFileUploadNotificationResolver extends AbstractClientNotificat
         $this->sendEmailNotification($morph, $clientCreator, $title, $link);
     }
 
+    /**
+     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
+     */
     private function sendEmailNotification(
         ClientTicketFile $clientTicketFile,
         User $clientUser,
@@ -60,7 +63,7 @@ final class TicketFileUploadNotificationResolver extends AbstractClientNotificat
                 'emailType' => $clientTicketFile,
                 'status' => new EmailStatusEnum(EmailStatusEnum::PENDING),
                 'to' => $clientUser->getEmail(),
-                'message' => 'Ticket File Approved Email', // Static message, real email is in json format
+                'message' => $title, // Static message, real email is in json format
             ])),
             $title,
             $link
