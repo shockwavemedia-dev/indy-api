@@ -11,7 +11,7 @@ final class UploadFileRequest extends BaseRequest
         return true;
     }
 
-    public function getFile(): array
+    public function getFiles(): array
     {
         return $this->file('file') ?? [];
     }

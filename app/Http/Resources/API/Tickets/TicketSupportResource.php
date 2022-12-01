@@ -69,6 +69,7 @@ final class TicketSupportResource extends Resource
             'created_at' => $ticket->getCreatedAtAsString(),
             'user_notes' => json_encode($userNotes),
             'client_logo' => $ticket->getClient()->getLogo(),
+            'is_approval_required' => $ticket->isApprovalRequired(),
         ];
 
         $assignees = [];

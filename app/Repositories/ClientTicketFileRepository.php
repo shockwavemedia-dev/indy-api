@@ -37,4 +37,12 @@ final class ClientTicketFileRepository extends BaseRepository implements ClientT
         $file->save();
 
     }
+
+    public function countNewTicketFile(ClientTicketFile $file): int
+    {
+        return $this->model
+            ->where('ticket_id', $file->getTicketId())
+            ->where('status', '=', TicketFileStatusEnum::NEW)
+            ->count();
+    }
 }

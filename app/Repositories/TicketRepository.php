@@ -366,4 +366,12 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
 
         return $ticket;
     }
+
+    public function updateIsApprovalRequired(Ticket $ticket, bool $isApprovalRequired): void
+    {
+        $ticket->setIsApprovalRequired($isApprovalRequired);
+        $ticket->save();
+
+    }
+
 }

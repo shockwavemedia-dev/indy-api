@@ -43,4 +43,14 @@ final class ClientTicketFileRepositoryStub extends AbstractStub implements Clien
 
         $this->fetchResponse(__FUNCTION__);
     }
+
+    /**
+     * @throws \Throwable
+     */
+    public function countNewTicketFile(ClientTicketFile $file): int
+    {
+        $this->recordCall(__FUNCTION__, \func_get_args());
+
+        return $this->fetchResponse(__FUNCTION__);
+    }
 }

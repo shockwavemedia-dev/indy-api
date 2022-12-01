@@ -260,4 +260,14 @@ final class TicketRepositoryStub extends AbstractStub implements TicketRepositor
 
         return $this->fetchResponse(__FUNCTION__);
     }
+
+    /**
+     * @throws \Throwable
+     */
+    public function updateIsApprovalRequired(Ticket $ticket, bool $isApprovalRequired): void
+    {
+        $this->recordCall(__FUNCTION__, \func_get_args());
+
+        $this->fetchResponse(__FUNCTION__);
+    }
 }
