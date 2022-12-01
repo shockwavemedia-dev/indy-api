@@ -10,6 +10,7 @@ use App\Http\Resources\API\TicketFiles\TicketFileResource;
 use App\Models\Tickets\ClientTicketFile;
 use App\Models\User;
 use App\Repositories\Interfaces\ClientTicketFileRepositoryInterface;
+use App\Repositories\TicketRepository;
 use App\Services\BackendUserNotifications\Interfaces\BackendUserNotificationResolverFactoryInterface;
 use App\Services\TicketActivities\Interfaces\TicketActivityFactoryInterface;
 use App\Services\TicketActivities\Resources\CreateTicketActivityResource;
@@ -24,14 +25,18 @@ final class ApproveTicketFileController extends AbstractAPIController
 
     private TicketActivityFactoryInterface $ticketActivityFactory;
 
+    private TicketRepository $ticketRepository;
+
     public function __construct(
         BackendUserNotificationResolverFactoryInterface $backendUserNotificationResolverFactory,
         ClientTicketFileRepositoryInterface $ticketFileRepository,
-        TicketActivityFactoryInterface $ticketActivityFactory
+        TicketActivityFactoryInterface $ticketActivityFactory,
+        TicketRepository $ticketRepository
     ) {
         $this->backendUserNotificationResolverFactory = $backendUserNotificationResolverFactory;
         $this->ticketFileRepository = $ticketFileRepository;
         $this->ticketActivityFactory = $ticketActivityFactory;
+        $this->ticketRepository = $ticketRepository;
     }
 
     public function __invoke(int $id): JsonResource
@@ -60,6 +65,12 @@ final class ApproveTicketFileController extends AbstractAPIController
             $user = $this->getUser();
 
             $ticketFile = $this->ticketFileRepository->approve($user, $ticketFile);
+
+            $countNewTicketFile = $this->ticketFileRepository->countNewTicketFile($ticketFile);
+
+            if($countNewTicketFile == 0){
+                $this->ticketRepository->updateIsApprovalRequired($ticketFile->getTicket(), false);
+            }
 
             $this->ticketActivityFactory->make(new CreateTicketActivityResource([
                 'ticket' => $ticketFile->getTicket(),

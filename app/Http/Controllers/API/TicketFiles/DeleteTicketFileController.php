@@ -9,6 +9,7 @@ use App\Models\Tickets\ClientTicketFile;
 use App\Models\User;
 use App\Repositories\Interfaces\ClientTicketFileRepositoryInterface;
 use App\Repositories\Interfaces\FileRepositoryInterface;
+use App\Repositories\TicketRepository;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Throwable;
 
@@ -18,12 +19,16 @@ final class DeleteTicketFileController extends AbstractAPIController
 
     private FileRepositoryInterface $fileRepository;
 
+    private TicketRepository $ticketRepository;
+
     public function __construct(
         ClientTicketFileRepositoryInterface $clientTicketFileRepository,
-        FileRepositoryInterface $fileRepository
+        FileRepositoryInterface $fileRepository,
+        TicketRepository $ticketRepository
     ) {
         $this->clientTicketFileRepository = $clientTicketFileRepository;
         $this->fileRepository = $fileRepository;
+        $this->ticketRepository = $ticketRepository;
     }
 
     public function __invoke(int $id): JsonResource
@@ -37,6 +42,12 @@ final class DeleteTicketFileController extends AbstractAPIController
             }
 
             $this->clientTicketFileRepository->deleteTicketFile($clientTicketFile);
+
+            $countNewTicketFile = $this->clientTicketFileRepository->countNewTicketFile($clientTicketFile);
+
+            if($countNewTicketFile == 0){
+                $this->ticketRepository->updateIsApprovalRequired($clientTicketFile->getTicket(), false);
+            }
 
             if ($clientTicketFile->file !== null) {
                 /** @var User $user */

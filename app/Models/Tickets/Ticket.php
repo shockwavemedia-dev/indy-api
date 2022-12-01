@@ -32,6 +32,7 @@ final class Ticket extends AbstractModel implements EmailInterface
 
     protected $casts = [
         'user_notes' => 'array',
+        'is_approval_required' => 'boolean',
     ];
 
     /**
@@ -54,6 +55,7 @@ final class Ticket extends AbstractModel implements EmailInterface
         'type',
         'status',
         'user_notes',
+        'is_approval_required'
     ];
 
     public $table = 'tickets';
@@ -236,6 +238,17 @@ final class Ticket extends AbstractModel implements EmailInterface
         return new TicketTypeEnum($type);
     }
 
+    public function isApprovalRequired(): bool
+    {
+        $isApprovalRequired = $this->getAttribute('is_approval_required');
+
+        if ($isApprovalRequired === '' || $isApprovalRequired === null) {
+            $isApprovalRequired = 0;
+        }
+
+        return $isApprovalRequired > 0;
+    }
+
     public function setDescription(string $description): self
     {
         return $this->setAttribute('description', $description);
@@ -277,6 +290,13 @@ final class Ticket extends AbstractModel implements EmailInterface
     public function setUpdatedBy(User $user): self
     {
         $this->setAttribute('updated_by', $user->getId());
+
+        return $this;
+    }
+
+    public function setIsApprovalRequired(bool $approvalRequired): self
+    {
+        $this->setAttribute('is_approval_required', $approvalRequired);
 
         return $this;
     }

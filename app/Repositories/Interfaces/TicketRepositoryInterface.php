@@ -91,4 +91,6 @@ interface TicketRepositoryInterface
     public function increaseUserNotesExceptSender(Ticket $ticket, User $user): Ticket;
 
     public function resetUserNotes(Ticket $ticket, User $user): Ticket;
+
+    public function updateIsApprovalRequired(Ticket $ticket, bool $isApprovalRequired): void;
 }
