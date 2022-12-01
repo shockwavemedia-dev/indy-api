@@ -265,4 +265,14 @@ final class TicketRepositoryStub extends AbstractStub implements TicketRepositor
     {
         // TODO: Implement findWithFileVersions() method.
     }
+
+    /**
+     * @throws \Throwable
+     */
+    public function updateIsApprovalRequired(Ticket $ticket, bool $isApprovalRequired): void
+    {
+        $this->recordCall(__FUNCTION__, \func_get_args());
+
+        $this->fetchResponse(__FUNCTION__);
+    }
 }

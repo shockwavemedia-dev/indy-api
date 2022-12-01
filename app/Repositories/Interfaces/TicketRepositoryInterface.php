@@ -93,4 +93,6 @@ interface TicketRepositoryInterface
     public function resetUserNotes(Ticket $ticket, User $user): Ticket;
 
     public function findWithFileVersions(int $id): ?Ticket;
+
+    public function updateIsApprovalRequired(Ticket $ticket, bool $isApprovalRequired): void;
 }

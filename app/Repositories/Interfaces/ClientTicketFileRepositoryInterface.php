@@ -12,4 +12,6 @@ interface ClientTicketFileRepositoryInterface
     public function approve(User $user, ClientTicketFile $clientTicketFile): ClientTicketFile;
 
     public function deleteTicketFile(ClientTicketFile $file): void;
+
+    public function countNewTicketFile(ClientTicketFile $file): int;
 }

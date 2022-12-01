@@ -374,4 +374,12 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             ->with('clientTicketFiles.fileVersions.file')
             ->first();
     }
+
+    public function updateIsApprovalRequired(Ticket $ticket, bool $isApprovalRequired): void
+    {
+        $ticket->setIsApprovalRequired($isApprovalRequired);
+        $ticket->save();
+
+    }
+
 }
