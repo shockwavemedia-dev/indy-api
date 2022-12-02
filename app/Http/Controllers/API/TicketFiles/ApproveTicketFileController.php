@@ -10,6 +10,7 @@ use App\Http\Resources\API\TicketFiles\TicketFileResource;
 use App\Models\Tickets\ClientTicketFile;
 use App\Models\User;
 use App\Repositories\Interfaces\ClientTicketFileRepositoryInterface;
+use App\Repositories\Interfaces\NotificationUserRepositoryInterface;
 use App\Repositories\TicketRepository;
 use App\Services\BackendUserNotifications\Interfaces\BackendUserNotificationResolverFactoryInterface;
 use App\Services\TicketActivities\Interfaces\TicketActivityFactoryInterface;
@@ -27,16 +28,21 @@ final class ApproveTicketFileController extends AbstractAPIController
 
     private TicketRepository $ticketRepository;
 
+    private NotificationUserRepositoryInterface $notificationUserRepository;
+
     public function __construct(
         BackendUserNotificationResolverFactoryInterface $backendUserNotificationResolverFactory,
         ClientTicketFileRepositoryInterface $ticketFileRepository,
         TicketActivityFactoryInterface $ticketActivityFactory,
-        TicketRepository $ticketRepository
+        TicketRepository $ticketRepository,
+        NotificationUserRepositoryInterface $notificationUserRepository
+
     ) {
         $this->backendUserNotificationResolverFactory = $backendUserNotificationResolverFactory;
         $this->ticketFileRepository = $ticketFileRepository;
         $this->ticketActivityFactory = $ticketActivityFactory;
         $this->ticketRepository = $ticketRepository;
+        $this->notificationUserRepository = $notificationUserRepository;
     }
 
     public function __invoke(int $id): JsonResource
@@ -65,6 +71,8 @@ final class ApproveTicketFileController extends AbstractAPIController
             $user = $this->getUser();
 
             $ticketFile = $this->ticketFileRepository->approve($user, $ticketFile);
+
+            $this->notificationUserRepository->markNotificationAsReadByTicketFile($ticketFile);
 
             $this->ticketActivityFactory->make(new CreateTicketActivityResource([
                 'ticket' => $ticketFile->getTicket(),

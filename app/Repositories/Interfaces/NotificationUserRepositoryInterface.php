@@ -7,6 +7,7 @@ namespace App\Repositories\Interfaces;
 use App\Enum\NotificationUserStatusEnum;
 use App\Models\Notification;
 use App\Models\NotificationUser;
+use App\Models\Tickets\ClientTicketFile;
 use App\Models\User;
 
 interface NotificationUserRepositoryInterface
@@ -25,4 +26,6 @@ interface NotificationUserRepositoryInterface
         NotificationUser $notificationUser,
         NotificationUserStatusEnum $statusEnum
     ): NotificationUser;
+
+    public function markNotificationAsReadByTicketFile(ClientTicketFile $clientTicketFile): void;
 }
