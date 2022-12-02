@@ -8,7 +8,6 @@ use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\TicketFiles\UploadFileRequest;
 use App\Http\Resources\API\TicketFiles\CreatedTicketFilesResource;
 use App\Repositories\Interfaces\FolderRepositoryInterface;
-use App\Repositories\Interfaces\TicketRepositoryInterface;
 use App\Repositories\TicketRepository;
 use App\Services\ClientTicketFiles\Interfaces\ProcessTicketFileUploadInterface;
 use App\Services\FileManager\Interfaces\BucketFactoryInterface;
@@ -26,7 +25,6 @@ final class UploadTicketFileController extends AbstractAPIController
     private TicketRepository $ticketRepository;
 
     private ProcessTicketFileUploadInterface $processTicketFileUpload;
-
 
     public function __construct(
         BucketFactoryInterface $bucketFactory,

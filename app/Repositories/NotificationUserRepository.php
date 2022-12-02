@@ -63,7 +63,7 @@ final class NotificationUserRepository extends BaseRepository implements Notific
 
     public function markNotificationAsReadByTicketFile(ClientTicketFile $clientTicketFile): void
     {
-        $this->model->whereHas('notification', function($query) use($clientTicketFile) {
+        $this->model->whereHas('notification', function ($query) use ($clientTicketFile) {
             $query->where('morphable_type', 'App\Models\Tickets\ClientTicketFile');
             $query->where('morphable_id', $clientTicketFile->getId());
             $query->where('link', \sprintf('ticket/%s', $clientTicketFile->getTicketId()));

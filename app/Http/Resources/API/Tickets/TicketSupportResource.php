@@ -67,6 +67,7 @@ final class TicketSupportResource extends Resource
             'status' => $ticket->getStatus()->getValue(),
             'email_html' => $emailHtml,
             'created_at' => $ticket->getCreatedAtAsString(),
+            'created_by' => $ticket->getCreatedBy()->getFullName(),
             'user_notes' => json_encode($userNotes),
             'client_logo' => $ticket->getClient()->getLogo(),
             'is_approval_required' => $ticket->isApprovalRequired(),

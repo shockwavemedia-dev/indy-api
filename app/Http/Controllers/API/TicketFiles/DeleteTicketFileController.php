@@ -45,7 +45,7 @@ final class DeleteTicketFileController extends AbstractAPIController
 
             $countNewTicketFile = $this->clientTicketFileRepository->countNewTicketFile($clientTicketFile);
 
-            if($countNewTicketFile === 0){
+            if ($countNewTicketFile === 0) {
                 $this->ticketRepository->updateIsApprovalRequired($clientTicketFile->getTicket(), false);
             }
 
