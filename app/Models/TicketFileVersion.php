@@ -19,6 +19,11 @@ class TicketFileVersion extends AbstractModel
 
     protected $table = 'ticket_file_versions';
 
+    public function getVersion(): int
+    {
+        return (int) $this->getAttribute('version');
+    }
+
     public function getFile(): File
     {
         return $this->file;

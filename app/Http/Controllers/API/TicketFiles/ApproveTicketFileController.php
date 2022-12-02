@@ -10,6 +10,7 @@ use App\Http\Resources\API\TicketFiles\TicketFileResource;
 use App\Models\Tickets\ClientTicketFile;
 use App\Models\User;
 use App\Repositories\Interfaces\ClientTicketFileRepositoryInterface;
+use App\Repositories\Interfaces\NotificationUserRepositoryInterface;
 use App\Repositories\TicketRepository;
 use App\Services\BackendUserNotifications\Interfaces\BackendUserNotificationResolverFactoryInterface;
 use App\Services\TicketActivities\Interfaces\TicketActivityFactoryInterface;
@@ -27,16 +28,21 @@ final class ApproveTicketFileController extends AbstractAPIController
 
     private TicketRepository $ticketRepository;
 
+    private NotificationUserRepositoryInterface $notificationUserRepository;
+
     public function __construct(
         BackendUserNotificationResolverFactoryInterface $backendUserNotificationResolverFactory,
         ClientTicketFileRepositoryInterface $ticketFileRepository,
         TicketActivityFactoryInterface $ticketActivityFactory,
-        TicketRepository $ticketRepository
+        TicketRepository $ticketRepository,
+        NotificationUserRepositoryInterface $notificationUserRepository
+
     ) {
         $this->backendUserNotificationResolverFactory = $backendUserNotificationResolverFactory;
         $this->ticketFileRepository = $ticketFileRepository;
         $this->ticketActivityFactory = $ticketActivityFactory;
         $this->ticketRepository = $ticketRepository;
+        $this->notificationUserRepository = $notificationUserRepository;
     }
 
     public function __invoke(int $id): JsonResource
@@ -66,17 +72,21 @@ final class ApproveTicketFileController extends AbstractAPIController
 
             $ticketFile = $this->ticketFileRepository->approve($user, $ticketFile);
 
-            $countNewTicketFile = $this->ticketFileRepository->countNewTicketFile($ticketFile);
-
-            if($countNewTicketFile === 0){
-                $this->ticketRepository->updateIsApprovalRequired($ticketFile->getTicket(), false);
-            }
+            $this->notificationUserRepository->markNotificationAsReadByTicketFile($ticketFile);
 
             $this->ticketActivityFactory->make(new CreateTicketActivityResource([
                 'ticket' => $ticketFile->getTicket(),
                 'user' => $user,
                 'activity' => \sprintf('%s approved the file.', $user->getFirstName()),
             ]));
+
+            $countNewTicketFile = $this->ticketFileRepository->countNewTicketFile($ticketFile);
+
+            if($countNewTicketFile > 0){
+                return new TicketFileResource($ticketFile);
+            }
+
+            $this->ticketRepository->updateIsApprovalRequired($ticketFile->getTicket(), false);
 
             return new TicketFileResource($ticketFile);
         } catch(Throwable $exception) {

@@ -55,6 +55,5 @@ final class MySqlDump extends Command
         }
 
         exec($command);
-
     }
 }

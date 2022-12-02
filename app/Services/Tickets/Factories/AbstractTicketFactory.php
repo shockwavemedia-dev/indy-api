@@ -63,6 +63,7 @@ abstract class AbstractTicketFactory
         $ticketCode = \sprintf('%s-%s', $client->getClientCode(), $ticketCount);
 
         $ticket = $this->ticketRepository->create([
+            'is_approval_required' => 0,
             'email_html' => json_encode($resource->getEmailHtml()),
             'priority' => $resource->getPriority()->getValue(),
             'client_id' => $client->getId(),

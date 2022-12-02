@@ -7,6 +7,7 @@ namespace App\Repositories;
 use App\Enum\NotificationUserStatusEnum;
 use App\Models\Notification;
 use App\Models\NotificationUser;
+use App\Models\Tickets\ClientTicketFile;
 use App\Models\User;
 use App\Repositories\Interfaces\NotificationUserRepositoryInterface;
 
@@ -58,5 +59,16 @@ final class NotificationUserRepository extends BaseRepository implements Notific
         $notificationUser->save();
 
         return $notificationUser;
+    }
+
+    public function markNotificationAsReadByTicketFile(ClientTicketFile $clientTicketFile): void
+    {
+        $this->model->whereHas('notification', function($query) use($clientTicketFile) {
+            $query->where('morphable_type', 'App\Models\Tickets\ClientTicketFile');
+            $query->where('morphable_id', $clientTicketFile->getId());
+            $query->where('link', \sprintf('ticket/%s', $clientTicketFile->getTicketId()));
+        })->update([
+            'status' => NotificationUserStatusEnum::READ,
+        ]);
     }
 }
