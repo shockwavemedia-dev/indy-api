@@ -66,17 +66,19 @@ final class ApproveTicketFileController extends AbstractAPIController
 
             $ticketFile = $this->ticketFileRepository->approve($user, $ticketFile);
 
-            $countNewTicketFile = $this->ticketFileRepository->countNewTicketFile($ticketFile);
-
-            if($countNewTicketFile === 0){
-                $this->ticketRepository->updateIsApprovalRequired($ticketFile->getTicket(), false);
-            }
-
             $this->ticketActivityFactory->make(new CreateTicketActivityResource([
                 'ticket' => $ticketFile->getTicket(),
                 'user' => $user,
                 'activity' => \sprintf('%s approved the file.', $user->getFirstName()),
             ]));
+
+            $countNewTicketFile = $this->ticketFileRepository->countNewTicketFile($ticketFile);
+
+            if($countNewTicketFile > 0){
+                return new TicketFileResource($ticketFile);
+            }
+
+            $this->ticketRepository->updateIsApprovalRequired($ticketFile->getTicket(), false);
 
             return new TicketFileResource($ticketFile);
         } catch(Throwable $exception) {
