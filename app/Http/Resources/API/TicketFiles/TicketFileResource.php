@@ -28,8 +28,10 @@ final class TicketFileResource extends Resource
         /** @var ClientTicketFile $clientTicketFile */
         $clientTicketFile = $this->resource;
 
-        /** @var File $file */
-        $file = $clientTicketFile->file;
+
+        $latestFileVersion = $clientTicketFile->getLatestFileVersion();
+
+        $file = $latestFileVersion->getFile();
 
         return [
             'id' => $clientTicketFile->getId(),
@@ -45,7 +47,7 @@ final class TicketFileResource extends Resource
             'directory' => $file->getFilePath(),
             'file_type' => $file->getFileType(),
             'description' => $clientTicketFile->getDescription(),
-            'status' => $clientTicketFile->getStatus()->getValue(),
+            'status' => $latestFileVersion->getStatus(),
             'is_approved' => $clientTicketFile->isApproved(),
             'approved_by_id' => $clientTicketFile->getApprovedById(),
             'version' => sprintf('v%s', $file->getVersion()),
