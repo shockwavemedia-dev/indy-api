@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API\TicketFiles;
 
 use App\Enum\BackendUserNotificationTypeEnum;
+use App\Enum\TicketFileStatusEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Resources\API\TicketFiles\TicketFileResource;
 use App\Models\Tickets\ClientTicketFile;
@@ -71,6 +72,11 @@ final class ApproveTicketFileController extends AbstractAPIController
             $user = $this->getUser();
 
             $ticketFile = $this->ticketFileRepository->approve($user, $ticketFile);
+
+            $fileVersion = $ticketFile->getLatestFileVersion();
+
+            $fileVersion->setAttribute('status', TicketFileStatusEnum::APPROVED);
+            $fileVersion->save();
 
             $this->notificationUserRepository->markNotificationAsReadByTicketFile($ticketFile);
 
