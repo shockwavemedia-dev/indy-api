@@ -126,8 +126,10 @@ use App\Http\Controllers\API\TicketFiles\ApproveTicketFileController;
 use App\Http\Controllers\API\TicketFiles\DeleteTicketFileController;
 use App\Http\Controllers\API\TicketFiles\GetTicketFileController;
 use App\Http\Controllers\API\TicketFiles\ListTicketFilesController;
+use App\Http\Controllers\API\TicketFiles\ListTicketFileVersionsController;
 use App\Http\Controllers\API\TicketFiles\ReplaceTicketFileController;
 use App\Http\Controllers\API\TicketFiles\RequestRevisionTicketFileController;
+use App\Http\Controllers\API\TicketFiles\RevisionTicketFileUploadController;
 use App\Http\Controllers\API\TicketFiles\UploadTicketFileController;
 use App\Http\Controllers\API\TicketNotes\CreateTicketNoteController;
 use App\Http\Controllers\API\TicketNotes\DeleteTicketNoteController;
@@ -775,6 +777,11 @@ Route::group([
             'uses' => ListTicketFilesController::class,
         ])->middleware('checkPermission:ticket-files,read');
 
+        Route::get('/tickets/{id}/file-versions', [
+            'as' => 'file-versions-list',
+            'uses' => ListTicketFileVersionsController::class,
+        ])->middleware('checkPermission:ticket-files,read');
+
         Route::post('/ticket-files/{id}/replace-file', [
             'as' => 'replace-file',
             'uses' => ReplaceTicketFileController::class,
@@ -783,6 +790,11 @@ Route::group([
         Route::post('/ticket-files/{id}/request-revision', [
             'as' => 'request-revision',
             'uses' => RequestRevisionTicketFileController::class,
+        ])->middleware('checkPermission:ticket-files,edit');
+
+        Route::post('/ticket-files/{id}/upload-new-version', [
+            'as' => 'upload-revision-file',
+            'uses' => RevisionTicketFileUploadController::class,
         ])->middleware('checkPermission:ticket-files,edit');
     });
 
