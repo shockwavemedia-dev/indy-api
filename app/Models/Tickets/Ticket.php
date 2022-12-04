@@ -55,7 +55,7 @@ final class Ticket extends AbstractModel implements EmailInterface
         'type',
         'status',
         'user_notes',
-        'is_approval_required'
+        'is_approval_required',
     ];
 
     public $table = 'tickets';

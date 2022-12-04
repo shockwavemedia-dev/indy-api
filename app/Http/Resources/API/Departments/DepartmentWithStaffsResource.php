@@ -48,14 +48,14 @@ final class DepartmentWithStaffsResource extends Resource
             $users[] = [
                 'admin_user_id' => $adminUser->getId(),
                 'role' => $adminUser->getRole(),
-                'first_name' => $adminUser->getUser()->getFirstName(),
-                'middle_name' => $adminUser->getUser()->getMiddleName(),
-                'last_name' => $adminUser->getUser()->getLastName(),
+                'first_name' => $adminUser->getUser()?->getFirstName(),
+                'middle_name' => $adminUser->getUser()?->getMiddleName(),
+                'last_name' => $adminUser->getUser()?->getLastName(),
                 'full_name' => \sprintf(
                     '%s %s %s',
-                    $adminUser->getUser()->getFirstName(),
-                    $adminUser->getUser()->getMiddleName(),
-                    $adminUser->getUser()->getLastName(),
+                    $adminUser->getUser()?->getFirstName(),
+                    $adminUser->getUser()?->getMiddleName(),
+                    $adminUser->getUser()?->getLastName(),
                 ),
                 'open_tickets' => $adminUser->getOpenTickets(),
             ];

@@ -6,7 +6,6 @@ namespace App\Http\Resources\API\TicketFiles;
 
 use App\Exceptions\InvalidResourceTypeException;
 use App\Http\Resources\Resource;
-use App\Models\File;
 use App\Models\Tickets\ClientTicketFile;
 use function sprintf;
 
@@ -27,7 +26,6 @@ final class TicketFileResource extends Resource
 
         /** @var ClientTicketFile $clientTicketFile */
         $clientTicketFile = $this->resource;
-
 
         $latestFileVersion = $clientTicketFile->getLatestFileVersion();
 

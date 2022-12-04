@@ -18,6 +18,7 @@ final class ListTicketFileVersionsController extends AbstractAPIController
     ) {
         $this->ticketRepository = $ticketRepository;
     }
+
     public function __invoke(int $ticketId): JsonResource
     {
         /** @var Ticket $ticket */

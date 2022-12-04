@@ -379,7 +379,5 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
     {
         $ticket->setIsApprovalRequired($isApprovalRequired);
         $ticket->save();
-
     }
-
 }

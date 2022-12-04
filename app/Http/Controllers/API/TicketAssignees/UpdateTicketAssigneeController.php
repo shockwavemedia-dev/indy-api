@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\TicketAssignees;
 
-use App\Enum\ClientNotificationTypeEnum;
+use App\Enum\TicketAssigneeStatusEnum;
+use App\Enum\TicketStatusEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Tickets\UpdateTicketAssigneeRequest;
 use App\Http\Resources\API\TicketAssignee\TicketAssigneeResource;
 use App\Jobs\Tickets\TicketAssigneeLinkJob;
+use App\Models\Tickets\Ticket;
 use App\Models\Tickets\TicketAssignee;
+use App\Models\Users\AdminUser;
 use App\Repositories\Interfaces\AdminUserRepositoryInterface;
 use App\Repositories\Interfaces\TicketAssigneeRepositoryInterface;
 use App\Services\ClientUserNotifications\Interfaces\ClientNotificationResolverFactoryInterface;
@@ -74,15 +77,14 @@ final class UpdateTicketAssigneeController extends AbstractAPIController
                 );
             }
 
-            $status = null;
-            $notificationResolver = null;
+            $status = $ticketAssignee->getStatus();
 
-            if ($ticketAssignee->getStatus() !== $request->getStatus()) {
-                $notificationResolver = $this->clientNotificationResolverFactory
-                    ->make(new ClientNotificationTypeEnum(ClientNotificationTypeEnum::TICKET_ASSIGNEE_STATUS));
-
+            if ($status !== $request->getStatus()) {
                 $status = $request->getStatus();
             }
+
+            /** @var AdminUser $adminUser */
+            $adminUser = $this->getUser()->getUserType();
 
             $ticketAssignee = $this->ticketAssigneeRepository->update(
                 $ticketAssignee,
@@ -90,14 +92,51 @@ final class UpdateTicketAssigneeController extends AbstractAPIController
                     'adminUser' => $adminUser,
                     'statusEnum' => $status,
                 ]),
-                $this->getUser()->getUserType(),
+                $adminUser
             );
 
-            $notificationResolver?->resolve($ticketAssignee);
+            $ticket = $ticketAssignee->getTicket();
+
+            $isAllComplete = false;
+
+            if ($status->getValue() === TicketAssigneeStatusEnum::COMPLETED) {
+                $isAllComplete = $this->ticketAutoCompletion($ticket);
+            }
+
+            if ($isAllComplete === true) {
+                return new TicketAssigneeResource($ticketAssignee);
+            }
+
+            if ($ticket->getStatus()->getValue() !== TicketStatusEnum::PENDING) {
+                $ticket->setStatus(new TicketStatusEnum(TicketStatusEnum::PENDING));
+
+                $ticket->save();
+            }
 
             return new TicketAssigneeResource($ticketAssignee);
         } catch (Throwable $throwable) {
             return $this->respondError($throwable->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
+    }
+
+    private function ticketAutoCompletion(Ticket $ticket): bool
+    {
+        $isAllComplete = true;
+
+        /** @var TicketAssignee $assignee */
+        foreach ($ticket->getTicketAssignees() as $assignee) {
+            if ($assignee->getStatus()->getValue() !== TicketAssigneeStatusEnum::COMPLETED) {
+                $isAllComplete = false;
+
+                break;
+            }
+        }
+
+        if ($isAllComplete === true) {
+            $ticket->setStatus(new TicketStatusEnum(TicketStatusEnum::CLOSED));
+            $ticket->save();
+        }
+
+        return $isAllComplete;
     }
 }
