@@ -35,7 +35,7 @@ final class TicketFileUploadNotificationResolver extends AbstractClientNotificat
             $morph->getTicket()->getTicketCode(),
         );
 
-        $link = \sprintf('ticket/%s', $morph->getTicketId());
+        $link = \sprintf('ticket/file/%s', $morph->getId());
 
         $notificationResource = new CreateNotificationResource([
             'morphable' => $morph,
