@@ -122,7 +122,7 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
                 ]);
             })
             ->where('client_id', $client->getId())
-            ->orderBy('created_at', 'desc')
+            ->orderBy('id', 'desc')
             ->paginate($size, ['*'], null, $pageNumber);
     }
 
@@ -137,7 +137,7 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             ->orWhereHas('ticketServices.service.departments', function ($query) use ($department) {
                 $query->where('department_id', '=', $department->getId());
             })
-            ->orderBy('created_at', 'desc')
+            ->orderBy('id', 'desc')
             ->paginate($size, ['*'], null, $pageNumber);
     }
 
@@ -181,7 +181,7 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             })
             ->where('client_id', $client->getId())
             ->where('type', TicketTypeEnum::GRAPHIC)
-            ->orderBy('created_at', 'desc')
+            ->orderBy('id', 'desc')
             ->paginate($size, ['*'], null, $pageNumber);
     }
 
@@ -199,13 +199,13 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
                 $query->where('name', '=', ServicesEnum::WEBSITE);
             })
             ->where('client_id', $client->getId())
-            ->orderBy('created_at', 'desc')
+            ->orderBy('id', 'desc')
             ->paginate($size, ['*'], null, $pageNumber);
     }
 
     public function findSupportTickets(?int $size = null, ?int $pageNumber = null): LengthAwarePaginator
     {
-        return $this->model->orderBy('created_at', 'desc')->paginate($size, ['*'], null, $pageNumber);
+        return $this->model->orderBy('id', 'desc')->paginate($size, ['*'], null, $pageNumber);
     }
 
     public function findByOptions(
