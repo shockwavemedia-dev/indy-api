@@ -118,8 +118,11 @@ final class FileRepository extends BaseRepository implements FileRepositoryInter
     {
         $today = new Carbon();
 
+        $today = $today->addDays(5);
+
         return $this->model->where('url_expiration', '<=', $today->toDateString())
             ->where('disk', 's3')
+            ->whereNull('deleted_at')
             ->get();
     }
 }

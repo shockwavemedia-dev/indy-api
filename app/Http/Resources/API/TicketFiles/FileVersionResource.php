@@ -37,7 +37,6 @@ final class FileVersionResource extends Resource
             'description' => $ticketFile->getDescription(),
             'status' => $fileVersion->getAttribute('status'),
             'is_latest' => $isLatest,
-            'is_approved' => $ticketFile->isApproved(),
             'approved_by_id' => $ticketFile->getApprovedById(),
             'version' => sprintf('v%s', $fileVersion->getVersion()),
             'approved_at' => $ticketFile->getApprovedAt(),

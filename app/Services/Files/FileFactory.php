@@ -38,6 +38,7 @@ final class FileFactory implements FileFactoryInterface
 
         /** @var \App\Models\File $file */
         $file = $this->fileRepository->create([
+            'client_id' => $resource->getClient()?->getId(),
             'original_filename' => $uploadedFile->getClientOriginalName(),
             'file_name' => $generatedFilename,
             'file_size' => $uploadedFile->getSize(),
