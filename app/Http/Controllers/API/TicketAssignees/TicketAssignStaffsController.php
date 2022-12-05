@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API\TicketAssignees;
 
 use App\Enum\BackendUserNotificationTypeEnum;
+use App\Enum\TicketStatusEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Tickets\TicketAssignStaffsRequest;
 use App\Models\Tickets\Ticket;
@@ -79,6 +80,12 @@ final class TicketAssignStaffsController extends AbstractAPIController
                 $createdBy,
                 $request->getLinks(),
             );
+
+            if ($ticket->getStatus()->getValue() !== TicketStatusEnum::PENDING) {
+                $ticket->setStatus(new TicketStatusEnum(TicketStatusEnum::PENDING));
+
+                $ticket->save();
+            }
 
             $notificationResolver = $this->backendUserNotificationResolverFactory->make(
                 new BackendUserNotificationTypeEnum(BackendUserNotificationTypeEnum::ASSIGNED_TICKET),

@@ -26,6 +26,8 @@ final class UploadTicketFileController extends AbstractAPIController
 
     private ProcessTicketFileUploadInterface $processTicketFileUpload;
 
+    private FolderRepositoryInterface $folderRepository;
+
     public function __construct(
         BucketFactoryInterface $bucketFactory,
         FileFactoryInterface $fileFactory,
