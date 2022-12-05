@@ -43,6 +43,7 @@ use App\Http\Controllers\API\FileFeedbacks\CreateFileFeedbackController;
 use App\Http\Controllers\API\FileFeedbacks\DeleteFileFeedbackController;
 use App\Http\Controllers\API\FileFeedbacks\ListFileFeedbackController;
 use App\Http\Controllers\API\FileFeedbacks\UpdateFileFeedbackController;
+use App\Http\Controllers\API\Files\DeleteFileController;
 use App\Http\Controllers\API\Folders\CreateFolderController;
 use App\Http\Controllers\API\Folders\DeleteFolderController;
 use App\Http\Controllers\API\Folders\UpdateFolderController;
@@ -251,6 +252,11 @@ Route::group([
         Route::get('/clients/{id}/files', [
             'as' => 'files',
             'uses' => ClientFileListV2Controller::class,
+        ])->middleware('checkPermission:clients,read');
+
+        Route::get('/clients/{id}/files/{fileId}', [
+            'as' => 'delete-client-file',
+            'uses' => DeleteFileController::class,
         ])->middleware('checkPermission:clients,read');
     });
 });

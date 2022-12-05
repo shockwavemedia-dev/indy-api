@@ -26,6 +26,7 @@ final class File extends AbstractModel
      * @var string[]
      */
     protected $fillable = [
+        'client_id',
         'original_filename',
         'bucket',
         'file_name',

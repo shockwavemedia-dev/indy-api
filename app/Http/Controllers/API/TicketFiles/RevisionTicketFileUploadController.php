@@ -60,6 +60,8 @@ final class RevisionTicketFileUploadController extends AbstractAPIController
             'status' => new TicketFileStatusEnum(TicketFileStatusEnum::NEW),
         ]);
 
+        $ticketFile->setStatus(new TicketFileStatusEnum(TicketFileStatusEnum::NEW));
+
         $this->fileUploader->upload(new UploadFileResource([
             'fileObject' => $file,
             'fileModel' => $fileModel,
