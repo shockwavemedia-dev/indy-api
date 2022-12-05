@@ -37,7 +37,7 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
 
     public function countTicketByClient(Client $client): int
     {
-        return $this->model->where('client_id', $client->getId())->count();
+        return $this->model->where('client_id', $client->getId())->withTrashed()->count();
     }
 
     public function countNewTicketByDepartment(Department $department): int
