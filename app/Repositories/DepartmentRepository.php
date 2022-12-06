@@ -108,7 +108,7 @@ final class DepartmentRepository extends BaseRepository implements DepartmentRep
                     $query->whereNull('deleted_at');
                 });
             })
-            ->with('adminUsers')
+            ->with('adminUsers.user')
             ->first();
     }
 
