@@ -22,7 +22,7 @@ final class TicketNoteFactory implements TicketNoteFactoryInterface
     {
         /** @var TicketNote $ticketNote */
         $ticketNote = $this->ticketNoteRepository->create([
-            'ticket_file_version_id' => $resource->getTicketFileVersion()->getId(),
+            'ticket_file_version_id' => $resource->getTicketFileVersion()?->getId(),
             'ticket_id' => $resource->getTicket()->getId(),
             'created_by' => $resource->getCreatedBy()->getId(),
             'note' => $resource->getNote(),
