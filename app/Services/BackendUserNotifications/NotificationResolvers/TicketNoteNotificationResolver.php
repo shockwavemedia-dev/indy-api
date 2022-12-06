@@ -10,10 +10,21 @@ use App\Models\Tickets\TicketAssignee;
 use App\Models\Tickets\TicketNote;
 use App\Models\User;
 use App\Services\BackendUserNotifications\Interfaces\BackendUserNotificationResolverInterface;
+use App\Services\Notifications\Interfaces\GenericNotificationSenderResolverInterface;
+use App\Services\Notifications\Interfaces\NotificationFactoryInterface;
+use App\Services\Notifications\Interfaces\NotificationUserFactoryInterface;
 use App\Services\Notifications\Resources\CreateNotificationResource;
 
 final class TicketNoteNotificationResolver extends AbstractBackendUserNotificationResolver implements BackendUserNotificationResolverInterface
 {
+    public function __construct(
+        protected GenericNotificationSenderResolverInterface $genericNotificationSenderResolver,
+        protected NotificationFactoryInterface $notificationFactory,
+        protected NotificationUserFactoryInterface $notificationUserFactory
+    ) {
+        parent::__construct($notificationFactory, $notificationUserFactory);
+    }
+
     /**
      * @var string
      */
@@ -45,18 +56,23 @@ final class TicketNoteNotificationResolver extends AbstractBackendUserNotificati
             return;
         }
 
+        $link = \sprintf('ticket/%s', $morph->getTicketId());
+        $message = sprintf(
+            self::TITLE_KEY,
+            $morph->getCreatedBy()->getFirstName(),
+            $morph->getTicket()->getTicketCode(),
+        );
+
         $notificationResource = new CreateNotificationResource([
             'morphable' => $morph,
-            'link' => \sprintf('ticket/%s', $morph->getTicketId()),
+            'link' => $link,
             'statusEnum' => new NotificationStatusEnum(NotificationStatusEnum::NEW),
-            'title' => sprintf(
-                self::TITLE_KEY,
-                $morph->getCreatedBy()->getFirstName(),
-                $morph->getTicket()->getTicketCode(),
-            ),
+            'title' => $message,
         ]);
 
         $this->saveNotification($notificationResource, $user);
+
+        $this->genericNotificationSenderResolver->resolve($user, $morph, $message, $link);
     }
 
     public function supports(BackendUserNotificationTypeEnum $typeEnum): bool

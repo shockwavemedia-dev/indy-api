@@ -3,6 +3,7 @@
 namespace App\Models\Tickets;
 
 use App\Models\AbstractModel;
+use App\Models\Emails\Interfaces\EmailInterface;
 use App\Models\TicketFileVersion;
 use App\Models\User;
 use Carbon\Carbon;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-final class TicketNote extends AbstractModel
+final class TicketNote extends AbstractModel implements EmailInterface
 {
     use SoftDeletes, HasFactory;
 

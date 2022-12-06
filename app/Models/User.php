@@ -12,6 +12,7 @@ use App\Models\Tickets\Ticket;
 use App\Models\Tickets\TicketEmail;
 use App\Models\Users\Interfaces\UserTypeInterface;
 use App\Notifications\AssignedTicketEmail;
+use App\Notifications\GenericEmail;
 use App\Notifications\NewGraphicRequestNotifyAdminEmail;
 use App\Notifications\PrinterJobs\AssignedPriceToPrinterJobEmail;
 use App\Notifications\PrinterJobs\CreatedPrinterJobForStaffEmail;
@@ -214,6 +215,11 @@ final class User extends Authenticatable implements EmailInterface
     public function notifyClientForFileUpload(EmailLog $emailLog, string $message, string $url): void
     {
         $this->notify(new UploadedTicketFileEmail($emailLog, $message, $url));
+    }
+
+    public function sendGenericNotification(EmailLog $emailLog, string $message, string $url): void
+    {
+        $this->notify(new GenericEmail($emailLog, $message, $url));
     }
 
     /**
