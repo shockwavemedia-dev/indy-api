@@ -10,6 +10,7 @@ use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\TicketNotes\CreateTicketNoteRequest;
 use App\Http\Resources\API\TicketNotes\TicketNoteResource;
 use App\Models\Tickets\Ticket;
+use App\Models\Users\ClientUser;
 use App\Repositories\Interfaces\TicketRepositoryInterface;
 use App\Services\BackendUserNotifications\Interfaces\BackendUserNotificationResolverFactoryInterface;
 use App\Services\ClientUserNotifications\Interfaces\ClientNotificationResolverFactoryInterface;
@@ -59,11 +60,13 @@ final class CreateTicketNoteController extends AbstractAPIController
                 'note' => $request->getNote(),
             ]));
 
-            $backendUserNotificationResolver = $this->backendUserNotificationResolverFactory->make(
-                new BackendUserNotificationTypeEnum(BackendUserNotificationTypeEnum::TICKET_NOTES)
-            );
+            if ($this->getUser()->getUserType() instanceof ClientUser === true) {
+                $backendUserNotificationResolver = $this->backendUserNotificationResolverFactory->make(
+                    new BackendUserNotificationTypeEnum(BackendUserNotificationTypeEnum::TICKET_NOTES)
+                );
 
-            $backendUserNotificationResolver->resolve($ticketNote);
+                $backendUserNotificationResolver->resolve($ticketNote);
+            }
 
             $clientNotificationResolver = $this->clientNotificationResolverFactory->make(
                 new ClientNotificationTypeEnum(ClientNotificationTypeEnum::TICKET_NOTES)

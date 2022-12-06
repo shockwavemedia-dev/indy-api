@@ -12,16 +12,10 @@ use App\Services\Notifications\Resources\CreateNotificationUserResource;
 
 abstract class AbstractBackendUserNotificationResolver
 {
-    private NotificationFactoryInterface $notificationFactory;
-
-    private NotificationUserFactoryInterface $notificationUserFactory;
-
     public function __construct(
-        NotificationFactoryInterface $notificationFactory,
-        NotificationUserFactoryInterface $notificationUserFactory
+        protected NotificationFactoryInterface $notificationFactory,
+        protected NotificationUserFactoryInterface $notificationUserFactory
     ) {
-        $this->notificationFactory = $notificationFactory;
-        $this->notificationUserFactory = $notificationUserFactory;
     }
 
     /**

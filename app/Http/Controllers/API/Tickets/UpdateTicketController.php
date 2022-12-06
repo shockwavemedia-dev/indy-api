@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API\Tickets;
 
 use App\Enum\TicketPrioritiesEnum;
+use App\Enum\TicketStatusEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Tickets\UpdateTicketRequest;
 use App\Http\Resources\API\Tickets\TicketSupportResource;
@@ -67,6 +68,12 @@ final class UpdateTicketController extends AbstractAPIController
                 );
             }
 
+            $status = $ticket->getStatus();
+
+            if ($request->getStatus()->getValue() !== TicketStatusEnum::NEW) {
+                $status = $request->getStatus();
+            }
+
             $ticket = $this->ticketRepository->update($ticket, new UpdateTicketResource([
                 'subject' => $request->getSubject() ?? $ticket->getSubject(),
                 'description' => $request->getDescription() ?? $ticket->getDescription(),
@@ -74,7 +81,7 @@ final class UpdateTicketController extends AbstractAPIController
                 'priority' => $request->getPriority() ?? new TicketPrioritiesEnum($ticket->getPriority()),
                 'dueDate' => $request->getDueDate() ?? $ticket->getDueDate(),
                 'updatedBy' => $this->getUser(),
-                'status' => $request->getStatus() ?? $ticket->getStatus(),
+                'status' => $status,
             ]));
 
             return new TicketSupportResource($ticket);

@@ -58,6 +58,7 @@ final class TicketSupportResource extends Resource
             'ticket_code' => $ticket->getTicketCode(),
             'client_id' => $ticket->getClientId(),
             'client_name' => $ticket->getClient()?->getName(),
+            'style_guide' => $ticket->getClient()?->getStyleGuide(),
             'subject' => $ticket->getSubject(),
             'description' => $ticket->getDescription() ?? '{"blocks":[{"key":"a7itc","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
             'department_name' => $ticket->getDepartment()?->getName(),

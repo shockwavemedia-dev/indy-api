@@ -8,14 +8,27 @@ use App\Enum\ClientNotificationTypeEnum;
 use App\Enum\NotificationStatusEnum;
 use App\Models\Tickets\TicketNote;
 use App\Services\ClientUserNotifications\Interfaces\ClientNotificationResolverInterface;
+use App\Services\EmailLogs\Interfaces\EmailLogFactoryInterface;
+use App\Services\Notifications\Interfaces\GenericNotificationSenderResolverInterface;
+use App\Services\Notifications\Interfaces\NotificationFactoryInterface;
+use App\Services\Notifications\Interfaces\NotificationUserFactoryInterface;
 use App\Services\Notifications\Resources\CreateNotificationResource;
 
 final class TicketNoteNotificationResolver extends AbstractClientNotificationResolver implements ClientNotificationResolverInterface
 {
+    public function __construct(
+        protected GenericNotificationSenderResolverInterface $genericNotificationSenderResolver,
+        protected EmailLogFactoryInterface $emailLogFactory,
+        protected NotificationFactoryInterface $notificationFactory,
+        protected NotificationUserFactoryInterface $notificationUserFactory
+    ) {
+        parent::__construct($emailLogFactory, $notificationFactory, $notificationUserFactory);
+    }
+
     /**
      * @var string
      */
-    private const TITLE_KEY = '%s has posted a note in ticket # %s';
+    private const TITLE_KEY = '%s has posted a message in ticket # %s';
 
     /**
      * @param  TicketNote  $morph
@@ -24,7 +37,9 @@ final class TicketNoteNotificationResolver extends AbstractClientNotificationRes
      */
     public function resolve(mixed $morph): void
     {
-        if ($morph->getCreatedBy()->getId() === $morph->getTicket()->getCreatedBy()->getId()) {
+        $ticketCreator = $morph->getTicket()->getCreatedBy();
+
+        if ($morph->getCreatedBy()->getId() === $ticketCreator->getId()) {
             return;
         }
 
@@ -39,7 +54,14 @@ final class TicketNoteNotificationResolver extends AbstractClientNotificationRes
             ),
         ]);
 
-        $this->saveNotification($notificationResource, $morph->getTicket()->getCreatedBy());
+        $this->saveNotification($notificationResource, $ticketCreator);
+
+        $this->genericNotificationSenderResolver->resolve(
+            $ticketCreator,
+            $morph,
+            $notificationResource->getTitle(),
+            $notificationResource->getLink(),
+        );
     }
 
     public function supports(ClientNotificationTypeEnum $typeEnum): bool

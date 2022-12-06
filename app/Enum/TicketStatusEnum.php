@@ -11,16 +11,6 @@ final class TicketStatusEnum extends Enum
     /**
      * @var string
      */
-    public const DECLINED = 'declined';
-
-    /**
-     * @var string
-     */
-    public const REQUEST_REVISION = 'request revision';
-
-    /**
-     * @var string
-     */
     public const CLOSED = 'closed';
 
     /**
@@ -36,17 +26,9 @@ final class TicketStatusEnum extends Enum
     /**
      * @var string
      */
-    public const ON_HOLD = 'on hold';
-
-    /**
-     * @var string
-     */
     public const OPEN = 'open';
 
-    /**
-     * @var string
-     */
-    public const RESOLVED = 'resolved';
+    public const IN_PROGRESS = 'in_progress';
 
     /**
      * @var string
