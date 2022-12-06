@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\Libraries;
 
+use App\Enum\ServicesEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Libraries\ClientCreateLibraryTicketRequest;
 use App\Http\Resources\API\Tickets\TicketSupportResource;
@@ -11,17 +12,15 @@ use App\Models\Library;
 use App\Repositories\Interfaces\LibraryRepositoryInterface;
 use App\Services\Libraries\Interfaces\Factories\LibraryTicketEventFactoryInterface;
 use App\Services\Libraries\Resources\CreateLibraryTicketEventResource;
+use App\Services\TicketAssignee\Interfaces\DesignatorResolverFactoryInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 final class ClientCreateLibraryTicketController extends AbstractAPIController
 {
-    private LibraryRepositoryInterface $libraryRepository;
-
-    private LibraryTicketEventFactoryInterface $libraryTicketEventFactory;
-
     public function __construct(
-        LibraryRepositoryInterface $libraryRepository,
-        LibraryTicketEventFactoryInterface $libraryTicketEventFactory
+        private DesignatorResolverFactoryInterface $designatorResolverFactory,
+        private LibraryRepositoryInterface $libraryRepository,
+        private LibraryTicketEventFactoryInterface $libraryTicketEventFactory
     ) {
         $this->libraryRepository = $libraryRepository;
         $this->libraryTicketEventFactory = $libraryTicketEventFactory;
@@ -53,6 +52,10 @@ final class ClientCreateLibraryTicketController extends AbstractAPIController
                 'description' => $request->getDescription(),
                 'libraryId' => $library->getId(),
             ]));
+
+            $designatorResolver = $this->designatorResolverFactory->make(ServicesEnum::from(ServicesEnum::ANIMATION));
+
+            $designatorResolver->resolve($ticket);
 
             return new TicketSupportResource($ticket);
         } catch (\Throwable $throwable) {
