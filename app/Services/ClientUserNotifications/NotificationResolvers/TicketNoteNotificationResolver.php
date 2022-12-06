@@ -15,7 +15,7 @@ final class TicketNoteNotificationResolver extends AbstractClientNotificationRes
     /**
      * @var string
      */
-    private const TITLE_KEY = '%s has posted a note in ticket # %s';
+    private const TITLE_KEY = '%s has posted a message in ticket # %s';
 
     /**
      * @param  TicketNote  $morph
