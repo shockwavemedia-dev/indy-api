@@ -103,6 +103,9 @@ final class DepartmentRepository extends BaseRepository implements DepartmentRep
     public function findByName(string $name): ?Department
     {
         return $this->model->where('name', '=', $name)
+            ->whereHas('user', function($query) {
+                $query->whereNull('deleted_at');
+            })
             ->with('adminUsers')
             ->first();
     }
