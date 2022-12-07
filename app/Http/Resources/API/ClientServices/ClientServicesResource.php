@@ -19,7 +19,6 @@ final class ClientServicesResource extends Resource
             ServicesEnum::ANIMATION,
             ServicesEnum::WEBSITE,
             ServicesEnum::SOCIAL_MEDIA,
-            ServicesEnum::SOCIAL_MEDIA_SPEND,
             ServicesEnum::EDM,
             ServicesEnum::PRINT,
         ];

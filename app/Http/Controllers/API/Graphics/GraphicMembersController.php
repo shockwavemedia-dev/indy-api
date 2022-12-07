@@ -32,7 +32,7 @@ final class GraphicMembersController extends AbstractAPIController
 
             $filtered[] = $adminUser;
         }
-        
+
         return new StaffsResource($filtered);
     }
 }

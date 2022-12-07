@@ -16,6 +16,22 @@ final class SocialMediaResource extends Resource
         /** @var SocialMedia $socialMedia */
         $socialMedia = $this->resource;
 
+        $channels = [];
+
+        $boosted = null;
+
+        foreach ($socialMedia->getChannels() as $channel) {
+            if (is_string($channel) === true) {
+                $channels = $socialMedia->getChannels();
+
+                break;
+            }
+
+            $boosted[] = $channel;
+
+            $channels[] = $channel['name'] ?? '';
+        }
+
         $result = [
             'id' => $socialMedia->getId(),
             'post' => $socialMedia->getPost(),
@@ -23,7 +39,8 @@ final class SocialMediaResource extends Resource
             'status' => $socialMedia->getStatus(),
             'campaign_type' => $socialMedia->getCampaignType(),
             'client_id' => $socialMedia->getClient()->getId(),
-            'channels' => $socialMedia->getChannels(),
+            'channels' => $channels,
+            'boosted_channels' => $boosted,
             'notes' => $socialMedia->getNotes(),
             'comments' => new CommentsResource($socialMedia->getComments()),
             'post_date' => $socialMedia->getPostDate()?->toIso8601ZuluString(),
