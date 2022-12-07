@@ -22,6 +22,17 @@ final class GraphicMembersController extends AbstractAPIController
         /** @var Department $department */
         $department = $this->departmentRepository->findByName('Graphics Department');
 
-        return new StaffsResource($department?->getAdminUsers() ?? []);
+        $adminUsers = $department?->getAdminUsers() ?? [];
+        $filtered = [];
+
+        foreach ($adminUsers as $adminUser) {
+            if ($adminUser->getUser() === null) {
+                continue;
+            }
+
+            $filtered[] = $adminUser;
+        }
+
+        return new StaffsResource($filtered);
     }
 }
