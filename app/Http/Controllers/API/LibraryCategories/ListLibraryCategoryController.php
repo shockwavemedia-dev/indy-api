@@ -21,8 +21,9 @@ final class ListLibraryCategoryController extends AbstractAPIController
 
     public function __invoke(PaginationRequest $request): JsonResource
     {
+        $size = $request->getSize() ?? 150;
         $libraryCategories = $this->libraryCategoryRepository->all(
-            $request->getSize(),
+            $size,
             $request->getPageNumber()
         );
 
