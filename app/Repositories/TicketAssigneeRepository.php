@@ -42,7 +42,6 @@ final class TicketAssigneeRepository extends BaseRepository implements TicketAss
         $assignee->ticket()->associate($ticket);
         $assignee->save();
 
-        $ticket->setStatus(new TicketStatusEnum(TicketStatusEnum::OPEN));
         $ticket->updatedBy()->associate($createdBy->getUser());
         $ticket->save();
 
