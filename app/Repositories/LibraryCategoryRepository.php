@@ -20,7 +20,7 @@ final class LibraryCategoryRepository extends BaseRepository implements LibraryC
 
     public function all(?int $size = null, ?int $pageNumber = null): LengthAwarePaginator
     {
-        return $this->model->paginate($size, ['*'], null, $pageNumber);
+        return $this->model->orderBy('name', 'asc')->paginate($size, ['*'], null, $pageNumber);
     }
 
     public function update(
