@@ -20,16 +20,30 @@ final class SocialMediaResource extends Resource
 
         $boosted = null;
 
-        foreach ($socialMedia->getChannels() as $channel) {
+        $isBoosted = false;
+
+        foreach ($socialMedia->getChannels() ?? [] as $channel) {
             if (is_string($channel) === true) {
                 $channels = $socialMedia->getChannels();
 
                 break;
             }
 
+            $quantity = $channel['quantity'] ?? 0;
+
+            if ($quantity > 0) {
+                $isBoosted = true;
+            }
+
             $boosted[] = $channel;
 
-            $channels[] = $channel['name'] ?? '';
+            if ($channel['name'] !== null) {
+                $channels[] = $channel['name'];
+            }
+        }
+
+        if ($isBoosted === false) {
+            $boosted = null;
         }
 
         $result = [

@@ -982,7 +982,6 @@ Route::group([
             'as' => 'boost-update',
             'uses' => UpdateSocialMediaBoostController::class,
         ]);
-
     });
 
     Route::group([
