@@ -31,13 +31,22 @@ final class UpdateSocialMediaBoostController extends AbstractAPIController
 
         $existingChannels = $socialMedia->getChannels();
 
-        foreach ($existingChannels as $index => $existingChannel) {
-            foreach ($request->getExtras() as $extra) {
-                if ($extra['name'] !== $existingChannel['name']) {
-                    continue;
-                }
+        foreach ($request->getExtras() as $extra) {
+            $exist = false;
 
-                $existingChannels[$index] = $extra;
+            foreach ($existingChannels as $index => $existingChannel) {
+
+                $name = $existingChannel['name'] ?? $existingChannel;
+
+                if ($extra['name'] === $name ) {
+                    $exist = true;
+
+                    $existingChannels[$index] = $extra;
+                }
+            }
+
+            if ($exist === false) {
+                $existingChannels[] = $extra;
             }
         }
 
