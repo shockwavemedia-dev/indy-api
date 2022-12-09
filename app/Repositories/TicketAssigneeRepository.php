@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Enum\TicketAssigneeStatusEnum;
-use App\Enum\TicketStatusEnum;
 use App\Models\Tickets\Ticket;
 use App\Models\Tickets\TicketAssignee;
 use App\Models\Users\AdminUser;
