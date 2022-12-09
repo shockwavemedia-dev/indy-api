@@ -34,6 +34,10 @@ final class UpdateSocialMediaBoostController extends AbstractAPIController
         foreach ($request->getExtras() as $extra) {
             $exist = false;
 
+            if (empty($extra['name']) === true) {
+                continue;
+            }
+
             foreach ($existingChannels as $index => $existingChannel) {
                 $name = $existingChannel['name'] ?? $existingChannel;
 
@@ -51,7 +55,7 @@ final class UpdateSocialMediaBoostController extends AbstractAPIController
                 }
             }
 
-            if ($exist === false && empty($extra['name']) === false) {
+            if ($exist === false) {
                 $existingChannels[] = [
                     'name' => $extra['name'],
                     'quantity' => $extra['quantity'] ?? 0,
