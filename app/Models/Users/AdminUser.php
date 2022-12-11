@@ -92,7 +92,7 @@ final class AdminUser extends AbstractModel implements UserTypeInterface
         return $this->assignedTickets()->whereHas('ticket', function ($query) use ($dateToday, $dateLast30Days) {
             $query->whereNull('deleted_at');
             $query->where('status', '=', TicketStatusEnum::CLOSED);
-            $query->whereBetween('created_at', [$dateToday, $dateLast30Days]);
+//            $query->whereBetween('created_at', [$dateToday, $dateLast30Days]);
         })->count();
 
 //        return $this->tickets()
