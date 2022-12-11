@@ -49,6 +49,10 @@ final class DepartmentWithMembersResource extends Resource
 
         /** @var AdminUser $adminUser */
         foreach ($adminUsers as $adminUser) {
+            if ($adminUser->getUser() === null) {
+                continue;
+            }
+
             $users[] = [
                 'admin_user_id' => $adminUser->getId(),
                 'role' => $adminUser->getRole(),
