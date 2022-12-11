@@ -85,15 +85,22 @@ final class AdminUser extends AbstractModel implements UserTypeInterface
 
     public function getClosedTicketsBy30Days(): int
     {
-        $dateToday = new Carbon();
 
-        $dateLast30Days = $dateToday->subDays(30);
+        return $this->assignedTickets()->whereHas('ticket', function ($query) {
+            $dateToday = new Carbon();
 
-        return $this->tickets()
-            ->whereBetween('tickets.created_at', [$dateLast30Days, $dateToday])
-            ->where('tickets.status', TicketStatusEnum::CLOSED)
-            ->whereNull('tickets.deleted_at')
-            ->count();
+            $dateLast30Days = $dateToday->subDays(30);
+
+            $query->whereNull('deleted_at');
+            $query->where('status', '=', TicketStatusEnum::CLOSED);
+            $query->whereBetween('created_at', [$dateLast30Days, $dateToday]);
+        })->count();
+
+//        return $this->tickets()
+//            ->whereBetween('tickets.created_at', [$dateLast30Days, $dateToday])
+//            ->where('tickets.status', TicketStatusEnum::CLOSED)
+//            ->whereNull('tickets.deleted_at')
+//            ->count();
     }
 
     public function getClosedTicketsBy90Days(): int
