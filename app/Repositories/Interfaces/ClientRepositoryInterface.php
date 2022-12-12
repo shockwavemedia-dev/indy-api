@@ -25,6 +25,13 @@ interface ClientRepositoryInterface
         ?string $sortOrder = null
     ): LengthAwarePaginator;
 
+    public function findAllClientWithSocialMediaService(
+        ?int $size = null,
+        ?int $pageNumber = null,
+        ?string $sortBy = null,
+        ?string $sortOrder = null
+    ): LengthAwarePaginator;
+
     public function deleteClient(Client $client): void;
 
     public function updateClientOwner(Client $client, ClientUser $clientUser): Client;

@@ -51,7 +51,6 @@ final class UpdateTicketAssigneeController extends AbstractAPIController
             ]);
         }
 
-        $adminUser = null;
         $checkTicketAssignee = null;
 
         if ($request->getAdminUserId() !== null) {
