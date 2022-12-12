@@ -20,9 +20,9 @@ interface TicketRepositoryInterface
 
     public function countOpenTicketByClient(Client $client): int;
 
-    public function countNewTicketByDepartment(Department $department): int;
+    public function countNewTicketByDepartment(Department $department, AdminUser $adminUser): int;
 
-    public function countOpenTicketByDepartment(Department $department): int;
+    public function countOpenTicketByDepartment(Department $department, AdminUser $adminUser): int;
 
     public function countTicketByClient(Client $client): int;
 
