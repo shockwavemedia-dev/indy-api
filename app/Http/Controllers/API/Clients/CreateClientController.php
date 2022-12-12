@@ -10,6 +10,7 @@ use App\Http\Requests\API\Clients\CreateClientRequest;
 use App\Http\Resources\API\Clients\ClientResource;
 use App\Jobs\File\UploadFileJob;
 use App\Models\User;
+use App\Repositories\Interfaces\ClientRepositoryInterface;
 use App\Services\Clients\Interfaces\ClientCreationServiceInterface;
 use App\Services\Clients\Resources\CreateClientResource;
 use App\Services\ClientServices\Interfaces\ClientServiceFactoryInterface;
@@ -24,24 +25,13 @@ final class CreateClientController extends AbstractAPIController
 {
     public const INTERNAL_BUCKET = 'CRM-ADMIN';
 
-    private ClientCreationServiceInterface $clientCreationService;
-
-    private ClientServiceFactoryInterface $clientServiceFactory;
-
-    private BucketFactoryInterface $bucketFactory;
-
-    private FileFactoryInterface $fileFactory;
-
     public function __construct(
-        ClientCreationServiceInterface $clientCreationService,
-        ClientServiceFactoryInterface $clientServiceFactory,
-        BucketFactoryInterface $bucketFactory,
-        FileFactoryInterface $fileFactory,
+        private ClientCreationServiceInterface $clientCreationService,
+        private ClientRepositoryInterface $clientRepository,
+        private ClientServiceFactoryInterface $clientServiceFactory,
+        private BucketFactoryInterface $bucketFactory,
+        private FileFactoryInterface $fileFactory,
     ) {
-        $this->clientCreationService = $clientCreationService;
-        $this->clientServiceFactory = $clientServiceFactory;
-        $this->bucketFactory = $bucketFactory;
-        $this->fileFactory = $fileFactory;
     }
 
     public function __invoke(CreateClientRequest $request): JsonResource
@@ -69,9 +59,29 @@ final class CreateClientController extends AbstractAPIController
                 );
             }
 
+            $clientCodeExist = $this->clientRepository->findByCode(abbreviate($request->getName()));
+
+            $version = substr($clientCodeExist?->getClientCode(), -1) ?? null;
+
+            $clientCode = abbreviate($request->getName());
+
+            if (is_numeric($version)) {
+                $clientCode = substr($clientCodeExist?->getClientCode(), 0, -1);
+
+                $clientCodeVersion = (int) substr($clientCodeExist?->getClientCode(), -1);
+
+                $clientCodeVersion++;
+
+                $clientCode = sprintf('%s%s', $clientCode, $clientCodeVersion);
+            }
+
+            if ($version !== null && is_numeric($version) === false) {
+                $clientCode = sprintf('%s%s', $clientCode, 1);
+            }
+
             $client = $this->clientCreationService->create(new CreateClientResource([
                 'name' => $request->getName(),
-                'clientCode' => abbreviate($request->getName()),
+                'clientCode' => $clientCode,
                 'address' => $request->getAddress(),
                 'phone' => $request->getPhone(),
                 'timezone' => $request->getTimezone(),

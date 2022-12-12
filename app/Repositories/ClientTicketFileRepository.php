@@ -40,6 +40,9 @@ final class ClientTicketFileRepository extends BaseRepository implements ClientT
     public function countNewTicketFile(ClientTicketFile $file): int
     {
         return $this->model
+            ->whereHas('fileVersions', function ($query) {
+                $query->where('status', '=', TicketFileStatusEnum::NEW);
+            })
             ->where('ticket_id', $file->getTicketId())
             ->where('status', '=', TicketFileStatusEnum::NEW)
             ->count();

@@ -107,8 +107,8 @@ final class UpdateTicketAssigneeController extends AbstractAPIController
                 return new TicketAssigneeResource($ticketAssignee);
             }
 
-            if ($ticket->getStatus()->getValue() !== TicketStatusEnum::PENDING) {
-                $ticket->setStatus(new TicketStatusEnum(TicketStatusEnum::PENDING));
+            if ($ticket->getStatus()->getValue() !== TicketStatusEnum::IN_PROGRESS) {
+                $ticket->setStatus(new TicketStatusEnum(TicketStatusEnum::IN_PROGRESS));
 
                 $ticket->save();
             }

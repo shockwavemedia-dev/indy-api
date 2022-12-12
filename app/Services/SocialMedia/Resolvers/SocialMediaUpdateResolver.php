@@ -8,7 +8,6 @@ use App\Models\SocialMedia;
 use App\Repositories\Interfaces\SocialMediaRepositoryInterface;
 use App\Services\SocialMedia\Interfaces\SocialMediaUpdateResolverInterface;
 use Carbon\Carbon;
-use Illuminate\Support\Arr;
 
 final class SocialMediaUpdateResolver implements SocialMediaUpdateResolverInterface
 {
@@ -25,20 +24,15 @@ final class SocialMediaUpdateResolver implements SocialMediaUpdateResolverInterf
             'post' => $socialMedia->getPost(),
             'copy' => $socialMedia->getCopy(),
             'status' => $socialMedia->getStatus(),
-            'channels' => implode(',', $socialMedia->getChannels()),
             'notes' => $socialMedia->getNotes(),
             'post_date' => $socialMedia->getPostDate(),
         ];
 
-        if (Arr::get($changes, 'channels') !== null) {
-            $changes['channels'] = implode(',', $changes['channels']);
-        }
+        $newChannels = $changes['channels'];
+
+        unset($changes['channels']);
 
         $updates = \array_diff($changes, $socialMediaArray);
-
-        if (Arr::get($updates, 'channels') !== null) {
-            $updates['channels'] = explode(',', $updates['channels']);
-        }
 
         $updates = array_filter($updates);
 
@@ -46,6 +40,60 @@ final class SocialMediaUpdateResolver implements SocialMediaUpdateResolverInterf
             $updates['post_date'] = new Carbon($updates['post_date']);
         }
 
+        $updates['channels'] = $this->updateChannelsComplexity($socialMedia, $newChannels);
+
         return $this->socialMediaRepository->update($socialMedia, $updates);
+    }
+
+    private function updateChannelsComplexity(SocialMedia $socialMedia, array $channels): ?array
+    {
+        if (count($socialMedia->getChannels() ?? []) === 0) {
+            return $channels;
+        }
+
+        if (count($channels) === 0) {
+            return [];
+        }
+
+        $newChannelsName = $channels;
+
+        if (is_string($channels[0]) === false) {
+            $newChannelsName = array_column($channels, 'name');
+        }
+
+        $updatedChannels = [];
+
+        foreach ($channels as $channel) {
+            $modifiedChannelFormat = [
+                'name' => $channel['name'] ?? $channel,
+                'quantity' => $channel['quantity'] ?? 0,
+            ];
+
+            $exist = false;
+
+            foreach ($socialMedia->getChannels() as $existingChannel) {
+                $oldChannel = $existingChannel['name'] ?? $existingChannel;
+
+                // If it is not in the payload anymore remove
+                if (in_array($oldChannel, $newChannelsName) === false) {
+                    continue;
+                }
+
+                // Always get the quantity from the original, separate endpoint handle updating of quantity(cost)
+                if ($modifiedChannelFormat['name'] === $oldChannel) {
+                    $exist = true;
+
+                    $modifiedChannelFormat['quantity'] = $existingChannel['quantity'] ?? 0;
+
+                    $updatedChannels[] = $modifiedChannelFormat;
+                }
+            }
+
+            if ($exist === false) {
+                $updatedChannels[] = $modifiedChannelFormat;
+            }
+        }
+
+        return $updatedChannels;
     }
 }

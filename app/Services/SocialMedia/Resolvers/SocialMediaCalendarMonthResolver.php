@@ -50,6 +50,22 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
                     continue;
                 }
 
+                $channels = [];
+
+                $boosted = null;
+
+                foreach ($socialMedia->getChannels() as $channel) {
+                    if (is_string($channel) === true) {
+                        $channels = $socialMedia->getChannels();
+
+                        break;
+                    }
+
+                    $boosted[] = $channel;
+
+                    $channels[] = $channel['name'] ?? '';
+                }
+
                 $socialMediaDetails = [
                     'id' => $socialMedia->getId(),
                     'post' => $socialMedia->getPost(),
@@ -57,7 +73,8 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
                     'status' => $socialMedia->getStatus(),
                     'campaign_type' => $socialMedia->getCampaignType(),
                     'client_id' => $socialMedia->getClient()->getId(),
-                    'channels' => $socialMedia->getChannels(),
+                    'channels' => $channels,
+                    'boosted_channels' => $boosted,
                     'notes' => $socialMedia->getNotes(),
                     'comments' => new CommentsResource($socialMedia->getComments()),
                     'post_date' => $socialMedia->getPostDate()?->toIso8601ZuluString(),

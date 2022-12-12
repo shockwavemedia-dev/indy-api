@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Enum\TicketAssigneeStatusEnum;
-use App\Enum\TicketStatusEnum;
 use App\Models\Tickets\Ticket;
 use App\Models\Tickets\TicketAssignee;
 use App\Models\Users\AdminUser;
@@ -42,7 +41,6 @@ final class TicketAssigneeRepository extends BaseRepository implements TicketAss
         $assignee->ticket()->associate($ticket);
         $assignee->save();
 
-        $ticket->setStatus(new TicketStatusEnum(TicketStatusEnum::OPEN));
         $ticket->updatedBy()->associate($createdBy->getUser());
         $ticket->save();
 

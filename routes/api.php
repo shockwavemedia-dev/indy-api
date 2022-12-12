@@ -112,6 +112,7 @@ use App\Http\Controllers\API\SocialMedia\RemoveAttachmentsSocialMediaController;
 use App\Http\Controllers\API\SocialMedia\ShowSocialMediaController;
 use App\Http\Controllers\API\SocialMedia\SocialMediaMemberController;
 use App\Http\Controllers\API\SocialMedia\SocialMediaMonthlyListController;
+use App\Http\Controllers\API\SocialMedia\UpdateSocialMediaBoostController;
 use App\Http\Controllers\API\SocialMedia\UpdateSocialMediaCommentController;
 use App\Http\Controllers\API\SocialMedia\UpdateSocialMediaController;
 use App\Http\Controllers\API\SupportRequests\CreateSupportRequestController;
@@ -976,6 +977,10 @@ Route::group([
         Route::delete('/social-media-comments/{id}', [
             'as' => 'delete-comments',
             'uses' => DeleteSocialMediaCommentController::class,
+        ]);
+        Route::put('/social-media/{id}/boost-update', [
+            'as' => 'boost-update',
+            'uses' => UpdateSocialMediaBoostController::class,
         ]);
     });
 

@@ -72,10 +72,15 @@ final class AdminUser extends AbstractModel implements UserTypeInterface
 
     public function getOpenTickets(): int
     {
-        return $this->tickets()
-            ->whereNull('tickets.deleted_at')
-            ->where('tickets.status', TicketStatusEnum::OPEN)
-            ->count();
+        return $this->assignedTickets()->whereHas('ticket', function ($query) {
+            $query->whereNull('deleted_at');
+            $query->where('status', '=', TicketStatusEnum::OPEN);
+        })->count();
+
+//        return $this->tickets()
+//            ->whereNull('tickets.deleted_at')
+//            ->where('tickets.status', TicketStatusEnum::OPEN)
+//            ->count();
     }
 
     public function getClosedTicketsBy30Days(): int
@@ -84,11 +89,17 @@ final class AdminUser extends AbstractModel implements UserTypeInterface
 
         $dateLast30Days = $dateToday->subDays(30);
 
-        return $this->tickets()
-            ->whereBetween('tickets.created_at', [$dateLast30Days, $dateToday])
-            ->where('tickets.status', TicketStatusEnum::CLOSED)
-            ->whereNull('tickets.deleted_at')
-            ->count();
+        return $this->assignedTickets()->whereHas('ticket', function ($query) use ($dateToday, $dateLast30Days) {
+            $query->whereNull('deleted_at');
+            $query->where('status', '=', TicketStatusEnum::CLOSED);
+//            $query->whereBetween('created_at', [$dateToday, $dateLast30Days]);
+        })->count();
+
+//        return $this->tickets()
+//            ->whereBetween('tickets.created_at', [$dateLast30Days, $dateToday])
+//            ->where('tickets.status', TicketStatusEnum::CLOSED)
+//            ->whereNull('tickets.deleted_at')
+//            ->count();
     }
 
     public function getClosedTicketsBy90Days(): int
