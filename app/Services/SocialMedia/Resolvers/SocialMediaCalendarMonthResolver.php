@@ -11,6 +11,7 @@ use App\Repositories\Interfaces\SocialMediaRepositoryInterface;
 use App\Services\SocialMedia\Interfaces\SocialMediaCalendarMonthResolverInterface;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use OwenIt\Auditing\Models\Audit;
 
 final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonthResolverInterface
 {
@@ -54,16 +55,30 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
 
                 $boosted = null;
 
-                foreach ($socialMedia->getChannels() as $channel) {
+                $isBoosted = false;
+
+                foreach ($socialMedia->getChannels() ?? [] as $channel) {
                     if (is_string($channel) === true) {
                         $channels = $socialMedia->getChannels();
 
                         break;
                     }
 
+                    $quantity = $channel['quantity'] ?? 0;
+
+                    if ($quantity > 0) {
+                        $isBoosted = true;
+                    }
+
                     $boosted[] = $channel;
 
-                    $channels[] = $channel['name'] ?? '';
+                    if ($channel['name'] !== null) {
+                        $channels[] = $channel['name'];
+                    }
+                }
+
+                if ($isBoosted === false) {
+                    $boosted = null;
                 }
 
                 $socialMediaDetails = [
@@ -92,6 +107,77 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
                         'url' => $attachment->getFile()?->getUrl(),
                         'thumbnail_url' => $attachment->getFile()?->getThumbnailUrl(),
                     ];
+                }
+
+                $attachments = [];
+
+                $attachmentIds = [];
+
+                /** @var SocialMediaAttachment $attachment */
+                foreach ($socialMedia->getAttachments() as $attachment) {
+                    $attachments[] = [
+                        'name' => $attachment->getFile()?->getOriginalFilename(),
+                        'file_type' => $attachment->getFile()?->getFileType(),
+                        'social_media_attachment_id' => $attachment->getId(),
+                        'url' => $attachment->getFile()?->getUrl(),
+                        'thumbnail_url' => $attachment->getFile()?->getThumbnailUrl(),
+                    ];
+
+                    $attachmentIds[] = $attachment->getId();
+                }
+
+                $audits = Audit::where('auditable_type', 'App\Models\SocialMedia')
+                    ->where('auditable_id', $socialMedia->getId())
+                    ->orWhere(function ($query) use ($attachmentIds) {
+                        if (count($attachmentIds) > 0) {
+                            $query->where('auditable_type', 'App\Models\SocialMediaAttachment')
+                                ->whereIn('auditable_id', $attachmentIds);
+                        }
+                    })
+                    ->get();
+
+                // @TODO Refactor this or move the logic somewhere else
+                /** @var Audit $audit */
+                foreach ($audits as $audit) {
+                    // Skip created social media
+                    if ($audit->event === 'created' && $audit->auditable_type === 'App\Models\SocialMedia') {
+                        continue;
+                    }
+
+                    $auditMeta = $audit->getMetadata();
+
+                    $user = sprintf(
+                        '%s %s %s',
+                        $auditMeta['user_first_name'] ?? '',
+                        $auditMeta['user_middle_name'] ?? '',
+                        $auditMeta['user_last_name'] ?? '',
+                    );
+
+                    if ($audit->event === 'updated' && $audit->auditable_type === 'App\Models\SocialMedia') {
+                        $result['activities'][] = [
+                            'action' => 'Modified',
+                            'fields' => $audit->getModified(),
+                            'user' => $user,
+                            'created_at' => $audit->getAttribute('created_at'),
+                        ];
+                    }
+
+                    if ($audit->event === 'deleted' && $audit->auditable_type === 'App\Models\SocialMedia') {
+                        $result['activities'][] = [
+                            'action' => 'Removed an attachment',
+                            'fields' => $audit->getModified(),
+                            'user' => $user,
+                            'created_at' => $audit->getAttribute('created_at'),
+                        ];
+                    }
+
+                    if ($audit->auditable_type === 'App\Models\SocialMediaAttachment') {
+                        $result['activities'][] = [
+                            'action' => 'Uploaded an attachment.',
+                            'user' => $user,
+                            'created_at' => $audit->getAttribute('created_at'),
+                        ];
+                    }
                 }
 
                 $socialMediaDetails['attachments'] = $attachments;

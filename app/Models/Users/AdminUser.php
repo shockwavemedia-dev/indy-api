@@ -76,43 +76,32 @@ final class AdminUser extends AbstractModel implements UserTypeInterface
             $query->whereNull('deleted_at');
             $query->where('status', '=', TicketStatusEnum::OPEN);
         })->count();
-
-//        return $this->tickets()
-//            ->whereNull('tickets.deleted_at')
-//            ->where('tickets.status', TicketStatusEnum::OPEN)
-//            ->count();
     }
 
     public function getClosedTicketsBy30Days(): int
     {
-        $dateToday = new Carbon();
+        $dateToday = (new Carbon())->startOfDay();
 
-        $dateLast30Days = $dateToday->subDays(30);
+        $dateLast30Days = (new Carbon())->startOfDay()->subDays(30);
 
         return $this->assignedTickets()->whereHas('ticket', function ($query) use ($dateToday, $dateLast30Days) {
             $query->whereNull('deleted_at');
             $query->where('status', '=', TicketStatusEnum::CLOSED);
-//            $query->whereBetween('created_at', [$dateToday, $dateLast30Days]);
+            $query->whereBetween('created_at', [$dateLast30Days, $dateToday]);
         })->count();
-
-//        return $this->tickets()
-//            ->whereBetween('tickets.created_at', [$dateLast30Days, $dateToday])
-//            ->where('tickets.status', TicketStatusEnum::CLOSED)
-//            ->whereNull('tickets.deleted_at')
-//            ->count();
     }
 
     public function getClosedTicketsBy90Days(): int
     {
-        $dateToday = new Carbon();
+        $dateToday = (new Carbon())->subDays(30)->startOfDay();
 
-        $dateLast90Days = $dateToday->subDays(90);
+        $dateLast90Days = (new Carbon())->startOfDay()->subDays(90);
 
-        return $this->tickets()
-            ->whereBetween('tickets.created_at', [$dateLast90Days, $dateToday])
-            ->where('tickets.status', TicketStatusEnum::CLOSED)
-            ->whereNull('tickets.deleted_at')
-            ->count();
+        return $this->assignedTickets()->whereHas('ticket', function ($query) use ($dateToday, $dateLast90Days) {
+            $query->whereNull('deleted_at');
+            $query->where('status', '=', TicketStatusEnum::CLOSED);
+            $query->whereBetween('created_at', [$dateLast90Days, $dateToday]);
+        })->count();
     }
 
     public function getTickets(): Collection

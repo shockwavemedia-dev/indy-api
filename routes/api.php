@@ -10,6 +10,7 @@ use App\Http\Controllers\API\BackendUsers\BackendUsersTicketAndNotificationCount
 use App\Http\Controllers\API\Clients\ClientEDMController;
 use App\Http\Controllers\API\Clients\ClientFileListController;
 use App\Http\Controllers\API\Clients\ClientFileListV2Controller;
+use App\Http\Controllers\API\Clients\ClientListWithSocialMediaServiceController;
 use App\Http\Controllers\API\Clients\ClientTicketAndNotificationCountsController;
 use App\Http\Controllers\API\Clients\CreateClientController;
 use App\Http\Controllers\API\Clients\DeleteClientController;
@@ -341,6 +342,11 @@ Route::group([
             'as' => 'update',
             'uses' => UpdateClientController::class,
         ])->middleware('checkPermission:clients,edit');
+
+        Route::get('/clients/social-media', [
+            'as' => 'list-with-social-media',
+            'uses' => ClientListWithSocialMediaServiceController::class,
+        ])->middleware('checkPermission:clients,read');
 
         Route::put('/clients/{id}/owner', [
             'as' => 'client.owner',

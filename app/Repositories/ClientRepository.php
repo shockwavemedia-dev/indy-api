@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Enum\ClientStatusEnum;
+use App\Enum\ServicesEnum;
 use App\Models\Client;
 use App\Models\Users\ClientUser;
 use App\Repositories\Interfaces\ClientRepositoryInterface;
@@ -65,6 +66,25 @@ final class ClientRepository extends BaseRepository implements ClientRepositoryI
         return $this->model
             ->with(['clientScreens.screen', 'printer', 'logo', 'designatedDesigner'])
             ->orderBy($sortBy, $sortOrder)
+            ->paginate($size, ['*'], null, $pageNumber);
+    }
+
+    public function findAllClientWithSocialMediaService(
+        ?int $size = null,
+        ?int $pageNumber = null,
+        ?string $sortBy = null,
+        ?string $sortOrder = null
+    ): LengthAwarePaginator {
+        return $this->model
+            ->whereHas('clientServices', function ($query) {
+                $query->whereHas('service', function ($query) {
+                    $query->where('name', ServicesEnum::SOCIAL_MEDIA);
+                });
+
+                $query->where('is_enabled', 1);
+            })
+            ->with(['clientScreens.screen', 'printer', 'logo', 'designatedDesigner'])
+            ->orderBy('name', 'asc')
             ->paginate($size, ['*'], null, $pageNumber);
     }
 
