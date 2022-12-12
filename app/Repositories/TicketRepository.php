@@ -40,28 +40,30 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
         return $this->model->where('client_id', $client->getId())->withTrashed()->count();
     }
 
-    public function countNewTicketByDepartment(Department $department): int
+    public function countNewTicketByDepartment(Department $department, AdminUser $adminUser): int
     {
         return $this->model
             ->with('ticketServices.service')
             ->where('status', '=', TicketStatusEnum::NEW)
             ->where('department_id', $department->getId())
-            ->orWhereHas('assignees', function ($query) use ($department) {
+            ->orWhereHas('assignees', function ($query) use ($department,$adminUser) {
                 $query->where('department_id', '=', $department->getId());
+                $query->where('admin_user_id', '=', $adminUser->getId());
             })
             ->orWhereHas('ticketServices.service.departments', function ($query) use ($department) {
                 $query->where('department_id', '=', $department->getId());
             })->count();
     }
 
-    public function countOpenTicketByDepartment(Department $department): int
+    public function countOpenTicketByDepartment(Department $department, AdminUser $adminUser): int
     {
         return $this->model
         ->with('ticketServices.service')
         ->where('status', '=', TicketStatusEnum::OPEN)
         ->where('department_id', $department->getId())
-        ->orWhereHas('assignees', function ($query) use ($department) {
+        ->orWhereHas('assignees', function ($query) use ($department,$adminUser) {
             $query->where('department_id', '=', $department->getId());
+            $query->where('admin_user_id', '=', $adminUser->getId());
         })
         ->orWhereHas('ticketServices.service.departments', function ($query) use ($department) {
             $query->where('department_id', '=', $department->getId());
