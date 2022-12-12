@@ -22,7 +22,7 @@ final class ClientServiceRepository extends BaseRepository implements ClientServ
     public function createClientService(CreateClientServiceResource $resource): ClientService
     {
         return $this->model->create([
-            'is_enabled' => true,
+            'is_enabled' => false,
             'client_id' => $resource->getClientId(),
             'service_id' => $resource->getServiceId(),
             'extras' => $resource->getExtras(),
