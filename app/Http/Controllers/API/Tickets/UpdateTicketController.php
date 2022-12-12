@@ -70,7 +70,7 @@ final class UpdateTicketController extends AbstractAPIController
 
             $status = $ticket->getStatus();
 
-            if ($request->getStatus()?->getValue() !== TicketStatusEnum::NEW) {
+            if ($request->getStatus() !== null && $request->getStatus()?->getValue() !== TicketStatusEnum::NEW) {
                 $status = $request->getStatus();
             }
 
