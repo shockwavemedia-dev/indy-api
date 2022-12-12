@@ -38,8 +38,8 @@ final class BackendUsersTicketAndNotificationCountsController extends AbstractAP
         $department = $adminUser->getDepartments()->first();
 
         return response()->json([
-            'new_ticket_count' => $this->ticketRepository->countNewTicketByDepartment($department),
-            'open_ticket_count' => $this->ticketRepository->countOpenTicketByDepartment($department),
+            'new_ticket_count' => $this->ticketRepository->countNewTicketByDepartment($department,$adminUser),
+            'open_ticket_count' => $this->ticketRepository->countOpenTicketByDepartment($department,$adminUser),
             'new_notification_count' => $this->notificationUserRepository->countNewNotificationByUser($user),
         ]);
     }
