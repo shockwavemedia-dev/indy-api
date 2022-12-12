@@ -14,6 +14,8 @@ interface ClientRepositoryInterface
 {
     public function findAll(): Collection;
 
+    public function findByCode(string $code): ?Client;
+
     public function update(Client $client, UpdateClientResource $resource): Client;
 
     public function findAllClient(

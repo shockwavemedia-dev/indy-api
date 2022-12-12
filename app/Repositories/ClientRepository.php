@@ -88,4 +88,9 @@ final class ClientRepository extends BaseRepository implements ClientRepositoryI
     {
         return $this->model->get();
     }
+
+    public function findByCode(string $code): ?Client
+    {
+        return $this->model->where('client_code', $code)->first();
+    }
 }
