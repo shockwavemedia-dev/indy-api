@@ -35,6 +35,8 @@ final class UserRepository extends BaseRepository implements UserRepositoryInter
     {
         return $this->model->where('morphable_type', '=', 'App\Models\Users\AdminUser')
             ->whereNotIn('id', [1])
+            ->orderBy('first_name', 'asc')
+            ->orderBy('last_name', 'asc')
             ->paginate($size, ['*'], null, $pageNumber);
     }
 
