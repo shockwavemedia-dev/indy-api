@@ -52,17 +52,18 @@ final class ApproveTicketFileController extends AbstractAPIController
             /** @var ClientTicketFile $ticketFile */
             $ticketFile = $this->ticketFileRepository->find($id);
 
+            if ($ticketFile === null) {
+                return $this->respondNotFound([
+                    'message' => 'Ticket File not found.',
+                ]);
+            }
+
             $notificationResolver = $this->backendUserNotificationResolverFactory->make(
                 new BackendUserNotificationTypeEnum(BackendUserNotificationTypeEnum::FILE_APPROVED),
             );
 
             $notificationResolver->resolve($ticketFile);
 
-            if ($ticketFile === null) {
-                return $this->respondNotFound([
-                    'message' => 'Ticket File not found.',
-                ]);
-            }
 
             if ($ticketFile->isApproved() === true) {
                 return new TicketFileResource($ticketFile);
