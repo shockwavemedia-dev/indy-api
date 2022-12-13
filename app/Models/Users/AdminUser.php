@@ -78,6 +78,24 @@ final class AdminUser extends AbstractModel implements UserTypeInterface
         })->count();
     }
 
+    public function countNewTickets(): int
+    {
+        return $this->assignedTickets()->whereHas('ticket', function ($query) {
+            $query->whereNull('deleted_at');
+            $query->where('status', '=', TicketStatusEnum::NEW);
+        })->count();
+    }
+
+    public function countPendingTickets(): int
+    {
+        return $this->assignedTickets()->whereHas('ticket', function ($query) {
+            $query->whereNull('deleted_at');
+            $query->where('status', '=', TicketStatusEnum::PENDING);
+        })->count();
+    }
+
+
+
     public function getClosedTicketsBy30Days(): int
     {
         $dateToday = (new Carbon())->startOfDay();
