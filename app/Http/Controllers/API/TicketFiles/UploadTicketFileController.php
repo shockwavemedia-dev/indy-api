@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\TicketFiles;
 
+use App\Enum\TicketStatusEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\TicketFiles\UploadFileRequest;
 use App\Http\Resources\API\TicketFiles\CreatedTicketFilesResource;
@@ -90,6 +91,10 @@ final class UploadTicketFileController extends AbstractAPIController
                     $file,
                 );
             }
+
+            $ticket->setStatus(new TicketStatusEnum(TicketStatusEnum::PENDING));
+            $ticket->setUpdatedBy(null);
+            $ticket->save();
 
             return new CreatedTicketFilesResource($ticketFile);
         } catch (Throwable $throwable) {

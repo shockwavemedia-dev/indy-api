@@ -64,7 +64,7 @@ final class TicketRepositoryStub extends AbstractStub implements TicketRepositor
     /**
      * @throws \Throwable
      */
-    public function countNewTicketByDepartment(Department $department,AdminUser $adminUser): int
+    public function countNewTicketByDepartment(Department $department, AdminUser $adminUser): int
     {
         $this->recordCall(__FUNCTION__, \func_get_args());
 
@@ -74,7 +74,7 @@ final class TicketRepositoryStub extends AbstractStub implements TicketRepositor
     /**
      * @throws \Throwable
      */
-    public function countOpenTicketByDepartment(Department $department,AdminUser $adminUser): int
+    public function countOpenTicketByDepartment(Department $department, AdminUser $adminUser): int
     {
         $this->recordCall(__FUNCTION__, \func_get_args());
 

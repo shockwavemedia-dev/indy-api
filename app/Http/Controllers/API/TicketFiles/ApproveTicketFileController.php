@@ -6,6 +6,7 @@ namespace App\Http\Controllers\API\TicketFiles;
 
 use App\Enum\BackendUserNotificationTypeEnum;
 use App\Enum\TicketFileStatusEnum;
+use App\Enum\TicketStatusEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Resources\API\TicketFiles\TicketFileResource;
 use App\Models\Tickets\ClientTicketFile;
@@ -64,7 +65,6 @@ final class ApproveTicketFileController extends AbstractAPIController
 
             $notificationResolver->resolve($ticketFile);
 
-
             if ($ticketFile->isApproved() === true) {
                 return new TicketFileResource($ticketFile);
             }
@@ -94,6 +94,12 @@ final class ApproveTicketFileController extends AbstractAPIController
             }
 
             $this->ticketRepository->updateIsApprovalRequired($ticketFile->getTicket(), false);
+
+            // Nothing to approve meaning ticket status should be in progress again
+            $ticket = $ticketFile->getTicket();
+            $ticket->setStatus(new TicketStatusEnum(TicketStatusEnum::IN_PROGRESS));
+            $ticket->setUpdatedBy(null);
+            $ticket->save();
 
             return new TicketFileResource($ticketFile);
         } catch(Throwable $exception) {

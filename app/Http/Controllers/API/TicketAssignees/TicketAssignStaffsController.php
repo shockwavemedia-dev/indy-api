@@ -81,8 +81,8 @@ final class TicketAssignStaffsController extends AbstractAPIController
                 $request->getLinks(),
             );
 
-            if ($ticket->getStatus()->getValue() !== TicketStatusEnum::PENDING) {
-                $ticket->setStatus(new TicketStatusEnum(TicketStatusEnum::PENDING));
+            if ($ticket->getStatus()->getValue() === TicketStatusEnum::OPEN) {
+                $ticket->setStatus(new TicketStatusEnum(TicketStatusEnum::IN_PROGRESS));
 
                 $ticket->save();
             }
