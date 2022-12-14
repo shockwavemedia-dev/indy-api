@@ -74,7 +74,7 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
     {
         return $this->model
             ->where('client_id', $client->getId())
-            ->whereIn('status', '=', [
+            ->whereIn('status', [
                 TicketStatusEnum::OPEN,
                 TicketStatusEnum::PENDING,
                 TicketStatusEnum::IN_PROGRESS
