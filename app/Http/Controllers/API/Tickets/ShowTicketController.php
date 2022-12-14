@@ -7,7 +7,6 @@ namespace App\Http\Controllers\API\Tickets;
 use App\Enum\TicketStatusEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Resources\API\Tickets\TicketSupportResource;
-use App\Models\User;
 use App\Repositories\Interfaces\TicketRepositoryInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -22,9 +21,6 @@ final class ShowTicketController extends AbstractAPIController
 
     public function __invoke(int $id): JsonResource
     {
-        /** @var User $user */
-        $user = $this->getUser();
-
         /** @var \App\Models\Tickets\Ticket $ticket */
         $ticket = $this->ticketRepository->find($id);
 

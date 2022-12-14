@@ -46,7 +46,7 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             ->with('ticketServices.service')
             ->where('status', '=', TicketStatusEnum::NEW)
             ->where('department_id', $department->getId())
-            ->orWhereHas('assignees', function ($query) use ($department,$adminUser) {
+            ->orWhereHas('assignees', function ($query) use ($department, $adminUser) {
                 $query->where('department_id', '=', $department->getId());
                 $query->where('admin_user_id', '=', $adminUser->getId());
             })
@@ -61,7 +61,7 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
         ->with('ticketServices.service')
         ->where('status', '=', TicketStatusEnum::OPEN)
         ->where('department_id', $department->getId())
-        ->orWhereHas('assignees', function ($query) use ($department,$adminUser) {
+        ->orWhereHas('assignees', function ($query) use ($department, $adminUser) {
             $query->where('department_id', '=', $department->getId());
             $query->where('admin_user_id', '=', $adminUser->getId());
         })
@@ -286,6 +286,7 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
     public function updateStatusToOpen(Ticket $ticket): Ticket
     {
         $ticket->setStatus(new TicketStatusEnum(TicketStatusEnum::OPEN));
+        $ticket->setUpdatedBy(null);
         $ticket->save();
 
         return $ticket;

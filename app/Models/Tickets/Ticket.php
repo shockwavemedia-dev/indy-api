@@ -281,9 +281,9 @@ final class Ticket extends AbstractModel implements EmailInterface
         return $this;
     }
 
-    public function setUpdatedBy(User $user): self
+    public function setUpdatedBy(?User $user = null): self
     {
-        $this->setAttribute('updated_by', $user->getId());
+        $this->setAttribute('updated_by', $user?->getId());
 
         return $this;
     }

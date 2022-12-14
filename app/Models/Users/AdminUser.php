@@ -94,8 +94,6 @@ final class AdminUser extends AbstractModel implements UserTypeInterface
         })->count();
     }
 
-
-
     public function getClosedTicketsBy30Days(): int
     {
         $dateToday = (new Carbon())->startOfDay();
