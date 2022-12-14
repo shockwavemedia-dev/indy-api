@@ -77,7 +77,7 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             ->whereIn('status', [
                 TicketStatusEnum::OPEN,
                 TicketStatusEnum::PENDING,
-                TicketStatusEnum::IN_PROGRESS
+                TicketStatusEnum::IN_PROGRESS,
             ])
             ->count();
     }
