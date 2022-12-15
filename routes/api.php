@@ -624,7 +624,7 @@ Route::group([
         Route::get('/tickets/{id}/chats', [
             'as' => 'list-ticket-chats',
             'uses' => ListTicketChatController::class,
-        ])->middleware('checkPermission:tickets,edit');
+        ])->middleware('checkPermission:tickets,read');
 
         Route::delete('/ticket-chats/{id}', [
             'as' => 'delete-ticket-chats',
