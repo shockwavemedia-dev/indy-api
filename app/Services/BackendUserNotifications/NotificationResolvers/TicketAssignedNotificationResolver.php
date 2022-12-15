@@ -24,13 +24,19 @@ final class TicketAssignedNotificationResolver extends AbstractBackendUserNotifi
      */
     public function resolve(mixed $morph): void
     {
+        $username = $morph->getCreatedBy()->getUser()->getFirstName();
+
+        if ($morph->getCreatedBy()->getUser()->getEmail() === 'superadmin@indy.com.au') {
+            $username = 'The Indy Platform';
+        }
+
         $notificationResource = new CreateNotificationResource([
             'morphable' => $morph,
             'link' => \sprintf('ticket/%s', $morph->getTicketId()),
             'statusEnum' => new NotificationStatusEnum(NotificationStatusEnum::NEW),
             'title' => sprintf(
                 self::TITLE_KEY,
-                $morph->getCreatedBy()->getUser()->getFirstName(),
+                $username,
                 $morph->getTicket()->getTicketCode(),
             ),
         ]);

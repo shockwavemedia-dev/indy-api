@@ -15,7 +15,7 @@ return [
                 'ticket-notification-counts' => true,
             ],
             'users' => [
-                'read' => false,
+                'read' => true,
                 'delete' => false,
                 'edit' => false,
                 'create' => false,
@@ -160,7 +160,7 @@ return [
                 'ticket-notification-counts' => true,
             ],
             'users' => [
-                'read' => false,
+                'read' => true,
                 'delete' => false,
                 'edit' => false,
                 'create' => false,
@@ -231,7 +231,7 @@ return [
                 'ticket-notification-counts' => true,
             ],
             'users' => [
-                'read' => false,
+                'read' => true,
                 'delete' => false,
                 'edit' => false,
                 'create' => false,

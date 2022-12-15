@@ -43,6 +43,8 @@ interface TicketRepositoryInterface
 
     public function findWithFiles(int $id): ?Ticket;
 
+    public function findWithChats(int $id): ?Ticket;
+
     public function findLibraryTicketsByClient(
         Client $client,
         ?int $size = null,

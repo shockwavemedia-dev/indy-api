@@ -70,10 +70,16 @@ final class AssignedTicketEmail extends Notification implements ShouldQueue
 
             $url = sprintf('%s/ticket/%s', $url, $this->ticket->getId());
 
+            $username = $this->user->getFirstName();
+
+            if ($this->createdBy->getEmail() === 'superadmin@indy.com.au') {
+                $username = 'The Indy Platform';
+            }
+
             $message = \sprintf(
                 'Hi %s, %s has assigned Ticket #%s to you.',
                 $this->user->getFirstName(),
-                $this->createdBy->getFirstName(),
+                $username,
                 $this->ticket->getTicketCode(),
             );
 

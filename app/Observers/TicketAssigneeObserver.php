@@ -38,10 +38,16 @@ final class TicketAssigneeObserver
 
         $ticket = $ticketAssignee->getTicket();
 
+        $username = $createdBy->getFirstName();
+
+        if ($createdBy->getEmail() === 'superadmin@indy.com.au') {
+            $username = 'The Indy Platform';
+        }
+
         $message = \sprintf(
             'Hi %s, %s has assigned Ticket #%s to you.',
             $user->getFirstName(),
-            $createdBy->getFirstName(),
+            $username,
             $ticket->getTicketCode(),
         );
 
