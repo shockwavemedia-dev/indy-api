@@ -619,7 +619,7 @@ Route::group([
         Route::post('/tickets/{id}/chats', [
             'as' => 'create-ticket-chats',
             'uses' => CreateTicketChatController::class,
-        ])->middleware('checkPermission:tickets,edit');
+        ])->middleware('checkPermission:tickets,read');
 
         Route::get('/tickets/{id}/chats', [
             'as' => 'list-ticket-chats',
