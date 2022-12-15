@@ -275,4 +275,9 @@ final class TicketRepositoryStub extends AbstractStub implements TicketRepositor
 
         $this->fetchResponse(__FUNCTION__);
     }
+
+    public function findWithChats(int $id): ?Ticket
+    {
+        // TODO: Implement findWithChats() method.
+    }
 }

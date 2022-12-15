@@ -54,6 +54,7 @@ use App\Repositories\Interfaces\SupportRequestRepositoryInterface;
 use App\Repositories\Interfaces\TicketActivityRepositoryInterface;
 use App\Repositories\Interfaces\TicketAssigneeLinkRepositoryInterface;
 use App\Repositories\Interfaces\TicketAssigneeRepositoryInterface;
+use App\Repositories\Interfaces\TicketChatRepositoryInterface;
 use App\Repositories\Interfaces\TicketEmailRepositoryInterface;
 use App\Repositories\Interfaces\TicketEventAttachmentRepositoryInterface;
 use App\Repositories\Interfaces\TicketEventRepositoryInterface;
@@ -83,6 +84,7 @@ use App\Repositories\SupportRequestRepository;
 use App\Repositories\TicketActivityRepository;
 use App\Repositories\TicketAssigneeLinkRepository;
 use App\Repositories\TicketAssigneeRepository;
+use App\Repositories\TicketChatRepository;
 use App\Repositories\TicketEmailRepository;
 use App\Repositories\TicketEventAttachmentRepository;
 use App\Repositories\TicketEventRepository;
@@ -140,6 +142,7 @@ final class RepositoryServiceProvider extends ServiceProvider
             TicketActivityRepositoryInterface::class => TicketActivityRepository::class,
             TicketAssigneeLinkRepositoryInterface::class => TicketAssigneeLinkRepository::class,
             TicketAssigneeRepositoryInterface::class => TicketAssigneeRepository::class,
+            TicketChatRepositoryInterface::class => TicketChatRepository::class,
             TicketNoteRepositoryInterface::class => TicketNoteRepository::class,
             TicketRepositoryInterface::class => TicketRepository::class,
             TicketEmailRepositoryInterface::class => TicketEmailRepository::class,

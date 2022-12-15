@@ -12,6 +12,7 @@ use App\Models\AbstractModel;
 use App\Models\Client;
 use App\Models\Department;
 use App\Models\Emails\Interfaces\EmailInterface;
+use App\Models\TicketChat;
 use App\Models\User;
 use Carbon\Carbon;
 use DateTimeInterface;
@@ -63,6 +64,11 @@ final class Ticket extends AbstractModel implements EmailInterface
     public function activities(): HasMany
     {
         return $this->hasMany(TicketActivity::class);
+    }
+
+    public function getChats(): Collection
+    {
+        return $this->chats;
     }
 
     public function getUserNotes(): array
@@ -323,6 +329,11 @@ final class Ticket extends AbstractModel implements EmailInterface
     public function assignees(): HasMany
     {
         return $this->hasMany(TicketAssignee::class);
+    }
+
+    public function chats(): HasMany
+    {
+        return $this->hasMany(TicketChat::class);
     }
 
     public function updatedBy(): BelongsTo

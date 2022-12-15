@@ -122,6 +122,9 @@ use App\Http\Controllers\API\TicketAssignees\RemoveTicketAssigneeController;
 use App\Http\Controllers\API\TicketAssignees\ShowTicketAssigneeController;
 use App\Http\Controllers\API\TicketAssignees\TicketAssignStaffsController;
 use App\Http\Controllers\API\TicketAssignees\UpdateTicketAssigneeController;
+use App\Http\Controllers\API\TicketChats\CreateTicketChatController;
+use App\Http\Controllers\API\TicketChats\DeleteTicketChatController;
+use App\Http\Controllers\API\TicketChats\ListTicketChatController;
 use App\Http\Controllers\API\TicketEmails\CreateTicketEmailController;
 use App\Http\Controllers\API\TicketEmails\ListTicketEmailController;
 use App\Http\Controllers\API\TicketEmails\TicketEmailMarkAsReadController;
@@ -611,6 +614,21 @@ Route::group([
         Route::put('/ticket-notes/{id}', [
             'as' => 'update-notes',
             'uses' => UpdateTicketNoteController::class,
+        ])->middleware('checkPermission:tickets,edit');
+
+        Route::post('/tickets/{id}/chats', [
+            'as' => 'create-ticket-chats',
+            'uses' => CreateTicketChatController::class,
+        ])->middleware('checkPermission:tickets,edit');
+
+        Route::get('/tickets/{id}/chats', [
+            'as' => 'list-ticket-chats',
+            'uses' => ListTicketChatController::class,
+        ])->middleware('checkPermission:tickets,edit');
+
+        Route::delete('/ticket-chats/{id}', [
+            'as' => 'delete-ticket-chats',
+            'uses' => DeleteTicketChatController::class,
         ])->middleware('checkPermission:tickets,edit');
     });
 

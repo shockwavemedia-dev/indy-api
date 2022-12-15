@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enum\EmailStatusEnum;
 use App\Enum\UserStatusEnum;
 use App\Models\Emails\EmailLog;
 use App\Models\Emails\Interfaces\EmailInterface;
@@ -219,6 +220,20 @@ final class User extends Authenticatable implements EmailInterface
 
     public function sendGenericNotification(EmailLog $emailLog, string $message, string $url): void
     {
+        $this->notify(new GenericEmail($emailLog, $message, $url));
+    }
+
+    public function sendGenericNotificationWithEmailLog(mixed $morph, string $message, string $url): void
+    {
+        $emailLog = EmailLog::create([
+            'morphable_id' => $morph->getId(),
+            'morphable_type' => get_class($morph),
+            'status' => new EmailStatusEnum(EmailStatusEnum::PENDING),
+            'failed_details',
+            'to' => $this->getEmail(),
+            'message' => $message,
+        ]);
+
         $this->notify(new GenericEmail($emailLog, $message, $url));
     }
 
