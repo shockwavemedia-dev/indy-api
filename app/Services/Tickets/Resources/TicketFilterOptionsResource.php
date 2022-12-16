@@ -19,6 +19,8 @@ final class TicketFilterOptionsResource extends DataTransferObject
 
     public ?Carbon $deadline = null;
 
+    public ?array $priorities = null;
+
     public function getTypes(): ?array
     {
         return $this->types;
@@ -42,5 +44,10 @@ final class TicketFilterOptionsResource extends DataTransferObject
     public function getDeadline(): ?Carbon
     {
         return $this->deadline;
+    }
+
+    public function getPriorities(): ?array
+    {
+        return $this->priorities;
     }
 }

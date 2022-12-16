@@ -37,6 +37,8 @@ interface TicketRepositoryInterface
 
     public function findByDepartment(
         Department $department,
+        TicketFilterOptionsResource $resource,
+        ?Client $client = null,
         ?int $size = null,
         ?int $pageNumber = null
     ): LengthAwarePaginator;
@@ -80,6 +82,8 @@ interface TicketRepositoryInterface
 
     public function findByAssigneeAdminUser(
         AdminUser $adminUser,
+        TicketFilterOptionsResource $resource,
+        ?Client $client = null,
         ?int $size = null,
         ?int $pageNumber = null
     ): LengthAwarePaginator;

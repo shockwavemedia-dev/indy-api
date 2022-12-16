@@ -132,8 +132,12 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             ->paginate($size, ['*'], null, $pageNumber);
     }
 
-    public function findByDepartment(Department $department, ?int $size = null, ?int $pageNumber = null): LengthAwarePaginator
+    public function findByDepartment(Department $department, TicketFilterOptionsResource $resource, ?Client $client = null, ?int $size = null, ?int $pageNumber = null): LengthAwarePaginator
     {
+        $statuses = $resource->getStatuses();
+
+        $priorities = $resource->getPriorities();
+
         return $this->model
             ->with('ticketServices.service')
             ->where('department_id', $department->getId())
@@ -142,6 +146,19 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             })
             ->orWhereHas('ticketServices.service.departments', function ($query) use ($department) {
                 $query->where('department_id', '=', $department->getId());
+            })
+            ->when($statuses, function ($query, $statuses) {
+                return $query->whereIn('status', $statuses);
+            })
+            ->when($client, function ($query, $client) {
+                if ($client === null) {
+                    return;
+                }
+
+                $query->where('client_id', $client->getId());
+            })
+            ->when($priorities, function ($query, $priorities) {
+                return $query->whereIn('priority', $priorities);
             })
             ->orderBy('id', 'desc')
             ->paginate($size, ['*'], null, $pageNumber);
@@ -218,13 +235,15 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
         array $params = [],
         ?int $size = null,
         ?int $pageNumber = null,
-        ?Client $client = null
+        ?Client $client = null,
     ): LengthAwarePaginator {
         $departmentIds = Arr::get($params, 'department_ids');
 
         $types = Arr::get($params, 'types');
 
         $status = Arr::get($params, 'status');
+
+        $priority = Arr::get($params, 'priority');
 
         return $this->model
             ->when($client, function ($query, $client) {
@@ -242,6 +261,9 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             })
             ->when($departmentIds, function ($query, $departmentIds) {
                 return $query->whereIn('department_id', $departmentIds);
+            })
+            ->when($priority, function ($query, $priority) {
+                return $query->whereIn('priority', $priority);
             })
             ->with('ticketEvent')
             ->orderBy('id', 'desc')
@@ -262,12 +284,29 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
         return $ticket;
     }
 
-    public function findByAssigneeAdminUser(AdminUser $adminUser, ?int $size = null, ?int $pageNumber = null): LengthAwarePaginator
+    public function findByAssigneeAdminUser(AdminUser $adminUser, TicketFilterOptionsResource $resource, ?Client $client = null, ?int $size = null, ?int $pageNumber = null): LengthAwarePaginator
     {
+        $statuses = $resource->getStatuses();
+
+        $priorities = $resource->getPriorities();
+
         return $this->model->whereHas('assignees', function ($query) use ($adminUser) {
             $query->where('admin_user_id', '=', $adminUser->getId());
         })
             ->with('ticketServices.service')
+            ->when($statuses, function ($query, $statuses) {
+                return $query->whereIn('status', $statuses);
+            })
+            ->when($client, function ($query, $client) {
+                if ($client === null) {
+                    return;
+                }
+
+                $query->where('client_id', $client->getId());
+            })
+            ->when($priorities, function ($query, $priorities) {
+                return $query->whereIn('priority', $priorities);
+            })
             ->orderBy('id', 'desc')
             ->paginate($size, ['*'], null, $pageNumber);
     }
