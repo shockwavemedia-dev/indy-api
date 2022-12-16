@@ -36,7 +36,7 @@ final class ClientServiceFactory implements ClientServiceFactoryInterface
             $this->clientServiceRepository->createClientService(new CreateClientServiceResource([
                 'clientId' => $client->getId(),
                 'serviceId' => $service->getId(),
-                'extras' => $service->getExtras(),
+                'extras' => [],
                 'createdById' => $user->getId(),
             ]));
         }

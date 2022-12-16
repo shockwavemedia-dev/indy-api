@@ -74,7 +74,7 @@ final class AssignedTicketSlackNotificationJob implements ShouldQueue
             $slackSendMessage->sendMessage($slackUser, $message);
 
             $sentryHandler->log($message);
-        } catch (SlackUserNullException | SlackSendMessageException $exception) {
+        } catch (SlackUserNullException|SlackSendMessageException $exception) {
             $sentryHandler->reportError($exception);
             $sentryHandler->log(\sprintf('This email does not have slack account %s', $this->user->getEmail()));
         }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Resources\API\TicketChats;
 
-use App\Http\Resources\API\Users\UserResource;
 use App\Http\Resources\Resource;
 
 final class TicketChatResource extends Resource
