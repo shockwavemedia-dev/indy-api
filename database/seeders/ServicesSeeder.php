@@ -72,7 +72,7 @@ final class ServicesSeeder extends Seeder
                 $this->clientServiceRepository->createClientService(new CreateClientServiceResource([
                     'clientId' => $client->getId(),
                     'serviceId' => $exist->getId(),
-                    'extras' => $exist->getExtras(),
+                    'extras' => [],
                     'createdById' => 1,
                 ]));
             }
