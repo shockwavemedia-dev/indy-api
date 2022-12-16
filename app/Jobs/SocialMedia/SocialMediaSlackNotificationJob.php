@@ -57,7 +57,7 @@ final class SocialMediaSlackNotificationJob implements ShouldQueue
             $slackSendMessage->sendMessage($slackUser, \sprintf('%s %s', $this->message, $url));
 
             $sentryHandler->log($this->message);
-        } catch (SlackUserNullException | SlackSendMessageException $exception) {
+        } catch (SlackUserNullException|SlackSendMessageException $exception) {
             $sentryHandler->log(sprintf('This email does not have slack account %s', $this->user->getEmail()));
         } catch (UnknownProperties $e) {
             $sentryHandler->reportError($e);

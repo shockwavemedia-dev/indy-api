@@ -60,8 +60,17 @@ final class ClientTicketFileObserver
      */
     public function updated(ClientTicketFile $clientTicketFile): void
     {
-        if ($clientTicketFile->isApproved() === true) {
-            $this->notifySocialMediaFileApproved($clientTicketFile);
+        $ticket = $clientTicketFile->getTicket();
+
+        /** @var TicketService $ticketService */
+        foreach ($ticket->getTicketServices() as $ticketService) {
+            if ($ticketService->getService()->getName() === ServicesEnum::SOCIAL_MEDIA) {
+                if ($clientTicketFile->isApproved() === true) {
+                    $this->notifySocialMediaFileApproved($clientTicketFile);
+
+                    break;
+                }
+            }
         }
     }
 

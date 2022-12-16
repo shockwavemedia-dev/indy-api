@@ -72,7 +72,7 @@ final class MentionedSlackNotificationJob implements ShouldQueue
             );
 
             $sentryHandler->log($message);
-        } catch (SlackUserNullException | SlackSendMessageException $exception) {
+        } catch (SlackUserNullException|SlackSendMessageException $exception) {
             $sentryHandler->log(
                 sprintf(
                     'This email does not have slack account %s',

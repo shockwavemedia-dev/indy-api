@@ -68,7 +68,7 @@ final class SmsClient implements SmsClientInterface
             }
 
             return json_decode($body, true);
-        } catch (GuzzleException | RequestException | SmsApiException $exception) {
+        } catch (GuzzleException|RequestException|SmsApiException $exception) {
             $this->sentryHandler->reportError($exception);
 
             throw new SmsApiException(
