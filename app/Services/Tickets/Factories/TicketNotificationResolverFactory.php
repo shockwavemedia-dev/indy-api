@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Services\Tickets\Factories;
 
-use _PHPStan_ae8980142\Nette\Neon\Exception;
 use App\Enum\TicketNotificationTypeEnum;
 use App\Services\Tickets\Interfaces\Factories\TicketNotificationResolverFactoryInterface;
 use App\Services\Tickets\Interfaces\Resolvers\TicketNotificationResolverInterface;
 use EonX\EasyUtils\CollectorHelper;
+use Exception;
 
 final class TicketNotificationResolverFactory implements TicketNotificationResolverFactoryInterface
 {
