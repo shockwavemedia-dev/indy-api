@@ -26,7 +26,7 @@ final class CreateClientUserRequest extends AbstractCreateUserRequest
             'first_name' => 'required|string',
             'last_name' => 'nullable|string',
             'send_invite' => 'nullable',
-            'password' => 'min:6|required_if:send_invite,false|required_with:password_confirmation|same:password_confirmation|nullable|string',
+            'password' => 'min:4|required_if:send_invite,false|required_with:password_confirmation|same:password_confirmation|nullable|string',
             'password_confirmation' => 'required_if:send_invite,false',
             'role' => [
                 'string',
