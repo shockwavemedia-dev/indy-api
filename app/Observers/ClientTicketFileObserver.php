@@ -72,9 +72,6 @@ final class ClientTicketFileObserver
                 }
             }
         }
-
-
-
     }
 
     /**

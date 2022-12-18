@@ -32,6 +32,9 @@ final class ListDepartmentTicketsController extends AbstractAPIController
         $this->clientRepository = $clientRepository;
     }
 
+    /**
+     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
+     */
     public function __invoke(int $id, PaginationRequest $request): JsonResource
     {
         /** @var Department $department */
@@ -43,25 +46,13 @@ final class ListDepartmentTicketsController extends AbstractAPIController
             ]);
         }
 
-        $client = null;
-
-        if($request->getClientId() !== null){
-            $client = $this->clientRepository->find($request->getClientId());
-
-            if ($client === null) {
-                return $this->respondNotFound([
-                    'message' => 'Client not found.',
-                ]);
-            }
-        }
-
         $tickets = $this->ticketRepository->findByDepartment(
             $department,
             new TicketFilterOptionsResource([
                 'statuses' => $request->getStatuses(),
                 'priorities' => $request->getPriorities(),
+                'clientId' => $request->getClientId(),
             ]),
-            $client,
             $request->getSize(),
             $request->getPageNumber()
         );

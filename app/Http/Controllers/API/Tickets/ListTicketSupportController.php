@@ -12,27 +12,16 @@ use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Tickets\TicketQueryRequest;
 use App\Http\Resources\API\Tickets\TicketSupportsResource;
 use App\Models\Users\ClientUser;
-use App\Repositories\Interfaces\ClientRepositoryInterface;
 use App\Repositories\Interfaces\TicketRepositoryInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Throwable;
 
 final class ListTicketSupportController extends AbstractAPIController
 {
-    private ArrayHelperInterface $arrayHelper;
-
-    private TicketRepositoryInterface $ticketRepository;
-
-    private ClientRepositoryInterface $clientRepository;
-
     public function __construct(
-        ArrayHelperInterface $arrayHelper,
-        TicketRepositoryInterface $ticketRepository,
-        ClientRepositoryInterface $clientRepository
-    ){
-        $this->arrayHelper = $arrayHelper;
-        $this->ticketRepository = $ticketRepository;
-        $this->clientRepository = $clientRepository;
+        private ArrayHelperInterface $arrayHelper,
+        private TicketRepositoryInterface $ticketRepository,
+    ) {
     }
 
     public function __invoke(TicketQueryRequest $request): JsonResource
@@ -64,24 +53,12 @@ final class ListTicketSupportController extends AbstractAPIController
         }
 
         $options = [
+            'client_id' => $request->getClientId(),
             'department_ids' => $request->getDepartmentIds(),
+            'priority' => $priorities,
             'status' => $statuses,
             'types' => $types,
-            'client_id' => $request->getClientId(),
-            'priority' => $priorities,
         ];
-
-        $client = null;
-
-        if($request->getClientId() !== null){
-            $client = $this->clientRepository->find($request->getClientId());
-
-            if ($client === null) {
-                return $this->respondNotFound([
-                    'message' => 'Client not found.',
-                ]);
-            }
-        }
 
         $user = $this->getUser();
 
@@ -94,7 +71,6 @@ final class ListTicketSupportController extends AbstractAPIController
                 $options,
                 $request->getSize(),
                 $request->getPageNumber(),
-                $client,
             );
 
             return new TicketSupportsResource($tickets);

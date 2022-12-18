@@ -55,7 +55,6 @@ final class TicketQueryRequest extends PaginationRequest
         }
 
         return $clientId;
-
     }
 
     public function getPriorities(): ?array
@@ -79,7 +78,7 @@ final class TicketQueryRequest extends PaginationRequest
             'status' => 'string',
             'types' => 'string',
             'client_id' => 'int|nullable|exists:App\Models\Client,id',
-            'priority'  => 'string'
+            'priority' => 'string',
         ];
     }
 }

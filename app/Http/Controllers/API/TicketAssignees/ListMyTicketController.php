@@ -8,7 +8,6 @@ use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\PaginationRequest;
 use App\Http\Resources\API\Tickets\TicketSupportsResource;
 use App\Models\Users\AdminUser;
-use App\Repositories\Interfaces\ClientRepositoryInterface;
 use App\Repositories\Interfaces\TicketRepositoryInterface;
 use App\Services\Tickets\Resources\TicketFilterOptionsResource;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -16,16 +15,9 @@ use Throwable;
 
 final class ListMyTicketController extends AbstractAPIController
 {
-    private TicketRepositoryInterface $ticketRepository;
-
-    private ClientRepositoryInterface $clientRepository;
-
     public function __construct(
-        TicketRepositoryInterface $ticketRepository,
-        ClientRepositoryInterface $clientRepository
+        private TicketRepositoryInterface $ticketRepository,
     ) {
-        $this->ticketRepository = $ticketRepository;
-        $this->clientRepository = $clientRepository;
     }
 
     public function __invoke(PaginationRequest $request): JsonResource
@@ -34,25 +26,13 @@ final class ListMyTicketController extends AbstractAPIController
             /** @var AdminUser $adminUser */
             $adminUser = $this->getUser()->getUserType();
 
-            $client = null;
-
-            if($request->getClientId() !== null){
-                $client = $this->clientRepository->find($request->getClientId());
-
-                if ($client === null) {
-                    return $this->respondNotFound([
-                        'message' => 'Client not found.',
-                    ]);
-                }
-            }
-
-            $tickets = $this->ticketRepository->findByAssigneeAdminUser(
+            $tickets = $this->ticketRepository->findByAdminUser(
                 $adminUser,
                 new TicketFilterOptionsResource([
+                    'clientId' => $request->getClientId(),
                     'statuses' => $request->getStatuses(),
                     'priorities' => $request->getPriorities(),
                 ]),
-                $client,
                 $request->getSize(),
                 $request->getPageNumber()
             );

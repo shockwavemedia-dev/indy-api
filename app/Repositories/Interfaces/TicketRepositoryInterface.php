@@ -38,7 +38,6 @@ interface TicketRepositoryInterface
     public function findByDepartment(
         Department $department,
         TicketFilterOptionsResource $resource,
-        ?Client $client = null,
         ?int $size = null,
         ?int $pageNumber = null
     ): LengthAwarePaginator;
@@ -68,8 +67,7 @@ interface TicketRepositoryInterface
     public function findByOptions(
         array $params = [],
         ?int $size = null,
-        ?int $pageNumber = null,
-        ?Client $client = null,
+        ?int $pageNumber = null
     ): LengthAwarePaginator;
 
     public function findSupportTickets(?int $size = null, ?int $pageNumber = null): LengthAwarePaginator;
@@ -80,10 +78,9 @@ interface TicketRepositoryInterface
 
     public function updateStatusToOpen(Ticket $ticket): Ticket;
 
-    public function findByAssigneeAdminUser(
+    public function findByAdminUser(
         AdminUser $adminUser,
         TicketFilterOptionsResource $resource,
-        ?Client $client = null,
         ?int $size = null,
         ?int $pageNumber = null
     ): LengthAwarePaginator;
