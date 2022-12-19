@@ -18,6 +18,11 @@ final class CreateTicketNoteRequest extends BaseRequest
         return $this->getString('note');
     }
 
+    public function getAttachments(): array
+    {
+        return $this->file('attachments') ?? [];
+    }
+
     public function rules(): array
     {
         return [

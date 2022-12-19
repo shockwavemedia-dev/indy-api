@@ -4,11 +4,14 @@ namespace App\Models\Tickets;
 
 use App\Models\AbstractModel;
 use App\Models\Emails\Interfaces\EmailInterface;
+use App\Models\NoteAttachment;
 use App\Models\TicketFileVersion;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 final class TicketNote extends AbstractModel implements EmailInterface
@@ -30,6 +33,12 @@ final class TicketNote extends AbstractModel implements EmailInterface
      * @var string
      */
     protected $table = 'ticket_notes';
+
+    public function getAttachments(): Collection
+    {
+        return $this->attachments;
+    }
+
 
     public function getTicket(): Ticket
     {
@@ -93,6 +102,11 @@ final class TicketNote extends AbstractModel implements EmailInterface
     public function getTicketFileVersion(): ?TicketFileVersion
     {
         return $this->ticketFileVersion;
+    }
+
+    public function attachments(): HasMany
+    {
+        return $this->hasMany(NoteAttachment::class, 'ticket_note_id');
     }
 
     public function ticket(): BelongsTo
