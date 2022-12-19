@@ -18,8 +18,7 @@ interface SocialMediaRepositoryInterface
     public function findByClientMonthAndYear(
         Client $client,
         int $month,
-        int $year,
-        string $timezone
+        int $year
     ): Collection;
 
     public function update(SocialMedia $socialMedia, array $updates): SocialMedia;

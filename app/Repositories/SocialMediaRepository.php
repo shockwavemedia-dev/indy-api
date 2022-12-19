@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Client;
 use App\Models\SocialMedia;
 use App\Repositories\Interfaces\SocialMediaRepositoryInterface;
+use Carbon\Carbon;
 use DateTime;
 use DateTimeZone;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -41,19 +42,21 @@ final class SocialMediaRepository extends BaseRepository implements SocialMediaR
         return $socialMedia;
     }
 
-    public function findByClientMonthAndYear(Client $client, int $month, int $year, string $timezone): Collection
+    public function findByClientMonthAndYear(Client $client, int $month, int $year): Collection
     {
-        $monthYear = date("Y-m-t", strtotime($year.'-'.$month));
+        $startDate = new Carbon(sprintf('%s-%s-%s',
+            $year,
+            $month,
+            '1',
+        ));
 
-        $postStartDate =  new DateTime($year.'-'.$month.'-01 00:00:00', new DateTimeZone($timezone));
-        $postStartDate->setTimezone(new DateTimeZone('UTC'));
+        $startDate = $startDate->subDay()->startOfDay();
 
-        $postEndDate =  new DateTime($monthYear.' '.'23:59:59', new DateTimeZone($timezone));
-        $postEndDate->setTimezone(new DateTimeZone('UTC'));
+        $endDate = $startDate->endOfMonth()->addDay()->endOfDay();
 
         return $this->model
-            ->where('post_date', '>=', $postStartDate->format('Y-m-d h:i:s'))
-            ->where('post_date', '<', $postEndDate->format('Y-m-d h:i:s'))
+            ->where('post_date', '>=', $startDate->toDateTimeString())
+            ->where('post_date', '<', $endDate->toDateTimeString())
             ->where('client_id', $client->getId())
             ->with('attachments.file')
             ->get();
