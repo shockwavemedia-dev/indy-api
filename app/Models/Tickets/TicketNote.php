@@ -39,7 +39,6 @@ final class TicketNote extends AbstractModel implements EmailInterface
         return $this->attachments;
     }
 
-
     public function getTicket(): Ticket
     {
         return $this->ticket;

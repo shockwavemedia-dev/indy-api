@@ -6,8 +6,6 @@ use App\Models\Client;
 use App\Models\SocialMedia;
 use App\Repositories\Interfaces\SocialMediaRepositoryInterface;
 use Carbon\Carbon;
-use DateTime;
-use DateTimeZone;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 

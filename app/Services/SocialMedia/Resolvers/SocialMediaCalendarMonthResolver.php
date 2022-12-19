@@ -12,8 +12,6 @@ use App\Repositories\Interfaces\SocialMediaRepositoryInterface;
 use App\Services\SocialMedia\Interfaces\SocialMediaCalendarMonthResolverInterface;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
-use DateTime;
-use DateTimeZone;
 use OwenIt\Auditing\Models\Audit;
 
 final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonthResolverInterface
@@ -64,8 +62,7 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
 
             /** @var SocialMedia $socialMedia */
             foreach ($socialMedias as $socialMedia) {
-
-                $postDate =  new Carbon($socialMedia->getAttribute('post_date'));
+                $postDate = new Carbon($socialMedia->getAttribute('post_date'));
                 $postDate->setTimezone($timezone);
 
                 if ($postDate->toDateString() !== $date->toDateString()) {
