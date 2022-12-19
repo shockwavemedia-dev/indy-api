@@ -11,6 +11,8 @@ use App\Repositories\Interfaces\SocialMediaRepositoryInterface;
 use App\Services\SocialMedia\Interfaces\SocialMediaCalendarMonthResolverInterface;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use DateTime;
+use DateTimeZone;
 use OwenIt\Auditing\Models\Audit;
 
 final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonthResolverInterface
@@ -22,12 +24,16 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
         $this->socialMediaRepository = $socialMediaRepository;
     }
 
-    public function resolve(Client $client, int $month, int $year): array
+    /**
+     * @throws \Exception
+     */
+    public function resolve(Client $client, int $month, int $year, string $timezone): array
     {
         $socialMedias = $this->socialMediaRepository->findByClientMonthAndYear(
             $client,
             $month,
-            $year
+            $year,
+            $timezone
         );
 
         $results = [];
@@ -47,7 +53,11 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
             $results[$date->toDateString()] = [];
 
             foreach ($socialMedias as $socialMedia) {
-                if ($socialMedia->post_date->toDateString() !== $date->toDateString()) {
+
+                $postDate =  new DateTime($socialMedia->post_date->toDateTimeString(), new DateTimeZone('UTC'));
+                $postDate->setTimezone(new DateTimeZone($timezone));
+
+                if ($postDate->format('Y-m-d') !== $date->toDateString()) {
                     continue;
                 }
 
