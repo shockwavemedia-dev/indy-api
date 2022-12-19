@@ -150,10 +150,7 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             ->orWhereHas('assignees', function ($query) use ($department) {
                 $query->where('department_id', '=', $department->getId());
             })
-            ->orWhereHas('ticketServices.service.departments', function ($query) use ($department) {
-                $query->where('department_id', '=', $department->getId());
-            })
-            ->when($statuses, function ($query, $statuses) {
+            ->when($statuses, function ($query) use ($statuses) {
                 return $query->whereIn('status', $statuses);
             })
             ->when($clientId, function ($query) use ($clientId) {
@@ -165,6 +162,9 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             })
             ->when($priorities, function ($query, $priorities) {
                 return $query->whereIn('priority', $priorities);
+            })
+            ->orWhereHas('ticketServices.service.departments', function ($query) use ($department) {
+                $query->where('department_id', '=', $department->getId());
             })
             ->orderBy('id', 'desc')
             ->paginate($size, ['*'], null, $pageNumber);
