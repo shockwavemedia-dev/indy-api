@@ -132,13 +132,36 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             ->paginate($size, ['*'], null, $pageNumber);
     }
 
-    public function findByDepartment(Department $department, ?int $size = null, ?int $pageNumber = null): LengthAwarePaginator
-    {
+    public function findByDepartment(
+        Department $department,
+        TicketFilterOptionsResource $resource,
+        ?int $size = null,
+        ?int $pageNumber = null
+    ): LengthAwarePaginator {
+        $statuses = $resource->getStatuses();
+
+        $priorities = $resource->getPriorities();
+
+        $clientId = $resource->getClientId();
+
         return $this->model
             ->with('ticketServices.service')
             ->where('department_id', $department->getId())
             ->orWhereHas('assignees', function ($query) use ($department) {
                 $query->where('department_id', '=', $department->getId());
+            })
+            ->when($statuses, function ($query) use ($statuses) {
+                return $query->whereIn('status', $statuses);
+            })
+            ->when($clientId, function ($query) use ($clientId) {
+                if ($clientId === null) {
+                    return;
+                }
+
+                $query->where('client_id', $clientId);
+            })
+            ->when($priorities, function ($query, $priorities) {
+                return $query->whereIn('priority', $priorities);
             })
             ->orWhereHas('ticketServices.service.departments', function ($query) use ($department) {
                 $query->where('department_id', '=', $department->getId());
@@ -217,8 +240,7 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
     public function findByOptions(
         array $params = [],
         ?int $size = null,
-        ?int $pageNumber = null,
-        ?Client $client = null
+        ?int $pageNumber = null
     ): LengthAwarePaginator {
         $departmentIds = Arr::get($params, 'department_ids');
 
@@ -226,13 +248,17 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
 
         $status = Arr::get($params, 'status');
 
+        $priority = Arr::get($params, 'priority');
+
+        $clientId = Arr::get($params, 'client_id');
+
         return $this->model
-            ->when($client, function ($query, $client) {
-                if ($client === null) {
+            ->when($clientId, function ($query) use ($clientId) {
+                if ($clientId === null) {
                     return;
                 }
 
-                $query->where('client_id', $client->getId());
+                $query->where('client_id', $clientId);
             })
             ->when($types, function ($query, $types) {
                 return $query->whereIn('type', $types);
@@ -242,6 +268,9 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             })
             ->when($departmentIds, function ($query, $departmentIds) {
                 return $query->whereIn('department_id', $departmentIds);
+            })
+            ->when($priority, function ($query, $priority) {
+                return $query->whereIn('priority', $priority);
             })
             ->with('ticketEvent')
             ->orderBy('id', 'desc')
@@ -262,12 +291,35 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
         return $ticket;
     }
 
-    public function findByAssigneeAdminUser(AdminUser $adminUser, ?int $size = null, ?int $pageNumber = null): LengthAwarePaginator
-    {
+    public function findByAdminUser(
+        AdminUser $adminUser,
+        TicketFilterOptionsResource $resource,
+        ?int $size = null,
+        ?int $pageNumber = null
+    ): LengthAwarePaginator {
+        $statuses = $resource->getStatuses();
+
+        $priorities = $resource->getPriorities();
+
+        $clientId = $resource->getClientId();
+
         return $this->model->whereHas('assignees', function ($query) use ($adminUser) {
             $query->where('admin_user_id', '=', $adminUser->getId());
         })
             ->with('ticketServices.service')
+            ->when($statuses, function ($query) use ($statuses) {
+                return $query->whereIn('status', $statuses);
+            })
+            ->when($clientId, function ($query) use ($clientId) {
+                if ($clientId === null) {
+                    return;
+                }
+
+                $query->where('client_id', $clientId);
+            })
+            ->when($priorities, function ($query, $priorities) {
+                return $query->whereIn('priority', $priorities);
+            })
             ->orderBy('id', 'desc')
             ->paginate($size, ['*'], null, $pageNumber);
     }

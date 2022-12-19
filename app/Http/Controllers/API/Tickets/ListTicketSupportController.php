@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\Tickets;
 
+use App\Enum\TicketPrioritiesEnum;
 use App\Enum\TicketStatusEnum;
 use App\Enum\TicketTypeEnum;
 use App\Helpers\Interfaces\ArrayHelperInterface;
@@ -17,23 +18,21 @@ use Throwable;
 
 final class ListTicketSupportController extends AbstractAPIController
 {
-    private ArrayHelperInterface $arrayHelper;
-
-    private TicketRepositoryInterface $ticketRepository;
-
-    public function __construct(ArrayHelperInterface $arrayHelper, TicketRepositoryInterface $ticketRepository)
-    {
-        $this->arrayHelper = $arrayHelper;
-        $this->ticketRepository = $ticketRepository;
+    public function __construct(
+        private ArrayHelperInterface $arrayHelper,
+        private TicketRepositoryInterface $ticketRepository,
+    ) {
     }
 
     public function __invoke(TicketQueryRequest $request): JsonResource
     {
         $statuses = $request->getStatuses() ?? [];
         $types = $request->getTypes() ?? [];
+        $priorities = $request->getPriorities() ?? [];
 
         $statusCheck = $this->arrayHelper->arrayDiff($statuses, TicketStatusEnum::toArray());
         $typesCheck = $this->arrayHelper->arrayDiff($types, TicketTypeEnum::toArray());
+        $prioritiesCheck = $this->arrayHelper->arrayDiff($priorities, TicketPrioritiesEnum::toArray());
 
         if ($request->getStatuses() !== null && count($statusCheck) > 0) {
             return $this->respondBadRequest([
@@ -47,13 +46,19 @@ final class ListTicketSupportController extends AbstractAPIController
             ]);
         }
 
+        if ($request->getPriorities() !== null && count($prioritiesCheck) > 0) {
+            return $this->respondBadRequest([
+                'message' => 'Incorrect priority provided',
+            ]);
+        }
+
         $options = [
+            'client_id' => $request->getClientId(),
             'department_ids' => $request->getDepartmentIds(),
+            'priority' => $priorities,
             'status' => $statuses,
             'types' => $types,
         ];
-
-        $client = null;
 
         $user = $this->getUser();
 
@@ -66,7 +71,6 @@ final class ListTicketSupportController extends AbstractAPIController
                 $options,
                 $request->getSize(),
                 $request->getPageNumber(),
-                $client,
             );
 
             return new TicketSupportsResource($tickets);
