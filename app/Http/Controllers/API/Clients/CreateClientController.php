@@ -61,7 +61,7 @@ final class CreateClientController extends AbstractAPIController
 
             $clientCodeExist = $this->clientRepository->findByCode(abbreviate($request->getName()));
 
-            $version = substr($clientCodeExist?->getClientCode(), -1) ?? null;
+            $version = substr($clientCodeExist?->getClientCode() ?? '', -1) ?? null;
 
             $clientCode = abbreviate($request->getName());
 

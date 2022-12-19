@@ -51,7 +51,7 @@ final class CreateAdminUserRequest extends AbstractCreateUserRequest
             'position' => 'string|nullable',
             'last_name' => 'string|nullable',
             'middle_name' => 'string|nullable',
-            'password' => 'min:6|required_if:send_invite,false|required_with:password_confirmation|same:password_confirmation|nullable|string',
+            'password' => 'min:4|required_if:send_invite,false|required_with:password_confirmation|same:password_confirmation|nullable|string',
             'password_confirmation' => 'required_if:send_invite,false',
             'role' => [
                 'string',

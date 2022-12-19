@@ -7,7 +7,9 @@ namespace App\Providers;
 use App\Repositories\Interfaces\ServiceRepositoryInterface;
 use App\Services\TicketActivities\Interfaces\TicketActivityFactoryInterface;
 use App\Services\TicketActivities\TicketActivityFactory;
+use App\Services\TicketNotes\Interfaces\NoteAttachmentFactoryInterface;
 use App\Services\TicketNotes\Interfaces\TicketNoteFactoryInterface;
+use App\Services\TicketNotes\NoteAttachmentFactory;
 use App\Services\TicketNotes\TicketNoteFactory;
 use App\Services\Tickets\AssignTicketService;
 use App\Services\Tickets\Factories\EmailTicketFactory;
@@ -54,6 +56,7 @@ final class TicketServiceProvider extends ServiceProvider
             TicketAttachmentUploaderInterface::class => TicketAttachmentUploader::class,
             TicketEventAttachmentFactoryInterface::class => TicketEventAttachmentFactory::class,
             TicketNoteFactoryInterface::class => TicketNoteFactory::class,
+            NoteAttachmentFactoryInterface::class => NoteAttachmentFactory::class,
             TicketNotifyDepartmentsResolverInterface::class => TicketNotifyDepartmentsResolver::class,
             TicketServicesFactoryInterface::class => TicketServicesFactory::class,
         ];
