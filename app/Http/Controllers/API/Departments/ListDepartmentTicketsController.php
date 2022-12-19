@@ -8,8 +8,10 @@ use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\PaginationRequest;
 use App\Http\Resources\API\Tickets\TicketSupportsResource;
 use App\Models\Department;
+use App\Repositories\Interfaces\ClientRepositoryInterface;
 use App\Repositories\Interfaces\DepartmentRepositoryInterface;
 use App\Repositories\Interfaces\TicketRepositoryInterface;
+use App\Services\Tickets\Resources\TicketFilterOptionsResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 final class ListDepartmentTicketsController extends AbstractAPIController
@@ -18,14 +20,21 @@ final class ListDepartmentTicketsController extends AbstractAPIController
 
     private TicketRepositoryInterface $ticketRepository;
 
+    private ClientRepositoryInterface $clientRepository;
+
     public function __construct(
         DepartmentRepositoryInterface $departmentRepository,
-        TicketRepositoryInterface $ticketRepository
+        TicketRepositoryInterface $ticketRepository,
+        ClientRepositoryInterface $clientRepository
     ) {
         $this->departmentRepository = $departmentRepository;
         $this->ticketRepository = $ticketRepository;
+        $this->clientRepository = $clientRepository;
     }
 
+    /**
+     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
+     */
     public function __invoke(int $id, PaginationRequest $request): JsonResource
     {
         /** @var Department $department */
@@ -39,6 +48,11 @@ final class ListDepartmentTicketsController extends AbstractAPIController
 
         $tickets = $this->ticketRepository->findByDepartment(
             $department,
+            new TicketFilterOptionsResource([
+                'statuses' => $request->getStatuses(),
+                'priorities' => $request->getPriorities(),
+                'clientId' => $request->getClientId(),
+            ]),
             $request->getSize(),
             $request->getPageNumber()
         );

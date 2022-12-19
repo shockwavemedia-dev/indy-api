@@ -9,17 +9,15 @@ use App\Http\Requests\API\PaginationRequest;
 use App\Http\Resources\API\Tickets\TicketSupportsResource;
 use App\Models\Users\AdminUser;
 use App\Repositories\Interfaces\TicketRepositoryInterface;
+use App\Services\Tickets\Resources\TicketFilterOptionsResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Throwable;
 
 final class ListMyTicketController extends AbstractAPIController
 {
-    private TicketRepositoryInterface $ticketRepository;
-
     public function __construct(
-        TicketRepositoryInterface $ticketRepository
+        private TicketRepositoryInterface $ticketRepository,
     ) {
-        $this->ticketRepository = $ticketRepository;
     }
 
     public function __invoke(PaginationRequest $request): JsonResource
@@ -28,8 +26,13 @@ final class ListMyTicketController extends AbstractAPIController
             /** @var AdminUser $adminUser */
             $adminUser = $this->getUser()->getUserType();
 
-            $tickets = $this->ticketRepository->findByAssigneeAdminUser(
+            $tickets = $this->ticketRepository->findByAdminUser(
                 $adminUser,
+                new TicketFilterOptionsResource([
+                    'clientId' => $request->getClientId(),
+                    'statuses' => $request->getStatuses(),
+                    'priorities' => $request->getPriorities(),
+                ]),
                 $request->getSize(),
                 $request->getPageNumber()
             );
