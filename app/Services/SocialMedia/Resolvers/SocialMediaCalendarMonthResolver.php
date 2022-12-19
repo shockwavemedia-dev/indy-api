@@ -35,7 +35,7 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
         );
 
         $startDate = Carbon::createFromFormat(
-            'Y-m-d H:i:s',
+            'Y-m-d',
             sprintf('%s-%s-%s',
                 $year,
                 $month,
@@ -45,7 +45,17 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
         );
 
         $startDate = $startDate->startOfDay();
-        $endDate = $startDate->endOfMonth()->endOfDay();
+
+        $endDate = Carbon::createFromFormat(
+            'Y-m-d',
+            sprintf('%s-%s-%s',
+                $year,
+                $month,
+                '1',
+            ),
+            $timezone,
+        );
+        $endDate = $endDate->endOfMonth()->endOfDay();
 
         $results = [];
 

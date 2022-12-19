@@ -48,9 +48,15 @@ final class SocialMediaRepository extends BaseRepository implements SocialMediaR
             '1',
         ));
 
-        $startDate = $startDate->subDay()->startOfDay();
+        $startDate = $startDate->startOfDay()->subDays(1);
 
-        $endDate = $startDate->endOfMonth()->addDay()->endOfDay();
+        $endDate = new Carbon(sprintf('%s-%s-%s',
+            $year,
+            $month,
+            '1',
+        ));
+
+        $endDate = $endDate->endOfMonth()->endOfDay()->addDays(1);
 
         return $this->model
             ->where('post_date', '>=', $startDate->toDateTimeString())
