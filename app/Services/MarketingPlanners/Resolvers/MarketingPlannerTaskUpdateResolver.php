@@ -58,7 +58,7 @@ final class MarketingPlannerTaskUpdateResolver implements MarketingPlannerTaskUp
                 $this->marketingPlannerTaskFactory->make(new MarketingPlannerTaskCreateResource([
                     'name' => Arr::get($marketingPlannerTask, 'name'),
                     'assignees' => $assignees,
-                    'status' => Arr::get($marketingPlannerTask, 'status'),
+                    'status' => Arr::get($marketingPlannerTask, 'status', 'Todo'),
                     'deadline' => Arr::get($marketingPlannerTask, 'deadline')
                     ? (new Carbon(Arr::get($marketingPlannerTask, 'deadline'))) : null,
                     'notify' => Arr::get($marketingPlannerTask, 'notify', false),
