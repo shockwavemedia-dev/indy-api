@@ -9,6 +9,8 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 final class TicketFilterOptionsResource extends DataTransferObject
 {
+    public ?int $clientId = null;
+
     public ?array $types = null;
 
     public ?array $statuses = null;
@@ -18,6 +20,13 @@ final class TicketFilterOptionsResource extends DataTransferObject
     public ?string $code = null;
 
     public ?Carbon $deadline = null;
+
+    public ?array $priorities = null;
+
+    public function getClientId(): ?int
+    {
+        return $this->clientId;
+    }
 
     public function getTypes(): ?array
     {
@@ -42,5 +51,10 @@ final class TicketFilterOptionsResource extends DataTransferObject
     public function getDeadline(): ?Carbon
     {
         return $this->deadline;
+    }
+
+    public function getPriorities(): ?array
+    {
+        return $this->priorities;
     }
 }

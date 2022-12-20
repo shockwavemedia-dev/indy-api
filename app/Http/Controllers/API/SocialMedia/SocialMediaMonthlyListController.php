@@ -46,7 +46,8 @@ final class SocialMediaMonthlyListController extends AbstractAPIController
             $this->socialMediaCalendarMonthResolver->resolve(
                 $client,
                 (int) $request->get('month'),
-                (int) $request->get('year')
+                (int) $request->get('year'),
+                (string) $request->get('timezone')
             )
         );
     }

@@ -90,6 +90,26 @@ class PaginationRequest extends BaseRequest
         return new Carbon($this->getString('duedate'));
     }
 
+    public function getClientId(): ?int
+    {
+        $clientId = $this->getInt('client_id');
+
+        if ($clientId === 0) {
+            return null;
+        }
+
+        return $clientId;
+    }
+
+    public function getPriorities(): ?array
+    {
+        if ($this->get('priorities') === null) {
+            return null;
+        }
+
+        return $this->getArray('priorities');
+    }
+
     /**
      * @return mixed[]
      */
@@ -104,6 +124,8 @@ class PaginationRequest extends BaseRequest
             'code' => 'string|nullable',
             'duedate' => 'string|nullable',
             'library_category_id' => 'int|nullable',
+            'client_id' => 'int|nullable|exists:App\Models\Client,id',
+            'priorities' => 'array|nullable',
         ];
     }
 }
