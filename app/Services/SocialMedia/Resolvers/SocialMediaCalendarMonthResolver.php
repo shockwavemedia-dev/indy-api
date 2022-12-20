@@ -6,6 +6,7 @@ namespace App\Services\SocialMedia\Resolvers;
 
 use App\Http\Resources\API\SocialMedia\CommentsResource;
 use App\Models\Client;
+use App\Models\SocialMedia;
 use App\Models\SocialMediaAttachment;
 use App\Repositories\Interfaces\SocialMediaRepositoryInterface;
 use App\Services\SocialMedia\Interfaces\SocialMediaCalendarMonthResolverInterface;
@@ -22,7 +23,10 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
         $this->socialMediaRepository = $socialMediaRepository;
     }
 
-    public function resolve(Client $client, int $month, int $year): array
+    /**
+     * @throws \Exception
+     */
+    public function resolve(Client $client, int $month, int $year, string $timezone): array
     {
         $socialMedias = $this->socialMediaRepository->findByClientMonthAndYear(
             $client,
@@ -30,15 +34,35 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
             $year
         );
 
+        $startDate = Carbon::createFromFormat(
+            'Y-m-d',
+            sprintf('%s-%s-%s',
+                $year,
+                $month,
+                '1',
+            ),
+            $timezone,
+        );
+
+        $startDate = $startDate->startOfDay();
+
+        $endDate = Carbon::createFromFormat(
+            'Y-m-d',
+            sprintf('%s-%s-%s',
+                $year,
+                $month,
+                '1',
+            ),
+            $timezone,
+        );
+        $endDate = $endDate->endOfMonth()->endOfDay();
+
         $results = [];
 
-        $currentMonthYear = (new Carbon())
-            ->month($month)
-            ->setYear($year);
-
+        // Period is generated from the local timezone dates
         $period = CarbonPeriod::create(
-            $currentMonthYear->firstOfMonth()->toDateString(),
-            $currentMonthYear->lastOfMonth()->toDateString()
+            $startDate->toDateString(),
+            $endDate->toDateString()
         );
 
         $attachments = [];
@@ -46,8 +70,12 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
         foreach ($period as $date) {
             $results[$date->toDateString()] = [];
 
+            /** @var SocialMedia $socialMedia */
             foreach ($socialMedias as $socialMedia) {
-                if ($socialMedia->post_date->toDateString() !== $date->toDateString()) {
+                $postDate = new Carbon($socialMedia->getAttribute('post_date'));
+                $postDate->setTimezone($timezone);
+
+                if ($postDate->toDateString() !== $date->toDateString()) {
                     continue;
                 }
 

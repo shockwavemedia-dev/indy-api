@@ -9,6 +9,7 @@ interface SocialMediaCalendarMonthResolverInterface
     public function resolve(
         Client $client,
         int $month,
-        int $year
+        int $year,
+        string $timezone
     ): array;
 }

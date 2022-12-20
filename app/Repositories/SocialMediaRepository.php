@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Client;
 use App\Models\SocialMedia;
 use App\Repositories\Interfaces\SocialMediaRepositoryInterface;
+use Carbon\Carbon;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -41,9 +42,25 @@ final class SocialMediaRepository extends BaseRepository implements SocialMediaR
 
     public function findByClientMonthAndYear(Client $client, int $month, int $year): Collection
     {
+        $startDate = new Carbon(sprintf('%s-%s-%s',
+            $year,
+            $month,
+            '1',
+        ));
+
+        $startDate = $startDate->startOfDay()->subDays(1);
+
+        $endDate = new Carbon(sprintf('%s-%s-%s',
+            $year,
+            $month,
+            '1',
+        ));
+
+        $endDate = $endDate->endOfMonth()->endOfDay()->addDays(1);
+
         return $this->model
-            ->whereMonth('post_date', $month)
-            ->whereYear('post_date', $year)
+            ->where('post_date', '>=', $startDate->toDateTimeString())
+            ->where('post_date', '<', $endDate->toDateTimeString())
             ->where('client_id', $client->getId())
             ->with('attachments.file')
             ->get();
