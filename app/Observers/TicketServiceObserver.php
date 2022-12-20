@@ -39,7 +39,7 @@ final class TicketServiceObserver
 
         $this->socialMediaFactory->make(new CreateSocialMediaResource([
             'ticket' => $ticketService->getTicket(),
-            'postDate' => $ticketService->getCreatedAt(),
+            'postDate' => $ticketService->getPostDate(),
             'client' => $ticketService->getTicket()->getClient(),
             'status' => new SocialMediaStatusesEnum(SocialMediaStatusesEnum::CLIENT_CREATED_DRAFT),
             'createdBy' => $ticketService->getTicket()->getCreatedBy(),

@@ -6,6 +6,7 @@ namespace App\Models\Tickets;
 
 use App\Models\AbstractModel;
 use App\Models\Service;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -30,6 +31,7 @@ final class TicketService extends AbstractModel
         'ticket_id',
         'service_id',
         'created_by',
+        'post_date',
         'updated_by',
     ];
 
@@ -48,6 +50,17 @@ final class TicketService extends AbstractModel
     public function getExtras(): array
     {
         return $this->getAttribute('extras') ?? [];
+    }
+
+    public function getPostDate(): ?Carbon
+    {
+        $postDate = $this->getAttribute('post_date');
+
+        if ($postDate === null) {
+            return null;
+        }
+
+        return new Carbon($postDate);
     }
 
     public function getId(): int
