@@ -6,6 +6,7 @@ use App\Console\Commands\ResetExtraQuoteToZero;
 use App\Console\Commands\UpdateExpiredFileUrl;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Config;
 
 final class Kernel extends ConsoleKernel
 {
@@ -17,7 +18,7 @@ final class Kernel extends ConsoleKernel
 
         $schedule->command(ResetExtraQuoteToZero::class)->lastDayOfMonth('15:00');
 
-        if (env('APP_DEMO', false) === true) {
+        if (Config::get('app.demo_server') === true) {
             $schedule->exec('php artisan db:seed')->dailyAt('3:00')->timezone('Australia/Sydney');
         }
     }
