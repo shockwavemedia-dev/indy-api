@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
@@ -24,6 +25,12 @@ class DatabaseSeeder extends Seeder
             DepartmentsSeeder::class,
             ServicesSeeder::class,
         ]);
+
+        if (Config::get('app.demo_server') === false) {
+            return;
+        }
+
+
         $this->call(MigrationsTableSeeder::class);
         $this->call(PasswordResetsTableSeeder::class);
         $this->call(OauthAuthCodesTableSeeder::class);
