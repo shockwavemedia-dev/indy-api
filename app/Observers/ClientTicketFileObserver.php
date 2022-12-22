@@ -7,7 +7,9 @@ namespace App\Observers;
 use App\Enum\EmailStatusEnum;
 use App\Enum\NotificationStatusEnum;
 use App\Enum\ServicesEnum;
+use App\Enum\TicketFileStatusEnum;
 use App\Jobs\SocialMedia\SocialMediaSlackNotificationJob;
+use App\Jobs\Tickets\TicketFileSlackNotificationJob;
 use App\Models\Tickets\ClientTicketFile;
 use App\Models\Tickets\TicketService;
 use App\Models\User;
@@ -62,12 +64,19 @@ final class ClientTicketFileObserver
     {
         $ticket = $clientTicketFile->getTicket();
 
+        if ($clientTicketFile->isApproved() === true) {
+            $this->notifyUploader($clientTicketFile,'approved');
+        }
+
+        if ($clientTicketFile->getStatus() == TicketFileStatusEnum::REQUEST_REVISION) {
+            $this->notifyUploader($clientTicketFile, 'declined');
+        }
+
         /** @var TicketService $ticketService */
         foreach ($ticket->getTicketServices() as $ticketService) {
             if ($ticketService->getService()->getName() === ServicesEnum::SOCIAL_MEDIA) {
                 if ($clientTicketFile->isApproved() === true) {
                     $this->notifySocialMediaFileApproved($clientTicketFile);
-
                     break;
                 }
             }
@@ -173,5 +182,35 @@ final class ClientTicketFileObserver
             'notification' => $notification,
             'user' => $user,
         ]));
+    }
+
+    /**
+     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
+     */
+    private function notifyUploader(ClientTicketFile $clientTicketFile, $status): void
+    {
+        $uploader = $clientTicketFile->getAdminUser()->getUser();
+
+        $uploader->notifyTicketFileUploader(
+                $clientTicketFile,
+                $this->emailLogFactory->make(new CreateEmailLogResource([
+                    'emailType' => $clientTicketFile,
+                    'status' => new EmailStatusEnum(EmailStatusEnum::PENDING),
+                    'to' => $uploader->getEmail(),
+                    'message' => 'Ticket File Uploaded Email', // Static message, real email is in json format
+                ])),
+            $status
+            );
+
+        TicketFileSlackNotificationJob::dispatch(
+            $uploader,
+                \sprintf(
+                    'File is %s in Ticket# %s.',
+                    $clientTicketFile->getTicket()->getTicketCode(),
+                    $status
+                ),
+                $clientTicketFile->getTicketId()
+            );
+
     }
 }

@@ -24,6 +24,7 @@ use App\Notifications\SocialMediaMentionEmail;
 use App\Notifications\SocialMediaTicketFileApprovedEmail;
 use App\Notifications\SupportRequestAccountManagerEmail;
 use App\Notifications\TicketCreatedEmail;
+use App\Notifications\TicketFileEmail;
 use App\Notifications\TicketFiles\UploadedTicketFileEmail;
 use Carbon\Carbon;
 use DateTimeInterface;
@@ -235,6 +236,11 @@ final class User extends Authenticatable implements EmailInterface
         ]);
 
         $this->notify(new GenericEmail($emailLog, $message, $url));
+    }
+
+    public function notifyTicketFileUploader(ClientTicketFile $clientTicketFile, EmailLog $emailLog, string $status): void
+    {
+        $this->notify(new TicketFileEmail($clientTicketFile, $emailLog, $status, $this));
     }
 
     /**
