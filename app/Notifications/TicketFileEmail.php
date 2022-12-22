@@ -18,26 +18,12 @@ final class TicketFileEmail extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    private EmailLog $emailLog;
-
-    private User $createdBy;
-
-    private string $status;
-
-    private User $user;
-
-    private ClientTicketFile $ticketFile;
-
     public function __construct(
-        ClientTicketFile $ticketFile,
-        EmailLog $emailLog,
-        string $status,
-        User $user
+        private ClientTicketFile $ticketFile,
+        private EmailLog $emailLog,
+        private string $status,
+        private User $user
     ) {
-        $this->user = $user->withoutRelations();
-        $this->ticketFile = $ticketFile;
-        $this->emailLog = $emailLog->withoutRelations();
-        $this->status = $status;
     }
 
     /**

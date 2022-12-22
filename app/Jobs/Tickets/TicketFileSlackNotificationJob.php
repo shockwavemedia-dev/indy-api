@@ -22,17 +22,11 @@ final class TicketFileSlackNotificationJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private User $user;
-
-    private string $message;
-
-    private string $ticketId;
-
-    public function __construct(User $user, string $message, string $ticketId)
-    {
-        $this->message = $message;
-        $this->ticketId = $ticketId;
-        $this->user = $user;
+    public function __construct(
+        private User $user,
+        private string $message,
+        private string $ticketId
+    ) {
     }
 
     /**
