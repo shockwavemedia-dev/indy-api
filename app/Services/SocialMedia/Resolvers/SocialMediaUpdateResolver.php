@@ -36,11 +36,11 @@ final class SocialMediaUpdateResolver implements SocialMediaUpdateResolverInterf
 
         $updates = array_filter($updates);
 
-        if(array_key_exists('post_date',$updates) && $updates['post_date'] !== null){
+        if (($updates['post_date'] ?? null) !== null) {
             $updates['post_date'] = new Carbon($updates['post_date']);
         }
 
-        if(array_key_exists('channels',$updates) && $updates['channels'] !== null){
+        if (($updates['channels'] ?? null) !== null) {
             $updates['channels'] = $this->updateChannelsComplexity($socialMedia, $newChannels);
         }
 

@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 
 class OauthAuthCodesTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -14,11 +13,6 @@ class OauthAuthCodesTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('oauth_auth_codes')->delete();
-        
-        
-        
     }
 }

@@ -30,7 +30,6 @@ class DatabaseSeeder extends Seeder
             return;
         }
 
-
         $this->call(MigrationsTableSeeder::class);
         $this->call(PasswordResetsTableSeeder::class);
         $this->call(OauthAuthCodesTableSeeder::class);

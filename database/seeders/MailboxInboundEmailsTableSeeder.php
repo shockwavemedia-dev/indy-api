@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 
 class MailboxInboundEmailsTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -14,11 +13,6 @@ class MailboxInboundEmailsTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('mailbox_inbound_emails')->delete();
-        
-        
-        
     }
 }

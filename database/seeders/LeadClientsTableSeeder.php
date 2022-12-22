@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 
 class LeadClientsTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -14,11 +13,6 @@ class LeadClientsTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('lead_clients')->delete();
-        
-        
-        
     }
 }

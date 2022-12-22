@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 
 class TicketChatsTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -14,11 +13,6 @@ class TicketChatsTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('ticket_chats')->delete();
-        
-        
-        
     }
 }

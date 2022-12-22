@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 
 class SocialMediaActivitiesTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -14,11 +13,6 @@ class SocialMediaActivitiesTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('social_media_activities')->delete();
-        
-        
-        
     }
 }

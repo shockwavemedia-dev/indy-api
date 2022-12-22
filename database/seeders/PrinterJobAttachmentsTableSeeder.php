@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 
 class PrinterJobAttachmentsTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -14,11 +13,6 @@ class PrinterJobAttachmentsTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('printer_job_attachments')->delete();
-        
-        
-        
     }
 }

@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 
 class FileFeedbacksTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -14,11 +13,6 @@ class FileFeedbacksTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('file_feedbacks')->delete();
-        
-        
-        
     }
 }

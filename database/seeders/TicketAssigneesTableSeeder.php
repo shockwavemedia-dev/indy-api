@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 
 class TicketAssigneesTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -14,13 +13,10 @@ class TicketAssigneesTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('ticket_assignees')->delete();
-        
-        \DB::table('ticket_assignees')->insert(array (
-            0 => 
-            array (
+
+        \DB::table('ticket_assignees')->insert([
+            0 => [
                 'admin_user_id' => 2,
                 'created_at' => '2022-12-19 00:35:37',
                 'created_by' => 1,
@@ -29,10 +25,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 1,
                 'updated_at' => '2022-12-19 00:35:37',
-                'updated_by' => NULL,
-            ),
-            1 => 
-            array (
+                'updated_by' => null,
+            ],
+            1 => [
                 'admin_user_id' => 3,
                 'created_at' => '2022-12-19 00:35:39',
                 'created_by' => 1,
@@ -41,10 +36,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 1,
                 'updated_at' => '2022-12-19 00:35:39',
-                'updated_by' => NULL,
-            ),
-            2 => 
-            array (
+                'updated_by' => null,
+            ],
+            2 => [
                 'admin_user_id' => 5,
                 'created_at' => '2022-12-19 00:35:39',
                 'created_by' => 1,
@@ -53,10 +47,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 1,
                 'updated_at' => '2022-12-19 00:35:39',
-                'updated_by' => NULL,
-            ),
-            3 => 
-            array (
+                'updated_by' => null,
+            ],
+            3 => [
                 'admin_user_id' => 4,
                 'created_at' => '2022-12-19 00:35:40',
                 'created_by' => 1,
@@ -65,10 +58,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 1,
                 'updated_at' => '2022-12-19 00:35:40',
-                'updated_by' => NULL,
-            ),
-            4 => 
-            array (
+                'updated_by' => null,
+            ],
+            4 => [
                 'admin_user_id' => 2,
                 'created_at' => '2022-12-19 00:36:52',
                 'created_by' => 1,
@@ -77,10 +69,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 2,
                 'updated_at' => '2022-12-19 00:36:52',
-                'updated_by' => NULL,
-            ),
-            5 => 
-            array (
+                'updated_by' => null,
+            ],
+            5 => [
                 'admin_user_id' => 3,
                 'created_at' => '2022-12-19 00:36:53',
                 'created_by' => 1,
@@ -89,10 +80,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 2,
                 'updated_at' => '2022-12-19 00:36:53',
-                'updated_by' => NULL,
-            ),
-            6 => 
-            array (
+                'updated_by' => null,
+            ],
+            6 => [
                 'admin_user_id' => 5,
                 'created_at' => '2022-12-19 00:36:54',
                 'created_by' => 1,
@@ -101,10 +91,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 2,
                 'updated_at' => '2022-12-19 00:36:54',
-                'updated_by' => NULL,
-            ),
-            7 => 
-            array (
+                'updated_by' => null,
+            ],
+            7 => [
                 'admin_user_id' => 4,
                 'created_at' => '2022-12-19 00:36:54',
                 'created_by' => 1,
@@ -113,10 +102,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 2,
                 'updated_at' => '2022-12-19 00:36:54',
-                'updated_by' => NULL,
-            ),
-            8 => 
-            array (
+                'updated_by' => null,
+            ],
+            8 => [
                 'admin_user_id' => 3,
                 'created_at' => '2022-12-19 00:37:58',
                 'created_by' => 1,
@@ -125,10 +113,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 3,
                 'updated_at' => '2022-12-19 00:37:58',
-                'updated_by' => NULL,
-            ),
-            9 => 
-            array (
+                'updated_by' => null,
+            ],
+            9 => [
                 'admin_user_id' => 4,
                 'created_at' => '2022-12-19 00:38:00',
                 'created_by' => 1,
@@ -137,10 +124,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 3,
                 'updated_at' => '2022-12-19 00:38:00',
-                'updated_by' => NULL,
-            ),
-            10 => 
-            array (
+                'updated_by' => null,
+            ],
+            10 => [
                 'admin_user_id' => 5,
                 'created_at' => '2022-12-19 00:38:54',
                 'created_by' => 1,
@@ -149,10 +135,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 4,
                 'updated_at' => '2022-12-19 00:38:54',
-                'updated_by' => NULL,
-            ),
-            11 => 
-            array (
+                'updated_by' => null,
+            ],
+            11 => [
                 'admin_user_id' => 2,
                 'created_at' => '2022-12-19 00:38:55',
                 'created_by' => 1,
@@ -161,10 +146,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 4,
                 'updated_at' => '2022-12-19 00:38:55',
-                'updated_by' => NULL,
-            ),
-            12 => 
-            array (
+                'updated_by' => null,
+            ],
+            12 => [
                 'admin_user_id' => 3,
                 'created_at' => '2022-12-19 00:38:55',
                 'created_by' => 1,
@@ -173,10 +157,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 4,
                 'updated_at' => '2022-12-19 00:38:55',
-                'updated_by' => NULL,
-            ),
-            13 => 
-            array (
+                'updated_by' => null,
+            ],
+            13 => [
                 'admin_user_id' => 4,
                 'created_at' => '2022-12-19 00:38:56',
                 'created_by' => 1,
@@ -185,10 +168,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 4,
                 'updated_at' => '2022-12-19 00:38:56',
-                'updated_by' => NULL,
-            ),
-            14 => 
-            array (
+                'updated_by' => null,
+            ],
+            14 => [
                 'admin_user_id' => 2,
                 'created_at' => '2022-12-19 00:40:22',
                 'created_by' => 1,
@@ -197,10 +179,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 5,
                 'updated_at' => '2022-12-19 00:40:22',
-                'updated_by' => NULL,
-            ),
-            15 => 
-            array (
+                'updated_by' => null,
+            ],
+            15 => [
                 'admin_user_id' => 5,
                 'created_at' => '2022-12-19 00:40:24',
                 'created_by' => 1,
@@ -209,10 +190,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 5,
                 'updated_at' => '2022-12-19 00:40:24',
-                'updated_by' => NULL,
-            ),
-            16 => 
-            array (
+                'updated_by' => null,
+            ],
+            16 => [
                 'admin_user_id' => 3,
                 'created_at' => '2022-12-19 00:40:25',
                 'created_by' => 1,
@@ -221,10 +201,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 5,
                 'updated_at' => '2022-12-19 00:40:25',
-                'updated_by' => NULL,
-            ),
-            17 => 
-            array (
+                'updated_by' => null,
+            ],
+            17 => [
                 'admin_user_id' => 4,
                 'created_at' => '2022-12-19 00:40:26',
                 'created_by' => 1,
@@ -233,10 +212,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 5,
                 'updated_at' => '2022-12-19 00:40:26',
-                'updated_by' => NULL,
-            ),
-            18 => 
-            array (
+                'updated_by' => null,
+            ],
+            18 => [
                 'admin_user_id' => 2,
                 'created_at' => '2022-12-19 00:42:50',
                 'created_by' => 1,
@@ -245,10 +223,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 6,
                 'updated_at' => '2022-12-19 00:42:50',
-                'updated_by' => NULL,
-            ),
-            19 => 
-            array (
+                'updated_by' => null,
+            ],
+            19 => [
                 'admin_user_id' => 3,
                 'created_at' => '2022-12-19 00:42:51',
                 'created_by' => 1,
@@ -257,10 +234,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 6,
                 'updated_at' => '2022-12-19 00:42:51',
-                'updated_by' => NULL,
-            ),
-            20 => 
-            array (
+                'updated_by' => null,
+            ],
+            20 => [
                 'admin_user_id' => 5,
                 'created_at' => '2022-12-19 00:42:51',
                 'created_by' => 1,
@@ -269,10 +245,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 6,
                 'updated_at' => '2022-12-19 00:42:51',
-                'updated_by' => NULL,
-            ),
-            21 => 
-            array (
+                'updated_by' => null,
+            ],
+            21 => [
                 'admin_user_id' => 4,
                 'created_at' => '2022-12-19 00:42:51',
                 'created_by' => 1,
@@ -281,10 +256,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 6,
                 'updated_at' => '2022-12-19 00:42:51',
-                'updated_by' => NULL,
-            ),
-            22 => 
-            array (
+                'updated_by' => null,
+            ],
+            22 => [
                 'admin_user_id' => 2,
                 'created_at' => '2022-12-19 00:45:15',
                 'created_by' => 1,
@@ -293,10 +267,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 7,
                 'updated_at' => '2022-12-19 00:45:15',
-                'updated_by' => NULL,
-            ),
-            23 => 
-            array (
+                'updated_by' => null,
+            ],
+            23 => [
                 'admin_user_id' => 3,
                 'created_at' => '2022-12-19 00:45:15',
                 'created_by' => 1,
@@ -305,10 +278,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 7,
                 'updated_at' => '2022-12-19 00:45:15',
-                'updated_by' => NULL,
-            ),
-            24 => 
-            array (
+                'updated_by' => null,
+            ],
+            24 => [
                 'admin_user_id' => 5,
                 'created_at' => '2022-12-19 00:45:16',
                 'created_by' => 1,
@@ -317,10 +289,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 7,
                 'updated_at' => '2022-12-19 00:45:16',
-                'updated_by' => NULL,
-            ),
-            25 => 
-            array (
+                'updated_by' => null,
+            ],
+            25 => [
                 'admin_user_id' => 4,
                 'created_at' => '2022-12-19 00:45:16',
                 'created_by' => 1,
@@ -329,10 +300,9 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 7,
                 'updated_at' => '2022-12-19 00:45:16',
-                'updated_by' => NULL,
-            ),
-            26 => 
-            array (
+                'updated_by' => null,
+            ],
+            26 => [
                 'admin_user_id' => 3,
                 'created_at' => '2022-12-20 04:35:04',
                 'created_by' => 1,
@@ -341,10 +311,8 @@ class TicketAssigneesTableSeeder extends Seeder
                 'status' => 'open',
                 'ticket_id' => 8,
                 'updated_at' => '2022-12-20 04:35:04',
-                'updated_by' => NULL,
-            ),
-        ));
-        
-        
+                'updated_by' => null,
+            ],
+        ]);
     }
 }

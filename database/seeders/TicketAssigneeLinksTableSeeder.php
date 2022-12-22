@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 
 class TicketAssigneeLinksTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -14,11 +13,6 @@ class TicketAssigneeLinksTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('ticket_assignee_links')->delete();
-        
-        
-        
     }
 }

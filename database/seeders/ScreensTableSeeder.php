@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 
 class ScreensTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -14,11 +13,6 @@ class ScreensTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('screens')->delete();
-        
-        
-        
     }
 }

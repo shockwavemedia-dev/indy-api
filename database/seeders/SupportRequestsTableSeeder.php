@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 
 class SupportRequestsTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -14,11 +13,6 @@ class SupportRequestsTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('support_requests')->delete();
-        
-        
-        
     }
 }

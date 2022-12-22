@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 
 class PersonalAccessTokensTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -14,11 +13,6 @@ class PersonalAccessTokensTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('personal_access_tokens')->delete();
-        
-        
-        
     }
 }

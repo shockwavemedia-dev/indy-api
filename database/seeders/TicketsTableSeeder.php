@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 
 class TicketsTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -14,27 +13,24 @@ class TicketsTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('tickets')->delete();
-        
-        \DB::table('tickets')->insert(array (
-            0 => 
-            array (
+
+        \DB::table('tickets')->insert([
+            0 => [
                 'client_id' => 1,
                 'created_at' => '2022-12-19 00:35:37',
                 'created_by' => 7,
                 'created_by_user_type' => 'client_users',
-                'deleted_at' => NULL,
-                'deleted_by' => NULL,
-                'department_id' => NULL,
+                'deleted_at' => null,
+                'deleted_by' => null,
+                'department_id' => null,
                 'description' => '{"blocks": [{"key": "2o5f7", "data": {}, "text": "Free drink on arrival. ", "type": "unstyled", "depth": 0, "entityRanges": [], "inlineStyleRanges": []}], "entityMap": {}}',
-                'duedate' => NULL,
+                'duedate' => null,
                 'email_html' => 'null',
                 'id' => 1,
                 'is_approval_required' => 1,
                 'is_marketing_planner' => 0,
-                'marketing_planner_id' => NULL,
+                'marketing_planner_id' => null,
                 'priority' => 'Urgent',
                 'requested_by' => 7,
                 'status' => 'pending',
@@ -42,25 +38,24 @@ class TicketsTableSeeder extends Seeder
                 'ticket_code' => 'DA1-1',
                 'type' => 'project',
                 'updated_at' => '2022-12-20 00:48:38',
-                'updated_by' => NULL,
+                'updated_by' => null,
                 'user_notes' => '"{\\"7\\":0}"',
-            ),
-            1 => 
-            array (
+            ],
+            1 => [
                 'client_id' => 1,
                 'created_at' => '2022-12-19 00:36:52',
                 'created_by' => 7,
                 'created_by_user_type' => 'client_users',
-                'deleted_at' => NULL,
-                'deleted_by' => NULL,
-                'department_id' => NULL,
+                'deleted_at' => null,
+                'deleted_by' => null,
+                'department_id' => null,
                 'description' => '{"blocks": [{"key": "44hdu", "data": {}, "text": "Free Egg\'s", "type": "unstyled", "depth": 0, "entityRanges": [], "inlineStyleRanges": []}], "entityMap": {}}',
-                'duedate' => NULL,
+                'duedate' => null,
                 'email_html' => 'null',
                 'id' => 2,
                 'is_approval_required' => 0,
                 'is_marketing_planner' => 0,
-                'marketing_planner_id' => NULL,
+                'marketing_planner_id' => null,
                 'priority' => 'Standard',
                 'requested_by' => 7,
                 'status' => 'pending',
@@ -70,23 +65,22 @@ class TicketsTableSeeder extends Seeder
                 'updated_at' => '2022-12-19 00:48:39',
                 'updated_by' => 1,
                 'user_notes' => '"{\\"7\\":0}"',
-            ),
-            2 => 
-            array (
+            ],
+            2 => [
                 'client_id' => 1,
                 'created_at' => '2022-12-19 00:37:58',
                 'created_by' => 7,
                 'created_by_user_type' => 'client_users',
-                'deleted_at' => NULL,
-                'deleted_by' => NULL,
-                'department_id' => NULL,
+                'deleted_at' => null,
+                'deleted_by' => null,
+                'department_id' => null,
                 'description' => '{"blocks": [{"key": "2e86b", "data": {}, "text": "test", "type": "unstyled", "depth": 0, "entityRanges": [], "inlineStyleRanges": []}], "entityMap": {}}',
-                'duedate' => NULL,
+                'duedate' => null,
                 'email_html' => 'null',
                 'id' => 3,
                 'is_approval_required' => 0,
                 'is_marketing_planner' => 0,
-                'marketing_planner_id' => NULL,
+                'marketing_planner_id' => null,
                 'priority' => 'Relaxed',
                 'requested_by' => 7,
                 'status' => 'closed',
@@ -96,23 +90,22 @@ class TicketsTableSeeder extends Seeder
                 'updated_at' => '2022-12-19 00:49:18',
                 'updated_by' => 1,
                 'user_notes' => '"{\\"7\\":0}"',
-            ),
-            3 => 
-            array (
+            ],
+            3 => [
                 'client_id' => 1,
                 'created_at' => '2022-12-19 00:38:54',
                 'created_by' => 7,
                 'created_by_user_type' => 'client_users',
-                'deleted_at' => NULL,
-                'deleted_by' => NULL,
-                'department_id' => NULL,
+                'deleted_at' => null,
+                'deleted_by' => null,
+                'department_id' => null,
                 'description' => '{"blocks": [{"key": "5f3b1", "data": {}, "text": "Free drink....", "type": "unstyled", "depth": 0, "entityRanges": [], "inlineStyleRanges": []}], "entityMap": {}}',
-                'duedate' => NULL,
+                'duedate' => null,
                 'email_html' => 'null',
                 'id' => 4,
                 'is_approval_required' => 0,
                 'is_marketing_planner' => 0,
-                'marketing_planner_id' => NULL,
+                'marketing_planner_id' => null,
                 'priority' => 'Urgent',
                 'requested_by' => 7,
                 'status' => 'open',
@@ -120,25 +113,24 @@ class TicketsTableSeeder extends Seeder
                 'ticket_code' => 'DA1-4',
                 'type' => 'project',
                 'updated_at' => '2022-12-19 22:49:11',
-                'updated_by' => NULL,
+                'updated_by' => null,
                 'user_notes' => '"{\\"7\\":0}"',
-            ),
-            4 => 
-            array (
+            ],
+            4 => [
                 'client_id' => 1,
                 'created_at' => '2022-12-19 00:40:22',
                 'created_by' => 7,
                 'created_by_user_type' => 'client_users',
-                'deleted_at' => NULL,
-                'deleted_by' => NULL,
-                'department_id' => NULL,
+                'deleted_at' => null,
+                'deleted_by' => null,
+                'department_id' => null,
                 'description' => '{"blocks": [{"key": "34t0p", "data": {}, "text": "Test brief.....", "type": "unstyled", "depth": 0, "entityRanges": [], "inlineStyleRanges": []}], "entityMap": {}}',
-                'duedate' => NULL,
+                'duedate' => null,
                 'email_html' => 'null',
                 'id' => 5,
                 'is_approval_required' => 0,
                 'is_marketing_planner' => 0,
-                'marketing_planner_id' => NULL,
+                'marketing_planner_id' => null,
                 'priority' => 'Standard',
                 'requested_by' => 7,
                 'status' => 'in_progress',
@@ -148,23 +140,22 @@ class TicketsTableSeeder extends Seeder
                 'updated_at' => '2022-12-19 00:47:54',
                 'updated_by' => 1,
                 'user_notes' => '"{\\"7\\":0}"',
-            ),
-            5 => 
-            array (
+            ],
+            5 => [
                 'client_id' => 1,
                 'created_at' => '2022-12-19 00:42:50',
                 'created_by' => 7,
                 'created_by_user_type' => 'client_users',
-                'deleted_at' => NULL,
-                'deleted_by' => NULL,
-                'department_id' => NULL,
-            'description' => '{"blocks": [{"key": "akqkb", "data": {}, "text": "Free Entry..... (Test)", "type": "unstyled", "depth": 0, "entityRanges": [], "inlineStyleRanges": []}], "entityMap": {}}',
-                'duedate' => NULL,
+                'deleted_at' => null,
+                'deleted_by' => null,
+                'department_id' => null,
+                'description' => '{"blocks": [{"key": "akqkb", "data": {}, "text": "Free Entry..... (Test)", "type": "unstyled", "depth": 0, "entityRanges": [], "inlineStyleRanges": []}], "entityMap": {}}',
+                'duedate' => null,
                 'email_html' => 'null',
                 'id' => 6,
                 'is_approval_required' => 0,
                 'is_marketing_planner' => 0,
-                'marketing_planner_id' => NULL,
+                'marketing_planner_id' => null,
                 'priority' => 'Relaxed',
                 'requested_by' => 7,
                 'status' => 'open',
@@ -172,25 +163,24 @@ class TicketsTableSeeder extends Seeder
                 'ticket_code' => 'DA1-6',
                 'type' => 'project',
                 'updated_at' => '2022-12-19 01:37:40',
-                'updated_by' => NULL,
+                'updated_by' => null,
                 'user_notes' => '"{\\"7\\":0}"',
-            ),
-            6 => 
-            array (
+            ],
+            6 => [
                 'client_id' => 1,
                 'created_at' => '2022-12-19 00:45:15',
                 'created_by' => 7,
                 'created_by_user_type' => 'client_users',
-                'deleted_at' => NULL,
-                'deleted_by' => NULL,
-                'department_id' => NULL,
+                'deleted_at' => null,
+                'deleted_by' => null,
+                'department_id' => null,
                 'description' => '{"blocks": [{"key": "5p1r0", "data": {}, "text": "free entry ", "type": "unstyled", "depth": 0, "entityRanges": [], "inlineStyleRanges": []}], "entityMap": {}}',
-                'duedate' => NULL,
+                'duedate' => null,
                 'email_html' => 'null',
                 'id' => 7,
                 'is_approval_required' => 1,
                 'is_marketing_planner' => 0,
-                'marketing_planner_id' => NULL,
+                'marketing_planner_id' => null,
                 'priority' => 'Standard',
                 'requested_by' => 7,
                 'status' => 'pending',
@@ -198,17 +188,16 @@ class TicketsTableSeeder extends Seeder
                 'ticket_code' => 'DA1-7',
                 'type' => 'project',
                 'updated_at' => '2022-12-19 23:39:52',
-                'updated_by' => NULL,
+                'updated_by' => null,
                 'user_notes' => '"{\\"7\\":0}"',
-            ),
-            7 => 
-            array (
+            ],
+            7 => [
                 'client_id' => 1,
                 'created_at' => '2022-12-20 04:35:04',
                 'created_by' => 7,
                 'created_by_user_type' => 'client_users',
-                'deleted_at' => NULL,
-                'deleted_by' => NULL,
+                'deleted_at' => null,
+                'deleted_by' => null,
                 'department_id' => 2,
                 'description' => '{"blocks": [{"key": "6qmfd", "data": {}, "text": "Can you make one of these for us please", "type": "unstyled", "depth": 0, "entityRanges": [], "inlineStyleRanges": []}], "entityMap": {}}',
                 'duedate' => '2022-12-27 04:35:04',
@@ -216,7 +205,7 @@ class TicketsTableSeeder extends Seeder
                 'id' => 8,
                 'is_approval_required' => 0,
                 'is_marketing_planner' => 0,
-                'marketing_planner_id' => NULL,
+                'marketing_planner_id' => null,
                 'priority' => 'Standard',
                 'requested_by' => 7,
                 'status' => 'new',
@@ -226,9 +215,7 @@ class TicketsTableSeeder extends Seeder
                 'updated_at' => '2022-12-20 04:35:05',
                 'updated_by' => 1,
                 'user_notes' => '"{\\"7\\":0}"',
-            ),
-        ));
-        
-        
+            ],
+        ]);
     }
 }

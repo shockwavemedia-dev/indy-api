@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 
 class FailedJobsTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -14,11 +13,6 @@ class FailedJobsTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('failed_jobs')->delete();
-        
-        
-        
     }
 }

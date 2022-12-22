@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 
 class NotificationsTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -14,16 +13,13 @@ class NotificationsTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('notifications')->delete();
-        
-        \DB::table('notifications')->insert(array (
-            0 => 
-            array (
+
+        \DB::table('notifications')->insert([
+            0 => [
                 'created_at' => '2022-12-19 00:35:39',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 1,
                 'link' => 'ticket/1',
                 'morphable_id' => 1,
@@ -31,12 +27,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-1 to you',
                 'updated_at' => '2022-12-19 00:35:39',
-            ),
-            1 => 
-            array (
+            ],
+            1 => [
                 'created_at' => '2022-12-19 00:35:39',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 2,
                 'link' => 'ticket/1',
                 'morphable_id' => 2,
@@ -44,12 +39,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-1 to you',
                 'updated_at' => '2022-12-19 00:35:39',
-            ),
-            2 => 
-            array (
+            ],
+            2 => [
                 'created_at' => '2022-12-19 00:35:39',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 3,
                 'link' => 'ticket/1',
                 'morphable_id' => 3,
@@ -57,12 +51,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-1 to you',
                 'updated_at' => '2022-12-19 00:35:39',
-            ),
-            3 => 
-            array (
+            ],
+            3 => [
                 'created_at' => '2022-12-19 00:35:40',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 4,
                 'link' => 'ticket/1',
                 'morphable_id' => 4,
@@ -70,12 +63,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-1 to you',
                 'updated_at' => '2022-12-19 00:35:40',
-            ),
-            4 => 
-            array (
+            ],
+            4 => [
                 'created_at' => '2022-12-19 00:36:53',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 5,
                 'link' => 'ticket/2',
                 'morphable_id' => 5,
@@ -83,12 +75,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-2 to you',
                 'updated_at' => '2022-12-19 00:36:53',
-            ),
-            5 => 
-            array (
+            ],
+            5 => [
                 'created_at' => '2022-12-19 00:36:53',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 6,
                 'link' => 'ticket/2',
                 'morphable_id' => 6,
@@ -96,12 +87,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-2 to you',
                 'updated_at' => '2022-12-19 00:36:53',
-            ),
-            6 => 
-            array (
+            ],
+            6 => [
                 'created_at' => '2022-12-19 00:36:54',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 7,
                 'link' => 'ticket/2',
                 'morphable_id' => 7,
@@ -109,12 +99,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-2 to you',
                 'updated_at' => '2022-12-19 00:36:54',
-            ),
-            7 => 
-            array (
+            ],
+            7 => [
                 'created_at' => '2022-12-19 00:36:54',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 8,
                 'link' => 'ticket/2',
                 'morphable_id' => 8,
@@ -122,12 +111,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-2 to you',
                 'updated_at' => '2022-12-19 00:36:54',
-            ),
-            8 => 
-            array (
+            ],
+            8 => [
                 'created_at' => '2022-12-19 00:38:00',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 9,
                 'link' => 'ticket/3',
                 'morphable_id' => 9,
@@ -135,12 +123,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-3 to you',
                 'updated_at' => '2022-12-19 00:38:00',
-            ),
-            9 => 
-            array (
+            ],
+            9 => [
                 'created_at' => '2022-12-19 00:38:01',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 10,
                 'link' => 'ticket/3',
                 'morphable_id' => 10,
@@ -148,12 +135,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-3 to you',
                 'updated_at' => '2022-12-19 00:38:01',
-            ),
-            10 => 
-            array (
+            ],
+            10 => [
                 'created_at' => '2022-12-19 00:38:55',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 11,
                 'link' => 'ticket/4',
                 'morphable_id' => 11,
@@ -161,12 +147,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-4 to you',
                 'updated_at' => '2022-12-19 00:38:55',
-            ),
-            11 => 
-            array (
+            ],
+            11 => [
                 'created_at' => '2022-12-19 00:38:55',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 12,
                 'link' => 'ticket/4',
                 'morphable_id' => 12,
@@ -174,12 +159,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-4 to you',
                 'updated_at' => '2022-12-19 00:38:55',
-            ),
-            12 => 
-            array (
+            ],
+            12 => [
                 'created_at' => '2022-12-19 00:38:56',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 13,
                 'link' => 'ticket/4',
                 'morphable_id' => 13,
@@ -187,12 +171,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-4 to you',
                 'updated_at' => '2022-12-19 00:38:56',
-            ),
-            13 => 
-            array (
+            ],
+            13 => [
                 'created_at' => '2022-12-19 00:38:56',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 14,
                 'link' => 'ticket/4',
                 'morphable_id' => 14,
@@ -200,12 +183,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-4 to you',
                 'updated_at' => '2022-12-19 00:38:56',
-            ),
-            14 => 
-            array (
+            ],
+            14 => [
                 'created_at' => '2022-12-19 00:40:24',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 15,
                 'link' => 'ticket/5',
                 'morphable_id' => 15,
@@ -213,12 +195,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-5 to you',
                 'updated_at' => '2022-12-19 00:40:24',
-            ),
-            15 => 
-            array (
+            ],
+            15 => [
                 'created_at' => '2022-12-19 00:40:25',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 16,
                 'link' => 'ticket/5',
                 'morphable_id' => 16,
@@ -226,12 +207,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-5 to you',
                 'updated_at' => '2022-12-19 00:40:25',
-            ),
-            16 => 
-            array (
+            ],
+            16 => [
                 'created_at' => '2022-12-19 00:40:26',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 17,
                 'link' => 'ticket/5',
                 'morphable_id' => 17,
@@ -239,12 +219,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-5 to you',
                 'updated_at' => '2022-12-19 00:40:26',
-            ),
-            17 => 
-            array (
+            ],
+            17 => [
                 'created_at' => '2022-12-19 00:40:26',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 18,
                 'link' => 'ticket/5',
                 'morphable_id' => 18,
@@ -252,12 +231,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-5 to you',
                 'updated_at' => '2022-12-19 00:40:26',
-            ),
-            18 => 
-            array (
+            ],
+            18 => [
                 'created_at' => '2022-12-19 00:42:51',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 19,
                 'link' => 'ticket/6',
                 'morphable_id' => 19,
@@ -265,12 +243,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-6 to you',
                 'updated_at' => '2022-12-19 00:42:51',
-            ),
-            19 => 
-            array (
+            ],
+            19 => [
                 'created_at' => '2022-12-19 00:42:51',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 20,
                 'link' => 'ticket/6',
                 'morphable_id' => 20,
@@ -278,12 +255,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-6 to you',
                 'updated_at' => '2022-12-19 00:42:51',
-            ),
-            20 => 
-            array (
+            ],
+            20 => [
                 'created_at' => '2022-12-19 00:42:51',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 21,
                 'link' => 'ticket/6',
                 'morphable_id' => 21,
@@ -291,12 +267,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-6 to you',
                 'updated_at' => '2022-12-19 00:42:51',
-            ),
-            21 => 
-            array (
+            ],
+            21 => [
                 'created_at' => '2022-12-19 00:42:51',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 22,
                 'link' => 'ticket/6',
                 'morphable_id' => 22,
@@ -304,12 +279,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-6 to you',
                 'updated_at' => '2022-12-19 00:42:51',
-            ),
-            22 => 
-            array (
+            ],
+            22 => [
                 'created_at' => '2022-12-19 00:45:15',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 23,
                 'link' => 'ticket/7',
                 'morphable_id' => 23,
@@ -317,12 +291,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-7 to you',
                 'updated_at' => '2022-12-19 00:45:15',
-            ),
-            23 => 
-            array (
+            ],
+            23 => [
                 'created_at' => '2022-12-19 00:45:16',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 24,
                 'link' => 'ticket/7',
                 'morphable_id' => 24,
@@ -330,12 +303,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-7 to you',
                 'updated_at' => '2022-12-19 00:45:16',
-            ),
-            24 => 
-            array (
+            ],
+            24 => [
                 'created_at' => '2022-12-19 00:45:16',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 25,
                 'link' => 'ticket/7',
                 'morphable_id' => 25,
@@ -343,12 +315,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-7 to you',
                 'updated_at' => '2022-12-19 00:45:16',
-            ),
-            25 => 
-            array (
+            ],
+            25 => [
                 'created_at' => '2022-12-19 00:45:16',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 26,
                 'link' => 'ticket/7',
                 'morphable_id' => 26,
@@ -356,12 +327,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-7 to you',
                 'updated_at' => '2022-12-19 00:45:16',
-            ),
-            26 => 
-            array (
+            ],
+            26 => [
                 'created_at' => '2022-12-19 00:46:56',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 27,
                 'link' => 'ticket/7',
                 'morphable_id' => 1,
@@ -369,12 +339,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'Super Admin has posted a message in ticket # DA1-7',
                 'updated_at' => '2022-12-19 00:46:56',
-            ),
-            27 => 
-            array (
+            ],
+            27 => [
                 'created_at' => '2022-12-19 00:47:02',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 28,
                 'link' => 'ticket/7',
                 'morphable_id' => 2,
@@ -382,12 +351,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'Super Admin has posted a message in ticket # DA1-7',
                 'updated_at' => '2022-12-19 00:47:02',
-            ),
-            28 => 
-            array (
+            ],
+            28 => [
                 'created_at' => '2022-12-19 22:25:22',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 29,
                 'link' => 'ticket/6',
                 'morphable_id' => 3,
@@ -395,12 +363,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'Jacob has posted a message in ticket # DA1-6',
                 'updated_at' => '2022-12-19 22:25:22',
-            ),
-            29 => 
-            array (
+            ],
+            29 => [
                 'created_at' => '2022-12-19 22:50:17',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 30,
                 'link' => 'ticket/4',
                 'morphable_id' => 4,
@@ -408,12 +375,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'Bec has posted a message in ticket # DA1-4',
                 'updated_at' => '2022-12-19 22:50:17',
-            ),
-            30 => 
-            array (
+            ],
+            30 => [
                 'created_at' => '2022-12-19 23:39:44',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 31,
                 'link' => 'ticket/7',
                 'morphable_id' => 1,
@@ -421,12 +387,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'File was uploaded in Ticket# DA1-7.',
                 'updated_at' => '2022-12-19 23:39:44',
-            ),
-            31 => 
-            array (
+            ],
+            31 => [
                 'created_at' => '2022-12-19 23:39:52',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 32,
                 'link' => 'ticket/file/1',
                 'morphable_id' => 1,
@@ -434,12 +399,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'John is requesting approval for a design in ticket # DA1-7',
                 'updated_at' => '2022-12-19 23:39:52',
-            ),
-            32 => 
-            array (
+            ],
+            32 => [
                 'created_at' => '2022-12-20 00:48:35',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 33,
                 'link' => 'ticket/1',
                 'morphable_id' => 2,
@@ -447,12 +411,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'File was uploaded in Ticket# DA1-1.',
                 'updated_at' => '2022-12-20 00:48:35',
-            ),
-            33 => 
-            array (
+            ],
+            33 => [
                 'created_at' => '2022-12-20 00:48:38',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 34,
                 'link' => 'ticket/file/2',
                 'morphable_id' => 2,
@@ -460,12 +423,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'Jacob is requesting approval for a design in ticket # DA1-1',
                 'updated_at' => '2022-12-20 00:48:38',
-            ),
-            34 => 
-            array (
+            ],
+            34 => [
                 'created_at' => '2022-12-20 04:29:55',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 35,
                 'link' => 'ticket/5',
                 'morphable_id' => 5,
@@ -473,12 +435,11 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'Lisa has posted a message in ticket # DA1-5',
                 'updated_at' => '2022-12-20 04:29:55',
-            ),
-            35 => 
-            array (
+            ],
+            35 => [
                 'created_at' => '2022-12-20 04:35:05',
-                'deleted_at' => NULL,
-                'description' => NULL,
+                'deleted_at' => null,
+                'description' => null,
                 'id' => 36,
                 'link' => 'ticket/8',
                 'morphable_id' => 27,
@@ -486,9 +447,7 @@ class NotificationsTableSeeder extends Seeder
                 'status' => 'new',
                 'title' => 'The Indy Platform has assigned a ticket # DA1-8 to you',
                 'updated_at' => '2022-12-20 04:35:05',
-            ),
-        ));
-        
-        
+            ],
+        ]);
     }
 }

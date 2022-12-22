@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 
 class EmailLogsTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -14,17 +13,14 @@ class EmailLogsTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('email_logs')->delete();
-        
-        \DB::table('email_logs')->insert(array (
-            0 => 
-            array (
-                'cc' => NULL,
+
+        \DB::table('email_logs')->insert([
+            0 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:35:37',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 1,
                 'message' => 'Hi Jacob, The Indy Platform has assigned Ticket #DA1-1 to you.',
                 'morphable_id' => 1,
@@ -32,13 +28,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'j@indy.com',
                 'updated_at' => '2022-12-19 00:35:37',
-            ),
-            1 => 
-            array (
-                'cc' => NULL,
+            ],
+            1 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:35:39',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 2,
                 'message' => 'Hi John, The Indy Platform has assigned Ticket #DA1-1 to you.',
                 'morphable_id' => 2,
@@ -46,13 +41,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'j2@indy.com',
                 'updated_at' => '2022-12-19 00:35:39',
-            ),
-            2 => 
-            array (
-                'cc' => NULL,
+            ],
+            2 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:35:39',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 3,
                 'message' => 'Hi Lisa, The Indy Platform has assigned Ticket #DA1-1 to you.',
                 'morphable_id' => 3,
@@ -60,13 +54,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'l@indy.com',
                 'updated_at' => '2022-12-19 00:35:39',
-            ),
-            3 => 
-            array (
-                'cc' => NULL,
+            ],
+            3 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:35:40',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 4,
                 'message' => 'Hi Bec, The Indy Platform has assigned Ticket #DA1-1 to you.',
                 'morphable_id' => 4,
@@ -74,13 +67,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'b@indy.com',
                 'updated_at' => '2022-12-19 00:35:40',
-            ),
-            4 => 
-            array (
-                'cc' => NULL,
+            ],
+            4 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:36:52',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 5,
                 'message' => 'Hi Jacob, The Indy Platform has assigned Ticket #DA1-2 to you.',
                 'morphable_id' => 5,
@@ -88,13 +80,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'j@indy.com',
                 'updated_at' => '2022-12-19 00:36:53',
-            ),
-            5 => 
-            array (
-                'cc' => NULL,
+            ],
+            5 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:36:53',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 6,
                 'message' => 'Hi John, The Indy Platform has assigned Ticket #DA1-2 to you.',
                 'morphable_id' => 6,
@@ -102,13 +93,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'j2@indy.com',
                 'updated_at' => '2022-12-19 00:36:53',
-            ),
-            6 => 
-            array (
-                'cc' => NULL,
+            ],
+            6 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:36:54',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 7,
                 'message' => 'Hi Lisa, The Indy Platform has assigned Ticket #DA1-2 to you.',
                 'morphable_id' => 7,
@@ -116,13 +106,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'l@indy.com',
                 'updated_at' => '2022-12-19 00:36:54',
-            ),
-            7 => 
-            array (
-                'cc' => NULL,
+            ],
+            7 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:36:54',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 8,
                 'message' => 'Hi Bec, The Indy Platform has assigned Ticket #DA1-2 to you.',
                 'morphable_id' => 8,
@@ -130,13 +119,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'b@indy.com',
                 'updated_at' => '2022-12-19 00:36:54',
-            ),
-            8 => 
-            array (
-                'cc' => NULL,
+            ],
+            8 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:37:58',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 9,
                 'message' => 'Hi John, The Indy Platform has assigned Ticket #DA1-3 to you.',
                 'morphable_id' => 9,
@@ -144,13 +132,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'j2@indy.com',
                 'updated_at' => '2022-12-19 00:37:58',
-            ),
-            9 => 
-            array (
-                'cc' => NULL,
+            ],
+            9 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:38:00',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 10,
                 'message' => 'Hi Bec, The Indy Platform has assigned Ticket #DA1-3 to you.',
                 'morphable_id' => 10,
@@ -158,13 +145,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'b@indy.com',
                 'updated_at' => '2022-12-19 00:38:00',
-            ),
-            10 => 
-            array (
-                'cc' => NULL,
+            ],
+            10 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:38:54',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 11,
                 'message' => 'Hi Lisa, The Indy Platform has assigned Ticket #DA1-4 to you.',
                 'morphable_id' => 11,
@@ -172,13 +158,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'l@indy.com',
                 'updated_at' => '2022-12-19 00:38:54',
-            ),
-            11 => 
-            array (
-                'cc' => NULL,
+            ],
+            11 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:38:55',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 12,
                 'message' => 'Hi Jacob, The Indy Platform has assigned Ticket #DA1-4 to you.',
                 'morphable_id' => 12,
@@ -186,13 +171,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'j@indy.com',
                 'updated_at' => '2022-12-19 00:38:55',
-            ),
-            12 => 
-            array (
-                'cc' => NULL,
+            ],
+            12 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:38:55',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 13,
                 'message' => 'Hi John, The Indy Platform has assigned Ticket #DA1-4 to you.',
                 'morphable_id' => 13,
@@ -200,13 +184,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'j2@indy.com',
                 'updated_at' => '2022-12-19 00:38:55',
-            ),
-            13 => 
-            array (
-                'cc' => NULL,
+            ],
+            13 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:38:56',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 14,
                 'message' => 'Hi Bec, The Indy Platform has assigned Ticket #DA1-4 to you.',
                 'morphable_id' => 14,
@@ -214,13 +197,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'b@indy.com',
                 'updated_at' => '2022-12-19 00:38:56',
-            ),
-            14 => 
-            array (
-                'cc' => NULL,
+            ],
+            14 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:40:22',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 15,
                 'message' => 'Hi Jacob, The Indy Platform has assigned Ticket #DA1-5 to you.',
                 'morphable_id' => 15,
@@ -228,13 +210,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'j@indy.com',
                 'updated_at' => '2022-12-19 00:40:22',
-            ),
-            15 => 
-            array (
-                'cc' => NULL,
+            ],
+            15 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:40:24',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 16,
                 'message' => 'Hi Lisa, The Indy Platform has assigned Ticket #DA1-5 to you.',
                 'morphable_id' => 16,
@@ -242,13 +223,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'l@indy.com',
                 'updated_at' => '2022-12-19 00:40:24',
-            ),
-            16 => 
-            array (
-                'cc' => NULL,
+            ],
+            16 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:40:25',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 17,
                 'message' => 'Hi John, The Indy Platform has assigned Ticket #DA1-5 to you.',
                 'morphable_id' => 17,
@@ -256,13 +236,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'j2@indy.com',
                 'updated_at' => '2022-12-19 00:40:25',
-            ),
-            17 => 
-            array (
-                'cc' => NULL,
+            ],
+            17 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:40:26',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 18,
                 'message' => 'Hi Bec, The Indy Platform has assigned Ticket #DA1-5 to you.',
                 'morphable_id' => 18,
@@ -270,13 +249,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'b@indy.com',
                 'updated_at' => '2022-12-19 00:40:26',
-            ),
-            18 => 
-            array (
-                'cc' => NULL,
+            ],
+            18 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:42:50',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 19,
                 'message' => 'Hi Jacob, The Indy Platform has assigned Ticket #DA1-6 to you.',
                 'morphable_id' => 19,
@@ -284,13 +262,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'j@indy.com',
                 'updated_at' => '2022-12-19 00:42:50',
-            ),
-            19 => 
-            array (
-                'cc' => NULL,
+            ],
+            19 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:42:51',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 20,
                 'message' => 'Hi John, The Indy Platform has assigned Ticket #DA1-6 to you.',
                 'morphable_id' => 20,
@@ -298,13 +275,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'j2@indy.com',
                 'updated_at' => '2022-12-19 00:42:51',
-            ),
-            20 => 
-            array (
-                'cc' => NULL,
+            ],
+            20 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:42:51',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 21,
                 'message' => 'Hi Lisa, The Indy Platform has assigned Ticket #DA1-6 to you.',
                 'morphable_id' => 21,
@@ -312,13 +288,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'l@indy.com',
                 'updated_at' => '2022-12-19 00:42:51',
-            ),
-            21 => 
-            array (
-                'cc' => NULL,
+            ],
+            21 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:42:51',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 22,
                 'message' => 'Hi Bec, The Indy Platform has assigned Ticket #DA1-6 to you.',
                 'morphable_id' => 22,
@@ -326,13 +301,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'b@indy.com',
                 'updated_at' => '2022-12-19 00:42:51',
-            ),
-            22 => 
-            array (
-                'cc' => NULL,
+            ],
+            22 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:45:15',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 23,
                 'message' => 'Hi Jacob, The Indy Platform has assigned Ticket #DA1-7 to you.',
                 'morphable_id' => 23,
@@ -340,13 +314,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'j@indy.com',
                 'updated_at' => '2022-12-19 00:45:15',
-            ),
-            23 => 
-            array (
-                'cc' => NULL,
+            ],
+            23 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:45:15',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 24,
                 'message' => 'Hi John, The Indy Platform has assigned Ticket #DA1-7 to you.',
                 'morphable_id' => 24,
@@ -354,13 +327,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'j2@indy.com',
                 'updated_at' => '2022-12-19 00:45:15',
-            ),
-            24 => 
-            array (
-                'cc' => NULL,
+            ],
+            24 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:45:16',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 25,
                 'message' => 'Hi Lisa, The Indy Platform has assigned Ticket #DA1-7 to you.',
                 'morphable_id' => 25,
@@ -368,13 +340,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'l@indy.com',
                 'updated_at' => '2022-12-19 00:45:16',
-            ),
-            25 => 
-            array (
-                'cc' => NULL,
+            ],
+            25 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:45:16',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 26,
                 'message' => 'Hi Bec, The Indy Platform has assigned Ticket #DA1-7 to you.',
                 'morphable_id' => 26,
@@ -382,13 +353,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'b@indy.com',
                 'updated_at' => '2022-12-19 00:45:16',
-            ),
-            26 => 
-            array (
-                'cc' => NULL,
+            ],
+            26 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:46:56',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 27,
                 'message' => 'Super Admin has posted a message in ticket # DA1-7',
                 'morphable_id' => 1,
@@ -396,13 +366,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'demo',
                 'updated_at' => '2022-12-19 00:46:56',
-            ),
-            27 => 
-            array (
-                'cc' => NULL,
+            ],
+            27 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 00:47:02',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 28,
                 'message' => 'Super Admin has posted a message in ticket # DA1-7',
                 'morphable_id' => 2,
@@ -410,13 +379,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'demo',
                 'updated_at' => '2022-12-19 00:47:02',
-            ),
-            28 => 
-            array (
-                'cc' => NULL,
+            ],
+            28 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 22:25:22',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 29,
                 'message' => 'Jacob has posted a message in ticket # DA1-6',
                 'morphable_id' => 3,
@@ -424,13 +392,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'demo',
                 'updated_at' => '2022-12-19 22:25:22',
-            ),
-            29 => 
-            array (
-                'cc' => NULL,
+            ],
+            29 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 22:50:17',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 30,
                 'message' => 'Bec has posted a message in ticket # DA1-4',
                 'morphable_id' => 4,
@@ -438,13 +405,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'demo',
                 'updated_at' => '2022-12-19 22:50:17',
-            ),
-            30 => 
-            array (
-                'cc' => NULL,
+            ],
+            30 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 23:39:43',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 31,
                 'message' => 'Ticket File Uploaded Email',
                 'morphable_id' => 1,
@@ -452,13 +418,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'b@indy.com',
                 'updated_at' => '2022-12-19 23:39:43',
-            ),
-            31 => 
-            array (
-                'cc' => NULL,
+            ],
+            31 => [
+                'cc' => null,
                 'created_at' => '2022-12-19 23:39:52',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 32,
                 'message' => 'John is requesting approval for a design in ticket # DA1-7',
                 'morphable_id' => 1,
@@ -466,13 +431,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'demo',
                 'updated_at' => '2022-12-19 23:39:52',
-            ),
-            32 => 
-            array (
-                'cc' => NULL,
+            ],
+            32 => [
+                'cc' => null,
                 'created_at' => '2022-12-20 00:48:33',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 33,
                 'message' => 'Ticket File Uploaded Email',
                 'morphable_id' => 2,
@@ -480,13 +444,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'b@indy.com',
                 'updated_at' => '2022-12-20 00:48:33',
-            ),
-            33 => 
-            array (
-                'cc' => NULL,
+            ],
+            33 => [
+                'cc' => null,
                 'created_at' => '2022-12-20 00:48:38',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 34,
                 'message' => 'Jacob is requesting approval for a design in ticket # DA1-1',
                 'morphable_id' => 2,
@@ -494,13 +457,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'demo',
                 'updated_at' => '2022-12-20 00:48:38',
-            ),
-            34 => 
-            array (
-                'cc' => NULL,
+            ],
+            34 => [
+                'cc' => null,
                 'created_at' => '2022-12-20 04:29:55',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 35,
                 'message' => 'Lisa has posted a message in ticket # DA1-5',
                 'morphable_id' => 5,
@@ -508,13 +470,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'demo',
                 'updated_at' => '2022-12-20 04:29:55',
-            ),
-            35 => 
-            array (
-                'cc' => NULL,
+            ],
+            35 => [
+                'cc' => null,
                 'created_at' => '2022-12-20 04:33:09',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 36,
                 'message' => 'Hi Demo, wayne has created a printer job request #1.',
                 'morphable_id' => 1,
@@ -522,13 +483,12 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'demo',
                 'updated_at' => '2022-12-20 04:33:10',
-            ),
-            36 => 
-            array (
-                'cc' => NULL,
+            ],
+            36 => [
+                'cc' => null,
                 'created_at' => '2022-12-20 04:35:04',
-                'deleted_at' => NULL,
-                'failed_details' => NULL,
+                'deleted_at' => null,
+                'failed_details' => null,
                 'id' => 37,
                 'message' => 'Hi John, The Indy Platform has assigned Ticket #DA1-8 to you.',
                 'morphable_id' => 27,
@@ -536,9 +496,7 @@ class EmailLogsTableSeeder extends Seeder
                 'status' => 'sent',
                 'to' => 'j2@indy.com',
                 'updated_at' => '2022-12-20 04:35:04',
-            ),
-        ));
-        
-        
+            ],
+        ]);
     }
 }

@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 
 class ErrorLogsTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -14,11 +13,6 @@ class ErrorLogsTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('error_logs')->delete();
-        
-        
-        
     }
 }

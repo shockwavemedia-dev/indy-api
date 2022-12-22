@@ -7,7 +7,6 @@ namespace App\Observers;
 use App\Enum\EmailStatusEnum;
 use App\Enum\NotificationStatusEnum;
 use App\Enum\ServicesEnum;
-use App\Enum\TicketFileStatusEnum;
 use App\Jobs\SocialMedia\SocialMediaSlackNotificationJob;
 use App\Jobs\Tickets\TicketFileSlackNotificationJob;
 use App\Models\Tickets\ClientTicketFile;
@@ -65,7 +64,7 @@ final class ClientTicketFileObserver
         $ticket = $clientTicketFile->getTicket();
 
         if ($clientTicketFile->isApproved() === true) {
-            $this->notifyUploader($clientTicketFile,'approved');
+            $this->notifyUploader($clientTicketFile, 'approved');
         }
 
         if ($clientTicketFile->isApproved() === false) {
@@ -192,25 +191,24 @@ final class ClientTicketFileObserver
         $uploader = $clientTicketFile->getAdminUser()->getUser();
 
         $uploader->notifyTicketFileUploader(
-                $clientTicketFile,
-                $this->emailLogFactory->make(new CreateEmailLogResource([
-                    'emailType' => $clientTicketFile,
-                    'status' => new EmailStatusEnum(EmailStatusEnum::PENDING),
-                    'to' => $uploader->getEmail(),
-                    'message' => 'Ticket File Uploaded Email', // Static message, real email is in json format
-                ])),
+            $clientTicketFile,
+            $this->emailLogFactory->make(new CreateEmailLogResource([
+                'emailType' => $clientTicketFile,
+                'status' => new EmailStatusEnum(EmailStatusEnum::PENDING),
+                'to' => $uploader->getEmail(),
+                'message' => 'Ticket File Uploaded Email', // Static message, real email is in json format
+            ])),
             $status
-            );
+        );
 
         TicketFileSlackNotificationJob::dispatch(
             $uploader,
-                \sprintf(
-                    'File is %s in Ticket# %s.',
-                    $clientTicketFile->getTicket()->getTicketCode(),
-                    $status
-                ),
-                $clientTicketFile->getTicketId()
-            );
-
+            \sprintf(
+                'File is %s in Ticket# %s.',
+                $clientTicketFile->getTicket()->getTicketCode(),
+                $status
+            ),
+            $clientTicketFile->getTicketId()
+        );
     }
 }

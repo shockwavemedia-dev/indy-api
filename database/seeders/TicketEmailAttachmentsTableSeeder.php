@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 
 class TicketEmailAttachmentsTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -14,11 +13,6 @@ class TicketEmailAttachmentsTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('ticket_email_attachments')->delete();
-        
-        
-        
     }
 }
