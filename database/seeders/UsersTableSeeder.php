@@ -3,45 +3,244 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
+
     /**
-     * Run the database seeds.
+     * Auto generated seed file
      *
      * @return void
      */
     public function run()
     {
-        $user = DB::table('users')->where('email', '=', 'superadmin@indy.com.au')->get();
+        
 
-        if ($user->isEmpty() === false) {
-            return;
-        }
-
-        $admin = DB::table('admin_users')->insert([
-            'admin_role' => 'admin',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-
-        DB::table('users')->insert([
-            'morphable_id' => 1,
-            'morphable_type' => 'App\Models\Users\AdminUser',
-            'email' => 'superadmin@indy.com.au',
-            'password' => Hash::make('iNdYau013991'),
-            'status' => 'active',
-            'first_name' => 'Super Admin',
-            'middle_name' => '',
-            'last_name' => '',
-            'contact_number' => '0',
-            'gender' => 'Male',
-            'birth_date' => '1990/12/12',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
+        \DB::table('users')->delete();
+        
+        \DB::table('users')->insert(array (
+            0 => 
+            array (
+                'birth_date' => '1990-12-12 00:00:00',
+                'contact_number' => '0',
+                'created_at' => '2022-12-16 05:25:05',
+                'deleted_at' => NULL,
+                'display_in_dashboard' => 0,
+                'email' => 'superadmin@indy.com.au',
+                'email_verified_at' => NULL,
+                'first_name' => 'Super Admin',
+                'gender' => 'Male',
+                'id' => 1,
+                'last_name' => '',
+                'middle_name' => '',
+                'morphable_id' => 1,
+                'morphable_type' => 'App\\Models\\Users\\AdminUser',
+                'password' => '$2y$10$cGZ.FCnhH4vKBtstio5c2udT4t2HfPku5fCDW5z5Yw.aGLbJ5GG4G',
+                'profile_file_id' => NULL,
+                'remember_token' => NULL,
+                'status' => 'active',
+                'updated_at' => '2022-12-16 05:25:05',
+            ),
+            1 => 
+            array (
+                'birth_date' => NULL,
+                'contact_number' => NULL,
+                'created_at' => '2022-12-18 23:35:38',
+                'deleted_at' => NULL,
+                'display_in_dashboard' => 0,
+                'email' => 'p@indy.com',
+                'email_verified_at' => NULL,
+                'first_name' => 'wayne',
+                'gender' => NULL,
+                'id' => 2,
+                'last_name' => 'Printer Provider',
+                'middle_name' => NULL,
+                'morphable_id' => 1,
+                'morphable_type' => 'App\\Models\\Printer',
+                'password' => '$2y$10$OTRookVLNZDh7k8VGj6C..lMXwE2LX0p8rf/SmMYrT4qNcnWrlmCS',
+                'profile_file_id' => NULL,
+                'remember_token' => NULL,
+                'status' => 'active',
+                'updated_at' => '2022-12-18 23:35:38',
+            ),
+            2 => 
+            array (
+                'birth_date' => '2022-12-18 00:00:00',
+                'contact_number' => NULL,
+                'created_at' => '2022-12-18 23:37:09',
+                'deleted_at' => NULL,
+                'display_in_dashboard' => 0,
+                'email' => 'j@indy.com',
+                'email_verified_at' => NULL,
+                'first_name' => 'Jacob',
+                'gender' => NULL,
+                'id' => 3,
+                'last_name' => NULL,
+                'middle_name' => NULL,
+                'morphable_id' => 2,
+                'morphable_type' => 'App\\Models\\Users\\AdminUser',
+                'password' => '$2y$10$g3/9OFeNWMed.IgYBdxAJ.r3ER4ofGLzzzgeMTzj57GSDKWHfYgfa',
+                'profile_file_id' => NULL,
+                'remember_token' => NULL,
+                'status' => 'active',
+                'updated_at' => '2022-12-18 23:37:09',
+            ),
+            3 => 
+            array (
+                'birth_date' => '2022-12-18 00:00:00',
+                'contact_number' => NULL,
+                'created_at' => '2022-12-18 23:37:53',
+                'deleted_at' => NULL,
+                'display_in_dashboard' => 0,
+                'email' => 'j2@indy.com',
+                'email_verified_at' => NULL,
+                'first_name' => 'John',
+                'gender' => NULL,
+                'id' => 4,
+                'last_name' => NULL,
+                'middle_name' => NULL,
+                'morphable_id' => 3,
+                'morphable_type' => 'App\\Models\\Users\\AdminUser',
+                'password' => '$2y$10$dcOD7QmfX1OVXVTFRgc3tu0Oa/E0AU/7ztUvNalDxutM8U/3.Fvru',
+                'profile_file_id' => NULL,
+                'remember_token' => NULL,
+                'status' => 'active',
+                'updated_at' => '2022-12-18 23:37:53',
+            ),
+            4 => 
+            array (
+                'birth_date' => '2022-12-18 00:00:00',
+                'contact_number' => NULL,
+                'created_at' => '2022-12-18 23:38:39',
+                'deleted_at' => NULL,
+                'display_in_dashboard' => 0,
+                'email' => 'b@indy.com',
+                'email_verified_at' => NULL,
+                'first_name' => 'Bec',
+                'gender' => NULL,
+                'id' => 5,
+                'last_name' => NULL,
+                'middle_name' => NULL,
+                'morphable_id' => 4,
+                'morphable_type' => 'App\\Models\\Users\\AdminUser',
+                'password' => '$2y$10$HYvysc4mR2BdIiBp/yXpqOh2sfbtGvdl8q82tReesEoZ4q/duaQWS',
+                'profile_file_id' => NULL,
+                'remember_token' => NULL,
+                'status' => 'active',
+                'updated_at' => '2022-12-18 23:38:39',
+            ),
+            5 => 
+            array (
+                'birth_date' => '2022-12-18 00:00:00',
+                'contact_number' => NULL,
+                'created_at' => '2022-12-18 23:39:58',
+                'deleted_at' => NULL,
+                'display_in_dashboard' => 0,
+                'email' => 'l@indy.com',
+                'email_verified_at' => NULL,
+                'first_name' => 'Lisa',
+                'gender' => NULL,
+                'id' => 6,
+                'last_name' => NULL,
+                'middle_name' => NULL,
+                'morphable_id' => 5,
+                'morphable_type' => 'App\\Models\\Users\\AdminUser',
+                'password' => '$2y$10$eTA3yj2S9LH0dyJpepzZrukw9PBAL8IQ/6clKCp.xaaO/mPwpkW6.',
+                'profile_file_id' => NULL,
+                'remember_token' => NULL,
+                'status' => 'active',
+                'updated_at' => '2022-12-18 23:39:58',
+            ),
+            6 => 
+            array (
+                'birth_date' => '2022-12-19 00:00:00',
+                'contact_number' => NULL,
+                'created_at' => '2022-12-19 00:04:23',
+                'deleted_at' => NULL,
+                'display_in_dashboard' => 0,
+                'email' => 'demo',
+                'email_verified_at' => NULL,
+                'first_name' => 'Demo',
+                'gender' => NULL,
+                'id' => 7,
+                'last_name' => 'User',
+                'middle_name' => NULL,
+                'morphable_id' => 1,
+                'morphable_type' => 'App\\Models\\Users\\ClientUser',
+                'password' => '$2y$10$wHBhbE6AM2o6.t.dizV4JOJBPo92KWkb1xpsjPl2jJl6XyOLzxHFi',
+                'profile_file_id' => NULL,
+                'remember_token' => NULL,
+                'status' => 'active',
+                'updated_at' => '2022-12-19 00:04:23',
+            ),
+            7 => 
+            array (
+                'birth_date' => '2022-12-19 00:00:00',
+                'contact_number' => NULL,
+                'created_at' => '2022-12-19 03:15:47',
+                'deleted_at' => NULL,
+                'display_in_dashboard' => 0,
+                'email' => 'd@indy.com',
+                'email_verified_at' => NULL,
+                'first_name' => 'Daniel',
+                'gender' => NULL,
+                'id' => 8,
+                'last_name' => NULL,
+                'middle_name' => NULL,
+                'morphable_id' => 2,
+                'morphable_type' => 'App\\Models\\Users\\ClientUser',
+                'password' => '$2y$10$vTjcGiPHaPc4ngAFmmKzHeKN6bB4BdVTSPLjkRdyoU3uTE6kDtOGS',
+                'profile_file_id' => NULL,
+                'remember_token' => NULL,
+                'status' => 'active',
+                'updated_at' => '2022-12-19 03:15:47',
+            ),
+            8 => 
+            array (
+                'birth_date' => '2022-12-19 00:00:00',
+                'contact_number' => NULL,
+                'created_at' => '2022-12-19 03:16:12',
+                'deleted_at' => NULL,
+                'display_in_dashboard' => 0,
+                'email' => 'w@indy.com',
+                'email_verified_at' => NULL,
+                'first_name' => 'Wayne',
+                'gender' => NULL,
+                'id' => 9,
+                'last_name' => NULL,
+                'middle_name' => NULL,
+                'morphable_id' => 3,
+                'morphable_type' => 'App\\Models\\Users\\ClientUser',
+                'password' => '$2y$10$jhQcpSgzj.kYTxLTGqbNhuxtz2llE6YQQccioppbm799jC68kpzhi',
+                'profile_file_id' => NULL,
+                'remember_token' => NULL,
+                'status' => 'active',
+                'updated_at' => '2022-12-19 03:16:12',
+            ),
+            9 => 
+            array (
+                'birth_date' => '2022-12-19 00:00:00',
+                'contact_number' => NULL,
+                'created_at' => '2022-12-19 03:16:39',
+                'deleted_at' => NULL,
+                'display_in_dashboard' => 0,
+                'email' => 'r@indy.com',
+                'email_verified_at' => NULL,
+                'first_name' => 'Ross',
+                'gender' => NULL,
+                'id' => 10,
+                'last_name' => NULL,
+                'middle_name' => NULL,
+                'morphable_id' => 4,
+                'morphable_type' => 'App\\Models\\Users\\ClientUser',
+                'password' => '$2y$10$z6fk5DLusbK/36.Rmhtjsew4iLk3pKFe6wdVTPvVRKw0mAzFirrmu',
+                'profile_file_id' => NULL,
+                'remember_token' => NULL,
+                'status' => 'active',
+                'updated_at' => '2022-12-19 03:16:39',
+            ),
+        ));
+        
+        
     }
 }
