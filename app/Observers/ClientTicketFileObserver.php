@@ -7,6 +7,7 @@ namespace App\Observers;
 use App\Enum\EmailStatusEnum;
 use App\Enum\NotificationStatusEnum;
 use App\Enum\ServicesEnum;
+use App\Enum\TicketFileStatusEnum;
 use App\Jobs\SocialMedia\SocialMediaSlackNotificationJob;
 use App\Jobs\Tickets\TicketFileSlackNotificationJob;
 use App\Models\Tickets\ClientTicketFile;
@@ -65,8 +66,10 @@ final class ClientTicketFileObserver
 
         if ($clientTicketFile->isApproved() === true) {
             $this->notifyUploader($clientTicketFile,'approved');
-        }else{
-            $this->notifyUploader($clientTicketFile,'rejected');
+        }
+
+        if ($clientTicketFile->getStatus() == TicketFileStatusEnum::REQUEST_REVISION) {
+            $this->notifyUploader($clientTicketFile, 'declined');
         }
 
         /** @var TicketService $ticketService */
