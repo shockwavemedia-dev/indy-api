@@ -20,6 +20,7 @@ final class TicketService extends AbstractModel
     protected $casts = [
         'custom_fields' => 'array',
         'extras' => 'array',
+        'post_date' => 'datetime',
     ];
 
     /**
@@ -54,13 +55,7 @@ final class TicketService extends AbstractModel
 
     public function getPostDate(): ?Carbon
     {
-        $postDate = $this->getAttribute('post_date');
-
-        if ($postDate === null) {
-            return null;
-        }
-
-        return new Carbon($postDate);
+        return $this->getAttribute('post_date');
     }
 
     public function getId(): int
