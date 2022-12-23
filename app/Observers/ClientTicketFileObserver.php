@@ -68,7 +68,7 @@ final class ClientTicketFileObserver
             $this->notifyUploader($clientTicketFile,'approved');
         }
 
-        if ($clientTicketFile->getStatus() == TicketFileStatusEnum::REQUEST_REVISION){
+        if ($clientTicketFile->getStatus()->getValue() === TicketFileStatusEnum::REQUEST_REVISION) {
             $this->notifyUploader($clientTicketFile, 'declined');
         }
 
