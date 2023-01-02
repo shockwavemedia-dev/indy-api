@@ -19,3 +19,5 @@ yarn-error.log
 app/.DS_Store
 
 app/Enum/.DS_Store
+
+public/worker.log
