@@ -68,7 +68,7 @@ final class Ticket extends AbstractModel implements EmailInterface
 
     public function getChats(): Collection
     {
-        return $this->chats;
+        return $this->chats()->orderBy('id', 'desc')->get();
     }
 
     public function getUserNotes(): array
