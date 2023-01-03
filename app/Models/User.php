@@ -219,12 +219,12 @@ final class User extends Authenticatable implements EmailInterface
         $this->notify(new UploadedTicketFileEmail($emailLog, $message, $url));
     }
 
-    public function sendGenericNotification(EmailLog $emailLog, string $message, string $url): void
+    public function sendGenericNotification(EmailLog $emailLog, string $message, string $url, string $subject): void
     {
-        $this->notify(new GenericEmail($emailLog, $message, $url));
+        $this->notify(new GenericEmail($emailLog, $message, $url, $subject));
     }
 
-    public function sendGenericNotificationWithEmailLog(mixed $morph, string $message, string $url): void
+    public function sendGenericNotificationWithEmailLog(mixed $morph, string $message, string $url, string $subject): void
     {
         $emailLog = EmailLog::create([
             'morphable_id' => $morph->getId(),
@@ -235,7 +235,7 @@ final class User extends Authenticatable implements EmailInterface
             'message' => $message,
         ]);
 
-        $this->notify(new GenericEmail($emailLog, $message, $url));
+        $this->notify(new GenericEmail($emailLog, $message, $url, $subject));
     }
 
     public function notifyTicketFileUploader(ClientTicketFile $clientTicketFile, EmailLog $emailLog, string $status): void

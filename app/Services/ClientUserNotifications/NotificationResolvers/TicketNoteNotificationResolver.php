@@ -61,6 +61,7 @@ final class TicketNoteNotificationResolver extends AbstractClientNotificationRes
             $morph,
             $notificationResource->getTitle(),
             $notificationResource->getLink(),
+            'Posted Ticket Message'
         );
     }
 

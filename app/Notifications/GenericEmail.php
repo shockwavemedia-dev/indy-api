@@ -19,6 +19,7 @@ final class GenericEmail extends Notification implements ShouldQueue
         private EmailLog $emailLog,
         private string $message,
         private string $link,
+        private string $subject,
     ) {
     }
 
@@ -47,6 +48,7 @@ final class GenericEmail extends Notification implements ShouldQueue
             $this->emailLog->save();
 
             return (new MailMessage)
+                ->subject($this->subject)
                 ->action(__('Link'), $this->link)
                 ->line($this->message);
         } catch (\Throwable $exception) {

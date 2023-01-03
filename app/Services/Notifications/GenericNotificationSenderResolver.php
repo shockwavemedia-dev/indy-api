@@ -27,7 +27,8 @@ final class GenericNotificationSenderResolver implements GenericNotificationSend
         User $user,
         mixed $object,
         string $message,
-        string $link
+        string $link,
+        string $subject
     ): void {
         $url = Config::get('mail.client_url', null);
 
@@ -44,7 +45,7 @@ final class GenericNotificationSenderResolver implements GenericNotificationSend
             'message' => $message,
         ]));
 
-        $user->sendGenericNotification($emailLog, $message, $url);
+        $user->sendGenericNotification($emailLog, $message, $url, $subject);
 
         $slackMessageWithLink = sprintf(
             '%s You may check the link here %s',

@@ -72,7 +72,7 @@ final class TicketNoteNotificationResolver extends AbstractBackendUserNotificati
 
         $this->saveNotification($notificationResource, $user);
 
-        $this->genericNotificationSenderResolver->resolve($user, $morph, $message, $link);
+        $this->genericNotificationSenderResolver->resolve($user, $morph, $message, $link, 'Posted Ticket Message');
     }
 
     public function supports(BackendUserNotificationTypeEnum $typeEnum): bool
