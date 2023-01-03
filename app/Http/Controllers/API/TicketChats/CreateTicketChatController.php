@@ -67,7 +67,9 @@ final class CreateTicketChatController extends AbstractAPIController
                     $ticket->getId(),
                 );
 
-                $user->sendGenericNotificationWithEmailLog($ticketChat, $message, $url);
+                $subject = sprintf('You have been mentioned in Ticket %s', $ticket->getId());
+
+                $user->sendGenericNotificationWithEmailLog($ticketChat, $message, $url, $subject);
 
                 $slackMessageWithLink = sprintf(
                     '%s You may check the link here %s',

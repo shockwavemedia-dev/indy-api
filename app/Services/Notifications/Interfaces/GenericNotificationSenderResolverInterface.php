@@ -10,6 +10,7 @@ interface GenericNotificationSenderResolverInterface
         User $user,
         mixed $object,
         string $message,
-        string $link
+        string $link,
+        string $subject
     ): void;
 }

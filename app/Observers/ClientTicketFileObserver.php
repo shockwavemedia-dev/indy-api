@@ -65,7 +65,7 @@ final class ClientTicketFileObserver
         $ticket = $clientTicketFile->getTicket();
 
         if ($clientTicketFile->isApproved() === true) {
-            $this->notifyUploader($clientTicketFile,'approved');
+            $this->notifyUploader($clientTicketFile, 'approved');
         }
 
         if ($clientTicketFile->getStatus()->getValue() === TicketFileStatusEnum::REQUEST_REVISION) {
@@ -192,25 +192,24 @@ final class ClientTicketFileObserver
         $uploader = $clientTicketFile->getAdminUser()->getUser();
 
         $uploader->notifyTicketFileUploader(
-                $clientTicketFile,
-                $this->emailLogFactory->make(new CreateEmailLogResource([
-                    'emailType' => $clientTicketFile,
-                    'status' => new EmailStatusEnum(EmailStatusEnum::PENDING),
-                    'to' => $uploader->getEmail(),
-                    'message' => 'Ticket File Uploaded Email', // Static message, real email is in json format
-                ])),
+            $clientTicketFile,
+            $this->emailLogFactory->make(new CreateEmailLogResource([
+                'emailType' => $clientTicketFile,
+                'status' => new EmailStatusEnum(EmailStatusEnum::PENDING),
+                'to' => $uploader->getEmail(),
+                'message' => 'Ticket File Uploaded Email', // Static message, real email is in json format
+            ])),
             $status
-            );
+        );
 
         TicketFileSlackNotificationJob::dispatch(
             $uploader,
-                \sprintf(
-                    'File is %s in Ticket# %s.',
-                    $clientTicketFile->getTicket()->getTicketCode(),
-                    $status
-                ),
-                $clientTicketFile->getTicketId()
-            );
-
+            \sprintf(
+                'File is %s in Ticket# %s.',
+                $clientTicketFile->getTicket()->getTicketCode(),
+                $status
+            ),
+            $clientTicketFile->getTicketId()
+        );
     }
 }

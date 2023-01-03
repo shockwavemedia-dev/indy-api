@@ -6,16 +6,21 @@ use App\Console\Commands\ResetExtraQuoteToZero;
 use App\Console\Commands\UpdateExpiredFileUrl;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Config;
 
-class Kernel extends ConsoleKernel
+final class Kernel extends ConsoleKernel
 {
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('passport:purge')->hourly();
 
-        $schedule->command(UpdateExpiredFileUrl::class)->weekends();
+        $schedule->command(UpdateExpiredFileUrl::class)->daily();
 
         $schedule->command(ResetExtraQuoteToZero::class)->lastDayOfMonth('15:00');
+
+        if (Config::get('app.demo_server') === true) {
+            $schedule->exec('php artisan db:seed')->dailyAt('3:00')->timezone('Australia/Sydney');
+        }
     }
 
     protected function commands(): void

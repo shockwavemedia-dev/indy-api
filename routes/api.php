@@ -22,6 +22,8 @@ use App\Http\Controllers\API\Clients\UpdateClientController;
 use App\Http\Controllers\API\Clients\UpdateClientScreensController;
 use App\Http\Controllers\API\ClientServices\ListClientServiceController;
 use App\Http\Controllers\API\ClientServices\UpdateClientServiceController;
+use App\Http\Controllers\API\Commands\CreateDBSeederFromCurrentStateController;
+use App\Http\Controllers\API\Commands\DBSeederController;
 use App\Http\Controllers\API\Departments\AddDepartmentMembersController;
 use App\Http\Controllers\API\Departments\CreateDepartmentController;
 use App\Http\Controllers\API\Departments\DeleteDepartmentController;
@@ -264,6 +266,24 @@ Route::group([
             'uses' => DeleteFileController::class,
         ])->middleware('checkPermission:clients,read');
     });
+});
+
+Route::group([
+    'middleware' => 'auth:api',
+    'as' => 'crm.api.commands',
+    'prefix' => 'commands',
+], function ($router) {
+    Route::post('/restore-db', [
+        'middleware' => 'auth:api',
+        'as' => 'restore backup',
+        'uses' => DBSeederController::class,
+    ]);
+
+    Route::post('/backup-db', [
+        'middleware' => 'auth:api',
+        'as' => 'backup db',
+        'uses' => CreateDBSeederFromCurrentStateController::class,
+    ]);
 });
 
 Route::group([

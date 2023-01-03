@@ -59,7 +59,7 @@ final class TicketFileEmail extends Notification implements ShouldQueue
                 $this->ticketFile->getTicket()->getId()
             );
 
-            $subject = sprintf('Ticket# %s file is %s', $this->ticketFile->getTicket()->getTicketCode(),$this->status);
+            $subject = sprintf('Ticket# %s file is %s', $this->ticketFile->getTicket()->getTicketCode(), $this->status);
 
             $message = \sprintf(
                 'Hi %s, %s %s a file in Ticket# %s.',
