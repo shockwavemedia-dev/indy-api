@@ -54,19 +54,20 @@ final class ClientRepository extends BaseRepository implements ClientRepositoryI
         ?int $size = null,
         ?int $pageNumber = null,
         ?string $sortBy = null,
-        ?string $sortOrder = null
+        ?string $sortOrder = null,
+        ?string $name = null
     ): LengthAwarePaginator {
-        if ($sortBy === null) {
             return $this->model
+                ->when($sortBy, function($query) use ($sortBy, $sortOrder){
+                    $query->orderBy($sortBy, $sortOrder);
+                })
+                ->when($name, function($query) use ($name){
+                    $query->where('name','LIKE','%'.$name.'%');
+                })
                 ->with(['clientScreens.screen', 'printer', 'logo', 'designatedDesigner'])
                 ->orderBy('name', 'asc')
                 ->paginate($size, ['*'], null, $pageNumber);
-        }
 
-        return $this->model
-            ->with(['clientScreens.screen', 'printer', 'logo', 'designatedDesigner'])
-            ->orderBy($sortBy, $sortOrder)
-            ->paginate($size, ['*'], null, $pageNumber);
     }
 
     public function findAllClientWithSocialMediaService(

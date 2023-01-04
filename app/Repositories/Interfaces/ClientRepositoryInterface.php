@@ -22,7 +22,8 @@ interface ClientRepositoryInterface
         ?int $size = null,
         ?int $pageNumber = null,
         ?string $sortBy = null,
-        ?string $sortOrder = null
+        ?string $sortOrder = null,
+        ?string $name = null
     ): LengthAwarePaginator;
 
     public function findAllClientWithSocialMediaService(

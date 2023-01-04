@@ -25,12 +25,14 @@ final class ListClientController extends AbstractAPIController
         try {
             $sortBy = $request->get('sortBy') ?? null;
             $sortOrder = $request->get('sortOrder') ?? null;
+            $name = $request->get('name') ?? null;
 
             $client = $this->clientRepository->findAllClient(
                 $request->getSize(),
                 $request->getPageNumber(),
                 $sortBy,
                 $sortOrder,
+                $name
             );
 
             return new ClientsResource($client);
