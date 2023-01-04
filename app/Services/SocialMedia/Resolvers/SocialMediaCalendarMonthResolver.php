@@ -173,7 +173,7 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
                     );
 
                     if ($audit->event === 'updated' && $audit->auditable_type === 'App\Models\SocialMedia') {
-                        $result['activities'][] = [
+                        $socialMediaDetails['activities'][] = [
                             'action' => 'Modified',
                             'fields' => $audit->getModified(),
                             'user' => $user,
@@ -182,7 +182,7 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
                     }
 
                     if ($audit->event === 'deleted' && $audit->auditable_type === 'App\Models\SocialMedia') {
-                        $result['activities'][] = [
+                        $socialMediaDetails['activities'][] = [
                             'action' => 'Removed an attachment',
                             'fields' => $audit->getModified(),
                             'user' => $user,
@@ -191,7 +191,7 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
                     }
 
                     if ($audit->auditable_type === 'App\Models\SocialMediaAttachment') {
-                        $result['activities'][] = [
+                        $socialMediaDetails['activities'][] = [
                             'action' => 'Uploaded an attachment.',
                             'user' => $user,
                             'created_at' => $audit->getAttribute('created_at'),
