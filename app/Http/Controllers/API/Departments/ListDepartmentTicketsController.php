@@ -52,6 +52,11 @@ final class ListDepartmentTicketsController extends AbstractAPIController
                 'statuses' => $request->getStatuses(),
                 'priorities' => $request->getPriorities(),
                 'clientId' => $request->getClientId(),
+                'hideClosed' => $request->hideClosed(),
+                'code' => $request->getCode(),
+                'deadline' => $request->getDeadline(),
+                'types' => $request->getTypes(),
+                'subject' => $request->getSubject(),
             ]),
             $request->getSize(),
             $request->getPageNumber()
