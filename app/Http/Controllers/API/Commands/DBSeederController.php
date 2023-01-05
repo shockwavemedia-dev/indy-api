@@ -21,7 +21,13 @@ final class DBSeederController extends AbstractAPIController
             return $this->respondBadRequest(['message' => 'Invalid server to reset']);
         }
 
-        Artisan::call('db:seed');
+        Artisan::call('db:seed',  [
+            '--force' => true,
+        ]);
+
+        Artisan::call('php artisan files:resigned-url', [
+            '--force' => true,
+        ]);
 
         return new JsonResource(['data' => Artisan::output()]);
     }
