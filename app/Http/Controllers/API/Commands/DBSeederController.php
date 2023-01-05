@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API\Commands;
 
 use App\Http\Controllers\API\AbstractAPIController;
+use App\Jobs\ResignedUrlJob;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
@@ -25,7 +26,7 @@ final class DBSeederController extends AbstractAPIController
             '--force' => true,
         ]);
 
-        Artisan::call('files:resigned-url');
+        ResignedUrlJob::dispatch();
 
         return new JsonResource(['data' => Artisan::output()]);
     }
