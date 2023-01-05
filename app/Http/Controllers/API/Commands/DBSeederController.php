@@ -25,7 +25,7 @@ final class DBSeederController extends AbstractAPIController
             '--force' => true,
         ]);
 
-        Artisan::call('php artisan files:resigned-url');
+        Artisan::call('files:resigned-url');
 
         return new JsonResource(['data' => Artisan::output()]);
     }
