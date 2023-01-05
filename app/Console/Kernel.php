@@ -23,11 +23,7 @@ final class Kernel extends ConsoleKernel
                 '--force' => true,
             ])->dailyAt('3:00')->timezone('Australia/Sydney');
 
-            $schedule->exec(
-                'php artisan files:resigned-url',
-                [
-                    '--force' => true,
-                ])
+            $schedule->exec('php artisan files:resigned-url')
                 ->dailyAt('3:00')->timezone('Australia/Sydney');
         }
     }
