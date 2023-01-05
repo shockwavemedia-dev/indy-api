@@ -19,7 +19,9 @@ final class Kernel extends ConsoleKernel
         $schedule->command(ResetExtraQuoteToZero::class)->lastDayOfMonth('15:00');
 
         if (Config::get('app.demo_server') === true) {
-            $schedule->exec('php artisan db:seed')->dailyAt('3:00')->timezone('Australia/Sydney');
+            $schedule->exec('php artisan db:seed', [
+                '--force' => true,
+            ])->dailyAt('3:00')->timezone('Australia/Sydney');
 
             $schedule->exec(
                 'php artisan files:resigned-url',
