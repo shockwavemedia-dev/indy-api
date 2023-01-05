@@ -107,6 +107,10 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
 
         $deadline = $resource->getDeadline();
 
+        $priorities = $resource->getPriorities();
+
+        $hideClosed = $resource->hideClosed();
+
         return $this->model
             ->with('ticketServices.service')
             ->when($types, function ($query, $types) {
@@ -128,6 +132,16 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
                 ]);
             })
             ->where('client_id', $client->getId())
+            ->when($priorities, function ($query, $priorities) {
+                return $query->whereIn('priority', $priorities);
+            })
+            ->when($hideClosed, function ($query) use ($hideClosed) {
+                if ($hideClosed === null) {
+                    return;
+                }
+
+                $query->where('status', '!=', TicketStatusEnum::CLOSED);
+            })
             ->orderBy('id', 'desc')
             ->paginate($size, ['*'], null, $pageNumber);
     }
@@ -145,6 +159,14 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
         $clientId = $resource->getClientId();
 
         $hideClosed = $resource->hideClosed();
+
+        $types = $resource->getTypes();
+
+        $subject = $resource->getSubject();
+
+        $code = $resource->getCode();
+
+        $deadline = $resource->getDeadline();
 
         return $this->model
             ->with('ticketServices.service')
@@ -171,6 +193,21 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
                 }
 
                 $query->where('status', '!=', TicketStatusEnum::CLOSED);
+            })
+            ->when($types, function ($query, $types) {
+                return $query->whereIn('type', $types);
+            })
+            ->when($subject, function ($query, $subject) {
+                return $query->where('subject', 'LIKE', '%'.$subject.'%');
+            })
+            ->when($code, function ($query, $code) {
+                return $query->where('ticket_code', 'LIKE', '%'.$code.'%');
+            })
+            ->when($deadline, function ($query, $deadline) {
+                return $query->whereBetween('duedate', [
+                    \sprintf('%s 00:00:00', $deadline->toDateString()),
+                    \sprintf('%s 00:00:00', $deadline->addDays(2)->toDateString()),
+                ]);
             })
             ->orWhereHas('ticketServices.service.departments', function ($query) use ($department) {
                 $query->where('department_id', '=', $department->getId());
@@ -314,6 +351,14 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
 
         $hideClosed = $resource->hideClosed();
 
+        $types = $resource->getTypes();
+
+        $subject = $resource->getSubject();
+
+        $code = $resource->getCode();
+
+        $deadline = $resource->getDeadline();
+
         return $this->model->whereHas('assignees', function ($query) use ($adminUser) {
             $query->where('admin_user_id', '=', $adminUser->getId());
         })
@@ -337,6 +382,21 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
                 }
 
                 $query->where('status', '!=', TicketStatusEnum::CLOSED);
+            })
+            ->when($types, function ($query, $types) {
+                return $query->whereIn('type', $types);
+            })
+            ->when($subject, function ($query, $subject) {
+                return $query->where('subject', 'LIKE', '%'.$subject.'%');
+            })
+            ->when($code, function ($query, $code) {
+                return $query->where('ticket_code', 'LIKE', '%'.$code.'%');
+            })
+            ->when($deadline, function ($query, $deadline) {
+                return $query->whereBetween('duedate', [
+                    \sprintf('%s 00:00:00', $deadline->toDateString()),
+                    \sprintf('%s 00:00:00', $deadline->addDays(2)->toDateString()),
+                ]);
             })
             ->orderBy('id', 'desc')
             ->paginate($size, ['*'], null, $pageNumber);
