@@ -87,6 +87,7 @@ final class ClientTicketFileObserver
 
     /**
      * @removed
+     *
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     private function notifySocialMediaFileUploaded(ClientTicketFile $clientTicketFile): void

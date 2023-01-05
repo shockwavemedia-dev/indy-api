@@ -12,6 +12,7 @@ use App\Models\AbstractModel;
 use App\Models\Client;
 use App\Models\Department;
 use App\Models\Emails\Interfaces\EmailInterface;
+use App\Models\StyleGuideComment;
 use App\Models\TicketChat;
 use App\Models\User;
 use Carbon\Carbon;
@@ -64,6 +65,16 @@ final class Ticket extends AbstractModel implements EmailInterface
     public function activities(): HasMany
     {
         return $this->hasMany(TicketActivity::class);
+    }
+
+    public function getStyleGuideComments(): ?Collection
+    {
+        return $this->styleGuideComments()->get();
+    }
+
+    public function styleGuideComments(): HasMany
+    {
+        return $this->hasMany(StyleGuideComment::class);
     }
 
     public function getChats(): Collection

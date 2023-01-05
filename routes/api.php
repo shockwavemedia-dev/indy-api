@@ -118,6 +118,8 @@ use App\Http\Controllers\API\SocialMedia\SocialMediaMonthlyListController;
 use App\Http\Controllers\API\SocialMedia\UpdateSocialMediaBoostController;
 use App\Http\Controllers\API\SocialMedia\UpdateSocialMediaCommentController;
 use App\Http\Controllers\API\SocialMedia\UpdateSocialMediaController;
+use App\Http\Controllers\API\StyleGuideComments\CreateStyleGuideCommentController;
+use App\Http\Controllers\API\StyleGuideComments\ListStyleGuideCommentController;
 use App\Http\Controllers\API\SupportRequests\CreateSupportRequestController;
 use App\Http\Controllers\API\TicketAssignees\ListMyTicketController;
 use App\Http\Controllers\API\TicketAssignees\RemoveTicketAssigneeController;
@@ -650,6 +652,16 @@ Route::group([
             'as' => 'delete-ticket-chats',
             'uses' => DeleteTicketChatController::class,
         ])->middleware('checkPermission:tickets,edit');
+
+        Route::post('/tickets/{id}/style-guide-comments', [
+            'as' => 'create-style-guide-comment',
+            'uses' => CreateStyleGuideCommentController::class,
+        ])->middleware('checkPermission:tickets,read');
+
+        Route::get('/tickets/{id}/style-guide-comments', [
+            'as' => 'list-style-guide-comment',
+            'uses' => ListStyleGuideCommentController::class,
+        ])->middleware('checkPermission:tickets,read');
     });
 
     Route::group([
