@@ -144,6 +144,8 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
 
         $clientId = $resource->getClientId();
 
+        $hideClosed = $resource->hideClosed();
+
         return $this->model
             ->with('ticketServices.service')
             ->where('department_id', $department->getId())
@@ -162,6 +164,13 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             })
             ->when($priorities, function ($query, $priorities) {
                 return $query->whereIn('priority', $priorities);
+            })
+            ->when($hideClosed, function ($query) use ($hideClosed) {
+                if ($hideClosed === null) {
+                    return;
+                }
+
+                $query->where('status', '!=', TicketStatusEnum::CLOSED);
             })
             ->orWhereHas('ticketServices.service.departments', function ($query) use ($department) {
                 $query->where('department_id', '=', $department->getId());
@@ -303,6 +312,8 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
 
         $clientId = $resource->getClientId();
 
+        $hideClosed = $resource->hideClosed();
+
         return $this->model->whereHas('assignees', function ($query) use ($adminUser) {
             $query->where('admin_user_id', '=', $adminUser->getId());
         })
@@ -319,6 +330,13 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             })
             ->when($priorities, function ($query, $priorities) {
                 return $query->whereIn('priority', $priorities);
+            })
+            ->when($hideClosed, function ($query) use ($hideClosed) {
+                if ($hideClosed === null) {
+                    return;
+                }
+
+                $query->where('status', '!=', TicketStatusEnum::CLOSED);
             })
             ->orderBy('id', 'desc')
             ->paginate($size, ['*'], null, $pageNumber);

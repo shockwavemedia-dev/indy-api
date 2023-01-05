@@ -110,6 +110,15 @@ class PaginationRequest extends BaseRequest
         return $this->getArray('priorities');
     }
 
+    public function hideClosed(): ?bool
+    {
+        if ($this->get('hide_closed') === null) {
+            return null;
+        }
+
+        return $this->boolean('hide_closed');
+    }
+
     /**
      * @return mixed[]
      */

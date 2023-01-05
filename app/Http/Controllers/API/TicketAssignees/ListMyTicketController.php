@@ -32,6 +32,7 @@ final class ListMyTicketController extends AbstractAPIController
                     'clientId' => $request->getClientId(),
                     'statuses' => $request->getStatuses(),
                     'priorities' => $request->getPriorities(),
+                    'hideClosed' => $request->hideClosed(),
                 ]),
                 $request->getSize(),
                 $request->getPageNumber()
