@@ -21,7 +21,12 @@ final class Kernel extends ConsoleKernel
         if (Config::get('app.demo_server') === true) {
             $schedule->exec('php artisan db:seed')->dailyAt('3:00')->timezone('Australia/Sydney');
 
-            $schedule->exec('php artisan files:resigned-url')->dailyAt('3:00')->timezone('Australia/Sydney');
+            $schedule->exec(
+                'php artisan files:resigned-url',
+                [
+                    '--force' => true,
+                ])
+                ->dailyAt('3:00')->timezone('Australia/Sydney');
         }
     }
 
