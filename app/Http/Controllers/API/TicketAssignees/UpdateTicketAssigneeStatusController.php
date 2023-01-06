@@ -9,38 +9,20 @@ use App\Enum\TicketStatusEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Tickets\UpdateTicketAssigneeRequest;
 use App\Http\Resources\API\TicketAssignee\TicketAssigneeResource;
-use App\Jobs\Tickets\TicketAssigneeLinkJob;
 use App\Models\Tickets\Ticket;
 use App\Models\Tickets\TicketAssignee;
 use App\Models\Users\AdminUser;
-use App\Repositories\Interfaces\AdminUserRepositoryInterface;
 use App\Repositories\Interfaces\TicketAssigneeRepositoryInterface;
-use App\Services\ClientUserNotifications\Interfaces\ClientNotificationResolverFactoryInterface;
 use App\Services\Tickets\Resources\UpdateTicketAssigneeResource;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Arr;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
-/**
- * @deprecated
- */
-final class UpdateTicketAssigneeController extends AbstractAPIController
+final class UpdateTicketAssigneeStatusController extends AbstractAPIController
 {
-    private AdminUserRepositoryInterface $adminUserRepository;
-
-    private ClientNotificationResolverFactoryInterface $clientNotificationResolverFactory;
-
-    private TicketAssigneeRepositoryInterface $ticketAssigneeRepository;
-
     public function __construct(
-        AdminUserRepositoryInterface $adminUserRepository,
-        ClientNotificationResolverFactoryInterface $clientNotificationResolverFactory,
-        TicketAssigneeRepositoryInterface $ticketAssigneeRepository
+        private TicketAssigneeRepositoryInterface $ticketAssigneeRepository
     ) {
-        $this->adminUserRepository = $adminUserRepository;
-        $this->clientNotificationResolverFactory = $clientNotificationResolverFactory;
-        $this->ticketAssigneeRepository = $ticketAssigneeRepository;
     }
 
     public function __invoke(UpdateTicketAssigneeRequest $request, int $id): JsonResource
@@ -54,54 +36,30 @@ final class UpdateTicketAssigneeController extends AbstractAPIController
             ]);
         }
 
-        $checkTicketAssignee = null;
-
-        if ($request->getAdminUserId() !== null) {
-            $adminUser = $this->adminUserRepository->find($request->getAdminUserId());
-
-            $checkTicketAssignee = $this->ticketAssigneeRepository->findByAdminUserAndTicket(
-                $ticketAssignee->getTicket(),
-                $adminUser
-            );
-        }
-
-        if ($checkTicketAssignee !== null) {
-            return new TicketAssigneeResource($ticketAssignee);
-        }
-
         try {
-            foreach ($request->getLinks() ?? [] as $link) {
-                TicketAssigneeLinkJob::dispatch(
-                    $this->getUser(),
-                    $ticketAssignee,
-                    Arr::get($link, 'ticket_assignee_id'),
-                    Arr::get($link, 'issue'),
-                );
+            if ($ticketAssignee->getStatus() === $request->getStatus()) {
+                return new TicketAssigneeResource($ticketAssignee);
             }
 
-            $status = $ticketAssignee->getStatus();
-
-            if ($status !== $request->getStatus()) {
-                $status = $request->getStatus();
-            }
-
-            /** @var AdminUser $adminUser */
-            $adminUser = $this->getUser()->getUserType();
+            /** @var AdminUser $updatedBy */
+            $updatedBy = $this->getUser()->getUserType();
 
             $ticketAssignee = $this->ticketAssigneeRepository->update(
                 $ticketAssignee,
                 new UpdateTicketAssigneeResource([
-                    'adminUser' => $adminUser,
-                    'statusEnum' => $status,
+                    'statusEnum' => $request->getStatus(),
                 ]),
-                $adminUser
+                $updatedBy
             );
+
+            $ticketAssignee->refresh();
 
             $ticket = $ticketAssignee->getTicket();
 
             $isAllComplete = false;
 
-            if ($status->getValue() === TicketAssigneeStatusEnum::COMPLETED) {
+            // @TODO convert line 67-73 to a resolver service
+            if ($ticketAssignee->getStatus()->getValue() === TicketAssigneeStatusEnum::COMPLETED) {
                 $isAllComplete = $this->ticketAutoCompletion($ticket);
             }
 

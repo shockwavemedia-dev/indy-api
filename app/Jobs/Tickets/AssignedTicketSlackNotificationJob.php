@@ -46,6 +46,11 @@ final class AssignedTicketSlackNotificationJob implements ShouldQueue
         SlackSendMessageInterface $slackSendMessage,
         ErrorLogInterface $sentryHandler
     ): void {
+        // If they assigned it to themselves no need for notification
+        if ($this->createdBy->getId() === $this->user->getId()) {
+            return;
+        }
+
         $url = Config::get('mail.client_url', null);
 
         if ($url === null) {

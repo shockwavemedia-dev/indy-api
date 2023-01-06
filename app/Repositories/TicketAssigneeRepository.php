@@ -86,7 +86,9 @@ final class TicketAssigneeRepository extends BaseRepository implements TicketAss
         UpdateTicketAssigneeResource $resource,
         AdminUser $adminUser
     ): TicketAssignee {
-        $ticketAssignee->setStatus($resource->getStatusEnum());
+        if ($resource->getStatusEnum() !== null) {
+            $ticketAssignee->setStatus($resource->getStatusEnum());
+        }
 
         if ($resource->getAdminUser() !== null) {
             $ticketAssignee->adminUser()->associate($resource->getAdminUser());

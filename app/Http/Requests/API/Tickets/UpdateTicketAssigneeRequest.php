@@ -25,8 +25,12 @@ final class UpdateTicketAssigneeRequest extends BaseRequest
         return $adminUserId;
     }
 
-    public function getStatus(): TicketAssigneeStatusEnum
+    public function getStatus(): ?TicketAssigneeStatusEnum
     {
+        if ($this->getString('status') === null) {
+            return null;
+        }
+
         return new TicketAssigneeStatusEnum($this->getString('status'));
     }
 
@@ -58,6 +62,7 @@ final class UpdateTicketAssigneeRequest extends BaseRequest
             ],
             'status' => [
                 'string',
+                'nullable',
                 Rule::in(TicketAssigneeStatusEnum::toArray()),
             ],
             'admin_user_id' => 'int|nullable|exists:App\Models\Users\AdminUser,id',

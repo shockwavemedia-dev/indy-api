@@ -122,10 +122,11 @@ use App\Http\Controllers\API\StyleGuideComments\CreateStyleGuideCommentControlle
 use App\Http\Controllers\API\StyleGuideComments\ListStyleGuideCommentController;
 use App\Http\Controllers\API\SupportRequests\CreateSupportRequestController;
 use App\Http\Controllers\API\TicketAssignees\ListMyTicketController;
+use App\Http\Controllers\API\TicketAssignees\ReAssignTicketController;
 use App\Http\Controllers\API\TicketAssignees\RemoveTicketAssigneeController;
 use App\Http\Controllers\API\TicketAssignees\ShowTicketAssigneeController;
 use App\Http\Controllers\API\TicketAssignees\TicketAssignStaffsController;
-use App\Http\Controllers\API\TicketAssignees\UpdateTicketAssigneeController;
+use App\Http\Controllers\API\TicketAssignees\UpdateTicketAssigneeStatusController;
 use App\Http\Controllers\API\TicketChats\CreateTicketChatController;
 use App\Http\Controllers\API\TicketChats\DeleteTicketChatController;
 use App\Http\Controllers\API\TicketChats\ListTicketChatController;
@@ -578,9 +579,19 @@ Route::group([
             'uses' => ShowTicketAssigneeController::class,
         ])->middleware('checkPermission:tickets,read');
 
-        Route::put('/ticket-assignees/{id}', [
-            'as' => 'update-assignee-status',
-            'uses' => UpdateTicketAssigneeController::class,
+//        Route::put('/ticket-assignees/{id}', [
+//            'as' => 'update-assignee-status',
+//            'uses' => UpdateTicketAssigneeController::class,
+//        ])->middleware('checkPermission:tickets,assign');
+
+        Route::put('/ticket-assignees/{id}/re-assign', [
+            'as' => 're-assign-assignee',
+            'uses' => ReAssignTicketController::class,
+        ])->middleware('checkPermission:tickets,assign');
+
+        Route::put('/ticket-assignees/{id}/status', [
+            'as' => 'update-status',
+            'uses' => UpdateTicketAssigneeStatusController::class,
         ])->middleware('checkPermission:tickets,assign');
 
         Route::get('/my-tickets', [
