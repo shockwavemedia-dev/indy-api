@@ -21,6 +21,8 @@ use App\Services\Notifications\Interfaces\NotificationFactoryInterface;
 use App\Services\Notifications\Interfaces\NotificationUserFactoryInterface;
 use App\Services\Notifications\Resources\CreateNotificationResource;
 use App\Services\Notifications\Resources\CreateNotificationUserResource;
+use App\Services\TicketActivities\Interfaces\TicketActivityFactoryInterface;
+use App\Services\TicketActivities\Resources\CreateTicketActivityResource;
 
 final class ClientTicketFileObserver
 {
@@ -32,16 +34,20 @@ final class ClientTicketFileObserver
 
     private NotificationUserFactoryInterface $notificationUserFactory;
 
+    private TicketActivityFactoryInterface $activityFactory;
+
     public function __construct(
         DepartmentRepositoryInterface $departmentRepository,
         EmailLogFactoryInterface $emailLogFactory,
         NotificationFactoryInterface $notificationFactory,
         NotificationUserFactoryInterface $notificationUserFactory,
+        TicketActivityFactoryInterface $activityFactory
     ) {
         $this->departmentRepository = $departmentRepository;
         $this->emailLogFactory = $emailLogFactory;
         $this->notificationFactory = $notificationFactory;
         $this->notificationUserFactory = $notificationUserFactory;
+        $this->activityFactory = $activityFactory;
     }
 
     /**
@@ -55,6 +61,9 @@ final class ClientTicketFileObserver
                 $this->notifySocialMediaFileUploaded($clientTicketFile);
             }
         }
+
+        $this->ticketFileActivity($clientTicketFile);
+
     }
 
     /**
@@ -211,5 +220,23 @@ final class ClientTicketFileObserver
             ),
             $clientTicketFile->getTicketId()
         );
+    }
+
+    /**
+     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
+     */
+    private function ticketFileActivity(ClientTicketFile $clientTicketFile): void
+    {
+        $uploader = $clientTicketFile->getAdminUser()->getUser();
+
+        $this->activityFactory->make(new CreateTicketActivityResource([
+            'ticket' => $clientTicketFile->getTicket(),
+            'user' => $uploader,
+            'activity' => \sprintf(
+                '%s uploaded ID #: %s for approval',
+                $uploader->getFirstName(),
+                $clientTicketFile->getId()
+            ),
+        ]));
     }
 }
