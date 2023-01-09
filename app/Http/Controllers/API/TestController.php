@@ -10,6 +10,7 @@ use App\Repositories\Interfaces\ClientTicketFileRepositoryInterface;
 use App\Repositories\Interfaces\FileRepositoryInterface;
 use App\Services\Sorting\Interfaces\SortByYearAndMonthResolverInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Benchmark;
 
 final class TestController extends AbstractAPIController
 {
@@ -19,6 +20,11 @@ final class TestController extends AbstractAPIController
         $start = microtime(true);
         $user = User::find(1);
         $time = microtime(true) - $start;
+
+
+        Benchmark::dd([
+            'Scenario 1' => fn () => User::find(1),
+        ]);
 
         return new JsonResource([
             'time' => $time,
