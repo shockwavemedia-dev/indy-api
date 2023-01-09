@@ -8,6 +8,7 @@ use App\Enum\TicketTypeEnum;
 use App\Models\Tickets\Ticket;
 use App\Services\TicketActivities\Interfaces\TicketActivityFactoryInterface;
 use App\Services\TicketActivities\Resources\CreateTicketActivityResource;
+use Illuminate\Support\Str;
 
 final class TicketObserver
 {
@@ -79,8 +80,8 @@ final class TicketObserver
             'activity' => \sprintf(
                 '%s changed the status from %s to %s.',
                 $ticket->getUpdatedBy()?->getFirstName(),
-                ucfirst($ticket->getOriginal('status')),
-                ucfirst($ticket->getStatus()->getValue()),
+                Str::replace('_', ' ', ucfirst($ticket->getOriginal('status'))),
+                Str::replace('_', ' ', ucfirst($ticket->getStatus()->getValue())),
             ),
         ]));
     }

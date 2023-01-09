@@ -84,7 +84,7 @@ final class ApproveTicketFileController extends AbstractAPIController
             $this->ticketActivityFactory->make(new CreateTicketActivityResource([
                 'ticket' => $ticketFile->getTicket(),
                 'user' => $user,
-                'activity' => \sprintf('%s approved the file.', $user->getFirstName()),
+                'activity' => \sprintf('%s approved the file #%s.', $user->getFirstName(), $fileVersion->getId()),
             ]));
 
             $countNewTicketFile = $this->ticketFileRepository->countNewTicketFile($ticketFile);

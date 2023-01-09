@@ -86,22 +86,13 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
                 $isBoosted = false;
 
                 foreach ($socialMedia->getChannels() ?? [] as $channel) {
-                    if (is_string($channel) === true) {
-                        $channels = $socialMedia->getChannels();
-
-                        break;
-                    }
+                    $channels[] = $channel['name'] ?? $channel;
 
                     $quantity = $channel['quantity'] ?? 0;
 
                     if ($quantity > 0) {
                         $isBoosted = true;
-                    }
-
-                    $boosted[] = $channel;
-
-                    if ($channel['name'] !== null) {
-                        $channels[] = $channel['name'];
+                        $boosted[] = $channel;
                     }
                 }
 
@@ -182,7 +173,7 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
                     );
 
                     if ($audit->event === 'updated' && $audit->auditable_type === 'App\Models\SocialMedia') {
-                        $result['activities'][] = [
+                        $socialMediaDetails['activities'][] = [
                             'action' => 'Modified',
                             'fields' => $audit->getModified(),
                             'user' => $user,
@@ -191,7 +182,7 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
                     }
 
                     if ($audit->event === 'deleted' && $audit->auditable_type === 'App\Models\SocialMedia') {
-                        $result['activities'][] = [
+                        $socialMediaDetails['activities'][] = [
                             'action' => 'Removed an attachment',
                             'fields' => $audit->getModified(),
                             'user' => $user,
@@ -200,7 +191,7 @@ final class SocialMediaCalendarMonthResolver implements SocialMediaCalendarMonth
                     }
 
                     if ($audit->auditable_type === 'App\Models\SocialMediaAttachment') {
-                        $result['activities'][] = [
+                        $socialMediaDetails['activities'][] = [
                             'action' => 'Uploaded an attachment.',
                             'user' => $user,
                             'created_at' => $audit->getAttribute('created_at'),

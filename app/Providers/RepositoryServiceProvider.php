@@ -50,6 +50,7 @@ use App\Repositories\Interfaces\SocialMediaActivityRepositoryInterface;
 use App\Repositories\Interfaces\SocialMediaAttachmentRepositoryInterface;
 use App\Repositories\Interfaces\SocialMediaCommentRepositoryInterface;
 use App\Repositories\Interfaces\SocialMediaRepositoryInterface;
+use App\Repositories\Interfaces\StyleGuideCommentRepositoryInterface;
 use App\Repositories\Interfaces\SupportRequestRepositoryInterface;
 use App\Repositories\Interfaces\TicketActivityRepositoryInterface;
 use App\Repositories\Interfaces\TicketAssigneeLinkRepositoryInterface;
@@ -80,6 +81,7 @@ use App\Repositories\SocialMediaActivityRepository;
 use App\Repositories\SocialMediaAttachmentRepository;
 use App\Repositories\SocialMediaCommentRepository;
 use App\Repositories\SocialMediaRepository;
+use App\Repositories\StyleGuideCommentRepository;
 use App\Repositories\SupportRequestRepository;
 use App\Repositories\TicketActivityRepository;
 use App\Repositories\TicketAssigneeLinkRepository;
@@ -138,6 +140,7 @@ final class RepositoryServiceProvider extends ServiceProvider
             SocialMediaCommentRepositoryInterface::class => SocialMediaCommentRepository::class,
             SocialMediaActivityRepositoryInterface::class => SocialMediaActivityRepository::class,
             SocialMediaAttachmentRepositoryInterface::class => SocialMediaAttachmentRepository::class,
+            StyleGuideCommentRepositoryInterface::class => StyleGuideCommentRepository::class,
             SupportRequestRepositoryInterface::class => SupportRequestRepository::class,
             TicketActivityRepositoryInterface::class => TicketActivityRepository::class,
             TicketAssigneeLinkRepositoryInterface::class => TicketAssigneeLinkRepository::class,

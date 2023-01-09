@@ -55,15 +55,15 @@ final class ClientTicketFileObserver
      */
     public function created(ClientTicketFile $clientTicketFile): void
     {
-        /** @var TicketService $ticketService */
-        foreach ($clientTicketFile->getTicket()->getTicketServices() as $ticketService) {
-            if ($ticketService->getService()->getName() === ServicesEnum::SOCIAL_MEDIA) {
-                $this->notifySocialMediaFileUploaded($clientTicketFile);
-            }
-        }
-
+//        Disabled for now, only designated social media should be notified
+//
+//        /** @var TicketService $ticketService */
+//        foreach ($clientTicketFile->getTicket()->getTicketServices() as $ticketService) {
+//            if ($ticketService->getService()->getName() === ServicesEnum::SOCIAL_MEDIA) {
+//                $this->notifySocialMediaFileUploaded($clientTicketFile);
+//            }
+//        }
         $this->ticketFileActivity($clientTicketFile);
-
     }
 
     /**
@@ -93,6 +93,8 @@ final class ClientTicketFileObserver
     }
 
     /**
+     * @removed
+     *
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
     private function notifySocialMediaFileUploaded(ClientTicketFile $clientTicketFile): void
@@ -133,41 +135,50 @@ final class ClientTicketFileObserver
 
     /**
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
+     *
+     * @description notify only designated user for the client
      */
     private function notifySocialMediaFileApproved(ClientTicketFile $clientTicketFile): void
     {
-        $department = $this->departmentRepository->findByName(ServicesEnum::SOCIAL_MEDIA);
+        $adminUser = $clientTicketFile->getClient()->getDesignatedSocialMediaManager();
 
-        /** @var AdminUser $adminUser */
-        foreach ($department->getAdminUsers() as $adminUser) {
-            $adminUser->getUser()->notifySocialMediaForFileApproved(
-                $clientTicketFile,
-                $this->emailLogFactory->make(new CreateEmailLogResource([
-                    'emailType' => $clientTicketFile,
-                    'status' => new EmailStatusEnum(EmailStatusEnum::PENDING),
-                    'to' => $adminUser->getUser()->getEmail(),
-                    'message' => 'Ticket File Approved Email', // Static message, real email is in json format
-                ])),
-            );
-
-            SocialMediaSlackNotificationJob::dispatch(
-                $adminUser->getUser(),
-                \sprintf(
-                    'Ticket# %s file has been approved.',
-                    $clientTicketFile->getTicket()->getTicketCode()
-                ),
-                $clientTicketFile->getTicketId()
-            );
-
-            $this->saveNotification(
-                $clientTicketFile,
-                $adminUser->getUser(),
-                \sprintf(
-                    'Ticket# %s file has been approved.',
-                    $clientTicketFile->getTicket()->getTicketCode()
-                ),
-            );
+        if ($adminUser === null) {
+            return;
         }
+
+        $adminUser->getUser()->notifySocialMediaForFileApproved(
+            $clientTicketFile,
+            $this->emailLogFactory->make(new CreateEmailLogResource([
+                'emailType' => $clientTicketFile,
+                'status' => new EmailStatusEnum(EmailStatusEnum::PENDING),
+                'to' => $adminUser->getUser()->getEmail(),
+                'message' => 'Ticket File Approved Email', // Static message, real email is in json format
+            ])),
+        );
+
+        SocialMediaSlackNotificationJob::dispatch(
+            $adminUser->getUser(),
+            \sprintf(
+                'Ticket# %s file has been approved.',
+                $clientTicketFile->getTicket()->getTicketCode()
+            ),
+            $clientTicketFile->getTicketId()
+        );
+
+        $this->saveNotification(
+            $clientTicketFile,
+            $adminUser->getUser(),
+            \sprintf(
+                'Ticket# %s file has been approved.',
+                $clientTicketFile->getTicket()->getTicketCode()
+            ),
+        );
+//        $department = $this->departmentRepository->findByName(ServicesEnum::SOCIAL_MEDIA);
+
+//        /** @var AdminUser $adminUser */
+//        foreach ($department->getAdminUsers() as $adminUser) {
+//
+//        }
     }
 
     /**

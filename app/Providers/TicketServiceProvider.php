@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use App\Repositories\Interfaces\ServiceRepositoryInterface;
+use App\Services\StyleGuideComments\Interfaces\StyleGuideCommentFactoryInterface;
+use App\Services\StyleGuideComments\StyleGuideCommentFactory;
 use App\Services\TicketActivities\Interfaces\TicketActivityFactoryInterface;
 use App\Services\TicketActivities\TicketActivityFactory;
 use App\Services\TicketNotes\Interfaces\NoteAttachmentFactoryInterface;
@@ -59,6 +61,7 @@ final class TicketServiceProvider extends ServiceProvider
             NoteAttachmentFactoryInterface::class => NoteAttachmentFactory::class,
             TicketNotifyDepartmentsResolverInterface::class => TicketNotifyDepartmentsResolver::class,
             TicketServicesFactoryInterface::class => TicketServicesFactory::class,
+            StyleGuideCommentFactoryInterface::class => StyleGuideCommentFactory::class,
         ];
 
         foreach ($services as $abstract => $concrete) {

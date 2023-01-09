@@ -40,6 +40,21 @@ final class TicketAssigneeObserver
 
         $username = $createdBy->getFirstName();
 
+        // If they assigned it to themselves no need to send notification
+        if ($createdBy->getId() === $user->getId()) {
+            $this->activityFactory->make(new CreateTicketActivityResource([
+                'ticket' => $ticket,
+                'user' => $createdBy,
+                'activity' => \sprintf(
+                    '%s assigned this ticket # %s to themselves',
+                    $createdBy->getFirstName(),
+                    $ticket->getTicketCode(),
+                ),
+            ]));
+
+            return;
+        }
+
         if ($createdBy->getEmail() === 'superadmin@indy.com.au') {
             $username = 'The Indy Platform';
         }

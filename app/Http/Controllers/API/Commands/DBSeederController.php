@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API\Commands;
 
 use App\Http\Controllers\API\AbstractAPIController;
+use App\Jobs\ResignedUrlJob;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
@@ -21,7 +22,11 @@ final class DBSeederController extends AbstractAPIController
             return $this->respondBadRequest(['message' => 'Invalid server to reset']);
         }
 
-        Artisan::call('db:seed');
+        Artisan::call('db:seed', [
+            '--force' => true,
+        ]);
+
+        ResignedUrlJob::dispatch();
 
         return new JsonResource(['data' => Artisan::output()]);
     }
