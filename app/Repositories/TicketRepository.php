@@ -170,9 +170,14 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
 
         return $this->model
             ->with('ticketServices.service')
-            ->where('department_id', $department->getId())
-            ->orWhereHas('assignees', function ($query) use ($department) {
-                $query->where('department_id', '=', $department->getId());
+            //->where('department_id', $department->getId())
+            ->where(function ($query) use ($department) {
+                $query->orWhereHas('assignees', function ($query) use ($department) {
+                    $query->where('department_id', '=', $department->getId());
+                })
+                    ->orWhereHas('ticketServices.service.departments', function ($query) use ($department) {
+                        $query->where('department_id', '=', $department->getId());
+                    });
             })
             ->when($statuses, function ($query) use ($statuses) {
                 return $query->whereIn('status', $statuses);
@@ -208,9 +213,6 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
                     \sprintf('%s 00:00:00', $deadline->toDateString()),
                     \sprintf('%s 00:00:00', $deadline->addDays(2)->toDateString()),
                 ]);
-            })
-            ->orWhereHas('ticketServices.service.departments', function ($query) use ($department) {
-                $query->where('department_id', '=', $department->getId());
             })
             ->orderBy('id', 'desc')
             ->paginate($size, ['*'], null, $pageNumber);
