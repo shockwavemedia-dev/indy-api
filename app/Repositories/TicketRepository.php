@@ -152,7 +152,6 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
         ?int $size = null,
         ?int $pageNumber = null
     ): LengthAwarePaginator {
-
         $statuses = $resource->getStatuses();
 
         $priorities = $resource->getPriorities();
@@ -217,7 +216,6 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             })
             ->orderBy('id', 'desc')
             ->paginate($size, ['*'], null, $pageNumber);
-
     }
 
     public function findWithFiles(int $id): ?Ticket
