@@ -121,6 +121,7 @@ use App\Http\Controllers\API\SocialMedia\UpdateSocialMediaController;
 use App\Http\Controllers\API\StyleGuideComments\CreateStyleGuideCommentController;
 use App\Http\Controllers\API\StyleGuideComments\ListStyleGuideCommentController;
 use App\Http\Controllers\API\SupportRequests\CreateSupportRequestController;
+use App\Http\Controllers\API\TestController;
 use App\Http\Controllers\API\TicketAssignees\ListMyTicketController;
 use App\Http\Controllers\API\TicketAssignees\ReAssignTicketController;
 use App\Http\Controllers\API\TicketAssignees\RemoveTicketAssigneeController;
@@ -195,6 +196,10 @@ Route::get('/', function () {
         ],
     ];
 });
+
+Route::get('/test', [
+    'uses' => TestController::class,
+])->name('test-endpoint');
 
 Route::post('/post/receive-email', [
     'uses' => InboundEmailReceiverController::class,
