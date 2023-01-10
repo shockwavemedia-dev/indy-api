@@ -112,7 +112,12 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
         $hideClosed = $resource->hideClosed();
 
         return $this->model
-            ->with('ticketServices.service')
+            ->with([
+                'ticketServices.service',
+                'client',
+                'department',
+                'createdBy',
+            ])
             ->when($types, function ($query, $types) {
                 return $query->whereIn('type', $types);
             })
@@ -136,10 +141,6 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
                 return $query->whereIn('priority', $priorities);
             })
             ->when($hideClosed, function ($query) use ($hideClosed) {
-                if ($hideClosed === null) {
-                    return;
-                }
-
                 $query->where('status', '!=', TicketStatusEnum::CLOSED);
             })
             ->orderBy('id', 'desc')
