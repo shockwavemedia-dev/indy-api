@@ -114,7 +114,7 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
         return $this->model
             ->with([
                 'ticketServices.service',
-                'client',
+                'client.logo',
                 'department',
                 'createdBy',
             ])
