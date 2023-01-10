@@ -24,6 +24,7 @@ final class TestController extends AbstractAPIController
 
         Benchmark::dd([
             'Scenario 1' => fn () => User::find(1),
+            'Scenario 2' => fn () => 'Test',
         ]);
 
         return new JsonResource([
