@@ -39,7 +39,7 @@ final class ClientServiceRepository extends BaseRepository implements ClientServ
     public function getClientServices(Client $client, ?int $size = null, ?int $pageNumber = null): LengthAwarePaginator
     {
         return $this->model
-            ->with('service')
+            ->with(['service', 'createdBy', 'updatedBy'])
             ->where('client_id', '=', $client->getId())
             ->paginate(30, ['*'], null, $pageNumber);
     }

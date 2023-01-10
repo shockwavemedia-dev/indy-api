@@ -35,18 +35,8 @@ final class ClientServiceResource extends Resource
             'total_used' => $clientService->getTotalUsed(),
             'is_enabled' => $clientService->isEnabled(),
             'extras' => $clientService->getExtras(),
-            'created_by' => \sprintf(
-                '%s %s %s',
-                $clientService->getCreatedBy()->getFirstName(),
-                $clientService->getCreatedBy()->getMiddleName(),
-                $clientService->getCreatedBy()->getLastName(),
-            ),
-            'updated_by' => \sprintf(
-                '%s %s %s',
-                $clientService->getUpdatedBy()?->getFirstName(),
-                $clientService->getUpdatedBy()?->getMiddleName(),
-                $clientService->getUpdatedBy()?->getLastName(),
-            ),
+            'created_by' => $clientService->getCreatedBy()?->getFullName(),
+            'updated_by' => $clientService->getUpdatedBy()?->getFullName(),
         ];
     }
 }
