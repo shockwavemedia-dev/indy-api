@@ -14,6 +14,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,7 +47,9 @@ final class LoginController extends AbstractAPIController
     {
         $email = $request->getEmail();
 
-        $user = $this->userRepository->findByEmail($email);
+        $user = Cache::get($email, function () use ($email) {
+            return $this->userRepository->findByEmail($email);
+        });
 
         if ($user === null) {
             return $this->respondUnauthorised([
@@ -73,16 +76,6 @@ final class LoginController extends AbstractAPIController
                 return $this->respondError(Arr::get($response, 'message'), Response::HTTP_UNAUTHORIZED);
             }
 
-            $oauthAccessToken = DB::table('oauth_access_tokens')
-                ->where('user_id', $user->getId())
-                ->orderBy('created_at', 'desc')
-                ->first();
-
-            DB::table('oauth_access_tokens')->where('id', $oauthAccessToken->id)
-            ->update([
-                'ip_address' => $request->getUserIP(),
-            ]);
-
             $response['user'] = $user;
 
             return new UserAccessTokenResource($response);
@@ -94,11 +87,6 @@ final class LoginController extends AbstractAPIController
             ],
                 Response::HTTP_BAD_REQUEST
             );
-//            return $this->respondInternalError([
-//                'error' => $exception->getMessage(),
-//                'code' => $exception->getCode(),
-//            ]);
-            // @codeCoverageIgnoreEnd
         }
     }
 
