@@ -11,6 +11,8 @@ use App\Repositories\Interfaces\FileRepositoryInterface;
 use App\Services\Sorting\Interfaces\SortByYearAndMonthResolverInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Benchmark;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 final class TestController extends AbstractAPIController
 {
@@ -22,8 +24,12 @@ final class TestController extends AbstractAPIController
         $time = microtime(true) - $start;
 
 
+        $value = Cache::get('key', function () {
+            return DB::table('users')->get();
+        });
+
         Benchmark::dd([
-            'Scenario 1' => fn () => User::find(1),
+            'Scenario 1' => fn () => $value,
             'Scenario 2' => fn () => 'Test',
         ]);
 
