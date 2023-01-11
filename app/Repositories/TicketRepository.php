@@ -17,7 +17,6 @@ use App\Services\Tickets\Resources\TicketFilterOptionsResource;
 use App\Services\Tickets\Resources\UpdateTicketResource;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 final class TicketRepository extends BaseRepository implements TicketRepositoryInterface
@@ -140,8 +139,8 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             ->when($priorities, function ($query, $priorities) {
                 return $query->whereIn('priority', $priorities);
             })
-            ->when($hideClosed, function ($query) use ($hideClosed) {
-                $query->where('status', '!=', TicketStatusEnum::CLOSED);
+            ->when($hideClosed, function ($query) {
+                return $query->where('status', '!=', TicketStatusEnum::CLOSED);
             })
             ->orderBy('id', 'desc')
             ->paginate($size, ['*'], null, $pageNumber);
@@ -184,21 +183,13 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
                 return $query->whereIn('status', $statuses);
             })
             ->when($clientId, function ($query) use ($clientId) {
-                if ($clientId === null) {
-                    return;
-                }
-
-                $query->where('client_id', $clientId);
+                return $query->where('client_id', $clientId);
             })
             ->when($priorities, function ($query, $priorities) {
                 return $query->whereIn('priority', $priorities);
             })
-            ->when($hideClosed, function ($query) use ($hideClosed) {
-                if ($hideClosed === null) {
-                    return;
-                }
-
-                $query->where('status', '!=', TicketStatusEnum::CLOSED);
+            ->when($hideClosed, function ($query) {
+                return $query->where('status', '!=', TicketStatusEnum::CLOSED);
             })
             ->when($types, function ($query, $types) {
                 return $query->whereIn('type', $types);
@@ -287,39 +278,50 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
     }
 
     public function findByOptions(
-        array $params = [],
+        TicketFilterOptionsResource $resource,
         ?int $size = null,
         ?int $pageNumber = null
     ): LengthAwarePaginator {
-        $departmentIds = Arr::get($params, 'department_ids');
+        $departmentIds = $resource->getDepartmentIds();
 
-        $types = Arr::get($params, 'types');
+        $types = $resource->getTypes();
 
-        $status = Arr::get($params, 'status');
+        $statuses = $resource->getStatuses();
 
-        $priority = Arr::get($params, 'priority');
+        $priorities = $resource->getPriorities();
 
-        $clientId = Arr::get($params, 'client_id');
+        $clientId = $resource->getClientId();
+
+        $subject = $resource->getSubject();
+
+        $code = $resource->getCode();
+
+        $hideClosed = $resource->hideClosed();
 
         return $this->model
             ->when($clientId, function ($query) use ($clientId) {
-                if ($clientId === null) {
-                    return;
-                }
-
-                $query->where('client_id', $clientId);
+                return $query->where('client_id', $clientId);
             })
             ->when($types, function ($query, $types) {
                 return $query->whereIn('type', $types);
             })
-            ->when($status, function ($query, $status) {
-                return $query->whereIn('status', $status);
+            ->when($statuses, function ($query, $statuses) {
+                return $query->whereIn('status', $statuses);
             })
             ->when($departmentIds, function ($query, $departmentIds) {
                 return $query->whereIn('department_id', $departmentIds);
             })
-            ->when($priority, function ($query, $priority) {
-                return $query->whereIn('priority', $priority);
+            ->when($priorities, function ($query, $priorities) {
+                return $query->whereIn('priority', $priorities);
+            })
+            ->when($subject, function ($query, $subject) {
+                return $query->where('subject', 'LIKE', '%'.$subject.'%');
+            })
+            ->when($code, function ($query, $code) {
+                return $query->where('ticket_code', 'LIKE', '%'.$code.'%');
+            })
+            ->when($hideClosed, function ($query) {
+                return $query->where('status', '!=', TicketStatusEnum::CLOSED);
             })
             ->with('ticketEvent')
             ->orderBy('id', 'desc')
@@ -370,21 +372,13 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
                 return $query->whereIn('status', $statuses);
             })
             ->when($clientId, function ($query) use ($clientId) {
-                if ($clientId === null) {
-                    return;
-                }
-
-                $query->where('client_id', $clientId);
+                return $query->where('client_id', $clientId);
             })
             ->when($priorities, function ($query, $priorities) {
                 return $query->whereIn('priority', $priorities);
             })
-            ->when($hideClosed, function ($query) use ($hideClosed) {
-                if ($hideClosed === null) {
-                    return;
-                }
-
-                $query->where('status', '!=', TicketStatusEnum::CLOSED);
+            ->when($hideClosed, function ($query) {
+                return $query->where('status', '!=', TicketStatusEnum::CLOSED);
             })
             ->when($types, function ($query, $types) {
                 return $query->whereIn('type', $types);

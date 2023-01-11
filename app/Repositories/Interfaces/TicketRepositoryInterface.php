@@ -65,7 +65,7 @@ interface TicketRepositoryInterface
     ): LengthAwarePaginator;
 
     public function findByOptions(
-        array $params = [],
+        TicketFilterOptionsResource $resource,
         ?int $size = null,
         ?int $pageNumber = null
     ): LengthAwarePaginator;

@@ -25,6 +25,8 @@ final class TicketFilterOptionsResource extends DataTransferObject
 
     public ?bool $hideClosed = null;
 
+    public ?array $departmentIds = null;
+
     public function getClientId(): ?int
     {
         return $this->clientId;
@@ -63,5 +65,10 @@ final class TicketFilterOptionsResource extends DataTransferObject
     public function hideClosed(): ?bool
     {
         return $this->hideClosed;
+    }
+
+    public function getDepartmentIds(): ?array
+    {
+        return $this->departmentIds;
     }
 }

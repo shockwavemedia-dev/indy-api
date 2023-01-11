@@ -10,6 +10,7 @@ use App\Models\Tickets\Ticket;
 use App\Models\User;
 use App\Models\Users\AdminUser;
 use App\Repositories\Interfaces\TicketRepositoryInterface;
+use App\Services\Tickets\Resources\TicketFilterOptionsResource;
 use App\Services\Tickets\Resources\UpdateTicketResource;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
@@ -124,7 +125,7 @@ final class TicketRepositoryStub extends AbstractStub implements TicketRepositor
     /**
      * @throws \Throwable
      */
-    public function findByOptions(array $params = [], ?int $size = null, ?int $pageNumber = null): LengthAwarePaginator
+    public function findByOptions(TicketFilterOptionsResource $resource, ?int $size = null, ?int $pageNumber = null): LengthAwarePaginator
     {
         $this->recordCall(__FUNCTION__, \func_get_args());
 

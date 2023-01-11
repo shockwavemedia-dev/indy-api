@@ -26,24 +26,20 @@ final class TicketQueryRequest extends PaginationRequest
 
     public function getStatuses(): ?array
     {
-        $status = $this->getString('status');
-
-        if ($status === null) {
+        if ($this->get('statuses') === null) {
             return null;
         }
 
-        return explode(',', $status) ?? null;
+        return $this->getArray('statuses');
     }
 
     public function getTypes(): ?array
     {
-        $types = $this->getString('types');
-
-        if ($types === null) {
+        if ($this->get('types') === null) {
             return null;
         }
 
-        return explode(',', $types) ?? null;
+        return $this->getArray('types');
     }
 
     public function getClientId(): ?int
@@ -59,13 +55,38 @@ final class TicketQueryRequest extends PaginationRequest
 
     public function getPriorities(): ?array
     {
-        $priority = $this->getString('priority');
-
-        if ($priority === null) {
+        if ($this->get('priorities') === null) {
             return null;
         }
 
-        return explode(',', $priority) ?? null;
+        return $this->getArray('priorities');
+    }
+
+    public function getSubject(): ?string
+    {
+        if ($this->get('subject') === null) {
+            return null;
+        }
+
+        return $this->getString('subject');
+    }
+
+    public function getCode(): ?string
+    {
+        if ($this->get('code') === null) {
+            return null;
+        }
+
+        return $this->getString('code');
+    }
+
+    public function hideClosed(): ?bool
+    {
+        if ($this->get('hide_closed') === null) {
+            return null;
+        }
+
+        return $this->boolean('hide_closed');
     }
 
     /**
@@ -75,10 +96,12 @@ final class TicketQueryRequest extends PaginationRequest
     {
         return [
             'department_ids' => 'string',
-            'status' => 'string',
-            'types' => 'string',
+            'statuses' => 'array|nullable',
+            'types' => 'array|nullable',
             'client_id' => 'int|nullable|exists:App\Models\Client,id',
-            'priority' => 'string',
+            'priorities' => 'array|nullable',
+            'subject' => 'string|nullable',
+            'code' => 'string|nullable',
         ];
     }
 }
