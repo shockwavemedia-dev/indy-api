@@ -17,7 +17,6 @@ use App\Services\Tickets\Resources\TicketFilterOptionsResource;
 use App\Services\Tickets\Resources\UpdateTicketResource;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 final class TicketRepository extends BaseRepository implements TicketRepositoryInterface
@@ -284,25 +283,25 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
     }
 
     public function findByOptions(
-        array $params = [],
+        TicketFilterOptionsResource $resource,
         ?int $size = null,
         ?int $pageNumber = null
     ): LengthAwarePaginator {
-        $departmentIds = Arr::get($params, 'department_ids');
+        $departmentIds = $resource->getDepartmentIds();
 
-        $types = Arr::get($params, 'types');
+        $types = $resource->getTypes();
 
-        $status = Arr::get($params, 'statuses');
+        $statuses = $resource->getStatuses();
 
-        $priority = Arr::get($params, 'priorities');
+        $priorities = $resource->getPriorities();
 
-        $clientId = Arr::get($params, 'client_id');
+        $clientId = $resource->getClientId();
 
-        $subject = Arr::get($params, 'subject');
+        $subject = $resource->getSubject();
 
-        $code = Arr::get($params, 'code');
+        $code = $resource->getCode();
 
-        $hideClosed = Arr::get($params, 'hideClosed');
+        $hideClosed = $resource->hideClosed();
 
         return $this->model
             ->when($clientId, function ($query) use ($clientId) {
@@ -315,14 +314,14 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             ->when($types, function ($query, $types) {
                 return $query->whereIn('type', $types);
             })
-            ->when($status, function ($query, $status) {
-                return $query->whereIn('status', $status);
+            ->when($statuses, function ($query, $statuses) {
+                return $query->whereIn('status', $statuses);
             })
             ->when($departmentIds, function ($query, $departmentIds) {
                 return $query->whereIn('department_id', $departmentIds);
             })
-            ->when($priority, function ($query, $priority) {
-                return $query->whereIn('priority', $priority);
+            ->when($priorities, function ($query, $priorities) {
+                return $query->whereIn('priority', $priorities);
             })
             ->when($subject, function ($query, $subject) {
                 return $query->where('subject', 'LIKE', '%'.$subject.'%');

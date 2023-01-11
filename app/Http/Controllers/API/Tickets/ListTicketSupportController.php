@@ -13,6 +13,7 @@ use App\Http\Requests\API\Tickets\TicketQueryRequest;
 use App\Http\Resources\API\Tickets\TicketSupportsResource;
 use App\Models\Users\ClientUser;
 use App\Repositories\Interfaces\TicketRepositoryInterface;
+use App\Services\Tickets\Resources\TicketFilterOptionsResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Throwable;
 
@@ -52,18 +53,6 @@ final class ListTicketSupportController extends AbstractAPIController
             ]);
         }
 
-        $options = [
-            'client_id' => $request->getClientId(),
-            'department_ids' => $request->getDepartmentIds(),
-            'priority' => $priorities,
-            'statuses' => $statuses,
-            'types' => $types,
-            'priorities' => $request->getPriorities(),
-            'hideClosed' => $request->hideClosed(),
-            'code' => $request->getCode(),
-            'subject' => $request->getSubject(),
-        ];
-
         $user = $this->getUser();
 
         if ($user->getUserType() instanceof ClientUser === true) {
@@ -72,7 +61,17 @@ final class ListTicketSupportController extends AbstractAPIController
 
         try {
             $tickets = $this->ticketRepository->findByOptions(
-                $options,
+                new TicketFilterOptionsResource([
+                    'clientId' => $request->getClientId(),
+                    'departmentIds' => $request->getDepartmentIds(),
+                    'statuses' => $statuses,
+                    'priorities' => $priorities,
+                    'hideClosed' => $request->hideClosed(),
+                    'code' => $request->getCode(),
+                    'deadline' => $request->getDeadline(),
+                    'types' => $types,
+                    'subject' => $request->getSubject(),
+                ]),
                 $request->getSize(),
                 $request->getPageNumber(),
             );
