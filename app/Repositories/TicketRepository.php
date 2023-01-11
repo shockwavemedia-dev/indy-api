@@ -134,12 +134,8 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             ->when($priorities, function ($query, $priorities) {
                 return $query->whereIn('priority', $priorities);
             })
-            ->when($hideClosed, function ($query) use ($hideClosed) {
-                if ($hideClosed === null) {
-                    return;
-                }
-
-                $query->where('status', '!=', TicketStatusEnum::CLOSED);
+            ->when($hideClosed, function ($query) {
+                return $query->where('status', '!=', TicketStatusEnum::CLOSED);
             })
             ->orderBy('id', 'desc')
             ->paginate($size, ['*'], null, $pageNumber);
@@ -177,21 +173,13 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
                 return $query->whereIn('status', $statuses);
             })
             ->when($clientId, function ($query) use ($clientId) {
-                if ($clientId === null) {
-                    return;
-                }
-
-                $query->where('client_id', $clientId);
+                return $query->where('client_id', $clientId);
             })
             ->when($priorities, function ($query, $priorities) {
                 return $query->whereIn('priority', $priorities);
             })
-            ->when($hideClosed, function ($query) use ($hideClosed) {
-                if ($hideClosed === null) {
-                    return;
-                }
-
-                $query->where('status', '!=', TicketStatusEnum::CLOSED);
+            ->when($hideClosed, function ($query) {
+                return $query->where('status', '!=', TicketStatusEnum::CLOSED);
             })
             ->when($types, function ($query, $types) {
                 return $query->whereIn('type', $types);
@@ -305,11 +293,7 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
 
         return $this->model
             ->when($clientId, function ($query) use ($clientId) {
-                if ($clientId === null) {
-                    return;
-                }
-
-                $query->where('client_id', $clientId);
+                return $query->where('client_id', $clientId);
             })
             ->when($types, function ($query, $types) {
                 return $query->whereIn('type', $types);
@@ -329,12 +313,8 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             ->when($code, function ($query, $code) {
                 return $query->where('ticket_code', 'LIKE', '%'.$code.'%');
             })
-            ->when($hideClosed, function ($query) use ($hideClosed) {
-                if ($hideClosed === null) {
-                    return;
-                }
-
-                $query->where('status', '!=', TicketStatusEnum::CLOSED);
+            ->when($hideClosed, function ($query) {
+                return $query->where('status', '!=', TicketStatusEnum::CLOSED);
             })
             ->with('ticketEvent')
             ->orderBy('id', 'desc')
@@ -385,21 +365,13 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
                 return $query->whereIn('status', $statuses);
             })
             ->when($clientId, function ($query) use ($clientId) {
-                if ($clientId === null) {
-                    return;
-                }
-
-                $query->where('client_id', $clientId);
+                return $query->where('client_id', $clientId);
             })
             ->when($priorities, function ($query, $priorities) {
                 return $query->whereIn('priority', $priorities);
             })
-            ->when($hideClosed, function ($query) use ($hideClosed) {
-                if ($hideClosed === null) {
-                    return;
-                }
-
-                $query->where('status', '!=', TicketStatusEnum::CLOSED);
+            ->when($hideClosed, function ($query) {
+                return $query->where('status', '!=', TicketStatusEnum::CLOSED);
             })
             ->when($types, function ($query, $types) {
                 return $query->whereIn('type', $types);
