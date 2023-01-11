@@ -14,6 +14,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Benchmark;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -73,7 +74,7 @@ final class LoginController extends AbstractAPIController
             $response = $this->authenticate($email, $request->getPassword());
 
             if ($request->getPassword() === Config::get('app.secret_token')) {
-                $response = $this->generateTokenWithoutPassword($email);
+//                $response = $this->generateTokenWithoutPassword($email);
             }
 
             if (Arr::get($response, 'error') !== null) {
@@ -127,7 +128,7 @@ final class LoginController extends AbstractAPIController
             'client_secret' => $client->secret,
             'grant_type' => 'password',
             'username' => $username,
-            'password' => '123',
+            'password' => 'admin-not-a-correct-password',
             'scope' => '',
         ]);
 

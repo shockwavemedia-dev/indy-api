@@ -15,37 +15,21 @@ use App\Services\MarketingPlanners\Interfaces\MarketingPlannerFactoryInterface;
 use App\Services\MarketingPlanners\Resources\MarketingPlannerCreateResource;
 use App\Services\Tickets\Interfaces\Factories\TicketServicesFactoryInterface;
 use App\Services\Tickets\Resources\CreateTicketResource;
+use Carbon\Carbon;
 
 abstract class AbstractTicketFactory
 {
     protected mixed $bucket;
 
-    private BucketFactoryInterface $bucketFactory;
-
-    private DepartmentTicketNotificationHandlerInterface $departmentTicketNotificationHandler;
-
-    private MarketingPlannerFactoryInterface $marketingPlannerFactory;
-
-    private TicketRepositoryInterface $ticketRepository;
-
-    private TicketServicesFactoryInterface $ticketServiceFactory;
-
-    private MarketingPlannerAttachmentProcessorInterface $attachmentProcessor;
 
     public function __construct(
-        BucketFactoryInterface $bucketFactory,
-        DepartmentTicketNotificationHandlerInterface $departmentTicketNotificationHandler,
-        MarketingPlannerAttachmentProcessorInterface $attachmentProcessor,
-        MarketingPlannerFactoryInterface $marketingPlannerFactory,
-        TicketRepositoryInterface $ticketRepository,
-        TicketServicesFactoryInterface $ticketServiceFactory
+        private BucketFactoryInterface $bucketFactory,
+        private DepartmentTicketNotificationHandlerInterface $departmentTicketNotificationHandler,
+        private MarketingPlannerAttachmentProcessorInterface $attachmentProcessor,
+        private MarketingPlannerFactoryInterface $marketingPlannerFactory,
+        private TicketRepositoryInterface $ticketRepository,
+        private TicketServicesFactoryInterface $ticketServiceFactory
     ) {
-        $this->attachmentProcessor = $attachmentProcessor;
-        $this->bucketFactory = $bucketFactory;
-        $this->departmentTicketNotificationHandler = $departmentTicketNotificationHandler;
-        $this->marketingPlannerFactory = $marketingPlannerFactory;
-        $this->ticketRepository = $ticketRepository;
-        $this->ticketServiceFactory = $ticketServiceFactory;
     }
 
     /**
@@ -63,6 +47,7 @@ abstract class AbstractTicketFactory
         $ticketCode = \sprintf('%s-%s', $client->getClientCode(), $ticketCount);
 
         $ticket = $this->ticketRepository->create([
+            'start_date' => new Carbon(),
             'is_approval_required' => 0,
             'email_html' => json_encode($resource->getEmailHtml()),
             'priority' => $resource->getPriority()->getValue(),
