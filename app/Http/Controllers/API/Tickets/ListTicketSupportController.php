@@ -56,8 +56,12 @@ final class ListTicketSupportController extends AbstractAPIController
             'client_id' => $request->getClientId(),
             'department_ids' => $request->getDepartmentIds(),
             'priority' => $priorities,
-            'status' => $statuses,
+            'statuses' => $statuses,
             'types' => $types,
+            'priorities' => $request->getPriorities(),
+            'hideClosed' => $request->hideClosed(),
+            'code' => $request->getCode(),
+            'subject' => $request->getSubject(),
         ];
 
         $user = $this->getUser();

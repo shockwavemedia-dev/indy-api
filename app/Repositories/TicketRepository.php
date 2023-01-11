@@ -292,11 +292,17 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
 
         $types = Arr::get($params, 'types');
 
-        $status = Arr::get($params, 'status');
+        $status = Arr::get($params, 'statuses');
 
-        $priority = Arr::get($params, 'priority');
+        $priority = Arr::get($params, 'priorities');
 
         $clientId = Arr::get($params, 'client_id');
+
+        $subject = Arr::get($params, 'subject');
+
+        $code = Arr::get($params, 'code');
+
+        $hideClosed = Arr::get($params, 'hideClosed');
 
         return $this->model
             ->when($clientId, function ($query) use ($clientId) {
@@ -317,6 +323,19 @@ final class TicketRepository extends BaseRepository implements TicketRepositoryI
             })
             ->when($priority, function ($query, $priority) {
                 return $query->whereIn('priority', $priority);
+            })
+            ->when($subject, function ($query, $subject) {
+                return $query->where('subject', 'LIKE', '%'.$subject.'%');
+            })
+            ->when($code, function ($query, $code) {
+                return $query->where('ticket_code', 'LIKE', '%'.$code.'%');
+            })
+            ->when($hideClosed, function ($query) use ($hideClosed) {
+                if ($hideClosed === null) {
+                    return;
+                }
+
+                $query->where('status', '!=', TicketStatusEnum::CLOSED);
             })
             ->with('ticketEvent')
             ->orderBy('id', 'desc')
