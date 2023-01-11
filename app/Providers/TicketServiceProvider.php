@@ -30,14 +30,12 @@ use App\Services\Tickets\Interfaces\Resolvers\ServiceExtraResolverInterface;
 use App\Services\Tickets\Interfaces\Resolvers\TicketNotificationResolverInterface;
 use App\Services\Tickets\Interfaces\Resolvers\TicketNotifyDepartmentsResolverInterface;
 use App\Services\Tickets\Interfaces\Resolvers\TicketTypeResolverInterface;
-use App\Services\Tickets\Interfaces\TicketAttachmentUploaderInterface;
 use App\Services\Tickets\Interfaces\Validations\DueDateValidatorInterface;
 use App\Services\Tickets\Interfaces\Validations\TicketEventServicesValidatorInterface;
 use App\Services\Tickets\Interfaces\Validations\TicketEventServiceValidationRuleInterface;
 use App\Services\Tickets\Resolvers\ServiceExtraResolver;
 use App\Services\Tickets\Resolvers\TicketCreatedNotificationResolver;
 use App\Services\Tickets\Resolvers\TicketNotifyDepartmentsResolver;
-use App\Services\Tickets\TicketAttachmentUploader;
 use App\Services\Tickets\Validations\DueDateValidator;
 use App\Services\Tickets\Validations\Rules\ClientServiceEnableRuleService;
 use App\Services\Tickets\Validations\Rules\ClientServiceUsageRuleService;
@@ -55,7 +53,6 @@ final class TicketServiceProvider extends ServiceProvider
             DueDateValidatorInterface::class => DueDateValidator::class,
             ServiceExtraResolverInterface::class => ServiceExtraResolver::class,
             TicketActivityFactoryInterface::class => TicketActivityFactory::class,
-            TicketAttachmentUploaderInterface::class => TicketAttachmentUploader::class,
             TicketEventAttachmentFactoryInterface::class => TicketEventAttachmentFactory::class,
             TicketNoteFactoryInterface::class => TicketNoteFactory::class,
             NoteAttachmentFactoryInterface::class => NoteAttachmentFactory::class,

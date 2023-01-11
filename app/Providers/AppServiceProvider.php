@@ -12,7 +12,6 @@ use Illuminate\Contracts\Auth\PasswordBrokerFactory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Events\MigrationsStarted;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Schema;

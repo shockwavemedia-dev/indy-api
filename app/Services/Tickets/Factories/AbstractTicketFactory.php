@@ -21,7 +21,6 @@ abstract class AbstractTicketFactory
 {
     protected mixed $bucket;
 
-
     public function __construct(
         private BucketFactoryInterface $bucketFactory,
         private DepartmentTicketNotificationHandlerInterface $departmentTicketNotificationHandler,
